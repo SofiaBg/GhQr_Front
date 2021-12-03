@@ -1,0 +1,451 @@
+
+
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../../index2.html" class="navbar-brand"><b>GHIPSS</b> Debit</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+
+        <!-- /.navbar-custom-menu -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <div class="container">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+
+      </section>
+
+      <!-- Main content -->
+      <section class="content" style=" padding-left: 10%; padding-right: 10%;">
+
+        <div class="callout callout-danger" *ngIf="mode==0 && errorMessage">
+          <h4>Warning!</h4>
+          <strong>{{errorMessage}}</strong>
+
+          <p></p>
+        </div>
+        <div class="callout callout-danger"  *ngIf=" valid==false ">
+          <strong>Error {{codeError}}! </strong>
+        </div>
+
+        <div class="box box-default" >
+          <div class="box-header with-border"  *ngIf=" valid==true " >
+            <h2>Payment Details </h2>
+          </div>
+
+          <div class="callout callout-info" style="
+    margin-left: 10%; margin-right: 10%;" *ngIf="showdetail==true">
+            <h4><i class="icon fa fa-check" style="
+    margin-bottom: 5%;"></i> Payment Validation Approved !</h4>
+
+            <label style="
+    margin-left: 5%x;
+    margin-right: 5%;" class="control-label"><h4>Mr. (Mlle)   {{pmconfirm.firstName}}  {{pmconfirm.lasteName}}</h4></label> <br>
+            <label style="
+    margin-left: 5%;
+    margin-right: 5%;"  class="control-label"><h4>Bill Number    {{pmconfirm.idBill}}</h4></label><br>
+            <label style="
+    margin-left: 5%;
+    margin-right: 5%;"  class="control-label"><h4>Ammount {{pmconfirm.amount}}</h4></label>
+
+          </div>
+
+          <div class="callout callout-danger"style="margin-left: 5%; margin-right: 5%;" *ngIf="showfailed==true">
+            <h3>
+              <i class="icon fa fa-ban" style="margin-bottom: 5%;"></i> Payment Validation Failed !</h3>              
+            <label style="margin-left: 10%; margin-right: 10%;" class="control-label"><h4>Retry your payment Again</h4></label>
+          </div>
+
+          <div class="box-body" style=" padding: 5%;">
+            <div class="col-md-6">
+              <!-- /.form-group --></div>
+            <div class="panel panel-success"  *ngIf=" valid==true && finpayement==false " >
+              <!--*ngIf=" valid==true && confirm==false"-->
+              <div class="panel panel-info " style="border-style: none" >
+
+                <div class="panel-body" style="border-style: none">
+                  <form #f="ngForm"   id="formPay">
+
+                    <!--          //cols-md6 1----------------------------------------------->
+                    <div class="row">
+                      <div class="col-md-6 ">
+                        <!-- <form (ngSubmit)="onRegister()"  [(ngModel)]="merch"  >-->
+                        <div class="form-group">
+                          <label class="control-label">Amount</label>
+                          <input type="text" name="amount" [(ngModel)]="pminitial.amount"  class="form-control"  readonly="true" />
+                        </div>
+                        <!--<div class="form-group">
+                          <input type="hidden" name="accounTocredit" [(ngModel)]="pminitial.accounToCredit"   readonly class="form-control" />
+                        </div>-->
+
+                        <div class="form-group">
+                          <input type="hidden" name="idBill" [(ngModel)]="pminitial.idBill"  readonly class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                          <input type="hidden" name="accountId" [(ngModel)]="pminitial.accountId"  readonly class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                          <input type="hidden" name="idTransactionMerchant" [(ngModel)]="pminitial.idTransactionMerchant"  readonly class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                          <input type="hidden" name="narration" [(ngModel)]="pminitial.narration"  readonly class="form-control" />
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">First Name:</label>
+                          <!-- &lt;!&ndash; <input type="text" name="firstName" ngModel=""  class="form-contr&ndash;&gt;ol"/>-->
+                          <input type="text" class="form-control" name="firstName" ngModel=""  maxlength="50"  value="" required="" placeholder="first Name  of the account holder">
+                        </div>
+                        <div class="form-group">
+                          <label class="control-label">Last Name:</label>
+                          <!--<input type="text" name="lasteName"  ngModel=""   class="form-control"/>-->
+                          <input type="text" class="form-control" name="lasteName" ngModel=""  maxlength="50"  value="" required="" placeholder="laste Name  of the account holder">
+                        </div>
+                        <!--<div class="form-group">
+                          <label class="control-label">phone number</label>
+                          <input type="text"name="telephone"  ngModel="" value="063808" class="form-control" required/>
+                         &lt;!&ndash; <input type='tel' pattern='[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}' title='Phone Number (Format: +99(99)9999-9999)>>&ndash;&gt;'
+                        </div>-->
+
+                      </div>
+                      <div class="col-md-6 ">
+
+
+                        <div class="form-group">
+                          <label class="control-label">Account Number:</label>
+                          <!-- <input type="text" name="accountToDebit"
+                                  value="accountnumber1500" ngModel="" minlength="1" maxlength="28" class="form-control" required/>-->
+                          <input type="text" class="form-control" name="accountToDebit" ngModel="" minlength="7" maxlength="28"  value="" required="" placeholder="Number of the account ">
+
+                        </div>
+
+                        <div class="form-group" >
+                          <label class="control-label" >(One Time Password) OTP</label>
+                          <!--<input type="text"name="otp"
+                                  placeholder="One Time Password" ngModel="" class="form-control" required/>-->
+                          <table style="width: 100%">
+                            <tbody><tr>
+                              <td style="width: 40%">
+                                <input required name="otp" ngModel="" maxlength="8" type="tel" class="form-control"placeholder="">
+                              </td>
+                              <td style="width: 10%">
+                                <a style="color: #0EB0D0; font-size: 9px; text-decoration: none;"> (?)</a>
+                              </td>
+                              <td>
+                              </td>
+                            </tr>
+                            </tbody></table>
+                        </div>
+
+
+                        <div class="form-group">
+                          <input type="hidden"   name="token" [(ngModel)]="token"  class="form-control" >
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label">Enter your CIV</label>
+                          <!--<input type="text" name="ccv"
+                                 value="ccv" placeholder="you need to be authentified in our service by your bank to get CIV" ngModel=""  class="form-control" required/>-->
+                          <table style="width: 100%">
+                            <tbody><tr>
+                              <td style="width: 20%">
+                                <input required="" name="ccv" ngModel="" maxlength="3" type="tel" class="form-control" size="3" placeholder="">
+                              </td>
+                              <td style="width: 10%">
+                                <a style="color: #0EB0D0; font-size: 9px; text-decoration: none;"> (?)</a>
+                              </td>
+                              <td>
+                              </td>
+                            </tr>
+                            </tbody></table>
+                        </div>
+                        <br>
+
+                        <!--  <div *ngIf=" showmodal==false"   style="width: 49% ;margin-right: 95px" >
+                          <input type="hidden" name="otp" ngModel="0000"  readonly class="form-control" />
+
+                        <button  class="btn btn-success pull-right"   data-toggle="modal" data-target="#modal-otp"  style="width: 100%"><i class="fa fa-credit-card"></i> Submit Payment</button>
+                        </div>-->
+                        <!--    <app-pay *ngIf=" showmodalsc==true" ></app-pay>-->
+
+
+                      </div>
+                    </div>
+
+                    <div class="backdrop" >                    <!-- /.modal --></div>
+
+                    <!--  [ngStyle]="{'display':displayOTP}"  <div class="modal fade" id="modal-default" class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">-->
+
+                    <div class="modal fade" id="modal-otp"
+                         tabindex="-1" role="dialog" >
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true" >&times;</span></button>
+                            <h4 class="modal-title">One-Time Password Request</h4>
+                          </div>
+                          <div class="modal-body" >
+                            <a *ngIf="showmodalsc==false" (click)="sendOTP(f.value)" class="text-center"
+                               onclick ="setTimeout(function(){ $('#modal-otp').modal('hide')
+                               window.angularComponentReference.redirestion();}, '50000')">
+                              <div class="callout callout-danger" *ngIf="mode==0 && errorMessage">
+                                <h4>Warning!</h4>
+                                <strong>{{errorMessage}}</strong>
+
+                                <p></p>
+                              </div><h4>Send OTP</h4></a>
+                            <div class="callout callout-danger"  *ngIf="showmerr==true">
+                              <strong>Error OTP Request filed Please Retray!
+                              </strong>
+                            </div>
+                            <div class="form-group"*ngIf="showmodalsc==true" >
+                              <label class="control-label" >The One-Time Password will be sent to you by SMS</label>
+                              <!--<input type="text"name="otp"
+                                      placeholder="One Time Password" ngModel="" class="form-control" required/>-->
+
+                              <input required name="otp" ngModel="" maxlength="8" type="tel" class="form-control"placeholder="">
+
+
+                              <div class="modal-footer">
+                                <button class="btn btn-success pull-right"  (click)="onSell(f.value)" onclick=" $('#modal-otp').modal('hide');"  style="width: 100%"><i class="fa fa-credit-card"></i> Submit Payment</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
+
+                  </form>
+
+                  <!--button type="submit" class="btn btn-success" (click)="var res = onSell($('#formPay').value()); console.log(res); " > Pay </button -->
+                  <!--   <button type="submit" class="btn btn-success pull-right" ><i class="fa fa-credit-card"></i> Submit Payment
+                   </button>-->
+                  <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12"   >
+
+
+                      <button class="btn btn-success pull-right"  (click)="onSell(f.value)" style="width: 100%"><i class="fa fa-credit-card"></i> Submit Payment</button>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <!--<style type="text/css">
+
+                .swal2-show{
+                  font-size: 1.6rem !important;
+                }
+              </style>
+                  <link rel="stylesheet" href="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.css">
+
+                  <script src="https://npmcdn.com/sweetalert2@4.0.15/dist/sweetalert2.min.js"></script>-->
+              <!--  <button  (click)="paiementFailed()"> error </button>
+                <button  (click)="paiementsuccessfull()"> success </button>-->
+              <!-- swal("Congrats!", ", Your account is created!", "success");" class="btn btn-success"-->
+              <div class="panel-footer text-center" style="height: 100%">
+                All Payment information about you will remain confidential.
+              </div>
+
+              <div  *ngIf="mode==2">
+                <div class="backdrop" [ngStyle]="{'display':display}"></div>
+                <div class="modal fade" id="modal-default" class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':display}">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+
+                        <h4 class="modal-title">Payment Confirmation</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="panel panel-default">
+                          <div class="panel-heading">
+                            Customer Informations
+                          </div>
+
+                          <div class="panel-body">
+                            <table class="table"style="width: 95%;">
+                            
+                              <tr style="vertical-align: top;">
+                                <td style="width: 35%">
+                                  <b>First Name</b>
+                                </td>
+                                <td style="width: 5%">
+                                  :
+                                </td>
+                                <td style="width: 60%" name="firstName" >
+                                  {{pmconfirm.firstName}}
+                                </td>
+                              </tr>   <tr style="vertical-align: top;">
+                                <td style="width: 35%">
+                                  <b>Last Name</b>
+                                </td>
+                                <td style="width: 5%">
+                                  :
+                                </td>
+                                <td style="width: 60%" name="lasteName">
+                                  {{pmconfirm.lasteName}}  
+                                </td>
+                              </tr>
+                              <tr style="vertical-align: top;">
+                                <td style="width: 35%">
+                                  <b> Account </b>
+                                </td>
+                                <td style="width: 5%">
+                                  :
+                                </td>
+                                <td style="width: 60%">
+                                  {{pmconfirm.accountToDebit}}
+                                </td>
+                              </tr>
+                              <tr style="vertical-align: top;">
+                                <td style="width: 35%">
+                                  <b>Your CIV</b>
+                                </td>
+                                <td style="width: 5%">
+                                  :
+                                </td>
+                                <td style="width: 60%">
+                                  {{pmconfirm.ccv}}
+                                </td>
+                              </tr>
+                              <tr style="vertical-align: top;">
+                                <td style="width: 35%">
+                                  <b>Your OTP</b>
+                                </td>
+                                <td style="width: 5%">
+                                  :
+                                </td>
+                                <td style="width: 60%">
+                                  {{pmconfirm.otp}}
+                                </td>
+                              </tr>
+                              </table>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading ">
+                            Details of the bill
+                          </div>
+                          <div class="panel-body">
+                            <table style="width: 95%;" class="table">
+                              <tr style="vertical-align: top;">
+                                <td style="width: 35%;vertical-align: top;">
+                                  <b><div >Bill number</div></b>
+                                  <!-- id="M_CustomerID_HTML_LIB"-->
+                                </td>
+                                <td style="width: 5%;vertical-align: top;">
+                                  :
+                                </td>
+                                <td style="width: 60%;vertical-align: top;">
+                                  {{pmconfirm.idBill}}
+                                </td>
+
+                              </tr>
+                              <tr style="vertical-align: top;">
+                                <td style="width: 35%;vertical-align: top;">
+                                  <b><div >Amount To pay</div></b>
+                                  <!-- id="M_CustomerID_HTML_LIB"-->
+                                </td>
+                                <td style="width: 5%;vertical-align: top;">
+                                  :
+                                </td>
+                                <td style="width: 60%;vertical-align: top;">
+                               
+                                  {{pmconfirm.amount}}
+                                </td>
+
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal" (click)="this.display='none'">Close</button>
+                        <button type="button" (click)="onConfirmSell()" class="btn btn-primary">Submit Payment</button>
+                      </div>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+              </div>
+
+
+
+            </div>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.content-wrapper -->
+
+</div>
+<!-- ./wrapper -->
+<footer  class="main-footer" >
+  <div class="container">
+    <div class="pull-right hidden-xs">
+    </div>
+
+  </div>
+  <!-- /.container -->
+</footer>
+<!-- jQuery 3 -->
+
+
+
+
+<script type="text/javascript">
+
+
+    /* $(function(){
+         $('#modal-otp').on('btnmodal', function(){
+             var myModal = $(this);
+             clearTimeout(myModal.data('hideInterval'));
+             myModal.data('hideInterval', setTimeout(function(){
+                 myModal.modal('hide');
+             }, 3000));
+         });
+     });*/
+    $('#modal-otp').setTimeout(function(){
+        var myModal = $(this);
+
+        myModal.modal('hide');
+    }, 3000);
+
+</script>
+</body>
+
+
+
+
+

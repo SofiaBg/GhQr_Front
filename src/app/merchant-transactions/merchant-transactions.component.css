@@ -1,0 +1,282 @@
+/*
+dl {
+  width: 100%;
+  overflow: hidden;
+  background: #ff0;
+  padding: 0;
+  margin: 0
+}
+dt {
+  float: left;
+  width: 50%;
+  !* adjust the width; make sure the total of both is 100% *!
+  background: #cc0;
+  padding: 0;
+  margin: 0
+}
+dd {
+  float: left;
+  width: 50%;
+  !* adjust the width; make sure the total of both is 100% *!
+  background: aliceblue;
+  padding: 0;
+  margin: 0
+}
+*/
+
+
+/*
+dl.inline dd {
+  display: inline;
+  margin: 0;
+}
+dl.inline dd:after{
+  display: block;
+  content: '';
+}
+dl.inline dt{
+  display: inline-block;
+  min-width: 100px;
+}
+*/
+
+.table-striped>tbody>tr:nth-child(2n+1)>td,
+.table-striped>tbody>tr:nth-child(2n+1)>th {
+    background-color: aliceblue;
+}
+
+.panel-success>.panel-heading-custom {
+    background: #330000;
+    color: #fff;
+}
+
+.page-input {
+    width: 64px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.pagination-w {
+    width: 192px;
+}
+
+#nbPages {
+    vertical-align: bottom;
+}
+
+.mr-8 {
+    margin-right: 8px;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.mt-24 {
+    margin-top: 24px;
+}
+
+nav.navbar.navbar-static-top {
+    background: #ff2a2a;
+    color: #fff;
+}
+
+a.logo {
+    background: #ff2a2a;
+    color: #fff;
+}
+
+:active>a.f {
+    background-color: #ff2a2a;
+    color: #fff;
+}
+
+:active>button.f {
+    background: #fff;
+    color: #ff2a2a;
+    border: 2px solid #ff2a2a;
+}
+
+:active>button.g {
+    background: #fff;
+    color: #ff2a2a;
+    border: 2px solid #ff2a2a;
+}
+
+button.f {
+    /*margin-top: 5px;
+  margin-left: 50px;
+  background: #d9534f;
+  color: #fff;*/
+    margin-top: 5px;
+    margin-left: 45px;
+    color: #fff;
+    font-size: 1.6rem;
+    border: none;
+    outline: none;
+    background-color: #ff2a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: background-color 0.2s;
+    text-align: center;
+    width: 180px;
+}
+
+button.g {
+    margin-top: 5px;
+    margin-left: -33px;
+    color: #fff;
+    font-size: 1.6rem;
+    border: none;
+    outline: none;
+    background-color: #ff2a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+button.btn-x {
+    background: #ff2a2a;
+    color: #fff;
+}
+
+button.btn-y {
+    background: #ff2a2a;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.main-sidebar1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+    min-height: 100%;
+    width: 210px;
+    height: 1050px;
+    z-index: 810;
+    -webkit-transition: -webkit-transform .3s ease-in-out, width .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out, width .3s ease-in-out;
+    -o-transition: -o-transform .3s ease-in-out, width .3s ease-in-out;
+    transition: transform .3s ease-in-out, width .3s ease-in-out;
+}
+
+section.sidebar1 {
+    width: 210px;
+}
+
+input.btn.btn-a {
+    background: #ff2a2a;
+    color: #fff;
+    border-color: #ff2a2a;
+}
+
+li.x {
+    margin-left: 20px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+li.y {
+    margin-left: 270px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+th {
+    background: #bdbdbd;
+    color: #fff;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #cccccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #ffffff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.scroll-container {
+    max-height: 200px;
+    overflow: auto;
+}
+
+.ml-8 {
+    margin-left: 8px;
+}
+
+th {
+    background: #222d32;
+}
+
+#btn {
+    background: #222d32;
+    border-color: #222d32;
+    height: 33px;
+}
+
+#divDetails {
+    align-content: center;
+    margin-left: 15%;
+}
+
+#content {
+    margin-top: -2%;
+    margin-left: -1%;
+}
+
+#divDashboard {
+    margin-right: 33%;
+    margin-top: -3%;
+}

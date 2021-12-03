@@ -1,0 +1,411 @@
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+<div class="wrapper">
+    <div class="content-wrapper">
+        <section class="content-header">
+
+            <div class="content">
+                <div class="box box-default">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                Bulk Merchants Onboarding
+                            </h4>
+                        </div>
+                        <div class="panel-body">
+                            <input #csvReader name="Choose File" accept=".csv" ng-model="file" class="form-control" type="file" name="file" aria-required="true" required id="txtFileUpload" (change)="uploadListener($event)">
+                        </div>
+                    </div>
+                </div>
+                <!-- <div *ngIf="records.length > 0" class="col-xs-12"> -->
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="keyword">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i
+                                                class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-inline" style="display: inline-block;">
+                                <label for="pagesize">Page size</label>
+                                <div class="input-group form-inline input-group-sm w-100 pull-left">
+                                    <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover table-striped table-bordered table-responsive">
+                                    <thead style="text-align: center;" id="tabHead">
+                                        <tr>
+                                            <th rowspan="2" colspan="1"> ID</th>
+                                            <th colspan="5">
+                                                Identification
+                                            </th>
+                                            <th colspan="1">
+                                                Sites
+                                            </th>
+                                            <th colspan="3">
+                                                Acceptor Point
+                                            </th>
+                                            <th colspan="3" rowspan="2">
+                                                Action
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>Account Number</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Company Name</th>
+                                            <th>Date of Incorporation</th>
+                                            <th>Type</th>
+                                            <th>Acceptor Point Name</th>
+                                            <th>Acceptor Point Acronym</th>
+                                            <th>Mobile Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="text-align: center;">
+                                        <tr *ngFor="let record of records |  filter : keyword ; let i = index">
+                                            <td>{{record.id}}</td>
+                                            <td>{{record.accountNumber}}</td>
+                                            <td>{{record.firstName}}</td>
+                                            <td>{{record.lastName}}</td>
+                                            <td>{{record.companyName}}</td>
+                                            <td>{{record.dateOfIncorporation}}</td>
+                                            <td>{{record.typeOfSite}}</td>
+                                            <td>{{record.acceptorPoint}}</td>
+                                            <td>{{record.acronym}}</td>
+                                            <td>{{record.mobileNumberA}}</td>
+                                            <!-- <td>{{record.}}</td> -->
+                                            <td><button style="width: 40px;" id="blackBtn" class="btn btn-success mr-16"><span
+                                                        class="fa fa-check"></span></button></td>
+                                            <td><button (click)="deleteRow(i)" style="width: 40px;" id="blackBtn" class="btn btn-danger"><span class="fa fa-times"></span></button>
+                                            </td>
+                                            <td><button data-toggle="modal" data-target=".bd-example-modal-lg" (click)="editUser(i)" style="width: 40px;" id="blackBtn" class="btn btn-danger">Details</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel-footer o-auto">
+                                <div class="input-group pagination-w pull-right">
+                                    <span class="input-group-btn">
+                                        <button id="blackBtn" type="submit" class="btn btn-danger mok"
+                                            (click)="gotoPage(currentpage-1)"
+                                            [disabled]="currentpage<=0">Previous</button>
+                                    </span>
+                                    <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" /></form>
+                                    <span class="input-group-btn">
+                                        <button id="blackBtn" type="submit" class="btn btn-danger mok"
+                                            (click)="gotoPage(currentpage+1)"
+                                            [disabled]="!records || currentpage+1>=totalPages">Next</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    Merchant Information
+                </h4>
+            </div>
+            <div id="identification" class="panel-heading">
+                <h4 class="panel-title">
+                    <a aria-controls="collapse1" id="identifTitle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                        Identification <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+                    <!-- SAFIA 22.09.2021 <button id="btnClose" type="button" class="btn btn-danger btn-sm ml-8" (click)="fillTestData()">Fill</button> -->
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+                <!-- <div id="collapse1" class="panel-collapse collapse in"> -->
+                <div class="panel-body">
+                    <div class="form-section-header">
+                        <b>Identification</b>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="accountnumber">ID</label>
+                            <div id="flexContainer">
+                                <input formControlName="id" class="form-control" type="text" name="id" id="id" aria-required="true" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="accountnumber">Account Number</label>
+                            <div id="flexContainer">
+                                <input ng-model="accountNumber" class="form-control" type="text" name="accountNumber" id="accountNumber" aria-required="true" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="bank">Bank</label>
+                            <input type="text" class="form-control" name="bank" id="bank">
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="branch">Branch</label>
+                            <input type="text" class="form-control" name="branch" id="branch">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="businessregno">Business Reg No.</label>
+                            <input class="form-control" type="text" name="businessregno" id="businessregno" aria-required="true" required>
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="legalidtype">Legal ID Type</label>
+                            <!-- SAFIA 14.09.2021 -->
+                            <!-- <input type="text" class="form-control" name="legalidtype" id="legalidtype"> -->
+                            <input type="text" class="form-control" name="legalidtype" id="legalidtype">
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="legalid">Legal ID</label>
+                            <input type="text" class="form-control" name="legalid" id="legalid">
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="doingbusinessas">Doing business as</label>
+                            <input ng-model="doingbusinessas" class="form-control" type="text" name="doingbusinessas" id="doingbusinessas" aria-required="true" required>
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="companyname">Company Name</label>
+                            <input ng-model="companyname" class="form-control" type="text" name="companyname" id="companyname" aria-required="true" required>
+
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="mcc">MCC</label>
+                            <!-- SAFIA 14.09.2021 -->
+                            <!-- <input type="text" class="form-control" name="mcc" id="mcc"> -->
+                            <input type="text" class="form-control" name="mcc" id="mcc">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="tin">TIN</label>
+                            <input ng-model="tin" class="form-control" type="text" name="tin" id="tin" aria-required="true" required>
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="status">Status</label>
+                            <input type="text" class="form-control" name="status" id="status">
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="visaidentifier">VISA Identifier</label>
+                            <input class="form-control" type="text" name="visaidentifier" id="visaidentifier">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="openingdate">Opening Date</label>
+                            <input class="form-control" type="date" name="openingdate" id="openingdate" aria-required="true" required>
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="mastercardidentifier">MasterCard Identifier</label>
+                            <input class="form-control" type="text" name="mastercardidentifier" id="mastercardidentifier">
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="upiidentifier">UPI Identifier</label>
+                            <input class="form-control" type="text" name="upiidentifier" id="upiidentifier">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="contractnumber">Contract Number</label>
+                            <input ng-model="contractnumber" class="form-control" type="text" name="contractnumber" id="contractnumber" aria-required="true" required>
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="legalform">Legal Form</label>
+                            <input type="text" class="form-control" name="legalform" id="legalform">
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="acctstartdt">Account Start Date</label>
+                            <input class="form-control" type="date" name="acctstartdt" id="acctstartdt">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="mainactivitytype">Main Activity Type</label>
+                            <input class="form-control" type="text" name="mainactivitytype" id="mainactivitytype" aria-required="true" required>
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="mainactivity">Main Activity</label>
+                            <input class="form-control" type="text" name="mainactivity" id="mainactivity" aria-required="true" required>
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="mainactivity">Date of Incorporation</label>
+                            <!-- <input class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required> -->
+                            <input class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required>
+
+                        </div>
+                    </div>
+
+                    <div class="form-section-header mtop-16">
+                        <b>Address</b>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="type">Type</label>
+                            <input type="text" class="form-control" name="type" id="type">
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="usage">Usage</label>
+                            <input type="text" class="form-control" name="usage" id="usage">
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="sendingmode">Sending Mode</label>
+                            <!-- <input type="text" class="form-control" name="sendingmode" id="sendingmode"> -->
+                            <input type="text" class="form-control" name="sendingmode" id="sendingmode">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="careof">Care of</label>
+                            <input class="form-control" type="text" name="careof" id="careof">
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="startdate">Start Date</label>
+                            <input class="form-control" type="date" name="startdate" id="startdate">
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="country">Country</label>
+                            <input type="text" class="form-control" name="country" id="country">
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="region">Region</label>
+                            <input type="text" class="form-control" name="region" id="region">
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" name="city" id="city">
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="businessphysicaladdress1">Business Physical Address
+                                1</label>
+                            <input type="text" class="form-control" name="businessphysicaladdress1" id="businessphysicaladdress1">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="businessphysicaladdress2">Business Physical Address
+                                2</label>
+                            <input type="text" class="form-control" name="businessphysicaladdress2" id="businessphysicaladdress2">
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="businessphysicaladdress3">Business Physical Address
+                                3</label>
+                            <input type="text" class="form-control" name="businessphysicaladdress3" id="businessphysicaladdress3">
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="digitaladdress">Digital Address</label>
+                            <input type="text" class="form-control" name="digitaladdress" id="digitaladdress">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="state">State</label>
+                            <input type="text" class="form-control" name="state" id="state">
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="zipcode">Zip Code</label>
+                            <input type="text" class="form-control" name="zipCode" id="mcc">
+
+                        </div>
+                    </div>
+
+                    <div class="form-section-header mtop-16">
+                        <b>Merchant Contact</b>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" name="title" id="title">
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="firstname">First Name</label>
+                            <input formContronName="firstname" ng-model="firstname" type="text" class="form-control" name="firstname" id="firstname" aria-required="true" required>
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="lastname">Last Name</label>
+                            <input ng-model="lastname" type="text" class="form-control" name="lastname" id="lastname" aria-required="true" required>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-sm-4 col-xs-12">
+                            <label for="function">Function</label>
+                            <input type="text" class="form-control" name="function" id="function">
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="email">Email</label>
+                            <input ng-model="email" type="text" class="form-control" name="email" id="email" aria-required="true" required>
+
+                        </div>
+                        <div class="form-group col-sm-4 col-xs-12 required">
+                            <label for="mobilenumber">Mobile Number</label>
+                            <input ng-model="mobilenumber" type="text" class="form-control" name="mobilenumber" id="mobilenumber" aria-required="true" required>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

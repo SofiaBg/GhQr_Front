@@ -1,0 +1,99 @@
+button {
+    background: #ff2a2a;
+    color: #fff;
+}
+
+p.x {
+    margin: 0 0 4px;
+    margin-left: -100px;
+}
+
+div.y {
+    margin: 0 0 10px;
+    margin-left: 20px;
+    margin-top: -30px;
+}
+
+p.m {
+    margin: 0 0 4px;
+    margin-left: 241px;
+}
+
+div.n {
+    margin: 0 0 10px;
+    margin-left: 350px;
+    margin-top: -30px;
+}
+
+ng-template.t {
+    margin-block: center;
+    background-color: #ff2a2a;
+}
+
+form.a {
+    margin-top: 20px;
+}
+
+button.b {
+    margin-left: -145px;
+    width: 150px;
+    height: 35px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.cbg-red {
+    color: #ff2a2a;
+}
+
+a>.cbg-red {
+    background-color: white;
+    cursor: pointer;
+    text-decoration-color: white;
+}
+
+body {
+    min-height: 100%;
+}
+
+#flexContainer {
+    display: flex;
+}
+
+#accountnumber {
+    flex: 1;
+}
+
+#btnCheck {
+    width: 40px;
+    background-color: #ff2a2a;
+    border: #ff2a2a;
+}
+
+#iconCheck {
+    color: white;
+}
+
+#phoneIcon {
+    margin-right: 37px;
+}
+
+#btn1 {
+    background-color: #222d32b5;
+    border: #222d32b5;
+    text-decoration-color: white;
+}
+
+#p1 {
+    margin-left: 100px;
+}
+
+#p2 {
+    margin-right: 160px;
+}

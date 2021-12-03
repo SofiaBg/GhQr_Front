@@ -1,0 +1,142 @@
+button.btn.btn-block.btn-primary.btn-flat.btn-x {
+    background-color: #ff2a2a;
+    border-color: #ff2a2a;
+}
+
+label~input:disabled,
+label~select:disabled {
+    color: grey;
+}
+
+.qrimg {
+    height: 300px;
+    width: 300px;
+    padding: lrem;
+    border: 2px solid #ff2a2a;
+    border-radius: 0.5rem;
+    grid-column: 1 / -1;
+}
+
+#qrcode {
+    text-align: center;
+}
+
+label {
+    font-weight: normal!important;
+}
+
+.form-section-header {
+    margin-bottom: 24px;
+}
+
+.mtop-16 {
+    margin-top: 16px;
+}
+
+.mr-16 {
+    margin-right: 16px;
+}
+
+.form-group.required label:after {
+    content: " *";
+    color: red;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.ml-8 {
+    margin-left: 8px;
+}
+
+.ml-0 {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.mr-0 {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.qrpdf {
+    height: 200mm;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.qrheader {
+    border-bottom: 2px solid black;
+    height: 10%;
+}
+
+.qrbody {
+    height: 70%;
+}
+
+.qrfooter {
+    border-bottom: 2px solid black;
+    height: 20%;
+}
+
+
+/*SAFI A20/07/2021 */
+
+#identification,
+#sites {
+    background-color: #222d32b5;
+}
+
+#identifTitle,
+#siteTitle {
+    color: white;
+}
+
+#blackBtn {
+    background-color: #222d32b5;
+    border: #222d32b5 !important;
+}
+
+#btnDelete,
+#confirmation {
+    margin-left: 80% !important;
+    background: #ff2a2a;
+    border-color: #ff2a2a;
+}
+
+#btnSave {
+    background: #ff2a2a !important;
+    border-color: #ff2a2a !important;
+}
+
+#tabHead {
+    background-color: #222d32;
+    color: white;
+}
+
+#btnClose {
+    background: #ff2a2a !important;
+    border-color: #ff2a2a !important;
+}
+
+
+/* ---------- */
+
+.container {
+    width: device-width;
+}
+
+
+/* @media screen and (min-width: 500px) {
+    .container {
+        margin: 1em 2em;
+    }
+    
+} */

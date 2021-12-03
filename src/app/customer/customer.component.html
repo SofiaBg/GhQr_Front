@@ -1,0 +1,323 @@
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+<div class="wrapper">
+
+  <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" >
+      <h1>
+        Customer List
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="#">Custumer</a></li>
+        <li class="active">Data</li>
+      </ol>
+    </section>
+
+    <section class="content-header">
+
+      <div class="alert alert-success alert-dismissible" *ngIf="show==true" >
+        <button type="button" class="close" (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i> Alert!</h4>
+        Customer status changed
+      </div>
+
+        <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
+          <button type="button" class="close"  (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h4><i class="icon fa fa-check"></i> Alert!</h4>
+       {{msg}}
+      </div>
+    </section>
+    <section class="content">
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h4>Search </h4>
+        </div>
+        <div class="box-body" style=" padding: 30px;">
+          <div class="box-tools">
+
+            <div class="box-tools">
+              <div class="input-group input-group-sm" style="    width: 500px;">
+                <input type="text" name="iid" [(ngModel)]="id"  class="form-control pull-right" placeholder="Search by ID Account">
+
+                <div class="input-group-btn">
+                  <button (click)="onGetCostumersByid(id)" type="submit" class="btn btn-default" ><i class="fa fa-search"></i></button>
+                </div>
+                <input type="text" name="motCle" [(ngModel)]="code"  class="form-control pull-right" placeholder="Search by code Bank">
+
+                <div class="input-group-btn">
+                  <button  (click)="onGetCostumersBycb(code)" gtype="submit" class="btn btn-default" ><i class="fa fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+          <li [ngClass]="st=='N' ? 'active' :''">
+
+            <a (click)="onGetCostumersBystatus('N')" data-toggle="tab">Customers</a></li>
+          <li [ngClass]="st=='S' ? 'active' :''"><a (click)="onGetCostumersBystatus('S')" data-toggle="tab">Suspended Customers</a></li>
+          <li [ngClass]="st=='C' ? 'active' :''"><a (click)="onGetCostumersBystatus('C')" data-toggle="tab">Cancel Customers</a></li>
+        </ul>
+
+        <div class="row" id="activity" *ngIf="hidemain==false">
+
+          <div class="col-xs-12">
+            <fieldset class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="box-header">
+                    <h3 class="box-title"> All Costumers</h3>
+                    <div class="box-body table-responsive no-padding">
+                      <table class="table table-hover">
+                        <thead class="thead-dark bg-info">
+
+                        <tr>
+                          <th>ID Person</th> <th>Last Name</th> <th>First Name</th>  <th>Email</th> <th>Telephone</th><th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor='let c of costumers'>
+                          <td>{{c.person.idPerson}}</td>
+                          <td>{{c.person.lastName}}</td>
+                          <td>{{c.person.firstName}}</td>
+                          <td>{{c.person.email}}</td>
+                          <td>{{c.person.phone}}</td>
+                          <td>   <span class="btn btn-default" (click)="getAccountsParPersonne(c.person.idPerson)">Details</span>&nbsp;
+                            <div *ngIf="st!='C' " class="btn-group">
+                              <button type="button" class="btn btn-default">Action</button>
+                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+                                <li><a *ngIf="st=='S' "(click)="changeStatus(c.person.idPerson,'N')">Activate </a></li>
+                                <li><a *ngIf="st=='N'" (click)="changeStatus(c.person.idPerson,'S')">Suspend</a></li>
+                                <li><a *ngIf="st=='N' || st=='S' "(click)="changeStatus(c.person.idPerson,'C')">Cancel </a></li>
+
+                              </ul>
+                            </div>
+                          </td>
+
+
+
+                        </tr>
+                        </tbody>
+                      </table>
+
+                       <div class="box-footer clearfix" *ngIf="hidePersonOrTrans==false">
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                          <li *ngFor="let p of pages;let i=index" [ngClass]="{'active':i==currentpage}">
+                            <a class="clickable"  (click)="gotoPage(i)">{{i}}</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div></div>
+
+        <div *ngIf='accountsPersonne && hideAccouts==false  && hide==false'>
+          <div class="box-header" >
+
+            <fieldset class="col-md-12">
+              <legend>Customer details</legend>
+
+              <div class="panel panel-default">
+
+                <div class="panel-body">
+                  <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                      <thead class="thead-dark bg-info">
+
+                      <tr>
+                        <!-- <th>ID</th>--> <th>Account Number</th><th>Account ID</th>
+                        <th>Account Name</th> <th>Banque Name</th> <th>Account Status</th><th>Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let a of accountsPersonne" class="table-light">
+                        <!--<td>{{a.accountId}}</td>-->
+                        <td>{{a.accountNumber}}</td>
+                        <td>{{a.accountId}}</td>
+                        <td>{{a.nameAccount}}</td>
+                        <td>{{a.bank.bankName}}</td>
+                        <td>{{a.status}}</td>
+
+                        <td ><a (click)="onGetTransCostumer(a.accountId)" class="btn btn-default">Transactions</a>
+                          <a *ngIf="st=='N' || st=='S'"  (click)="sendCiv(a.accountId)" class="btn btn-info">CIV</a>
+                          <a (click)="hideAccountsParPersonne()" class="btn btn-danger">Cancel</a></td>
+
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+
+                </div></div>
+              </fieldset>
+            </div>
+          </div>
+
+        <div *ngIf="transactionParAccountCost && hide==false ">
+          <div class="box-header">
+            <fieldset class="col-md-12">
+              <legend>Transactions of the Customer</legend>
+
+              <div class="panel panel-default">
+                <div class="panel-body">
+
+
+                  <div class="box-header">
+                    <h3 class="box-title">Responsive Hover Table</h3>
+
+                    <div class="box-tools">
+                      <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                        <div class="input-group-btn">
+                          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.box-header -->
+
+                  <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+
+
+                      <thead class="thead-dark bg-info">
+                      <tr>
+                        <!--<th>ID</th> <th>Id transaction </th> <th>Amount </th><th>date Transaction </th><th> Merchant  </th><th> ID Facture </th>-->
+                        <th>ID</th> <th>Name to Debit</th> <th>Name to credited</th><th>Amount</th> <th>date</th> <th> Bill ID</th><th> ID Merchant Trans </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor='let t of transactionParAccountCost?.content'>
+                        <td>{{t.idTransaction}}</td>
+                        <td>{{t.accountCostumer.nameAccount}}</td>
+                        <td>{{t.accountMerchant.nameAccount}}</td>
+                        <td>{{t.amount}}</td>
+                        <td>{{t.dateTransaction}}</td>
+                        <td>{{t.idBill}}</td>
+                        <td>{{t.idTransactionMerchant}}</td>
+                      </tr>
+                      <!-- <tr><td> <a (click)="hideTransactionsParAccount()" class="clickable btn btn-danger btn-xs">Cancel</a></td></tr>-->
+                      </tbody>
+                      <div class="box-footer clearfix">
+                        <ul class="pagination pagination-sm no-margin pull-right">
+                        <li *ngFor="let p of pagesCost;let i=index" [ngClass]="{'active':i==currentpageCost}" >
+                            <a  class="clickable btn btn-xs"  (click)="gotoPageCost(i) ">{{i}}</a>
+                        </li>
+                        <li class="cancel"> 
+                          <button (click)="hideTransactionsParAccount()" class="clickable  btn btn-danger btn-sm ">Cancel</button> 
+                        </li>
+                        </ul>
+                      </div>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+
+          </div>
+        </div>
+        <div class="row" *ngIf="hidecsearch==false">
+          <div class="col-xs-12">
+
+            <fieldset class="col-md-12">
+
+              <div class="panel panel-default">
+                <div class="panel-body">
+                  <div class="box-header">
+                    <h3 class="box-title"> Customers</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <!--   <a (click)="customerAll()" class="text-center">all Costumers</a> -->
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                      <thead class="thead-dark bg-info">
+                      <tr>
+                        <th>ID Person</th> <th>Last Name</th> <th>First Name</th>  <th>Email</th> <th>Telephone</th><th>Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor='let c of ctmr?.content'>
+                        <td>{{c.person.idPerson}}</td>
+                        <td>{{c.person.lastName}}</td>
+                        <td>{{c.person.firstName}}</td>
+                        <td>{{c.person.email}}</td>
+                        <td>{{c.person.phone}}</td>
+                        <td>
+                          <span class="btn btn-default" (click)="getAccountsParPersonne(c.person.idPerson)">Details</span>&nbsp;
+                          <div *ngIf="st!='C' " class="btn-group">
+                            <button type="button" class="btn btn-default">Action</button>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <li><a *ngIf="st=='S' "(click)="changeStatus(c.person.idPerson,'N')">Activate </a></li>
+                              <li><a *ngIf="st=='N'" (click)="changeStatus(c.person.idPerson,'S')">Suspend</a></li>                       
+                              <li><a *ngIf="st=='N' || st=='S' "(click)="changeStatus(c.person.idPerson,'C')">Cancel </a></li>
+
+                            </ul>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>                    </table>
+                    <div class="box-footer clearfix">
+                      <ul class="pagination pagination-sm no-margin pull-right">
+                        <li *ngFor="let p of pagesctmr;let i=index" [ngClass]="{'active':i==currentpageCost}" >
+                          <a class="clickable"  (click)="goPage(i)">{{i}}</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+      </div>      
+    </section>
+  
+  </div>
+
+  <div class="modal modal-danger fade" id="modal-danger">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Danger Modal</h4>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete these records &hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline">Delete </button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  
+
+
+</div>
+
+

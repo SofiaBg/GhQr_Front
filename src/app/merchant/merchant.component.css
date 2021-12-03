@@ -1,0 +1,79 @@
+div.x {
+    padding-top: 40px;
+    padding-left: 10px;
+}
+
+button.btn-y {
+    /* background: #ff2a2a; */
+    background: black;
+    color: #fff;
+}
+
+a.btn-a {
+    background: #ff2a2a;
+    color: #fff;
+}
+
+th {
+    /* SAFIA 20.09.2021 */
+    /* background: #bdbdbd; */
+    background: black;
+    color: #fff;
+}
+
+.clickable {
+    cursor: pointer!important;
+}
+
+.page-input {
+    width: 64px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.pagination-w {
+    width: 192px;
+}
+
+#nbPages {
+    vertical-align: bottom;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+
+/*SAFIA 20.09.2021 */
+
+#blackBtn {
+    background: #222d32b5 !important;
+    border-color: #222d32b5;
+}
+
+#paginationValue {
+    text-align: center;
+}
+
+#action {
+    width: 190px;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #ff2a2a;
+}
+
+th {
+    background: #222d32 !important;
+    background-color: #222d32 !important;
+}
+
+
+/* #btnSearch {
+    margin-top: 9px;
+    margin-right: 16px;
+    background-color: #222d32;
+    border: #222d32;
+} */

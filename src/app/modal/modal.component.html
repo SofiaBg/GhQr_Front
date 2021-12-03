@@ -1,0 +1,20 @@
+
+<h2>Are you sure you want to settle this credit ?</h2><br>
+
+<h3>Credit Info</h3>
+
+<div mat-dialog-content>
+  <p class="font-weight-normal">Account Credit     {{data.credit_acc}}</p>
+  <p class="font-weight-normal">Account Debit     {{data.debit_acc}}</p>
+  <p class="font-weight-normal">Amount       {{data.amount}} </p>
+
+</div>
+<br><br>
+<div mat-dialog-actions>
+  <div class="container">
+  <div class="text-right">
+  <button  class="btn btn-primary pull left" mat-button (click)="onNoClick()">No </button>
+  <!--<button class="btn btn-default pull left" mat-button [mat-dialog-close]="data.animal" cdkFocusInitial (click)="changeStatus(data.idcredit,'MS')">Yes</button>-->
+  </div>
+  </div>
+</div>

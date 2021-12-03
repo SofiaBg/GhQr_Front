@@ -1,0 +1,70 @@
+
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Acceptor Point Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+      <div class="alert alert-danger" *ngIf="updateTerminalFailed">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Error</strong><br>Failed to update Acceptor Point
+      </div>
+
+      
+      <div class="alert alert-warning" *ngIf="updateTerminalSuccess">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong>Success</strong><br>Acceptor Point updated successfully
+      </div>
+      
+      
+      <form>
+        <div class="form-group">
+          
+          <div class="row">    
+            <div class="form-group col-sm-6 col-xs-12">
+              <label for="acceptorpointid">Acceptor Point Id</label>
+              <input type="text" class="form-control" name="acceptorpointid" id="acceptorpointid" aria-disabled="true" disabled>
+            </div>        
+            <div class="form-group col-sm-6 col-xs-12">
+              <label for="acceptorpointcompanyname">Company Name</label>
+              <input type="text" class="form-control" name="acceptorpointcompanyname" id="acceptorpointcompanyname" aria-disabled="true" disabled>
+            </div>           
+          </div> 
+          
+          <div class="row">    
+            <div class="form-group col-sm-6 col-xs-12">
+              <label for="acceptorpointdescription">Description</label>
+              <input type="text" class="form-control" name="acceptorpointdescription" id="acceptorpointdescription" aria-disabled="true" disabled>
+            </div>         
+            <div class="form-group col-sm-6 col-xs-12 required">
+              <label for="acceptorpoint">Acceptor Point</label>
+              <input type="text" class="form-control" name="acceptorpoint" id="acceptorpoint" >
+            </div>       
+          </div> 
+          
+          <div class="row">     
+            <div class="form-group col-sm-6 col-xs-12 required">
+              <label for="acceptorpointacronym">Acronym</label>
+              <input type="text" class="form-control" name="acceptorpointacronym" id="acceptorpointacronym" >
+            </div>          
+            <div class="form-group col-sm-6 col-xs-12 required">
+              <label for="acceptorpointmobilenumber">Mobile Number</label>
+              <input type="text" class="form-control" name="acceptorpointmobilenumber" id="acceptorpointmobilenumber" >
+            </div>    
+          </div> 
+  
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <div class="row">
+        <div class="text-left col-xs-6">
+          <button id="btnClose" class="btn btn-danger" (click)="close()">Close</button>
+        </div>
+        <div class="text-right col-xs-6">
+          <button id="blackBtn" class="btn btn-primary" (click)="save()" [disabled]="updatingMerchantTerminal"><span class="fa fa-check"></span> Save</button>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,52 @@
+.panel-default > .panel-heading-custom {
+  background:#DCDCDC;
+  color: #330000;
+
+
+}
+.panel-success > .panel-heading-custom {
+  background: #330000;
+  color: #fff;
+
+
+}
+.headAccounts{
+  background:#DCDCDC;
+
+}
+
+
+
+.nav-pills  > li.active > a{
+  background-color: lightgreen;
+}
+
+
+
+ul.pagination {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+ul.pagination li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.cancel{
+
+  background-color: red;
+  color: black;
+  width: 10px;
+  height:20px;
+}
+ul.pagination li a:hover:not(.active) {background-color: #ddd;}

@@ -1,0 +1,145 @@
+<aside class="main-sidebar" style="display: block;">
+    <!-- : style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+
+            <!--   <div class="pull-left " data-widget="tree">
+        <p style="color: white; display: center; position: center; margin-left: 20px;">GHQR MERCHANT PORTAL</p>
+        
+      </div>-->
+        </div>
+        <!-- search form -->
+
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+            <!--   <li><a (click)="customer()" >
+            <i class="fa fa-circle-o"></i>  Customers
+          </a></li>
+-->
+            <li class="clickable">
+                <a (click)="merchant()" *ngIf="this.isAdmin">
+                    <i class="fa fa-users"></i> Merchants
+                </a>
+            </li>
+            <li class="clickable">
+                <a (click)="bulkMerchants()" *ngIf="this.isAdmin">
+                    <i class="fa fa-users"></i> Bulk Merchants
+                </a>
+            </li>
+            <!--   <li><a (click)="gestion()">
+            <i class="fa fa-circle-o"></i>  Transaction
+          </a></li>
+        -->
+            <!--<li class="clickable"><a  (click)="QrGeneration()">
+          <i  class="fa fa-qrcode"></i>  QrGeneration
+        </a></li>-->
+            <!-- SAFIA 24.09.2021 <li class="clickable">
+                <a (click)="gestion1()" *ngIf="this.isAdmin">
+                    <i class="fa fa-exchange"></i> QrTransaction
+                </a>
+            </li> -->
+            <li class="clickable">
+                <a (click)="report()" *ngIf="this.isAdmin">
+                    <i class="fa fa-file-pdf-o"></i> Reports
+                </a>
+            </li>
+            <li class="clickable">
+                <a (click)="adminList()" *ngIf="this.isSuperAdmin">
+                    <i class="fa fa-users"></i> Admin Management
+                </a>
+            </li>
+            <li class="clickable">
+                <a (click)="adminList()" *ngIf="this.isSuperAdmin">
+                    <i class="fa fa-users"></i> Merchant Management
+                </a>
+            </li>
+            <!-- 
+         <li><a (click)="gestionNStr()">
+            <i class="fa fa-circle-o"></i>  Not Settled Transaction
+          </a></li>-->
+
+            <li data-toggle="collapse" data-target="#menuparameters" class="collapsed clickable" *ngIf="this.isAdmin">
+                <a>
+                    <i class="fa fa-cog"></i> <span> Settings </span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-down pull-right"></i>
+            </span> </a>
+
+            </li>
+
+            <ul class="sub-menu collapse bg-gray-omar ul-padding" id="menuparameters" *ngIf="this.isAdmin">
+                <li (click)="AdminParamSession()" class="clickable menu-item">
+                    <i class="fa fa-lock"></i> Session
+                </li>
+                <li (click)="AdminResetPassword()" class="clickable menu-item">
+                    <i class="fa fa-lock"></i> Reset Password
+                </li>
+
+
+            </ul>
+
+            <!-- SAFIA 22.09.2021 -->
+            <li class="clickable">
+                <a (click)="dashboard()" *ngIf="!this.isAdmin && !this.isSuperAdmin">
+                    <i class="fa fa-line-chart"></i> Dashboard
+                </a>
+            </li>
+
+            <li class="clickable">
+                <a (click)="detail()" *ngIf="!this.isAdmin && !this.isSuperAdmin">
+                    <i class="fa fa-user"></i> Merchant Details
+                </a>
+            </li>
+
+            <li class="clickable">
+                <a (click)="QrTransaction()" *ngIf="!this.isAdmin && !this.isSuperAdmin">
+                    <i class="fa fa-qrcode"></i> Merchant Transaction
+                </a>
+            </li>
+
+            <!--<li class="clickable"><a  (click)="QrTransaction2()" *ngIf="!this.isAdmin">
+          <i  class="fa fa-qrcode"></i>  QrTransaction by location
+        </a></li>
+
+        <li class="clickable wb"><a  (click)="QrTransaction1()" *ngIf="!this.isAdmin">
+          <i class="fa fa-qrcode"></i>  QrTransaction history
+        </a></li>-->
+
+            <li data-toggle="collapse" data-target="#menuparameters" class="collapsed clickable" *ngIf="!this.isAdmin && !this.isSuperAdmin">
+                <a>
+
+
+
+                    <i class="fa fa-cog"></i> <span> Settings </span>
+                    <span class="pull-right-container">
+                <i class="fa fa-angle-down pull-right"></i>
+              </span> </a>
+
+            </li>
+
+            <ul class="sub-menu collapse bg-gray-omar ul-padding" id="menuparameters" *ngIf="!this.isAdmin && !this.isSuperAdmin">
+                <li (click)="ShowParam1()" class="clickable menu-item">
+                    <i class="fa fa-lock"></i> Reset Password
+                </li>
+
+
+            </ul>
+
+            <!--   <ul class="treeview-menu">
+          <li><a (click)="AdminParamToken()" >
+            <i class="fa fa-circle-o"></i>  Token
+          </a></li>
+
+          
+        </ul>-->
+
+
+
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

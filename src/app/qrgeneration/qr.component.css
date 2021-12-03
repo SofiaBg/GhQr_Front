@@ -1,0 +1,43 @@
+:active>a.f{
+    background-color: #ff2a2a;
+    color: #fff;
+  }
+  button.f:hover{
+  background: #fff;
+    color: #ff2a2a;
+    border: 2px solid #ff2a2a;
+  }
+  button.g:hover{
+    background: #fff;
+      color: #ff2a2a;
+      border: 2px solid #ff2a2a;
+    }
+  button.f{
+    margin-top: 2px;
+    /*margin-top: 5px;
+    margin-left: 50px;
+    background: #d9534f;
+    color: #fff;*/
+    color: #fff;
+    font-size: 1.6rem;
+    border: 2px solid #ff2a2a;
+    outline: none;
+    background-color: #ff2a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: background-color 0.2s;
+    text-align: center;
+  }
+  button.g{
+    margin-top: 2px;
+    color: #fff;
+    font-size: 1.6rem;
+    border: 2px solid #ff2a2a;
+    outline: none;
+    background-color: #ff2a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: background-color 0.2s;
+    text-align: center;
+  }
+  

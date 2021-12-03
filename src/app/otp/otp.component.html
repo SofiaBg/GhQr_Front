@@ -1,0 +1,68 @@
+<!--<body style="background: #ecf0f5;"> -->
+
+<body style="background: #ffffff;">
+
+    <div class="row">
+        <div class="col-xs-offset-4 col-xs-4">
+            <div class="login-logo">
+                <img src="assets/images/ic_logo_cbgmob.png" class="logo" id="logo" style="float: center; position: relative; ">
+
+                <b></b>
+                <h3><b>CBG MERCHANT PORTAL</b> </h3>
+            </div>
+            <!-- /.login-logo  -->
+            <div class="login-box-body">
+                <div class="row">
+                    <p id="p1" class="login-box-msg pull-left">Account Setup</p>
+                    <b> <i style="color: black;" class="fa fa-angle-double-right" aria-hidden="true"></i></b>
+                    <b><p id="p2" class="login-box-msg pull-right">OTP</p></b>
+                </div>
+                <section>
+
+                    <div class="alert alert-success alert-dismissible" *ngIf="show==true  && mode==true">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                        OTP checked !
+                    </div>
+                    <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessage==true ">
+                        <button style="color:  #B83C37;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                        <h5 style="color:  #B83C37;"><i class="fa fa-ban fa-1x"> </i>Invalid OTP !</h5>
+                    </div>
+                    <ng-container *ngIf="showmsg">
+                        <div class="alert alert-danger">
+                            <i class="fa fa-exclamation-triangle"></i> &nbsp;&nbsp;<strong>{{
+                                    msg1
+                                    }}</strong>
+                        </div>
+                    </ng-container>
+                    <form>
+                        <div class="form-group has-feedback">
+                            <div id="flexContainer" class="invalid-feedback">
+                                <input ng-model="otp" type="text" name="otp" id="otp" ngModel="" placeholder="OTP" class="form-control" required />
+                                <span id="phoneIcon" class="glyphicon glyphicon-phone form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </form>
+
+                    <br />
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="row">
+                                <div class=" col-xs-6 pull-right">
+                                    <button id="btn1" (click)="checkOTP(otp)" type="button" class="btn  btn-block">Confirm  <i class="fa fa-arrow-right" aria-hidden="true"></i> </button>
+
+                                </div>
+                                <div class=" col-xs-6 pull-left">
+                                    <button (click)="cancel()" type="button" class="btn  btn-block">Cancel </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+
+</body>

@@ -1,0 +1,15 @@
+<div class="flex mb-24">
+  <div class="flex-item">
+    <div style="display: block;" *ngIf="isChartVisible()">
+    <canvas baseChart width="1000" height="500"
+                [datasets]="chartData"
+                [labels]="chartLabels"
+                [options]="chartOptions"
+                [colors]="chartColors"
+                [legend]="chartLegend"
+                [chartType]="chartType"
+                [plugins]="chartPlugins"
+                (chartClick)="onChartClick($event)"></canvas>
+    </div>
+  </div>
+</div>

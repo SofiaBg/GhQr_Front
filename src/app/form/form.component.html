@@ -1,0 +1,100 @@
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body class="hold-transition skin-blue layout-top-nav">
+<div class="wrapper">
+
+  <header class="main-header">
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="../../index2.html" class="navbar-brand"><b>Merchant</b>Website</a>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+            <i class="fa fa-bars"></i>
+          </button>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+
+        </div>
+        <!-- /.navbar-collapse -->
+        <!-- Navbar Right Menu -->
+
+        <!-- /.navbar-custom-menu -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+  </header>
+  <!-- Full Width Column -->
+  <div class="content-wrapper">
+    <div class="container">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Merchant Request
+        </h1>
+      </section>
+      <!-- Main content -->
+      <section class="content" style=" padding-left: 10%;padding-right: 10%;">
+
+        <div class="callout callout-danger" *ngIf='hide==false'>
+          <h4>Warning!</h4>
+
+          <p>{{erreur.toString()}}</p>
+        </div>
+
+        <div class="box box-default">
+          <div class="box-header with-border">
+            <h3 class="box-title"></h3>
+          </div>
+          <div class="box-body" style=" padding: 30px;">
+
+            <form #f="ngForm" (ngSubmit)="generate(f.value)">
+              <div class="form-group">
+                <div class="form-group">
+                  <label class="control-label">Amount</label>
+                  <input type="text" name="amount" ngModel=""  class="form-control"/>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Account Id</label>
+                  <input type="text" name="accountId"  ngModel=""  class="form-control"/>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Bill id</label>
+                  <input type="text" name="idBill" ngModel="" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Transaction id</label>
+                  <input type="text"name="idTransactionMerchant"  ngModel="" class="form-control" required/>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label">Narration</label>
+                  <input type="text"name="narration"  ngModel="" class="form-control" required/>
+
+                </div>
+                <button type="submit"  class="btn btn-success pull-right">
+                  <h6 class="fa fa-credit-card" >Submit Payment</h6>
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.container -->
+  </div>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+</body>
+
+
+
+
+

@@ -1,0 +1,300 @@
+<!--<body style="background: #ecf0f5;"> -->
+
+<body style="background: #ffffff;">
+    <div class="row">
+        <div class="col-xs-offset-4 col-xs-4">
+            <div class="login-logo">
+                <!-- <img src="assets/images/GhIPSS-logo.png" class="logo"  id="logo" style="float: center; position: relative; ">-->
+                <img src="assets/images/ic_logo_cbgmob.png" class="logo" id="logo" style="float: center; position: relative; ">
+                <!-- <img src ="assets/images/logo1.jpg" class="logo"  id="logo" style="float: center; position: relative; ">-->
+                <b></b>
+                <!-- <h3><b>GHQR MERCHANT PORTAL</b> </h3> -->
+                <h3><b>CBG MERCHANT PORTAL</b> </h3>
+
+            </div>
+            <!-- /.login-logo  -->
+            <div class="login-box-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <div class="callout callout-danger" *ngIf="hide==false">
+                    <!--<h5> {{msg}} </h5> -->
+                    <h5>Warning!</h5>
+                    <strong>{{ msg }}</strong>
+                    <p></p>
+                </div>
+                <div class="callout callout-danger" *ngIf=" Errpass==true">
+
+                    <h4>Warning!</h4>
+                    <strong>Your field is empty</strong>
+                    <p></p>
+                </div>
+                <ng-container *ngIf="showmsg">
+                    <div class="alert alert-danger">
+                        <i class="fa fa-exclamation-triangle"></i> &nbsp;&nbsp;<strong>{{
+              msg1
+            }}</strong>
+                    </div>
+                </ng-container>
+                <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+
+
+
+                    <div class="form-group has-feedback">
+                        <div class="invalid-feedback">
+                            <input type="text" name="username" ngModel="" class="form-control" (change)="GETID($event.target.value)" placeholder="Phone Number" required />
+                        </div>
+                        <!--<span class="glyphicon glyphicon-envelope form-control-feedback"></span>-->
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="text" name="password" type="password" ngModel="" placeholder="Password" class="form-control" required />
+
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-xs-offset-3 col-xs-6">
+                            <button type="submit" class="btn  btn-block">Sign IN</button>
+
+                        </div>
+                    </div>
+                </form>
+                <br/>
+                <div class="row">
+                    <div class="text-center">
+                        <i class="glyphicon glyphicon-lock cbg-red"></i>&nbsp;
+                        <a (click)="openf(contentf)">
+                            <span class="cbg-red">Forgot Password</span>
+                        </a>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="text-center">
+                        <div class="col-xs-offset-3 col-xs-6">
+                            <button (click)="signUp()" type="button" class="btn  btn-block">Sign UP</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- +++  -->
+                <!--<div>
+              <div>
+                <p class="m">Forgot Login</p>
+              </div>
+              <div class="n">
+                <button class="btn btn-secondary" (click)="openg(contentf)">
+                  <div><i class="glyphicon glyphicon-user"></i> &nbsp;click here</div>
+                </button>
+              </div>
+            </div>-->
+                <!-- ---  -->
+                <!--  +++ popup-->
+                <ng-template #contentf>
+                    <ng-container>
+                        <form #fp="ngForm" (ngSubmit)="forgertPassword(fp.value)">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modal-basic-title">
+                                    <i class="fas fa-key"></i>&nbsp;&nbsp; forgot password :
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    Hi &nbsp;<strong>{{ usernameForegetPass }}&nbsp;</strong>please fill out the form :
+                                </div>
+                                <br/>
+                                <ng-container *ngIf="showmsgstep1">
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>Please Fill out The Form</strong>
+                                        <ul *ngFor="let error of errorarraystep1">
+                                            <li>
+                                                {{error}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="showmsgforgetpass">
+                                    <div class="alert alert-danger" role="alert">
+                                        {{msgforgetpass}}
+                                    </div>
+                                </ng-container>
+
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col"></div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <div class="col-form-label">
+                                                <label for="">Email : </label>
+                                            </div>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <div class="col-8">
+                                                <input ngModel name="email" type="text" class="form-control" placeholder="Email" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-form-label">
+                                                <label for="">Phone Number :</label>
+                                            </div>
+                                            <div class="col-8">
+                                                <input ngModel name="phone_number" type="text" class="form-control" placeholder="Phone number" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-form-label">
+                                                <label for="">Customer ID :</label>
+                                            </div>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <div class="col-8">
+                                                <input ngModel name="customer_id" type="text" class="form-control" placeholder="Customer ID" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary">
+                    Reset password
+                  </button>
+                                <button type="button " class="btn btn-outline-secondary" (click)="cancelbutton()">
+                    cancel
+                  </button>
+                            </div>
+                        </form>
+                    </ng-container>
+                </ng-template>
+
+                <!-- /.col -->
+                <!--  +++ popup-->
+                <ng-template #contentf>
+                    <ng-container>
+                        <form #fp="ngForm" (ngSubmit)="forgertLogin(fp.value)">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="modal-basic-title">
+                                    <i class="fas fa-key"></i>&nbsp;&nbsp; forgot password :
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div>
+                                    Hi &nbsp;<strong>{{ usernameForegetPass }}&nbsp;</strong>please fill out the form :
+                                </div>
+                                <br/>
+                                <ng-container *ngIf="showmsgstep1">
+                                    <div class="alert alert-danger" role="alert">
+                                        <strong>Please Fill out The Form</strong>
+                                        <ul *ngFor="let error of errorarraystep1">
+                                            <li>
+                                                {{error}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </ng-container>
+                                <ng-container *ngIf="showmsgforgetpass">
+                                    <div class="alert alert-danger" role="alert">
+                                        {{msgforgetpass}}
+                                    </div>
+                                </ng-container>
+
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col"></div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <div class="col-form-label">
+                                                <label for="">Email : </label>
+                                            </div>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <div class="col-8">
+                                                <input ngModel name="email" type="text" class="form-control" placeholder="Email" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-form-label">
+                                                <label for="">Phone Number :</label>
+                                            </div>
+                                            <div class="col-8">
+                                                <input ngModel name="phone_number" type="text" class="form-control" placeholder="Phone number" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-form-label">
+                                                <label for="">Customer ID :</label>
+                                            </div>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <div class="col-8">
+                                                <input ngModel name="customer_id" type="text" class="form-control" placeholder="Customer ID" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col"></div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary">
+              Reset password
+            </button>
+                                <button type="button " class="btn btn-outline-secondary" (click)="cancelbutton()">
+              cancel
+            </button>
+                            </div>
+                        </form>
+                    </ng-container>
+                </ng-template>
+
+
+
+
+
+                <!--   <a (click)="onRegister()" class="text-center">Require a new membership</a> -->
+
+            </div>
+            <!-- /.login-box-body -->
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+    <!-- /.login-box -->
+    <script>
+        $(function() {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' /* optional */
+            });
+        });
+    </script>
+</body>
+
+<!--
+    <p></p>
+    <div class="Container">
+      <div class="col-md-6">
+        <div class="panel panel-primary">
+          <div class="panel panel-heading"> login </div>
+          <div class="panel panel-body">
+            <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+              <div class="form-group">
+                <label class="label-control">Username:</label>
+                <input type="text" name="username"  ngModel="" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label class="label-control">Pssword:</label>
+                <input type="text" name="password" type="password" ngModel="" class="form-control" required />
+              </div>
+    
+    
+              <button type="submit"class="btn btn-danger">Login</button>
+          ////<button (click)="onRegister()" class="btn btn-success" >Register New Merchant </button>---
+    
+            </form>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+    -->

@@ -1,0 +1,34 @@
+th{
+  /* SAFIA 20.09.2021 */
+    /* background: #bdbdbd; */
+    background: #222d32;
+    color: #fff;
+  }
+
+.page-input {
+  width: 64px;
+}
+
+.inline-block {
+  display: inline-block; 
+}
+
+.pagination-w {
+  width:192px;
+}
+
+#nbPages {
+  vertical-align: bottom;
+}
+
+.mt-8 {
+  margin-top: 8px;
+}
+/*20.09.2021*/
+#btnBlack{
+  background: #222d32b5 ;
+  border-color: #222d32b5;
+}
+#paginationValue{
+  text-align: center;
+}

@@ -1,0 +1,1197 @@
+<app-appheader>
+</app-appheader>
+<app-appmenu></app-appmenu>
+
+
+
+
+
+
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"/>-->
+
+<div class="wrapper">
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="row">
+                <!--<div class="panel panel-success">-->
+                <div>
+                    <div class=" col-md-9 " *ngIf="shownull==true ">
+                        <div class="col-xs-12 ">
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger mb-8" *ngIf="showErrorDate==true">
+                        <strong>Alert</strong><br /> Date From and Date To are required !
+                    </div>
+
+                    <div class="col-md-9 " *ngIf="showdetail==true ">
+                        <div id="divDetails" class="col-xs-12 ">
+
+                            <ul class="list-group ">
+
+                                <li class="list-group-item list-group-item-action list-group-item-warning " style=" background: #f3f3f3;color: #333; ">
+                                    <p class="text-center ">Merchant Details</p>
+                                </li>
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">First Name</dt>
+                                        <dd class="col-sm-4 ">{{accountMerch.person.firstName}}</dd>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Last Name</dt>
+                                        <dd class="col-sm-4 ">
+                                            {{accountMerch.person.lastName}}
+                                        </dd>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Email </dt>
+                                        <dd class="col-sm-4 ">{{accountMerch.person.email}}</dd>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 text-truncate ">Phone Number</dt>
+                                        <dd class="col-sm-4 ">{{accountMerch.person.phone}}</dd>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Company Name</dt>
+                                        <dd class="col-sm-4 "> {{accountMerch.person.companyName}} </dd>
+                                    </div>
+                                </li>
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Web site</dt>
+                                        <dd class="col-sm-4 "> {{accountMerch.person.website}} </dd>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Guarantee</dt>
+                                        <dd class="col-sm-4 "> {{accountMerch.person.guarantee}} </dd>
+                                    </div>
+                                </li>
+
+                                <!-- SAFIA 24.09.2021 -->
+                                <!-- <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Account Id</dt>
+                                        <dd class="col-sm-6 "> {{accountMerch.accountId}} </dd>
+                                    </div>
+                                </li> -->
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Account Number</dt>
+                                        <dd class="col-sm-6 "> {{accountMerch.accountNumber}} </dd>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Account Name</dt>
+                                        <dd class="col-sm-9 "> {{accountMerch.nameAccount}}</dd>
+                                    </div>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+
+                        <div id="divDetails" class="col-xs-12 ">
+
+
+                            <div class="panel panel-default ">
+                                <div class="panel-heading text-center ">
+                                    Terminals List
+                                </div>
+                                <div>
+
+
+
+
+                                    <table class="table table-bordered table-hover mb-0 ">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center center-vertical " rowspan="2 ">Site</th>
+                                                <th colspan="4 " class="text-center ">Terminal</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center ">ID</th>
+                                                <th class="text-center ">Name</th>
+                                                <th class="text-center ">Mobile Number</th>
+                                                <th class="text-center ">Creation Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let terminal of this.terminals; let i=i ndex ">
+                                                <td [attr.rowspan]="numberOfTerminals(this.terminals[i][ 'site']) " class="text-center center-vertical " *ngIf="i==0 || i> 0 && this.terminals[i-1]['site'] != this.terminals[i]['site']">
+                                                    {{this.terminals[i]['site']}}
+                                                </td>
+                                                <td>{{this.terminals[i]['id']}}</td>
+                                                <td>{{this.terminals[i]['name']}}</td>
+                                                <td>{{this.terminals[i]['mobileNumber']}}</td>
+                                                <td>{{this.terminals[i]['creationDate']}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-xs-12" *ngIf="showtrx==true">
+
+                        <fieldset class="col-md-12">
+
+                            <div class="mt-24">
+                                <omar-chart></omar-chart>
+                            </div>
+                            <!--<div class="panel panel-default">-->
+                            <div>
+                                <div class="panel-body">
+
+                                    <div class="box-header">
+
+                                        <div class="box-body table-responsive no-padding">
+                                            <table class="table table-hover" *ngIf="transactionParAccountMerch ">
+                                                <thead class="thead-dark bg-info">
+
+                                                    <tr>
+
+                                                        <th>ID</th>
+                                                        <th> First Name</th>
+                                                        <th> Last Name</th>
+                                                        <th> Phone Number</th>
+                                                        <th>Amount</th>
+                                                        <th>date</th>
+                                                        <th> Invoice ID </th>
+                                                        <th> Status </th>
+                                                        <th> Comment </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <tr *ngFor='let t of transactions?.content'>
+                                                        <td>{{t.idTransactionMerchant}}</td>
+                                                        <td>{{t.accountCostumer.person.firstName}}</td>
+                                                        <td>{{t.accountCostumer.person.lastName}}</td>
+                                                        <td>{{t.accountCostumer.person.phone}}</td>
+                                                        <td>{{t.amount}}</td>
+                                                        <td>{{t.dateTransaction}}</td>
+                                                        <td>{{t.idBill}}</td>
+                                                        <td>{{t.status}}</td>
+                                                        <td>{{t.comment}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+                                            <div class="box-footer clearfix">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-xs-12" *ngIf="showqrtrx==true">
+                        <div class="callout callout-danger" *ngIf='hide==false'>
+                            <h4>Warning!</h4>
+
+                            <p>{{err.toString()}}</p>
+                        </div>
+                        <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
+                            <button type="button" class="close" (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            {{msg}}
+                        </div>
+
+                        <div class="alert alert-success alert-dismissible" *ngIf="show==true">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            PDF Generated successfully. Redirecting in 3 seconds...
+                        </div>
+                        <div class="alert alert-danger alert-dismissible" *ngIf="showT==true">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            No Transactions Found !
+                        </div>
+                        <fieldset class="col-md-12">
+
+                            <div class="panel panel-default">
+                                <!--<div>-->
+                                <div class="panel-body">
+
+                                    <div>
+
+
+
+                                        <div class="box-tools">
+                                            <div class="row">
+                                                <!-- <div class="col-xs-12 col-md-3">
+                                                    <div class="row" style="margin: 0;">
+                                                        Search by city
+                                                    </div>
+                                                    <div class="row" style="margin: 0;">
+                                                        <div class="input-group input-group-sm">
+                                                            <input type="text" name="motCle" [(ngModel)]="mot" class="form-control pull-right" placeholder="City">
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="col-xs-12 col-md-6">
+                                                    <div class="row" style="margin: 0;">
+                                                        Search by date
+                                                    </div>
+                                                    <div class="row" style="margin: 0;">
+                                                        <div class="input-group form-inline input-group-sm pull-left">
+                                                            <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control pull-right" style="width: 150px; margin: 0;" placeholder="Date Format DD-MM-YYY">
+                                                            <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control pull-right" style="width: 150px; margin-right: 4px;" placeholder="Date Format DD-MM-YYY">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-md-3">
+                                                    <div class="row" style="margin: 19px; margin-left: -108%;">
+                                                        <!-- <button id="btn" type="submit" class="btn btn-danger mok" (click)="getQrTransactions()">Search</button> -->
+                                                        <!-- <button id="btn" type="submit" class="btn btn-danger mok" (click)="allQrTransactionSearch()">Search</button> -->
+                                                    </div>
+                                                </div>
+                                                <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
+                                                    <div style="display: inline-block; height: 100%">
+                                                        <mat-spinner style="margin: 0 auto; vertical-align: middle;" diameter="20" color="black">
+                                                        </mat-spinner>
+                                                    </div>
+                                                    <div style="display: inline-block">Loading...</div>
+                                                </div>
+                                                <div class="col-xs-12 col-md-3"></div>
+                                            </div>
+                                            <div class="row" style="margin-top: 4px;">
+
+                                                <div class="col-xs-12">
+                                                    <div id="content" class="col-xs-4" #content>
+                                                        <div class="form-group form-inline" style="display: inline-block;">
+                                                            <label for="pagesize">Page size</label>
+                                                            <div class="input-group form-inline input-group-sm w-100 pull-left">
+                                                                <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                                                    <option value="10">10</option>
+                                                                    <option value="25">25</option>
+                                                                    <option value="50">50</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <!-- SAFIA 22.09.2021 <button type="submit" class="btn btn-danger mok" (click)="getQrTransactions()"><i class="fa fa-search"></i> Search</button> -->
+                                                        <!-- <button id="btn" type="submit" class="btn btn-danger mok" (click)="getQrTransactions()">Search</button>
+                                                        <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
+                                                            <div style="display: inline-block; height: 100%">
+                                                                <mat-spinner style="margin: 0 auto; vertical-align: middle;" diameter="20" color="black">
+                                                                </mat-spinner>
+                                                            </div>
+                                                            <div style="display: inline-block">Loading...</div>
+                                                        </div> -->
+                                                    </div>
+                                                    <!-- SAFIA 22.09.2021 -->
+                                                    <!-- <div class="dropdown pull-right">
+                                                         <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button>
+                                                        <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Chart <i
+                                                                class="fa fa-chevron-down"></i></button>
+                                                        <div class="dropdown-menu scroll-container">
+                                                            <h6 class="dropdown-header">Amount</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <h6 class="dropdown-header">Amount per City</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <h6 class="dropdown-header">Number of Transactions</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <h6 class="dropdown-header">Number of Transactions per City
+                                                            </h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a>
+                                                        </div>
+                                                    </div> -->
+                                                    <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok pull-right mr-8" (click)="downloadPDF1()"><i class="fa fa-file-pdf-o"></i> Export to PDF</button> -->
+                                                    <!-- <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="downloadPDF1()"> Export
+                                                        to PDF</button>  -->
+                                                    <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="refresh()">Refresh</button>
+                                                    <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="allQrTransactionPdf()"> Export
+                                                        to PDF</button>
+                                                    <button id="btn" type="submit" class="btn btn-danger mok pull-right mr-8" (click)="allQrTransactionSearch()">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-24">
+                                            <omar-chart></omar-chart>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="box-body table-responsive no-padding mt-8">
+                                        <!-- <table class="table table-hover">
+                                            <thead class="thead-dark bg-info">
+
+                                                <tr>
+
+                                                    <th> Receipt Code</th>
+                                                    <th> Transaction Date</th>
+                                                    <th>Client Name</th>
+                                                    <th> Amount</th>
+                                                    <th>Currency</th>
+                                                    <th> Merchant City </th>
+                                                    <th> Country </th>
+                                                    <th> Mcccode ID </th>-->
+                                        <!--    <th>Merchant Id</th> <th>Store Id</th>-->
+                                        <!--<th>  card_number </th>-->
+                                        <!--<th> account_number </th>-->
+                                        <!--  </tr>
+                                            </thead>
+                                            <tbody>-->
+
+                                        <!-- <tr *ngFor='let t of showntransactions'>-->
+                                        <!-- | slice: (page) * size : (page) * size + size'-->
+
+
+                                        <!--    <td>{{t.receipt_code}}</td>
+                                                    <td>{{t.transaction_date}}</td>
+                                                    <td>{{t.user_code}}</td>
+                                                    <td>{{t.amount}}</td>
+                                                    <td>{{t.currency.iso_currency_alpha}}</td>
+                                                    <td>{{t.merchant_city}}</td>
+                                                    <td>{{countryName(t.country_code)}}</td>
+                                                    <td>{{t.mcccode}}</td>-->
+                                        <!---     <td>{{t.merchant_id}}</td>
+                                                   <td>{{t.store_id}}</td>-->
+                                        <!--     <td>{{t.card_number}}</td>-->
+
+                                        <!--  <td>{{t.account_number}}</td>-->
+                                        <!--  </tr>
+                                            </tbody>
+                                        </table>-->
+
+                                        <table class="table table-hover table-responsive table-striped">
+                                            <thead class="thead-dark bg-info">
+
+                                                <tr>
+                                                    <th> Booking Date</th>
+                                                    <th> Value Date</th>
+                                                    <th> Description </th>
+                                                    <th> Operation Reference</th>
+                                                    <th> Debit</th>
+                                                    <th> Credit </th>
+                                                    <th> Closing </th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr *ngFor='let t of showResult'>
+                                                    <td>{{t.bookingDate}}</td>
+                                                    <td>{{t.valueDate}}</td>
+                                                    <td>{{t.description2}}</td>
+                                                    <td>{{t.operation}}</td>
+                                                    <td>{{t.debit}}</td>
+                                                    <td>{{t.credit}}</td>
+                                                    <td>{{t.closing}}</td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+
+                                        <div class="box-footer clearfix">
+                                            <div class="mt-8 text-center">
+                                                <div class="pull-left" id="nbPages">
+                                                    {{totalPages ? totalPages : 0}} pages
+                                                </div>
+                                                <!-- <div class="form-group form-inline" style="display: inline-block;">
+                                                    <label for="pagesize">Page size</label>
+                                                    <div class="input-group form-inline input-group-sm w-100 pull-left">
+                                                        <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                                            <option value="10">10</option>
+                                                            <option value="25">25</option>
+                                                            <option value="50">50</option>
+                                                        </select>
+                                                    </div>
+                                                </div> -->
+                                                <div class="input-group pagination-w pull-right">
+                                                    <span class="input-group-btn">
+                                                        <button id="btn" type="submit" class="btn btn-danger mok"
+                                                            (click)="gotoPage(currentpage-1)"
+                                                            [disabled]="currentpage<=0">Previous</button>
+                                                    </span>
+                                                    <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" (pageChange)="p = $event" /></form>
+                                                    <span class="input-group-btn">
+                                                        <button id="btn" type="submit" class="btn btn-danger mok"
+                                                            (click)="gotoPage(currentpage+1)"
+                                                            [disabled]="!showResult || currentpage+1>=totalPages">Next</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <!---- ++++++++++++++++++ --->
+
+
+                    <!-- SAFIA 23.09.2021 -->
+                    <div class="col-xs-12" *ngIf="showDashboard==true">
+
+                        <fieldset class="col-md-12">
+
+                            <div class="panel panel-default">
+                                <!--<div>-->
+                                <div class="panel-body">
+
+                                    <div>
+
+                                        <div class="box-tools">
+                                            <div class="row" style="margin-top: 4px; margin: 1%;">
+
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-3">
+                                                        <div class="row" style="margin: 0;">
+                                                            Search by city
+                                                        </div>
+                                                        <div class="row" style="margin: 0;">
+                                                            <div class="input-group input-group-sm">
+                                                                <input type="text" name="motCle" [(ngModel)]="mot" class="form-control pull-right" placeholder="City">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-6">
+                                                        <div class="row" style="margin: 0;">
+                                                            Search by date
+                                                        </div>
+                                                        <div class="row" style="margin: 0;">
+                                                            <div class="input-group form-inline input-group-sm pull-left">
+                                                                <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control pull-right" style="width: 150px; margin: 0;" placeholder="Date Format DD-MM-YYY">
+                                                                <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control pull-right" style="width: 150px; margin-right: 4px;" placeholder="Date Format DD-MM-YYY">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-3">
+                                                        <div class="row" style="margin: 19px; margin-left: -108%;">
+                                                            <button id="btn" type="submit" class="btn btn-danger mok" (click)="getQrTransactions()">Search</button>
+                                                        </div>
+                                                    </div>
+                                                    <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
+                                                        <div style="display: inline-block; height: 100%">
+                                                            <mat-spinner style="margin: 0 auto; vertical-align: middle;" diameter="20" color="black">
+                                                            </mat-spinner>
+                                                        </div>
+                                                        <div style="display: inline-block">Loading...</div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-3"></div>
+                                                </div>
+
+                                                <div class="col-xs-12">
+                                                    <div class="row">
+                                                        <div class="form-group col-sm-4 col-xs-12">
+
+                                                            <tr>
+                                                                <div style="padding-bottom: -2;margin-left: -2%;">Show dashboard by </div>
+                                                                <div style="margin-left: 46%;
+                                                                margin-top: -6%;
+                                                                margin-right: 316px;">
+                                                                    <td style="padding: 5px;">
+                                                                        <div class="dropdown pull-right">
+                                                                            <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> -->
+                                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Amount <i
+                                                                                    class="fa fa-chevron-down"></i></button>
+                                                                            <div class="dropdown-menu scroll-container">
+                                                                                <h6 class="dropdown-header">Amount</h6>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <!-- <h6 class="dropdown-header">Amount per City</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <h6 class="dropdown-header">Number of Transactions</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <h6 class="dropdown-header">Number of Transactions per City
+                                                            </h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a> -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <!-- <td style="padding: 5px;">
+                                                                        <div class="dropdown pull-right">
+                                                                             <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> 
+                                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Amount per city <i
+                                                                                class="fa fa-chevron-down"></i></button>
+                                                                            <div class="dropdown-menu scroll-container">
+                                                                                <h6 class="dropdown-header">Amount</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                                                <h6 class="dropdown-header">Amount per City
+                                                                                </h6>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <h6 class="dropdown-header">Number of Transactions</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                            <h6 class="dropdown-header">Number of Transactions per City
+                                                            </h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td> -->
+                                                                    <td style="padding: 5px;">
+                                                                        <div class="dropdown pull-right">
+                                                                            <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> -->
+                                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Number Of
+                                                                                transactions <i
+                                                                                    class="fa fa-chevron-down"></i></button>
+                                                                            <div class="dropdown-menu scroll-container">
+                                                                                <!-- <h6 class="dropdown-header">Amount</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
+                                                            <div class="dropdown-divider"></div> -->
+                                                                                <!-- <h6 class="dropdown-header">Amount per City</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
+                                                            <div class="dropdown-divider"></div> -->
+                                                                                <h6 class="dropdown-header">Number of Transactions
+                                                                                </h6>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
+                                                                                <div class="dropdown-divider"></div>
+                                                                                <!-- <h6 class="dropdown-header">Number of Transactions per City
+                                                                                </h6>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a> -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <!-- <td style="padding: 5px;">
+                                                                        <div class="dropdown pull-right">
+                                                                             SAFIA 22.09.2021 <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> 
+                                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Number of
+                                                                            Transactions per City <i
+                                                                                class="fa fa-chevron-down"></i></button>
+                                                                            <div class="dropdown-menu scroll-container">
+                                                                                <h6 class="dropdown-header">Amount</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                                                <h6 class="dropdown-header">Amount per City</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                                                 <h6 class="dropdown-header">Number of Transactions</h6>
+                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
+                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
+                                                            <div class="dropdown-divider"></div>
+                                                                                <h6 class="dropdown-header">Number of Transactions per City
+                                                                                </h6>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
+                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td> -->
+                                                                </div>
+                                                            </tr>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok pull-right mr-8" (click)="downloadPDF1()"><i class="fa fa-file-pdf-o"></i> Export to PDF</button> -->
+                                                    <!-- <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="downloadPDF1()"> Export
+                                                        to PDF</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mt-24">
+                                            <omar-chart></omar-chart>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+
+                    <!-- SAFIA 23.09.2021 -->
+                    <div class="col-xs-12" *ngIf="showqrloc==true">
+                        <div class="callout callout-danger" *ngIf='hide==false'>
+                            <h4>Warning!</h4>
+
+                            <p>{{err.toString()}}</p>
+                        </div>
+                        <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
+                            <button type="button" class="close" (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            {{msg}}
+                        </div>
+
+                        <div class="row" *ngIf="hidemain==false">
+                            <fieldset class="col-md-12">
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+
+                                        <div class="box-header">
+
+                                            <h3 class="box-title"> All Qrtransaction By Location </h3>
+                                            <div class="box-tools">
+                                                <div class="input-group input-group-sm" style="    width: 300px;">
+                                                    <!--  +++  -->
+
+
+                                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                                        <input type="text" name="motCle" [(ngModel)]="mot" class="form-control pull-right" placeholder="Search By Location">
+                                                    </div>
+                                                    <div class="input-group-btn" id="content" #content>
+                                                        <button gtype="submit" class="z" (click)="getTransactionLocation(idAccount)"><i
+                                                                class="fa fa-search"></i></button>
+
+                                                        <input type="button" value="Report" class="y" (click)="downloadPDF1()">
+                                                        <!--   <input type="button" value="Download PDF" class="btn btn-success" (click)="SavePDF()"> -->
+                                                        <!--  <input type="button" value="Download PDF" class="btn btn-success" (click)="downloadAsPDF()"> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="box-body table-responsive no-padding">
+                                            <!--  <div class="container" id="content" #content> -->
+                                            <!--   <div id="pdfTable" #pdfTable> -->
+                                            <!--    <table class="table table-hover" id="contentToConvert">-->
+                                            <table class="table table-hover" id="contentToConvert">
+                                                <thead class="thead-dark bg-info">
+
+                                                    <tr>
+
+                                                        <th>Client Name</th>
+                                                        <th> Receipt Code</th>
+                                                        <th> Amount</th>
+                                                        <th> Transaction Date</th>
+                                                        <!--    <th>Merchant Id</th> <th>Store Id</th>-->
+                                                        <th> Merchant Name </th>
+                                                        <th> Merchant City </th>
+                                                        <th> Country Code </th>
+                                                        <th>Currency Code</th>
+                                                        <th> Mcccode ID </th>
+                                                        <!--<th>  card_number </th>-->
+                                                        <th> Addditional Date </th>
+                                                        <!--<th> account_number </th>-->
+                                                        <th> Location</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <!--     <tr *ngFor='let t of qrtransactionParAccountMerch'>-->
+                                                    <tr *ngFor='let t of transactions'>
+                                                        <td>{{t.user_code}}</td>
+                                                        <td>{{t.receipt_code}}</td>
+                                                        <td>{{t.amount}}</td>
+                                                        <td>{{t.transaction_date.substr(0,10)}}</td>
+                                                        <!---     <td>{{t.merchant_id}}</td>
+      <td>{{t.store_id}}</td>-->
+                                                        <td>{{t.merchant_name}}</td>
+                                                        <td>{{t.merchant_city}}</td>
+                                                        <td>{{t.country_code}}</td>
+                                                        <td>{{t.currency_code}}</td>
+                                                        <td>{{t.mcccode}}</td>
+                                                        <!--     <td>{{t.card_number}}</td>-->
+                                                        <td>{{t.addditional_date.substr(0,10)}}</td>
+                                                        <!--  <td>{{t.account_number}}</td>-->
+                                                        <td>{{t.location}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="box-footer clearfix">
+                                            <ul class="pagination pagination-sm no-margin pull-right">
+                                                <li *ngFor="let p of pages;let i=index" [ngClass]="{'active':i==currentpage}">
+                                                    <a class="clickable" (click)="gotoPage1(i)">{{i}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </fieldset>
+                        </div>
+                    </div>
+
+
+                    <!--  --------     -->
+
+                    <div class="col-xs-12" *ngIf="showqrtrxx==true">
+                        <div class="callout callout-danger" *ngIf='hide==false'>
+                            <h4>Warning!</h4>
+
+                            <p>{{err.toString()}}</p>
+                        </div>
+                        <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
+                            <button type="button" class="close" (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                            {{msg}}
+                        </div>
+
+                        <div class="row" *ngIf="hidemain==false">
+                            <fieldset class="col-md-12">
+
+                                <div class="panel panel-default">
+                                    <!--<div>-->
+                                    <div class="panel-body">
+
+                                        <div class="box-header">
+
+                                            <h3 class="box-title"> All Qrtransaction </h3>
+                                            <div class="box-tools">
+                                                <div class="input-group input-group-sm" style="    width: 300px;">
+                                                    <!--  +++  -->
+
+
+                                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                                        <input type="date" name="motCleFrom" [(ngModel)]="from" class="form-control pull-right" placeholder="Date Format DD-MM-YYY">
+                                                        <div class="input-group-btn"></div>
+                                                        <input type="date" name="motCleTo" [(ngModel)]="to" class="form-control pull-right" placeholder="Date Format DD-MM-YYY">
+                                                    </div>
+                                                    <div class="input-group-btn" id="content" #content>
+                                                        <button gtype="submit" class="btn btn-default" (click)="getTransaction(idAccount)"><i
+                                                                class="fa fa-search"></i></button>
+
+                                                        <input type="button" value="Report" class="btn btn-a" (click)="downloadPDF()">
+                                                        <!--   <input type="button" value="Download PDF" class="btn btn-success" (click)="SavePDF()"> -->
+                                                        <!--  <input type="button" value="Download PDF" class="btn btn-success" (click)="downloadAsPDF()"> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="box-body table-responsive no-padding">
+                                            <!--  <div class="container" id="content" #content> -->
+                                            <!--   <div id="pdfTable" #pdfTable> -->
+                                            <!--    <table class="table table-hover" id="contentToConvert">-->
+                                            <table class="table table-hover" id="contentToConvert">
+                                                <thead class="thead-dark bg-info">
+
+                                                    <tr>
+
+                                                        <th>Client Name</th>
+                                                        <th> Receipt Code</th>
+                                                        <th> Amount</th>
+                                                        <th> Transaction Date</th>
+                                                        <!--    <th>Merchant Id</th> <th>Store Id</th>-->
+                                                        <th> Merchant Name </th>
+                                                        <th> Merchant City </th>
+                                                        <th> Country Code </th>
+                                                        <th>Currency Code</th>
+                                                        <th> Mcccode ID </th>
+                                                        <!--<th>  card_number </th>-->
+                                                        <th> Addditional Date </th>
+                                                        <!--<th> account_number </th>-->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <!--     <tr *ngFor='let t of qrtransactionParAccountMerch'>-->
+                                                    <tr *ngFor='let t of transactions'>
+                                                        <td>{{t.user_code}}</td>
+                                                        <td>{{t.receipt_code}}</td>
+                                                        <td>{{t.amount}}</td>
+                                                        <td>{{t.transaction_date.substr(0,10)}}</td>
+                                                        <!---     <td>{{t.merchant_id}}</td>
+                  <td>{{t.store_id}}</td>-->
+                                                        <td>{{t.merchant_name}}</td>
+                                                        <td>{{t.merchant_city}}</td>
+                                                        <td>{{t.country_code}}</td>
+                                                        <td>{{t.currency.iso_currency_alpha}}</td>
+                                                        <td>{{t.mcccode}}</td>
+                                                        <!--     <td>{{t.card_number}}</td>-->
+                                                        <td>{{t.addditional_date.substr(0,10)}}</td>
+                                                        <!--  <td>{{t.account_number}}</td>-->
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <div class="box-footer clearfix">
+                                            <ul class="pagination pagination-sm no-margin pull-right">
+                                                <li *ngFor="let p of pages;let i=index" [ngClass]="{'active':i==currentpage}">
+                                                    <a class="clickable" (click)="gotoPage1(i)">{{i}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12" *ngIf="token==true">
+
+                        <fieldset class="col-md-12">
+
+                            <!--<div class="panel panel-default">-->
+                            <div>
+                                <div class="panel-body">
+
+                                    <div class="box-header">
+                                        <h3 class="box-title"> Parametre </h3>
+                                        <section>
+                                            <div class="callout callout-danger" *ngIf="Errtoken==true">
+                                                <h4>Warning!</h4>
+                                                <strong>No Merchant id</strong>
+                                                <p></p>
+                                            </div>
+                                            <div class="callout callout-success" *ngIf="valid==true">
+
+                                                <strong>Updated successfully</strong>
+                                                <p></p>
+                                            </div>
+
+                                            <div class="box box-default">
+
+                                                <div class="box-body" style=" padding: 30px;">
+                                                    <div class="box-tools">
+
+                                                        <div class="box-tools">
+                                                            <h5>Token time out by second </h5>
+                                                            <div class="input-group input-group-sm" style="    width: 60%;">
+
+                                                                <div class="input-group">
+                                                                    <input type="number" name="paramToke" [(ngModel)]="paramToke" class="form-control pull-right" placeholder="Token time out ">
+                                                                </div>
+                                                                <div class="input-group-btn">
+                                                                    <button (click)="MerchantParamToken(paramToke)" type="submit" class="btn btn-y">
+                                                                        Update </button>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </div>
+                <!-- +++  -->
+
+                <div class="col-xs-12" *ngIf="pass==true">
+
+                    <fieldset class="col-md-12">
+
+                        <!--<div class="panel panel-default">-->
+                        <div>
+                            <div class="panel-body">
+
+                                <div class="box-header">
+                                    <section>
+                                        <div class="callout callout-danger" *ngIf=" Errpass1==true && Errpass3==false && valid1 ==false && Errpass4==false">
+
+                                            <h4>Warning!</h4>
+                                            <strong>You must confirm your password</strong>
+                                            <p></p>
+                                        </div>
+                                        <div class="callout callout-danger" *ngIf=" errorarraycondtion==true ">
+
+                                            <h4>Warning!</h4>
+                                            <strong>password must be at least 8 characters and contain a number and an
+                                                uppercase and lowercase
+                                                letters and special character</strong>
+                                            <p></p>
+                                        </div>
+                                        <div class="callout callout-danger" *ngIf=" Errpass1==false && Errpass3==false && valid1 ==false && Errpass4==true && valid2 ==false">
+
+                                            <h4>Warning!</h4>
+                                            <strong>Your old password is not correct</strong>
+                                            <p></p>
+                                        </div>
+                                        <div class="callout callout-danger" *ngIf="Errpass3==true && Errpass1==false && valid1 ==false">
+
+                                            <h4>Warning!</h4>
+                                            <strong>Your password is Empty</strong>
+                                            <p></p>
+                                        </div>
+                                        <div class="callout callout-success" *ngIf="valid1==true && Errpass3==false && Errpass1 ==false">
+
+                                            <strong>Updated successfully</strong>
+                                            <p></p>
+                                        </div>
+
+                                        <div class="box box-default">
+
+                                            <div class="box-body" style=" padding-left: 30px;">
+                                                <div class="box-tools">
+                                                    <!-- <h4>Password Reset</h4> -->
+                                                    <h4>Reset Password</h4>
+                                                    <div class="box-tools">
+                                                        <div class="input-group input-group-sm" style="    width: 60%;">
+
+                                                            <div class="input-group">
+                                                                <!-- ++++ -->
+                                                                <input type="password" name="paramPass2" [(ngModel)]="paramPass2" class="form-control pull-right" placeholder="Old password "> <br> <br>
+                                                                <input type="password" name="paramPass" [(ngModel)]="paramPass" class="form-control pull-right" placeholder="New password "> <br> <br>
+                                                                <input type="password" name="paramPass1" [(ngModel)]="paramPass1" class="form-control pull-right" placeholder="New password confirmation">
+                                                                <button id="btn" (click)="MerchantParamToken1(paramPass, paramPass1, paramPass2)" type="submit" class="btn btn-x btn-sm mt-8"> Reset
+                                                                    Password </button>
+
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+            </div>
+
+
+            <!--   qrgeneration-->
+
+
+
+            <!-- Content Wrapper. Contains page content -->
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="row">
+                        <!--<div class="panel panel-success">-->
+                        <div>
+
+
+                            <div class="col-md-9" *ngIf="qrtoken==true">
+                                <div class="col-xs-12">
+
+                                    <ul class="list-group">
+
+                                        <li class="list-group-item list-group-item-action list-group-item-warning " style=" background: #f3f3f3;color: #333;">
+                                            <p class="text-center">Qr Generation</p>
+                                        </li>
+
+
+
+                                        <section class="content1">
+
+
+                                            <div class="nav-tabs-custom">
+                                                <ul class="nav nav-tabs">
+                                                    <li class="x">
+
+
+                                                        <!--  <a routerLink="/qrstatic" routerLinkActive="active" class="f">Static GHQRCode</a>-->
+                                                        <button routerLink="/qrstatic" routerLinkActive="active" class="f">Static GHQRCode</button>
+                                                        <!--    <a [routerLink]="['qrstatic', '']" routerLinkActive="active">Static GHQRCode</a>-->
+
+                                                        <!--    <a href="/qrstatic">Static GHQRCode</a>-->
+                                                        <!--    <a (click)="qrstatic()">Static GHQRCode</a>-->
+
+
+                                                    </li>
+
+
+                                                    <li class="y">
+
+                                                        <!--  <a routerLink="/qrdynamic" routerLinkActive="active" class="f" >Dynamic GHQRCode</a>-->
+                                                        <button routerLink="/qrdynamic" routerLinkActive="active" class="g">Dynamic
+                                                            GHQRCode</button>
+                                                        <!--   <a href="/qrdynamic">Dynamic GHQRCode</a>-->
+                                                    </li>
+
+                                                </ul>
+
+                                                <!--      <div class="row" id="activity" *ngIf="hidemain==false">
+    
+              <div class="col-xs-12">
+                <fieldset class="col-md-12">
+                  <div class="panel panel-default">
+                    <div class="panel-body">
+                      <div class="box-header">-->
+
+
+                                            </div>
+
+                                        </section>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+
+
+
+
+
+
+
+
+        </section>
+    </div>
+</div>
+
+<!--
+  <table class=   "table ">
+    <tbody>
+    <tr>
+      <td>Dokter Umum:</td>
+      <td>1253</td>
+    </tr>
+    <tr>
+      <td>Specialist Chiropactic</td>
+      <td>terap_specialist </td>
+    </tr>
+  
+    <tr>
+      <td>Email</td>
+      <td>moua@hghkf</td>
+    </tr>
+    </tbody>
+  </table>-->
+<!--
+  <table class="table" *ngIf='accountsPersonne && hideAccouts==false  && hide==false'>
+    <table class="table">
+      <thead>
+      <tr class="bg-primary">
+        &lt;!&ndash; <th>ID</th>&ndash;&gt; <th>Number Acc</th><th>Name Account</th> <th>Banque Name</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let a of accountsPersonne" class="table-light">
+        &lt;!&ndash;<td>{{a.accountId}}</td>&ndash;&gt;
+        <td>{{a.accountNumber}}</td>
+        <td>{{a.nameAccount}}</td>
+        <td>{{a.banque.banqueName}}</td>
+        <td ><a (click)="getTransactionsParAccountsCost(a.accountId)" class="clickable  btn btn-info btn-xs">Transactions</a></td>
+      </tr>
+      <tr><td> <a (click)="hideAccountsParPersonne()" class="clickable btn btn-danger btn-xs">Cancel</a></td></tr>
+      </tbody>
+    </table>
+  </table>
+  
+  
+  <table class="table" *ngIf="transactionParAccountCost && hide==false ">
+    <thead class="thead-dark bg-info">
+    <tr>
+      &lt;!&ndash;<th>ID</th> <th>Id transaction </th> <th>Amount </th><th>date Transaction </th><th> Merchant  </th><th> ID Facture </th>&ndash;&gt;
+      <th>ID</th> <th>Name to Debit</th> <th>Name to credited</th><th>Amount</th> <th>date</th><th> ID Merchant Trans </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor='let t of transactionParAccountCost'>
+      <td>{{t.idTransaction}}</td>
+      <td>{{t.accountCostumer.nameAccount}}</td>
+      <td>{{t.accountMerchant.nameAccount}}</td>
+      <td>{{t.amount}}</td>
+      <td>{{t.dateTransaction}}</td>
+      <td>{{t.idTransactionMerchant}}</td>
+    </tr>
+    <tr><td> <a (click)="hideTransactionsParAccount()" class="clickable btn btn-danger btn-xs">Cancel</a></td></tr>
+    </tbody>
+  </table>
+  -->

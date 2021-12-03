@@ -1,0 +1,109 @@
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+<div class="wrapper">
+    <div class="content-wrapper">
+        <section class="content-header">
+
+            <div class="content">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Bulk Merchants Validation</div>
+                        <div class="panel-body">
+
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="keyword">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i
+                                                class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-inline" style="display: inline-block;">
+                                <label for="pagesize">Page size</label>
+                                <div class="input-group form-inline input-group-sm w-100 pull-left">
+                                    <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                            <option value="10">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                        </select>
+                                </div>
+                            </div>
+
+                            <div class="box-body table-responsive no-padding">
+                                <table class="table table-hover table-striped table-bordered table-responsive">
+                                    <thead style="text-align: center;" id="tabHead">
+                                        <tr>
+                                            <th rowspan="2" colspan="1"> ID</th>
+                                            <th colspan="5">
+                                                Identification
+                                            </th>
+                                            <th colspan="1">
+                                                Sites
+                                            </th>
+                                            <th colspan="3">
+                                                Acceptor Point
+                                            </th>
+                                            <th colspan="2" rowspan="2">
+                                                Action
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>Account Number</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Company Name</th>
+                                            <th>Date of Incorporation</th>
+                                            <th>Type</th>
+                                            <th>Acceptor Point Name</th>
+                                            <th>Acceptor Point Acronym</th>
+                                            <th>Mobile Number</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="text-align: center;">
+                                        <tr *ngFor="">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <!-- <td>{{record.}}</td> -->
+                                            <td><button style="width: 40px;" id="blackBtn" class="btn btn-success mr-16"><span
+                                                        class="fa fa-check"></span></button></td>
+                                            <td><button ng-click="Remove($index)" style="width: 40px;" id="blackBtn" class="btn btn-danger"><span
+                                                        class="fa fa-times"></span></button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel-footer o-auto">
+                                <div class="input-group pagination-w pull-right">
+                                    <span class="input-group-btn">
+                                        <button id="blackBtn" type="submit" class="btn btn-danger mok"
+                                            (click)="gotoPage(currentpage-1)"
+                                            [disabled]="currentpage<=0">Previous</button>
+                                    </span>
+                                    <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" /></form>
+                                    <span class="input-group-btn">
+                                        <button id="blackBtn" type="submit" class="btn btn-danger mok"
+                                            (click)="gotoPage(currentpage+1)"
+                                            [disabled]="!showCsvData || currentpage+1>=totalPages">Next</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+</div>

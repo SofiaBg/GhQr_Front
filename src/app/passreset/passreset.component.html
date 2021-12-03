@@ -1,0 +1,74 @@
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+<div class="content-wrapper">
+
+    <fieldset>
+
+        <!--<div class="panel panel-default">-->
+        <div>
+            <div class="panel-body">
+
+                <div class="box-header">
+                    <section>
+                        <div class="callout callout-danger" *ngIf=" Errpass1==true && Errpass3==false && valid1 ==false && Errpass4==false">
+
+                            <h4>Warning!</h4>
+                            <strong>You must confirm your password</strong>
+                            <p></p>
+                        </div>
+                        <div class="callout callout-danger" *ngIf=" errorarraycondtion==true ">
+
+                            <h4>Warning!</h4>
+                            <strong>password must be at least 8 characters and contain a number and an uppercase and lowercase letters and special character</strong>
+                            <p></p>
+                        </div>
+                        <div class="callout callout-danger" *ngIf=" Errpass1==false && Errpass3==false && valid1 ==false && Errpass4==true && valid2 ==false">
+
+                            <h4>Warning!</h4>
+                            <strong>Your old password is not correct</strong>
+                            <p></p>
+                        </div>
+                        <div class="callout callout-danger" *ngIf="Errpass3==true && Errpass1==false && valid1 ==false">
+
+                            <h4>Warning!</h4>
+                            <strong>Your password is Empty</strong>
+                            <p></p>
+                        </div>
+                        <div class="callout callout-success" *ngIf="valid1==true && Errpass3==false && Errpass1 ==false">
+
+                            <strong>Updated successfully</strong>
+                            <p></p>
+                        </div>
+
+                        <div class="box box-default">
+
+                            <div class="box-body" style=" padding-left: 30px;">
+                                <div class="box-tools">
+                                    <h4>Reset Password</h4>
+                                    <!-- <h4>Password Reset</h4> -->
+                                    <div class="box-tools">
+                                        <div class="input-group input-group-sm" style="    width: 60%;">
+
+                                            <div class="input-group">
+                                                <!-- ++++ -->
+                                                <input type="password" name="paramPass2" [(ngModel)]="paramPass2" class="form-control pull-right" placeholder="Old password "> <br> <br>
+                                                <input type="password" name="paramPass" [(ngModel)]="paramPass" class="form-control pull-right" placeholder="New password "> <br> <br>
+                                                <input type="password" name="paramPass1" [(ngModel)]="paramPass1" class="form-control pull-right" placeholder="New password confirmation">
+                                                <button id="btn" style="height: 33px;" (click)="MerchantParamToken1(paramPass, paramPass1, paramPass2)" type="submit" class="btn btn-x btn-sm mt-8"> Reset Password </button>
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+</div>

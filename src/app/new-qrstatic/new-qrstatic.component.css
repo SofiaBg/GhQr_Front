@@ -1,0 +1,13 @@
+nav.navbar.navbar-static-top{
+    background: #ff2a2a;
+    color: #fff;
+  }
+ button{
+    background: #ff2a2a;
+    color: #fff;
+   
+  }
+
+  /*input:invalid {
+    box-shadow: 0 0 5px 1px red;
+  }*/

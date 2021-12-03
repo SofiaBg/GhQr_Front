@@ -1,0 +1,26 @@
+<div class="modal fade" id="modal-otp"
+     tabindex="-1" role="dialog"  [ngStyle]="{'display':display}" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Enter The One-Time Password </h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="control-label" >The One-Time Password will be sent to you by SMS</label>
+          <!--<input type="text"name="otp"
+                  placeholder="One Time Password" ngModel="" class="form-control" required/>-->
+
+          <input required name="otp" ngModel="" maxlength="8" type="tel" class="form-control"placeholder="">
+
+        </div>                          </div>
+      <div class="modal-footer">
+        <button class="btn btn-success pull-right"   style="width: 100%"><i class="fa fa-credit-card"></i> Submit Payment</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

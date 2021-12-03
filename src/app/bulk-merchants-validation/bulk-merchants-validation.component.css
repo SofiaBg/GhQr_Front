@@ -1,0 +1,133 @@
+button.btn.btn-block.btn-primary.btn-flat.btn-x {
+    background-color: #ff2a2a;
+    border-color: #ff2a2a;
+}
+
+label~input:disabled,
+label~select:disabled {
+    color: grey;
+}
+
+label {
+    font-weight: normal!important;
+}
+
+.form-section-header {
+    margin-bottom: 24px;
+}
+
+.mtop-16 {
+    margin-top: 16px;
+}
+
+.mr-16 {
+    margin-right: 16px;
+}
+
+.form-group.required label:after {
+    content: " *";
+    color: red;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.ml-8 {
+    margin-left: 8px;
+}
+
+.ml-0 {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.mr-0 {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+
+/*SAFI A20/07/2021 */
+
+#identification,
+#sites {
+    background-color: #222d32b5;
+}
+
+#identifTitle,
+#csvTitle,
+#siteTitle {
+    color: white;
+}
+
+#blackBtn {
+    background-color: #222d32b5;
+    border: #222d32b5;
+}
+
+#tabHead {
+    background: #222d32 !important;
+    color: white;
+}
+
+#btnClose {
+    background: #ff2a2a !important;
+    border-color: #ff2a2a !important;
+}
+
+#req {
+    color: #ff2a2a;
+}
+
+#flexContainer {
+    display: flex;
+}
+
+#accountnumber {
+    flex: 1;
+}
+
+#btnCheck {
+    width: 40px;
+    background-color: #ff2a2a;
+    border: #ff2a2a;
+}
+
+#iconCheck {
+    color: white;
+}
+
+th,
+tr,
+td {
+    text-align: center;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.pagination-w {
+    width: 192px;
+}
+
+#nbPages {
+    vertical-align: bottom;
+}
+
+@media screen and (max-width: 600px) {
+    .panel-heading,
+    input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}

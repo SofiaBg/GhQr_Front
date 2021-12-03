@@ -1,0 +1,23 @@
+<div class="flex">
+  <div class="flex-item">
+    <div style="display: block; overflow-x:scroll">
+    <canvas baseChart width="1000" height="500"
+                [datasets]="chartData"
+                [labels]="chartLabels"
+                [options]="chartOptions"
+                [colors]="chartColors"
+                [legend]="chartLegend"
+                [chartType]="chartType"
+                [plugins]="chartPlugins"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+  <div class="flex-item">
+    <button mat-button mat-raised-button color="primary" (click)="randomize()">Randomize</button>
+    <button mat-button mat-raised-button color="primary" (click)="pushOne()">Push</button>
+    <button mat-button mat-raised-button color="primary" (click)="changeColor()">Recolor</button>
+    <button mat-button mat-raised-button color="primary" (click)="hideOne()">Toggle Series B</button>
+    <button mat-button mat-raised-button color="primary" (click)="changeLabel()">Change Label</button>
+  </div>
+</div>

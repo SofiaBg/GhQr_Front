@@ -1,0 +1,119 @@
+<app-appheader>
+</app-appheader>
+<app-appmenu></app-appmenu>
+
+
+<div class="wrapper">
+
+    <div class="content-wrapper">
+        <div class="content-header">
+
+            <div class="alert alert-danger mb-8" *ngIf="error">
+                <strong>{{errTitle}}</strong><br/> {{errMessage}}
+            </div>
+
+            <div class="alert alert-success mb-8" *ngIf="success">
+                <strong>{{successTitle}}</strong><br/> {{successMessage}}
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Administrator Details</div>
+                <div class="panel-body">
+
+                    <form>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" [(ngModel)]="usernameInput" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="blocked">Blocked</label>
+                                    <div>
+                                        <div class="radio" style="display: inline-block;">
+                                            <label>
+                                                <input type="radio" name="blocked" id="input" value="1" checked="{{ blocked }}" (change)="changeBlocked($event)"/>
+                                                Yes
+                                            </label>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div class="radio" style="display: inline-block;">
+                                            <label>
+                                                <input type="radio" name="blocked" id="input" value="0" checked="{{ notBlocked }}" (change)="changeBlocked($event)"/>
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" [(ngModel)]="firstNameInput">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" [(ngModel)]="lastNameInput">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="email">E-Mail</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="E-Mail" [(ngModel)]="emailInput">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="mobileNumber">Mobile Number</label>
+                                    <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="mobileNumberInput">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="panel-footer" style="overflow: auto;">
+                    <div class="input-group pull-right">
+                        <!--   <button id="" type="button" class="btn btn-danger" (click)="deleteAdmin()"><i class="icon fa fa-trash"></i> Delete</button>
+                   -->
+                        <button id="btn1" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                            <i class="icon fa fa-trash"></i> Delete
+                      </button></div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 style="text-align: center;" class="modal-title" id="exampleModalLabel">Delete</h5>
+                                </div>
+                                <div style="text-align: center;" class="modal-body">
+                                    Are you sure you want to delete this record?
+                                </div>
+                                <div style="text-align: center;" class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button style="background:#ff2a2a; border-color: #ff2a2a;" type="button" class="btn btn-danger" (click)="deleteAdmin()">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group pull-right mr-8">
+                        <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="updateAdmin()"><i class="icon fa fa-check"></i> Save</button>
+                    </div>
+                    <!-- SAFIA 10.06.2021 -->
+                    <div class="input-group pull-left mr-8">
+                        <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="cancel()"><i class="icon fa fa-close"></i> Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

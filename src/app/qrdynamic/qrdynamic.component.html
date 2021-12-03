@@ -1,0 +1,50 @@
+
+
+<div class="wrapper">
+
+  <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" >
+     
+      <li class="list-group-item list-group-item-action list-group-item-warning " style=" background: #f3f3f3;color: #333;"><p class="text-center">Dynamic GHQRCode </p></li>
+      <ol class="breadcrumb">
+        <li><a href="/merchant"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="/qr"><i></i>Qr Generation</a></li>
+       <!-- <li><a href="/merchantTrans">Qrdynamic</a></li>-->
+        <li class="active">Qrdynamic</li>
+      </ol>
+    </section>
+
+  
+    <section class="content">
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+        <title>YOUR QR CODE</title>
+  <!--     <link rel="stylesheet" href="C:\Users\User\Downloads\ACPGFRONT\ACPGFRONT/src/style1.css"/>-->
+   <!--     <script src="script.js"></script>-->
+      </head>
+      <body>
+        <div class="qrbox">
+          <p>YOUR QR CODE</p>
+          <img [src] ="imageToShow" class="img-fluid" alt="" >
+          <!----   <img [src]="imageToShow" alt="Place image title">-->
+          <a [href]="imageToShow" download class="a2">
+                 <button [disabled]="!imageToShow">Download</button>
+               </a>
+          <button routerLink="/addqrdynamic" routerLinkActive="active" class="a2">Capture Merchant Details</button>
+        </div>
+      </body>
+      </html>
+    </section>
+                                   
+  </div>
+  
+</div>
+
+

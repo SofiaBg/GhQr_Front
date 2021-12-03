@@ -1,0 +1,72 @@
+
+<!--<body style="background: #ecf0f5;"> -->
+  <body style="background: #ffffff;"> 
+    <div class="login-box">
+      
+      <!-- /.login-logo  -->
+      <div class="login-box-body">
+        <ng-container *ngIf="showmsg">
+          <div class="alert alert-danger">
+            <i class="fas fa-exclamation-triangle"></i> &nbsp;&nbsp;<strong>{{
+              msg1
+            }}</strong>
+          </div>
+        </ng-container>
+
+        
+        
+      
+
+      
+          
+            <div class="modal-header">
+               <h4 class="modal-title" id="modal-basic-title">
+                 <i class="fas fa-sms"></i>&nbsp;&nbsp;Reset password :
+               </h4>
+             </div>
+             <div class="modal-body">
+              <p>Password Changed successfully</p>
+             </div>
+             <div class="modal-footer">
+                <button
+                 type="button "
+                 class="btn btn-outline-secondary"
+                 (click)="cancelbutton1()"
+               >
+                 done
+               </button>
+             </div>
+      
+         
+   
+        <!--</ng-container>
+      </ng-template>-->
+        
+            
+         
+    
+        
+    
+    
+     <!--   <a (click)="onRegister()" class="text-center">Require a new membership</a> -->
+    
+      </div>
+      <!-- /.login-box-body -->
+    </div>
+    <br><br><br><br><br><br>
+    <!-- /.login-box -->
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' /* optional */
+            });
+        });
+    </script>
+    </body>
+    
+    
+    
+    
+    

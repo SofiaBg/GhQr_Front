@@ -1,0 +1,100 @@
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+<div class="content-wrapper" *ngIf="session==true">
+    <fieldset class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="box-header">
+                    <section class="content-header">
+                        <h3 class="box-title"> Settings </h3>
+
+
+
+
+                    </section>
+                    <br/>
+                    <section>
+                        <div class="callout callout-danger" *ngIf="Errtoken==true">
+                            <h4>Warning!</h4>
+                            <strong>No Merchant id</strong>
+                            <p></p>
+                        </div>
+
+                        <div class="callout callout-success" *ngIf="valid==true">
+                            <h4> updated successfully </h4>
+                            <strong> </strong>
+                            <p></p>
+                        </div>
+
+                        <div class="box box-default">
+                            <div class="box-header with-border">
+                                <h4> Session time out by second </h4>
+                            </div>
+                            <div class="box-body" style="padding: 30px;">
+                                <div class="box-tools">
+                                    <div class="box-tools">
+                                        <div class="input-group input-group-sm" style="    width: 60%;">
+                                            <input type="text" name="sessionTime" [(ngModel)]="sessionTime" class="form-control pull-right" placeholder=" time out ">
+                                            <div class="input-group-btn">
+                                                <button id="btn" (click)="url(sessionTime)" type="submit" class="btn btn-y"><i class="fa fa-add"></i> Update </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+
+</div>
+
+
+<div class="content-wrapper" *ngIf="token==true">
+    <fieldset class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="box-header">
+                    <h3 class="box-title"> Settings </h3>
+                    <section>
+                        <div class="callout callout-danger" *ngIf="Errtoken==true">
+                            <h4>Warning!</h4>
+                            <strong>No Merchant id</strong>
+                            <p></p>
+                        </div>
+
+                        <div class="callout callout-success" *ngIf="valid==true">
+                            <h4> updated successfully </h4>
+                            <strong> </strong>
+                            <p></p>
+                        </div>
+
+                        <div class="box box-default">
+                            <div class="box-header with-border">
+                                <h4> token time out by second </h4>
+                            </div>
+                            <div class="box-body" style=" padding: 30px;">
+                                <div class="box-tools">
+                                    <div class="box-tools">
+                                        <div class="input-group input-group-sm" style="    width: 60%;">
+                                            <input type="text" name="paramToke" [(ngModel)]="paramToke" class="form-control pull-right" placeholder=" time out ">
+                                            <div class="input-group-btn">
+                                                <button (click)="url(paramToke)" type="submit" class="btn btn-x"><i class="fa fa-add"></i> update </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+
+</div>

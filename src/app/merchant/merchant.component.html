@@ -1,0 +1,420 @@
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+<div class="wrapper">
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+
+
+        <section class="content-header">
+
+
+
+            <div class="alert alert-success alert-dismissible" *ngIf="show==true">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                {{ msg }}
+            </div>
+
+            <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
+                <button type="button" class="close" (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                {{ msg }}
+            </div>
+
+            <div class="content">
+                <div class="box box-default">
+                    <div class="box-header with-border">
+                        <!-- <h4>Search </h4> -->
+                        <div style="margin-right: 10px;">
+                            <button routerLink="/addMerchant" class="btn  btn-y pull-right" routerLinkActive="active">
+                                <i class="fa fa-plus-square" aria-hidden="true"></i>  New Single Merchant </button>
+                        </div>
+                    </div>
+                    <div class="box-header with-border">
+                        <div style="margin-right: 10px;">
+                            <button routerLink="/bulkMerchants" class="btn  btn-y pull-right" routerLinkActive="active">
+                                <i class="fa fa-plus-square" aria-hidden="true"></i> New Bulk Merchants </button>
+                        </div>
+                    </div>
+                    <div class="input-group-btn ">
+
+                    </div>
+                    <div class="box-body" style=" padding: 30px;">
+                        <div class="box-tools">
+
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="    width: 500px;">
+                                    <!--<input type="text" name="iid" [(ngModel)]="id"  class="form-control pull-right" placeholder="Search by ID Account">-->
+                                    <!-- SAFIA 28.09.2021 <input type="text" name="iid" id="qrMerchantName" [(ngModel)]="id" class="form-control pull-right" placeholder="Search by Merchant Name"> -->
+                                    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="keyword">
+
+
+                                    <!-- <div class="input-group-btn">
+                                        <button (click)="setName()" type="submit" class="btn btn-default"><i
+                                                class="fa fa-search"></i></button>
+                                    </div> -->
+                                    <!--<input type="text" name="motCle" [(ngModel)]="code"  class="form-control pull-right" placeholder="Search by code Bank">-->
+                                    <!-- <input type="text" name="motCle" [(ngModel)]="code"  class="form-control pull-right" placeholder="Search by Account Number">
+
+                <div class="input-group-btn">
+                  <button  (click)="onGetMerchantsBycb()" gtype="submit" class="btn btn-default" ><i class="fa fa-search"></i></button>
+                </div> -->
+
+                                    <!-- SAFIA 24.09.2021 -->
+                                    <!-- <div class="input-group-btn">
+                                        <button routerLink="/addMerchant" class="btn  btn-y" routerLinkActive="active">New Merchant</button>
+                                    </div> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="clickable" [ngClass]="st=='' ? 'active' :''">
+
+
+                            <a (click)="setStatus('')" class="clickable" data-toggle="tab">Merchants</a>
+                        </li>
+                        <!-- <li class="clickable" [ngClass]="st=='S' ? 'active' :''"><a class="clickable" (click)="setStatus('S')" data-toggle="tab">Suspended Merchants</a></li> -->
+                        <li class="clickable" [ngClass]="st=='N' ? 'active' :''"><a class="clickable" (click)="setStatus('S')" data-toggle="tab">Suspended Merchants</a></li>
+                        <li class="clickable" [ngClass]="st=='S' ? 'active' :''"><a class="clickable" (click)="setStatus('N')" data-toggle="tab">Active Merchants</a></li>
+                        <!-- <button id="btnSearch" class="btn btn-danger mok pull-right" (click)="refresh()">Refresh</button> -->
+
+                    </ul>
+                    <div class="row" *ngIf="hidemain==false">
+
+                        <div class="col-xs-12">
+                            <fieldset class="col-md-12">
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+
+                                        <div class="box-header">
+                                            <h3 class="box-title"> All Merchants</h3>
+
+
+                                        </div>
+                                        <!-- /.box-header -->
+
+                                        <div class="box-body table-responsive no-padding">
+                                            <table class="table table-hover">
+                                                <thead id="tabHead" class="thead-dark bg-info">
+
+                                                    <tr>
+                                                        <!--<th>ID</th>-->
+                                                        <th>Giving Name</th>
+                                                        <th>Companie</th>
+                                                        <th>Email</th>
+                                                        <th>Telephone</th>
+                                                        <th>garantie</th>
+                                                        <th>website</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor='let m of merchants | slice: (page) * size : (page) * size + size'>
+                                                        <!--<td>{{m.person.idPerson}}</td>-->
+                                                        <td>{{m.firstName}}</td>
+                                                        <td>{{m.companyName}}</td>
+                                                        <td>{{m.email}}</td>
+                                                        <td>{{m.mobileNumber}}</td>
+                                                        <td>{{m.mobileNumber}}</td>
+                                                        <td>{{m.mobileNumber}}</td>
+                                                        <!-- /.box-header                  
+                                                    <td *ngIf="hideAccouts==true || dispInLine!=m.person.idPerson ||hide==true"><a (click)="getAccountsParPersonne(m.person.idPerson)" class="clickable btn btn-info btn-xs">Accounts</a></td>-->
+                                                        <td>
+                                                            <span class="btn btn-default" (click)="getAccountsParPersonne(m.person.idPerson)">Details</span>&nbsp;
+                                                            <div class="btn-group">
+                                                                <button type="button" class="btn btn-default">Action</button>
+                                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                    <span class="caret"></span>
+                                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                                </button>
+                                                                <ul class="dropdown-menu" role="menu">
+                                                                    <li (click)="changeStatus(m.person.idPerson,'N')" class="dropdown-item dropdownit">
+                                                                        Activate</li>
+                                                                    <li (click)="changeStatus(m.person.idPerson,'S')" class="dropdown-item dropdownit">
+                                                                        Suspend
+                                                                    </li>
+                                                                    <li (click)="changeStatus(m.person.idPerson,'C')" class="dropdown-item dropdownit">
+                                                                        Cancel</li>
+                                                                </ul>
+                                                            </div>
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+
+                                            <div class="container" *ngIf="hidePersonOrTrans==false">
+                                                <ul class="pagination pagination-sm no-margin pull-right">
+                                                    <li *ngFor="let p of pages;let i=index" [ngClass]="{'active':i==currentpageMerch}">
+                                                        <a style="text-align: center;" class="clickable" (click)="gotoPage(i)">{{i}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </div>
+
+
+                    <div *ngIf='accountsPersonne && hideAccouts==false && hide==false'>
+                        <div class="box-header">
+
+                            <fieldset class="col-md-12">
+                                <legend>Merchant details</legend>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+
+                                        <div class="box-body table-responsive no-padding">
+                                            <table class="table table-hover">
+                                                <thead class="thead-dark bg-info">
+                                                    <tr>
+                                                        <!-- <th>ID</th>-->
+                                                        <th>Number Acc</th>
+                                                        <th>Account ID</th>
+                                                        <th>Name Account</th>
+                                                        <th>Banque Name</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let a of accountsPersonne" class="table-light">
+                                                        <!--<td>{{a.accountId}}</td>-->
+                                                        <td>{{a.accountNumber}}</td>
+                                                        <td>{{a.accountId}}</td>
+
+                                                        <td>{{a.nameAccount}}</td>
+                                                        <td>{{a.bank.wording}}</td>
+                                                        <td>
+                                                            <!--<a (click)="onGetTransMerchant(a.accountId)" class="btn btn-default">Transactions</a> //+++ 
+                        <a (click)="hideAccountsParPersonne()" class="btn btn-danger">Cancel</a></td>-->
+                                                            <a (click)="hideAccountsParPersonne()" class="btn btn-a">Cancel</a>
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div *ngIf="transactionParAccountMerch && hide==false ">
+                        <div class="box-header">
+                            <fieldset class="col-md-12">
+                                <legend>Transactions of the Costumer</legend>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+
+
+                                        <div class="box-header">
+                                            <h3 class="box-title">Responsive Hover Table</h3>
+
+                                            <div class="box-tools">
+                                                <div class="input-group input-group-sm" style="width: 150px;">
+                                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                                                    <div class="input-group-btn">
+                                                        <button type="submit" class="btn btn-default"><i
+                                                                class="fa fa-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+
+                                        <div class="box-body table-responsive no-padding">
+                                            <table class="table table-hover">
+
+
+                                                <thead class="thead-dark bg-info">
+                                                    <tr>
+
+                                                        <th>Client Name</th>
+                                                        <th> Receipt Code</th>
+                                                        <th> Amount</th>
+                                                        <th> Transaction Date</th>
+                                                        <!--    <th>Merchant Id</th> <th>Store Id</th>-->
+                                                        <th> Merchant Name </th>
+                                                        <th> Merchant City </th>
+                                                        <th> Country Code </th>
+                                                        <th>Currency Code</th>
+                                                        <th> Mcccode ID </th>
+                                                        <!--<th>  card_number </th>-->
+                                                        <th> Addditional Date </th>
+                                                        <!--<th> account_number </th>-->
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor='let t of transactionParAccountMerch?.content'>
+                                                        <td>{{t.user_code}}</td>
+                                                        <td>{{t.receipt_code}}</td>
+                                                        <td>{{t.amount}}</td>
+                                                        <td>{{t.transaction_date.substr(0,10)}}</td>
+                                                        <!---     <td>{{t.merchant_id}}</td>
+                      <td>{{t.store_id}}</td>-->
+                                                        <td>{{t.merchant_name}}</td>
+                                                        <td>{{t.merchant_city}}</td>
+                                                        <td>{{t.country_code}}</td>
+                                                        <td>{{t.currency_code}}</td>
+                                                        <td>{{t.mcccode}}</td>
+                                                        <!--     <td>{{t.card_number}}</td>-->
+                                                        <td>{{t.addditional_date.substr(0,10)}}</td>
+                                                    </tr>
+                                                    <!-- <tr><td> <a (click)="hideTransactionsParAccount()" class="clickable btn btn-danger btn-xs">Cancel</a></td></tr>-->
+                                                </tbody>
+                                            </table>
+
+
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="hidecsearch==false">
+                        <div class="col-xs-12">
+
+                            <fieldset class="col-md-12">
+
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="box-header">
+
+
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body table-responsive no-padding">
+                                            <table id="example" class="table table-hover">
+                                                <thead class="thead-dark bg-info">
+
+                                                    <tr>
+
+                                                        <th>Merchant ID</th>
+                                                        <th>Merchant Name</th>
+                                                        <th>Company Name</th>
+                                                        <th>Email</th>
+                                                        <th>Mobile Number</th>
+                                                        <th>Status</th>
+                                                        <!-- SAFIA 20/09/2021 -->
+                                                        <!-- <th>Blocked</th> -->
+                                                        <th id="action">
+                                                            -
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- SAFIA 28.09.2021 <tr *ngFor='let m of merchants; let i = index;'> -->
+                                                    <tr *ngFor='let m of merchants | filter : keyword  ; let i = index;'>
+                                                        <td>{{m.id}}</td>
+                                                        <td>{{m.firstName+' '+m.lastName}}</td>
+                                                        <td>{{m.companyName}}</td>
+                                                        <td>{{m.email}}</td>
+                                                        <td>{{m.mobileNumber}}</td>
+                                                        <td>
+                                                            <div class="btn-group" *ngIf="st!='C'">
+                                                                <!-- <button type="button" class="btn btn-default">Action</button>
+                                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                    <span class="caret"></span>
+                                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                                </button> -->
+                                                                <!-- <ul class="dropdown-menu" role="menu"> -->
+                                                                <button *ngIf="m.status=='S'" (click)="changeStatus(m.id,'N')" class="btn btn-default">Activate</button>
+                                                                <button *ngIf="m.status=='N'" (click)="changeStatus(m.id,'S')" class="btn btn-default">Suspend</button>
+                                                                <!-- <li *ngIf="m.status=='N' || m.status=='S'" (click)="changeStatus(m.id,'C')" class="dropdown-item clickable">Cancel</li> -->
+                                                                <!-- <li class="dropdown-item clickable" (click)="goToReport(m)">Generate Report</li> -->
+                                                                <!-- <li *ngIf="m.blocked" (click)="unblockMerchant(m.id)" class="dropdown-item clickable"> -->
+
+                                                                <!-- </ul> -->
+                                                            </div>
+                                                        </td>
+                                                        <!-- <td *ngIf="m.status == 'Y'">Suspended</td>
+                                                        <td *ngIf="m.status == 'N'">Normal</td> -->
+                                                        <!-- <td>{{m.blocked ? "Yes" : "No"}}</td> -->
+                                                        <td>
+                                                            <span class="btn btn-default" (click)="details(i)">Details</span>&nbsp;
+                                                            <!-- <div class="btn-group" *ngIf="st!='C'">
+                                                                <button type="button" class="btn btn-default">Action</button>
+                                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                    <span class="caret"></span>
+                                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                                </button>
+                                                                <ul class="dropdown-menu" role="menu">
+                                                                    <li *ngIf="m.status=='S'" (click)="changeStatus(m.id,'N')" class="dropdown-item clickable">Activate</li>
+                                                                    <li *ngIf="m.status=='N'" (click)="changeStatus(m.id,'S')" class="dropdown-item clickable">Suspend</li>
+                                                                    <li *ngIf="m.status=='N' || m.status=='S'" (click)="changeStatus(m.id,'C')" class="dropdown-item clickable">Cancel</li>
+                                                                    SAFIA 20.09.2021
+                                                                     <li class="dropdown-item clickable" (click)="goToReport(m)">Generate Report</li> 
+                                                                    <li *ngIf="m.blocked" (click)="unblockMerchant(m.id)" class="dropdown-item clickable">
+                                                                        Unblock</li>
+
+                                                                </ul>
+                                                            </div> -->
+                                                        </td>
+
+
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <div class="mt-8">
+                                                <div class="pull-left" id="nbPages">
+                                                    {{pagesMerch.length}} pages
+                                                </div>
+
+                                                <div class="input-group pagination-w pull-right">
+                                                    <span class="input-group-btn">
+                                                        <button id="blackBtn" type="submit" class="btn btn-primary"
+                                                            (click)="gotoPageMerch(currentpage-1)"
+                                                            [disabled]="currentpage<=0">Previous</button>
+                                                    </span>
+                                                    <form (ngSubmit)="gotoPageFromInput()"><input disabled id="paginationValue" type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" /></form>
+                                                    <span class="input-group-btn">
+                                                        <button id="blackBtn" type="submit" class="btn btn-primary"
+                                                            (click)="gotoPageMerch(currentpage+1)"
+                                                            [disabled]="currentpage+1>=pagesMerch.length">Next</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+
+</div>

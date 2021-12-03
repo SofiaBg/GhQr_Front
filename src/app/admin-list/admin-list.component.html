@@ -1,0 +1,89 @@
+<app-appheader>
+</app-appheader>
+<app-appmenu></app-appmenu>
+
+
+<div class="wrapper">
+
+
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <!-- SAFIA 06.10.2021 -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h4>Search </h4>
+                    <div class="input-group pull-right">
+                        <button style="background-color: #000 !important; border-color: black;" id="btn1" type="button" class="btn btn-danger mok mb-8" (click)="newAdmin()"><i class="icon fa fa-user-plus"></i>
+                            New Admin</button>
+                    </div>
+                </div>
+                <div class="input-group-btn ">
+
+                </div>
+                <div class="box-body" style=" padding: 30px;">
+                    <div class="box-tools">
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="    width: 500px;">
+                                <!--<input type="text" name="iid" [(ngModel)]="id"  class="form-control pull-right" placeholder="Search by ID Account">-->
+                                <!-- SAFIA 28.09.2021 <input type="text" name="iid" id="qrMerchantName" [(ngModel)]="id" class="form-control pull-right" placeholder="Search by Merchant Name"> -->
+                                <input type="text" class="form-control" placeholder="Enter Keyword for filter result" [(ngModel)]="keyword">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Administrator List
+                </div>
+                <div class="panel-body">
+                    <!-- <div class="input-group pull-right">
+                        <button type="button" class="btn btn-danger mok mb-8" (click)="newAdmin()"><i class="icon fa fa-user-plus"></i> New Admin</button>
+                    </div> -->
+                    <table class="table table-hover table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>-</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="clickable" *ngFor="let admin of shownAdmin | filter : keyword  " (click)="adminDetails(admin)">
+                                <!-- SAFIA 06.10.2021 <tr class="clickable" *ngFor="let admin of shownAdmin" (click)="adminDetails(admin)"> -->
+                                <td>{{admin.user.username}}</td>
+                                <td>{{admin.firstName}}</td>
+                                <td>{{admin.lastName}}</td>
+                                <td>{{admin.email}}</td>
+                                <!-- SAFIA 06.10.2021 -->
+                                <td>
+                                    <button type="button" class="btn btn-default" (click)="adminDetails(admin)">Detail</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer o-auto">
+                    <div class="input-group pagination-w pull-right">
+                        <span class="input-group-btn">
+                            <button id="blackBtn" type="submit" class="btn btn-danger mok"
+                                (click)="gotoPage(currentpage-1)" [disabled]="currentpage<=0">Previous</button>
+                        </span>
+                        <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" /></form>
+                        <span class="input-group-btn">
+                            <button id="blackBtn" type="submit" class="btn btn-danger mok"
+                                (click)="gotoPage(currentpage+1)"
+                                [disabled]="!shownAdmin || currentpage+1>=totalPages">Next</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

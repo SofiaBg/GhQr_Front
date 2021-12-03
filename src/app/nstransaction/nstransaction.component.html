@@ -1,0 +1,169 @@
+
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+<div class="wrapper">
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+Not Settled Transaction        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li>=<i class="fa fa-dashboard"></i> Home</li>
+        <li>Transaction</li>
+        <li class="active">Data </li>
+      </ol>
+    </section>
+    <section class="content-header">
+      <div class="callout callout-danger" *ngIf='hide==false'>
+        <h4>Warning!</h4>
+
+        <p>{{err.toString()}}</p>
+      </div>
+      <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
+        <button type="button" class="close"  (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i> Alert!</h4>
+        {{msg}}
+      </div>
+
+      <!-- Main content -->
+      <div class="row" *ngIf="hidemain==false">
+        <fieldset class="col-md-12">
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+
+              <div class="box-header">
+                <h3 class="box-title"> All not settled transactions</h3>
+
+                <div class="box-tools">
+
+                </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body table-responsive no-padding">
+                <table class="table table-hover" >
+                  <thead class="thead-dark bg-info">
+                  <tr>
+                    <th>Credit ID</th> <th>Amount</th> <th>Date</th> <th>Settlement Method</th><th>Debit ID</th>   </tr>
+                  </thead>
+                    <tbody>
+                      <tr *ngFor='let t of transactions?.content'>
+                        <td>{{t.accountToCredit}}</td>
+                        <td>{{t.amount}}</td>
+                        <td>{{t.date}}</td>
+                        <td>{{t.settlementMethod}}</td>
+                        <td>{{t.debit.accountToDebitt}}</td>
+
+                    <td>    <button mat-raised-button (click)="openDialog(t.accountToCredit,t.accountToDebit,t.amount,t.creditId)">settle credit </button>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+
+
+
+                <div class="container" *ngIf="hidePersonOrTrans==false && hidemain==false">
+                  <ul class="nav nav-pills pagination">
+                    <li *ngFor="let p of pages;let i=index" [ngClass]="{'active':i==currentpage}">
+                      <a class="clickable"  (click)="gotoPage(i)">{{i}}</a>
+                    </li>
+                  </ul>
+                </div>
+
+
+                <!-- /.content -->
+              </div></div></div></fieldset></div>
+      <div class="row" *ngIf="hidecsearch==false">
+        <div class="col-xs-12">
+
+          <fieldset class="col-md-12">
+
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="box-header">
+                  <h3 class="box-title"> Costumers</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <a (click)="transactionsAll()" class="text-center">all transactions</a>
+
+                  <div class="box-tools">
+                    <div class="input-group input-group-sm" style="    width: 500px;">
+
+                      <input type="text" name="motCle"  [(ngModel)]="mot" class="form-control pull-right" placeholder="Search by code Bank">
+
+                      <div class="input-group-btn">
+                        <button  gtype="submit" class="btn btn-default" (click)="getTransaction()" ><i class="fa fa-search"></i></button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover">          <thead class="thead-dark bg-info">
+
+                  <tr>
+
+
+                      <th>ID Transaction</th> <th>Costumer account</th> <th>Merchant Account</th><th>Amount</th> <th>date</th><th> ID Bill </th><th> Status </th>
+
+                      <th> Comment </th>   </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor='let t of trx'>
+                      <td>{{t.idTransaction}}</td>
+                      <td>{{t.accountCostumer.nameAccount}}</td>
+                      <td>{{t.accountMerchant.nameAccount}}</td>
+                      <td>{{t.amount}}</td>
+                      <td>{{t.dateTransaction}}</td>
+                      <td>{{t.idBill}}</td>
+                      <td>{{t.status}}</td>
+                      <td>{{t.comment}}</td>
+
+
+
+                    </tr>
+                    </tbody>
+                  </table>
+
+
+                  <div class="container" *ngIf="hidePersonOrTrans==false">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                      <li *ngFor="let p of pages;let i=index" [ngClass]="{'active':i==currentpage}">
+                        <a class="clickable"  (click)="gotoPage(i)">{{i}}</a>
+                      </li>
+                    </ul>
+                  </div>      </div>
+              </div>
+            </div></fieldset>
+        </div></div>
+
+
+
+    </section></div>
+
+
+
+</div>
+<!-- /.content-wrapper -->
+<!-- Control Sidebar -->
+<div class="control-sidebar-bg"></div>
+<!-- ./wrapper -->
+
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false
+        })
+    })
+</script>

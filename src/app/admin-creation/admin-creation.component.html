@@ -1,0 +1,72 @@
+
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+
+<div class="wrapper">
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            
+            <div class="alert alert-danger mb-8" *ngIf="error">
+                <strong>{{errTitle}}</strong><br/> {{errMessage}}
+            </div>
+            
+            <div class="alert alert-success mb-8" *ngIf="success">
+                <strong>{{successTitle}}</strong><br/> {{successMessage}}
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">New Administrator</div>
+                <div class="panel-body">
+                    
+                    <form>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" [(ngModel)]="usernameInput">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" [(ngModel)]="firstNameInput">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" [(ngModel)]="lastNameInput">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="email">E-Mail</label>
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="E-Mail" [(ngModel)]="emailInput">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="mobileNumber">Mobile Number</label>
+                                    <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="mobileNumberInput">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="panel-footer" style="overflow: auto;">
+                    <div class="input-group pull-right">
+                        <button type="button" class="btn btn-danger mok" (click)="createAdmin()"><i class="icon fa fa-check"></i> Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
