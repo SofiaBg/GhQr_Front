@@ -1,5 +1,5 @@
-
-<app-appheader></app-appheader>
+<app-appheader>
+</app-appheader>
 <app-appmenu></app-appmenu>
 
 
@@ -7,19 +7,29 @@
 
     <div class="content-wrapper">
         <div class="content-header">
-            
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="merchantPage()"><i
+                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                    aria-hidden="true"></i>
+                            </a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> New Admin</li>
+                </ol>
+            </nav>
+
             <div class="alert alert-danger mb-8" *ngIf="error">
                 <strong>{{errTitle}}</strong><br/> {{errMessage}}
             </div>
-            
+
             <div class="alert alert-success mb-8" *ngIf="success">
                 <strong>{{successTitle}}</strong><br/> {{successMessage}}
             </div>
-            
+
             <div class="panel panel-default">
                 <div class="panel-heading">New Administrator</div>
                 <div class="panel-body">
-                    
+
                     <form>
                         <div class="row">
                             <div class="col-md-4">
@@ -58,7 +68,7 @@
                             </div>
                         </div>
                     </form>
-                    
+
                 </div>
                 <div class="panel-footer" style="overflow: auto;">
                     <div class="input-group pull-right">

@@ -8,6 +8,16 @@
     <div class="content-wrapper">
         <div class="content-header">
 
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="merchantPage()"><i
+                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                    aria-hidden="true"></i>
+                            </a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Details</li>
+                </ol>
+            </nav>
+
             <div class="alert alert-danger mb-8" *ngIf="error">
                 <strong>{{errTitle}}</strong><br/> {{errMessage}}
             </div>

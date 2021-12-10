@@ -1,6 +1,6 @@
 export class CSVRecord {
     // Merchant
-    public id: any;
+    public id: string;
     public accountNumber: any;
     public bank: any;
     public branch: any;
@@ -63,9 +63,14 @@ export class CSVRecord {
     public mobileNumberS : any;
     
     // Acceptor Point 
+    public description : any;
     public acceptorPoint : any;
     public acronym: any;
     public mobileNumberA : any
 
+    //
+    public createdBy : any;
+    public operationDate:any;
+    public operationStatus : any
 
 }

@@ -125,7 +125,18 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
   errorarraycondtion: any;
   resetFormSubject: Subject<boolean> = new Subject<boolean>();
 
-  
+  detailPage(){
+    let inst = MerchantTransactionsComponent.getInstance();
+    inst.showdetail=true;
+    inst.showtrx=false;
+    inst.token=false
+    inst.qrtoken=false;
+    inst.showqrtrx=false;
+    inst.pass=false;
+    inst.showqrtrxx=false;
+    inst.showqrloc=false;
+    inst.showDashboard=false;
+  }
 
   constructor(private formBuilder: FormBuilder, public _formBuilder: FormBuilder, private bnIdle: BnNgIdleService, private service: GipService, router: Router) {
     /* this.datepickerForm = this._formBuilder.group({
@@ -185,9 +196,14 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
 
   result: any = null;
   showResult :  any[] =  this.result;
-  showErrorDate: boolean=false;
+  showErrorDate: boolean=false; 
   // result: any;
   /* SAFIA 08.10.2021 */
+
+  merchantPage(){
+    this.router.navigateByUrl("/merchantTrans")
+  }
+
   allQrTransactionSearch() {
     // Just for test
     this.dateFrom = '2020-01-20';

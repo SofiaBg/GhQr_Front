@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, Pipe, PipeTransform, Renderer2 } from '@angular/core';
+import { Component, HostListener, Inject, Input, OnInit, Pipe, PipeTransform, Renderer2 } from '@angular/core';
 import {GipService} from "../services/gip.service";
 import {Router} from "@angular/router";
 import Swal from "sweetalert2";
@@ -8,7 +8,7 @@ import { BaseComponent } from '../BaseComponent/BaseComponent';
 import { Merchant } from '../new-merchant/new-merchant.component';
 import M from 'minimatch';
 import { Script } from 'vm';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
 @Component({
   selector: 'app-merchant',
   templateUrl: './merchant.component.html',
@@ -55,7 +55,18 @@ export class MerchantComponent extends BaseComponent implements OnInit {
   status:boolean
   a:number=0;
   qrtransactionParAccountMerch:any;//++
-  constructor(private service:GipService,router:Router,private bnIdle: BnNgIdleService,
+  public isSuperAdmin: boolean
+
+  pageYoffset = 0;
+  @HostListener('window:scroll', ['$event']) onScroll(event){
+    this.pageYoffset = window.pageYOffset;
+  }
+
+  scrollToTop(){
+    this.scroll.scrollToPosition([0,0]);
+  }
+
+  constructor(private scroll : ViewportScroller ,private service:GipService,router:Router,private bnIdle: BnNgIdleService,
     private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document) {
     super(router);
@@ -68,7 +79,13 @@ export class MerchantComponent extends BaseComponent implements OnInit {
     // dtOptions: DataTables.Settings = {};
 
 
+    adminList(){
+      this.router.navigateByUrl("/adminList")
+      this.isSuperAdmin = true
+    }
+
   ngOnInit() {
+    this.isSuperAdmin = (localStorage.getItem('role') == 'SUPERADMIN');
 
     this.st= "";
 

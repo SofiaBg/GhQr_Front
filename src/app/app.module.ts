@@ -62,7 +62,7 @@ import { NewAcceptorPointModal } from './new-merchant/new-merchant.component';
 import { UpdateSiteModal } from './update-merchant/update-merchant.component';
 import { UpdateAcceptorPointModal, GenerateQrModal } from './update-merchant/update-merchant.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { chartComponent } from './line-chart/line-chart.component';
 import { MatProgressSpinnerModule } from '@angular/material';
 import * as i18nIsoCountries from 'i18n-iso-countries';
@@ -73,7 +73,9 @@ import { OtpComponent } from './otp/otp.component';
 import { BulkMerchantsComponent } from './bulk-merchants/bulk-merchants.component';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { BulkMerchantsValidationComponent } from './bulk-merchants-validation/bulk-merchants-validation.component';
-
+import { BulkMerchantsManagementListComponent } from './bulk-merchants-management-list/bulk-merchants-management-list.component';
+import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
+import { OutSessionComponent } from './out-session/out-session.component';
 const appRoutes: Routes = [
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -116,7 +118,8 @@ const appRoutes: Routes = [
   /*SAFIA 04.10.2021 */
   { path: "otp", component: OtpComponent },
   { path: "bulkMerchants", component: BulkMerchantsComponent },
-  { path: "bulkMerchantsValidation", component: BulkMerchantsValidationComponent }
+  { path: "bulkMerchantsValidation", component: BulkMerchantsValidationComponent },
+  { path: "merchantManagementList", component: BulkMerchantsManagementListComponent}
 
 
 
@@ -175,7 +178,10 @@ const appRoutes: Routes = [
     SignupComponent,
     OtpComponent,
     BulkMerchantsComponent,
-    BulkMerchantsValidationComponent
+    BulkMerchantsValidationComponent,
+    BulkMerchantsManagementListComponent,
+    ScrollToTopComponent
+    // , OutSessionComponent
   ],
   imports: [
     NgxPaginationModule,
@@ -204,7 +210,11 @@ const appRoutes: Routes = [
         strictStateImmutability: true,
         strictActionImmutability: true
       }
-    })
+    }),
+    /* SAFIA 08.12.2021 
+    FIXING ROUTES ISSUE ON SERVER 
+    */
+    RouterModule.forRoot(appRoutes, { useHash: true })
     //, DataTableModule
   ],
   //AuthenticationService,
@@ -218,6 +228,6 @@ const appRoutes: Routes = [
     UpdateSiteModal,
     UpdateAcceptorPointModal,
     GenerateQrModal
-  ]
+  ],
 })
 export class AppModule { }

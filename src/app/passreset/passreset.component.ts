@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GipService } from '../services/gip.service';
 
 @Component({
@@ -19,7 +20,12 @@ export class PassresetComponent implements OnInit {
   paramPass2: string;
   valid2: boolean;
 
-  constructor(private service: GipService) { }
+  constructor(private service: GipService, private router : Router) { }
+
+  
+  merchantPage(){
+    this.router.navigateByUrl("/merchant")
+  }
 
   ngOnInit() {
     this.idAccount = localStorage.getItem('idAccount');

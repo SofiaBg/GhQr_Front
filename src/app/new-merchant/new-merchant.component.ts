@@ -114,6 +114,11 @@ export class NewMerchantComponent extends BaseComponent implements OnInit {
     this.sites = [];
   }
 
+
+  merchantPage(){
+    this.router.navigateByUrl("/merchant")
+  }
+
   ngOnInit() {
 
     /* SAFIA 14.09.2021 */
@@ -677,6 +682,8 @@ export class NewAcceptorPointModal {
     if (confirm("Do you really want to close the modal ? All unsaved data will be lost !"))
       this.activeModal.dismiss();
   }
+
+
 }
 
 function removeFromArray(array: Array<any>, index) {

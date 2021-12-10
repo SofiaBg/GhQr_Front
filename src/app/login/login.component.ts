@@ -7,6 +7,8 @@ import { CommonUserService } from "../services/CommonUserService";
 import { NgbActiveModal, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 //---import { Constant } from "../services/Constant";
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Subject, timer } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 //+++
 export class NgbdModalConfirmAutofocus {
   constructor(public modal: NgbActiveModal) { }
@@ -94,7 +96,19 @@ export class LoginComponent implements OnInit {
     config.keyboard = false;
   }
 
+
+  destroy = new Subject();
+  showDialog = false;
+  timer: number;
+  dialog = 'stay logged in?';
+  notice = 'session expired';
+  showNotice = false;
+
+  rxjsTimer = timer(1000, 1000);
+
   ngOnInit() {
+
+    
 
   }
 
@@ -102,7 +116,9 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl("/signUp")
   }
 
+  stringJson: any;
 
+  stringObject: any;
   onLogin(f) {
     this.hide = true;
     console.log(f)
@@ -127,14 +143,22 @@ export class LoginComponent implements OnInit {
 
         this.username = this.service.saveToken(jwt);
         console.log("username that we send to get id account " + this.username)
+        
+        
         if (this.service.isAdmin()) {
           // this.router.navigateByUrl("/customer");
           // Vérifier que login/mdp sont correctes, par exemple par une requête à un service REST
           localStorage.setItem('user', JSON.stringify({ login: this.model.username }));//++
           localStorage.setItem('name', 'ADMINISTRATOR');//++
+          // localStorage.setItem('idAccount','2c81310d-3456-470b-9aca-242f9f013112')
           console.log("ussssssserrrrr", localStorage.getItem)
           this.router.navigateByUrl("/merchant");
           localStorage.setItem('role', 'ADMIN');//++
+
+         
+
+
+
         /* this.Errpass= false;
        this.valid= true;*/}
         else if (this.service.isSuperAdmin()) {
@@ -176,12 +200,12 @@ export class LoginComponent implements OnInit {
               this.router.navigateByUrl("/login")
             }
           )
-          , error => {
-            this.nbrAccess = this.nbrAccess - 1;
-            console.log("Wrong username or password - SAFIA - !!!")
-            this.router.navigateByUrl("/login")
-          }
-        
+            , error => {
+              this.nbrAccess = this.nbrAccess - 1;
+              console.log("Wrong username or password - SAFIA - !!!")
+              this.router.navigateByUrl("/login")
+            }
+
         }
 
         //if(this.service.isAdmin()==false){
@@ -300,7 +324,7 @@ export class LoginComponent implements OnInit {
   //           console.log("Wrong username or password - SAFIA - !!!")
   //           this.router.navigateByUrl("/login")
   //         }
-        
+
   //       }
 
   //       //if(this.service.isAdmin()==false){

@@ -1,7 +1,10 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, ViewChild, Renderer2, Inject } from '@angular/core';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
+import { Component, OnInit, ViewChild, Renderer2, Inject, HostListener } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CSVRecord } from '../classes/CSVRecord';
+import { GipService } from '../services/gip.service';
 
 @Component({
   selector: 'app-bulk-merchants',
@@ -9,7 +12,10 @@ import { CSVRecord } from '../classes/CSVRecord';
   styleUrls: ['./bulk-merchants.component.css']
 })
 
-/**SAFIA 02.12.2021 */
+/**
+ * SAFIA 02.12.2021
+ */
+
 export class BulkMerchantsComponent implements OnInit {
   currentpage: number = -1;
   totalPages: number;
@@ -17,13 +23,26 @@ export class BulkMerchantsComponent implements OnInit {
   pagesize: number = 5;
   pagenumber: number;
   public records: any[] = [];
+
+  selectedRecord : CSVRecord;
+
+  result: any = null;
   showResult :  any[] =  this.records;
 
   @ViewChild('csvReader', { static: false }) csvReader: any;
 
 
-  constructor(  private _renderer2: Renderer2, 
-    @Inject(DOCUMENT) private _document: Document) { }
+  pageYoffset = 0;
+  @HostListener('window:scroll', ['$event']) onScroll(event){
+    this.pageYoffset = window.pageYOffset;
+  }
+
+  scrollToTop(){
+    this.scroll.scrollToPosition([0,0]);
+  }
+
+  constructor( private router : Router,private gipService : GipService ,private _renderer2: Renderer2, 
+    @Inject(DOCUMENT) private _document: Document, private scroll : ViewportScroller) { }
 
   ngOnInit() {
 
@@ -64,17 +83,19 @@ export class BulkMerchantsComponent implements OnInit {
         let headersRow = this.getHeaderArray(csvRecordsArray);
 
         this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
-
         this.showResult = this.records.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
 
       };
 
       reader.onerror = function () {
+        let errorMessage: string;
         console.log('error is occured while reading file!');
+        errorMessage ='error is occured while reading file!'
       };
 
     } else {
-      alert("Please import valid .csv file.");
+      // alert("Please import valid .csv file.");
+      this.errorMessage='Please import valid .csv file'
       this.fileReset();
     }
   }
@@ -111,7 +132,7 @@ export class BulkMerchantsComponent implements OnInit {
         csvRecord.type = curruntRecord[22].trim()
         csvRecord.usage = curruntRecord[23].trim()
         csvRecord.sendingMode = curruntRecord[24].trim()
-        csvRecord.careOf = curruntRecord[25].trim
+        csvRecord.careOf = curruntRecord[25].trim()
         csvRecord.startDate = curruntRecord[26].trim()
         csvRecord.country = curruntRecord[27].trim()
         csvRecord.region = curruntRecord[28].trim()
@@ -145,9 +166,10 @@ export class BulkMerchantsComponent implements OnInit {
         csvRecord.zipCodeS = curruntRecord[56].trim()
         csvRecord.emailS = curruntRecord[57].trim()
         csvRecord.mobileNumberS = curruntRecord[58].trim()
-        csvRecord.acceptorPoint = curruntRecord[59].trim()
-        csvRecord.acronym = curruntRecord[60].trim()
-        csvRecord.mobileNumberA = curruntRecord[61].trim()
+        csvRecord.description = curruntRecord[59].trim()
+        csvRecord.acceptorPoint = curruntRecord[60].trim()
+        csvRecord.acronym = curruntRecord[61].trim()
+        csvRecord.mobileNumberA = curruntRecord[62].trim()
         csvArr.push(csvRecord);
       }
     }
@@ -174,6 +196,8 @@ export class BulkMerchantsComponent implements OnInit {
 
   deleteRow(x) {
     this.records.splice(x, 1);
+    this.successMessage = "Merchant removed successfully."
+
   }
 
 
@@ -201,12 +225,121 @@ export class BulkMerchantsComponent implements OnInit {
   }
 
 
-  editUserContact(usercontact: CSVRecord) {
-    
-    console.log(usercontact);
-    localStorage.removeItem('editUserId');
-    localStorage.setItem('editUserId', usercontact.id.toString());
-    // this.ucs.update(usercontact);
+ 
+  onSelect( csvRecord : CSVRecord) : void{
+    this.selectedRecord =  csvRecord;
   }
 
+
+  recordForm=new FormGroup({  
+    accountNumber:new FormControl('',[Validators.required]), 
+    bank :new FormControl('',[Validators.required]), 
+    branch:new FormControl('',[Validators.required]), 
+    businessRegNo:new FormControl('',[Validators.required]), 
+    legalIdType:new FormControl('',[Validators.required]), 
+    legalId:new FormControl('',[Validators.required]), 
+    doingBuninessAs:new FormControl('',[Validators.required]), 
+    companyName:new FormControl('',[Validators.required]), 
+    mcc:new FormControl('',[Validators.required]), 
+    tin:new FormControl('',[Validators.required]), 
+    status:new FormControl('',[Validators.required]), 
+    visaIdentifier:new FormControl('',[Validators.required]), 
+    openingDate:new FormControl('',[Validators.required]), 
+    masterCardIdentifier:new FormControl('',[Validators.required]), 
+    upiIdentifier:new FormControl('',[Validators.required]), 
+    contractNumber:new FormControl('',[Validators.required]), 
+    legalForm:new FormControl('',[Validators.required]), 
+    accountStartDate:new FormControl('',[Validators.required]), 
+    mainActivityType:new FormControl('',[Validators.required]), 
+    mainActivity:new FormControl('',[Validators.required]), 
+    dateOfIncorporation:new FormControl('',[Validators.required]), 
+    type:new FormControl('',[Validators.required]), 
+    usage:new FormControl('',[Validators.required]), 
+    sendingMode:new FormControl('',[Validators.required]), 
+    careOf:new FormControl('',[Validators.required]), 
+    startDate:new FormControl('',[Validators.required]), 
+    country:new FormControl('',[Validators.required]), 
+    region:new FormControl('',[Validators.required]), 
+    city:new FormControl('',[Validators.required]), 
+    businessPhysicalAddress1:new FormControl('',[Validators.required]), 
+    businessPhysicalAddress2:new FormControl('',[Validators.required]), 
+    businessPhysicalAddress3:new FormControl('',[Validators.required]), 
+    digitalAddress:new FormControl('',[Validators.required]), 
+    state:new FormControl('',[Validators.required]), 
+    zipCode:new FormControl('',[Validators.required]), 
+    title:new FormControl('',[Validators.required]), 
+    firstName:new FormControl('',[Validators.required]), 
+    lastName:new FormControl('',[Validators.required]), 
+    function:new FormControl('',[Validators.required]), 
+    email:new FormControl('',[Validators.required,Validators.email]), 
+    mobileNumber:new FormControl('',[Validators.required,Validators.minLength(10)]), 
+    siteName:new FormControl('',[Validators.required]), 
+    statusS:new FormControl('',[Validators.required]), 
+    location:new FormControl('',[Validators.required]), 
+    typeOfSite:new FormControl('',[Validators.required]), 
+    openingDateS:new FormControl('',[Validators.required]), 
+    countryS:new FormControl('',[Validators.required]), 
+    regionS:new FormControl('',[Validators.required]), 
+    cityS:new FormControl('',[Validators.required]), 
+    physicalAddress1:new FormControl('',[Validators.required]), 
+    physicalAddress2:new FormControl('',[Validators.required]), 
+    physicalAddress3:new FormControl('',[Validators.required]), 
+    digitalAddressS:new FormControl('',[Validators.required]), 
+    stateS:new FormControl('',[Validators.required]), 
+    postalCode:new FormControl('',[Validators.required]), 
+    zipCodeS:new FormControl('',[Validators.required]), 
+    emailS:new FormControl('',[Validators.required]), 
+    mobileNumberS:new FormControl('',[Validators.required,Validators.minLength(10)]), 
+    description:new FormControl('',[Validators.required]), 
+    acceptorPoint:new FormControl('',[Validators.required]), 
+    acronym:new FormControl('',[Validators.required]), 
+    mobileNumberA:new FormControl('',[Validators.required,Validators.minLength(10)]), 
+ 
+    
+
+    student_branch:new FormControl()  
+  });  
+
+
+  success : boolean = false;
+  error : boolean = false;
+  errMessage : boolean = false;
+  successMessage : string;
+  errorMessage : string;
+
+  deleteRows(d){
+    const index = this.records.indexOf(d);
+    this.records.splice(index, 1);
+}
+  
+  saveRecord(csvRecord : CSVRecord ){
+    console.log('-- START SAVE RECORD -- ',csvRecord)
+    let x : CSVRecord;
+    this.gipService.saveRecord(csvRecord).subscribe(data => {
+      console.log('DATA ', data)
+      if(data['respCode'] == "000"){
+        this.success = true;
+        this.error = false;
+        this.successMessage = "Merchant saved successfully."
+        setTimeout(() => {
+          this.deleteRows(csvRecord)
+          this.router.navigateByUrl('/bulkMerchants');
+        }, 3000);
+      } else {
+        this.success = false;
+        this.error = true;
+        this.errMessage = data['respDesc'];
+      }
+    }
+    ,err=>{
+      this.success = false;
+      this.error = true;
+    }); 
+
+  }
+
+  merchant(){
+    this.router.navigateByUrl("/merchant")
+  }
+  
 }

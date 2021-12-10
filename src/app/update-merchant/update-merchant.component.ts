@@ -50,6 +50,9 @@ export class UpdateMerchantComponent extends BaseComponent implements OnInit {
   get getSites() {
     return UpdateMerchantComponent.sites;
   }
+  merchantPage(){
+    this.router.navigateByUrl("/merchant")
+  }
 
   merchant: any;
   show: boolean = false;

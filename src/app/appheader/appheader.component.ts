@@ -10,10 +10,11 @@ import {Router} from "@angular/router";
 })
 export class AppheaderComponent implements OnInit {
 
-  private userName: String
 
   /*SAFIA 01.12.2021 */
   private name: String
+
+  private userName : any;
 
   logOut(){
     this.service.logout();
@@ -22,10 +23,24 @@ export class AppheaderComponent implements OnInit {
   constructor(private service:GipService,private router:Router) { }
 
   ngOnInit() {
+
+    this.service.getIdAccountByUserName('Mhajar1').subscribe(data => {
+      console.log(data);
+              this.userName=data;
+            })
     this.userName = localStorage.getItem('forgotpass')
     
     /*SAFIA 01.12.2021 */
     this.name = localStorage.getItem('Name')
   }
+  
+//     getIdAccountByUserName(username){
+//       console.log("***************************************************************************")
+//       this.service.getIdAccountByUserName('Mhajar1').subscribe(data => {
+// console.log(data);
+//         this.userName=data;
+//       })
+      
+//   }
 
 }

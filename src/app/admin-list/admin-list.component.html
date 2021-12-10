@@ -9,10 +9,21 @@
 
     <div class="content-wrapper">
         <div class="content-header">
+            <div style="height: 30px;"></div>
+            <br>
+            <nav *ngIf="this.isSuperAdmin" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="merchant()"><i
+                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                    aria-hidden="true"></i>
+                            </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Bulk Merchant Onboarding</li>
+                </ol>
+            </nav>
             <!-- SAFIA 06.10.2021 -->
             <div class="box box-default">
                 <div class="box-header with-border">
-                    <h4>Search </h4>
+                    <!-- <h4>Search </h4> -->
                     <div class="input-group pull-right">
                         <button style="background-color: #000 !important; border-color: black;" id="btn1" type="button" class="btn btn-danger mok mb-8" (click)="newAdmin()"><i class="icon fa fa-user-plus"></i>
                             New Admin</button>
@@ -83,6 +94,8 @@
                     </div>
                 </div>
             </div>
+            <app-scroll-to-top></app-scroll-to-top>
+
         </div>
     </div>
 

@@ -46,6 +46,10 @@ export class ReportsComponent extends BaseComponent implements OnInit {
     this.name = this.merchant.firstName + " " + this.merchant.lastName;
   }
 
+  merchantPage(){
+    this.router.navigateByUrl("/merchant")
+  }
+
   ngOnInit() {
     // this.reportTypes.set('0', this.transactionReport);
     // this.reportTypes.set('1', this.transactionValueReport);

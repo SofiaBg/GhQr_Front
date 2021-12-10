@@ -19,6 +19,9 @@ export class AppmenuComponent implements OnInit {
     this.isSuperAdmin = (localStorage.getItem('role') == 'SUPERADMIN');
   }
 
+  merchantManagementList(){
+    this.router.navigateByUrl("/merchantManagementList")
+  }
 
   bulkMerchants(){
     this.router.navigateByUrl("/bulkMerchantsValidation")

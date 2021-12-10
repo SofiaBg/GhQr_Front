@@ -11,7 +11,18 @@
 
 
         <section class="content-header">
+            <div style="height: 30px;"></div>
+            <br>
 
+            <nav *ngIf="this.isSuperAdmin" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="adminList()"><i
+                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                    aria-hidden="true"></i>
+                            </a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Merchant Management</li>
+                </ol>
+            </nav>
 
 
             <div class="alert alert-success alert-dismissible" *ngIf="show==true">
@@ -27,20 +38,28 @@
             </div>
 
             <div class="content">
+
+
                 <div class="box box-default">
                     <div class="box-header with-border">
                         <!-- <h4>Search </h4> -->
-                        <div style="margin-right: 10px;">
-                            <button routerLink="/addMerchant" class="btn  btn-y pull-right" routerLinkActive="active">
-                                <i class="fa fa-plus-square" aria-hidden="true"></i>  New Single Merchant </button>
+                        <div class="row">
+                            <div style="margin-right: 10px;">
+                                <button routerLink="/addMerchant" class="btn  btn-y pull-right" routerLinkActive="active">
+                                    <i class="fa fa-plus-square" aria-hidden="true"></i> New Merchant </button>
+                            </div>
+                            <div>
+                                <button style="margin-right: 15px !important; " routerLink="/bulkMerchants" class="btn  btn-y pull-right" routerLinkActive="active">
+                                    <i class="fa fa-plus-square" aria-hidden="true"></i> New Bulk Merchants </button>
+                            </div>
                         </div>
                     </div>
-                    <div class="box-header with-border">
+                    <!-- <div class="box-header with-border">
                         <div style="margin-right: 10px;">
                             <button routerLink="/bulkMerchants" class="btn  btn-y pull-right" routerLinkActive="active">
                                 <i class="fa fa-plus-square" aria-hidden="true"></i> New Bulk Merchants </button>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="input-group-btn ">
 
                     </div>
@@ -305,10 +324,17 @@
 
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <div class="box-header">
+                                        <!-- <div class="form-group form-inline" style="display: inline-block;">
+                                            <label for="pagesize">Page size</label>
+                                            <div class="input-group form-inline input-group-sm w-100 pull-left">
+                                                <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                                    <option value="10">10</option>
+                                                    <option value="25">25</option>
+                                                    <option value="50">50</option>
+                                                </select>
+                                            </div>
+                                        </div> -->
 
-
-                                        </div>
                                         <!-- /.box-header -->
                                         <div class="box-body table-responsive no-padding">
                                             <table id="example" class="table table-hover">
@@ -384,7 +410,7 @@
                                                 </tbody>
                                             </table>
 
-                                            <div class="mt-8">
+                                            <!-- <div class="mt-8">
                                                 <div class="pull-left" id="nbPages">
                                                     {{pagesMerch.length}} pages
                                                 </div>
@@ -402,15 +428,52 @@
                                                             [disabled]="currentpage+1>=pagesMerch.length">Next</button>
                                                     </span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
+                                    <div class="panel-footer o-auto" style="height: 60px;">
+                                        <div class="form-group form-inline" style="display: inline-block; margin-top: -10px;">
+                                            <!-- <div class="row">
+
+                                                <div class="col-sm">
+
+                                                    <label for="pagesize">Page size</label>
+                                                </div>
+                                                <div class="col-sm">
+
+                                                    <div class="input-group form-inline input-group-sm w-100 pull-left" style="width: 122px;">
+                                                        <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                                            <option selected value="5">5</option>
+                                                            <option value="10">10</option>
+                                                            <option value="25">25</option>
+                                                            <option value="50">50</option>
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <div class="input-group pagination-w pull-right">
+                                            <span class="input-group-btn">
+                                                <button id="blackBtn" type="submit" class="btn btn-primary"
+                                                    (click)="gotoPageMerch(currentpage-1)"
+                                                    [disabled]="currentpage<=0">Previous</button>
+                                            </span>
+                                            <form (ngSubmit)="gotoPageFromInput()"><input disabled id="paginationValue" type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" /></form>
+                                            <span class="input-group-btn">
+                                                <button id="blackBtn" type="submit" class="btn btn-primary"
+                                                    (click)="gotoPageMerch(currentpage+1)"
+                                                    [disabled]="currentpage+1>=pagesMerch.length">Next</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </fieldset>
                         </div>
                     </div>
 
                 </div>
+                <app-scroll-to-top></app-scroll-to-top>
             </div>
         </section>
 

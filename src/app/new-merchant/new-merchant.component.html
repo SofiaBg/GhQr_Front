@@ -4,171 +4,185 @@
 <div class="wrapper">
     <!-- Full Width Column -->
     <div class="content-wrapper">
-        <div class="container">
-            <!-- Content Header (Page header) -->
-            <section class="content-header">
-                <!-- SAFIA 20/09/2021 -->
-                <!-- <h1>
+        <!-- <div class="container"> -->
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+
+            <div style="height: 30px;"></div>
+            <br>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="merchantPage()"><i
+                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                    aria-hidden="true"></i>
+                            </a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Merchant Onboarding</li>
+                </ol>
+            </nav>
+            <!-- SAFIA 20/09/2021 -->
+            <!-- <h1>
            Add Merchant 
           </h1> -->
-                <br>
-            </section>
-            <!-- Main content -->
-            <section class="content">
-                <div class="alert alert-success alert-dismissible" *ngIf="show==true">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h4><i class="icon fa fa-check"></i> Alert!</h4>
-                    Merchant added successfully. Redirecting in 3 seconds...
-                </div>
-                <!-- <div id="dangerAlert" class="callout callout-danger" *ngIf="mode==0 && errorMessage">
+            <br>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="alert alert-success alert-dismissible" *ngIf="show==true">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                Merchant added successfully. Redirecting in 3 seconds...
+            </div>
+            <!-- <div id="dangerAlert" class="callout callout-danger" *ngIf="mode==0 && errorMessage">
             <h4>Warning!</h4>
             <p>{{errorMessage}}</p>
           </div> -->
-                <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="mode==0 && errorMessage">
-                    <button style="color:  #B83C37;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
-                    <h5 style="color:  #B83C37;"><i class="fa fa-ban fa-1x"> </i> {{errorMessage}}</h5>
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="mode==0 && errorMessage">
+                <button style="color:  #B83C37;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <h5 style="color:  #B83C37;"><i class="fa fa-ban fa-1x"> </i> {{errorMessage}}</h5>
+            </div>
+
+
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        Merchant Onboarding
+                    </h4>
                 </div>
-
-
-
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            Merchant Onboarding
-                        </h4>
-                    </div>
-                    <div class="panel-body">
-                        <form name="merchantForm" action="" method="POST" role="form" id="formmerchant">
-                            <div class="panel-group" id="accordion">
-                                <div class="panel panel-default">
-                                    <div id="identification" class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a aria-controls="collapse1" id="identifTitle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                <div class="panel-body">
+                    <form name="merchantForm" action="" method="POST" role="form" id="formmerchant">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div id="identification" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a aria-controls="collapse1" id="identifTitle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                                                 Identification <i class="fa fa-angle-double-down"
                                                     aria-hidden="true"></i></a>
-                                            <!-- SAFIA 22.09.2021 <button id="btnClose" type="button" class="btn btn-danger btn-sm ml-8" (click)="fillTestData()">Fill</button> -->
-                                        </h4>
-                                    </div>
-                                    <div id="collapse1" class="panel-collapse collapse in">
-                                        <!-- <div id="collapse1" class="panel-collapse collapse in"> -->
-                                        <div class="panel-body">
-                                            <div class="form-section-header">
-                                                <b>Identification</b>
-                                            </div>
+                                        <!-- SAFIA 22.09.2021 <button id="btnClose" type="button" class="btn btn-danger btn-sm ml-8" (click)="fillTestData()">Fill</button> -->
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse in">
+                                    <!-- <div id="collapse1" class="panel-collapse collapse in"> -->
+                                    <div class="panel-body">
+                                        <div class="form-section-header">
+                                            <b>Identification</b>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="accountnumber">Account Number</label>
-                                                    <div id="flexContainer">
-                                                        <input ng-model="accountnumber" class="form-control" type="text" name="accountnumber" id="accountnumber" aria-required="true" required>
-                                                        <!--SAFIA 28.09.2021 -->
-                                                        <button (click)="getMerchantInfoByAccountNumber(accountnumber)" class="btn btn-danger" id="btnCheck" type="button"><i
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="accountnumber">Account Number</label>
+                                                <div id="flexContainer">
+                                                    <input ng-model="accountnumber" class="form-control" type="text" name="accountnumber" id="accountnumber" aria-required="true" required>
+                                                    <!--SAFIA 28.09.2021 -->
+                                                    <button (click)="getMerchantInfoByAccountNumber(accountnumber)" class="btn btn-danger" id="btnCheck" type="button"><i
                                                                 id="iconCheck" class="fa fa-check"
                                                                 aria-hidden="true"></i></button>
-                                                    </div>
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.accountnumber.$touched && merchantForm.accountnumber.$invalid" aria-disabled="true">Account number is required.</span>
-                                                    </div>
                                                 </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="bank">Bank</label>
-                                                    <!--SAFIA 14.09.2021-->
-                                                    <!-- <input type="text" class="form-control" name="bank" id="bank"> -->
-                                                    <select class="form-control" name="bank" id="bank">
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.accountnumber.$touched && merchantForm.accountnumber.$invalid" aria-disabled="true">Account number is required.</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="bank">Bank</label>
+                                                <!--SAFIA 14.09.2021-->
+                                                <!-- <input type="text" class="form-control" name="bank" id="bank"> -->
+                                                <select class="form-control" name="bank" id="bank">
                                                         <option>Select a Bank </option>
                                                         <option *ngFor='let bank of merchantBank'
                                                             [value]="bank.bankCode">{{bank.gip_code}}</option>
                                                     </select>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="branch">Branch</label>
-                                                    <!-- SAFIA 14.09.2021 -->
-                                                    <!-- <input type="text" class="form-control" name="branch" id="branch"> -->
-                                                    <select class="form-control" name="branch" id="branch">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="branch">Branch</label>
+                                                <!-- SAFIA 14.09.2021 -->
+                                                <!-- <input type="text" class="form-control" name="branch" id="branch"> -->
+                                                <select class="form-control" name="branch" id="branch">
                                                         <option>Select a branch </option>
                                                         <option *ngFor='let branch of merchantBranch' value="000001">
                                                             {{branch.institut_name}}
                                                         </option>
                                                     </select>
-                                                </div>
-
                                             </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="businessregno">Business Reg No.</label>
-                                                    <input [(ngModel)]="stringObject.businessRegNo" class="form-control" type="text" name="businessregno" id="businessregno" aria-required="true" required>
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.businessregno.$touched && merchantForm.businessregno.$invalid" aria-disabled="true">Business Reg No is required.</span>
-                                                    </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="businessregno">Business Reg No.</label>
+                                                <input [(ngModel)]="stringObject.businessRegNo" class="form-control" type="text" name="businessregno" id="businessregno" aria-required="true" required>
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.businessregno.$touched && merchantForm.businessregno.$invalid" aria-disabled="true">Business Reg No is required.</span>
                                                 </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="legalidtype">Legal ID Type</label>
-                                                    <!-- SAFIA 14.09.2021 -->
-                                                    <!-- <input type="text" class="form-control" name="legalidtype" id="legalidtype"> -->
-                                                    <select class="form-control" name="legalidtype" id="legalidtype">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="legalidtype">Legal ID Type</label>
+                                                <!-- SAFIA 14.09.2021 -->
+                                                <!-- <input type="text" class="form-control" name="legalidtype" id="legalidtype"> -->
+                                                <select class="form-control" name="legalidtype" id="legalidtype">
                                                         <option>Select a Legal ID Type </option>
                                                         <option *ngFor='let legalIDType of merchantLegalIDType'
                                                             [ngValue]="legalIDType.code">
                                                             {{legalIDType.label}}</option>
                                                     </select>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="legalid">Legal ID</label>
-                                                    <input type="text" class="form-control" name="legalid" id="legalid">
-                                                </div>
-
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="legalid">Legal ID</label>
+                                                <input type="text" class="form-control" name="legalid" id="legalid">
                                             </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="doingbusinessas">Doing business as</label>
-                                                    <input ng-model="doingbusinessas" class="form-control" type="text" name="doingbusinessas" id="doingbusinessas" aria-required="true" required>
-                                                    <!-- <div *ngIf="errorMessage">
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="doingbusinessas">Doing business as</label>
+                                                <input ng-model="doingbusinessas" class="form-control" type="text" name="doingbusinessas" id="doingbusinessas" aria-required="true" required>
+                                                <!-- <div *ngIf="errorMessage">
                                                         <span id="req" ng-show="merchantForm.doingbusinessas.$touched && merchantForm.doingbusinessas.$invalid" aria-disabled="true">Doing business as is required.</span>
                                                     </div> -->
-                                                </div>
-                                                <!-- SAFIA 28.09.2021 <div class="form-group col-sm-4 col-xs-12 required">
+                                            </div>
+                                            <!-- SAFIA 28.09.2021 <div class="form-group col-sm-4 col-xs-12 required">
                                                     <label for="accountnumber">Account Number</label>
                                                     <input class="form-control" type="text" name="accountnumber" id="accountnumber" aria-required="true" required>
                                                     <div *ngIf="errorMessage">
                                                         <span id="req" ng-show="merchantForm.accountnumber.$touched && merchantForm.accountnumber.$invalid" aria-disabled="true">Account number is required.</span>
                                                     </div>
                                                 </div> -->
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="companyname">Company Name</label>
-                                                    <input ng-model="companyname" class="form-control" type="text" name="companyname" id="companyname" aria-required="true" required>
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.companyname.$touched && merchantForm.companyname.$invalid" aria-disabled="true">Company name is required.</span>
-                                                    </div>
-
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="companyname">Company Name</label>
+                                                <input ng-model="companyname" class="form-control" type="text" name="companyname" id="companyname" aria-required="true" required>
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.companyname.$touched && merchantForm.companyname.$invalid" aria-disabled="true">Company name is required.</span>
                                                 </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="mcc">MCC</label>
-                                                    <!-- SAFIA 14.09.2021 -->
-                                                    <!-- <input type="text" class="form-control" name="mcc" id="mcc"> -->
-                                                    <select class="form-control" name="mcc" id="mcc">
+
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="mcc">MCC</label>
+                                                <!-- SAFIA 14.09.2021 -->
+                                                <!-- <input type="text" class="form-control" name="mcc" id="mcc"> -->
+                                                <select class="form-control" name="mcc" id="mcc">
                                                         <option>Select a MCC </option>
                                                         <option *ngFor='let mcc of merchantMCC' [value]="mcc.code">
                                                             {{mcc.label}}</option>
                                                     </select>
-                                                </div>
                                             </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="tin">TIN</label>
-                                                    <input ng-model="tin" class="form-control" type="text" name="tin" id="tin" aria-required="true" required>
-                                                    <!-- <input [(ngModel)]="stringObject.tin" ng-model="tin" class="form-control" type="text" name="tin" id="tin" aria-required="true" required> -->
-                                                    <!-- <div *ngIf="errorMessage">
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="tin">TIN</label>
+                                                <input ng-model="tin" class="form-control" type="text" name="tin" id="tin" aria-required="true" required>
+                                                <!-- <input [(ngModel)]="stringObject.tin" ng-model="tin" class="form-control" type="text" name="tin" id="tin" aria-required="true" required> -->
+                                                <!-- <div *ngIf="errorMessage">
                                                         <span id="req" ng-show="merchantForm.tin.$touched && merchantForm.tin.$invalid" aria-disabled="true">Tin is required.</span>
                                                     </div> -->
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="status">Status</label>
-                                                    <select class="form-control" name="status" id="status">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="status">Status</label>
+                                                <select class="form-control" name="status" id="status">
                                                         <!-- SAFIA 14.09.2021 -->
                                                         <!-- <option value="P">In Progress</option>
                                                             <option value="V">Waiting for validation</option>
@@ -184,94 +198,94 @@
                                                             [value]="status.code">{{status.label}}
                                                         </option>
                                                     </select>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="visaidentifier">VISA Identifier</label>
-                                                    <input class="form-control" type="text" name="visaidentifier" id="visaidentifier">
-                                                </div>
                                             </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="visaidentifier">VISA Identifier</label>
+                                                <input class="form-control" type="text" name="visaidentifier" id="visaidentifier">
+                                            </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="openingdate">Opening Date</label>
-                                                    <input class="form-control" type="date" name="openingdate" id="openingdate" aria-required="true" required>
-                                                    <!-- <div *ngIf="errorMessage">
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="openingdate">Opening Date</label>
+                                                <input class="form-control" type="date" name="openingdate" id="openingdate" aria-required="true" required>
+                                                <!-- <div *ngIf="errorMessage">
                                                         <span id="req" ng-show="merchantForm.openingdate.$touched && merchantForm.openingdate.$invalid" aria-disabled="true">Opening date is required.</span>
                                                     </div> -->
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="mastercardidentifier">MasterCard Identifier</label>
-                                                    <input class="form-control" type="text" name="mastercardidentifier" id="mastercardidentifier">
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="upiidentifier">UPI Identifier</label>
-                                                    <input class="form-control" type="text" name="upiidentifier" id="upiidentifier">
-                                                </div>
                                             </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="mastercardidentifier">MasterCard Identifier</label>
+                                                <input class="form-control" type="text" name="mastercardidentifier" id="mastercardidentifier">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="upiidentifier">UPI Identifier</label>
+                                                <input class="form-control" type="text" name="upiidentifier" id="upiidentifier">
+                                            </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="contractnumber">Contract Number</label>
-                                                    <input ng-model="contractnumber" class="form-control" type="text" name="contractnumber" id="contractnumber" aria-required="true" required>
-                                                    <!-- <div *ngIf="errorMessage">
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="contractnumber">Contract Number</label>
+                                                <input ng-model="contractnumber" class="form-control" type="text" name="contractnumber" id="contractnumber" aria-required="true" required>
+                                                <!-- <div *ngIf="errorMessage">
                                                         <span id="req" ng-show="merchantForm.contractnumber.$touched && merchantForm.contractnumber.$invalid" aria-disabled="true">Contract number is required.</span>
                                                     </div> -->
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="legalform">Legal Form</label>
-                                                    <!-- SAFIA 16.09.2021 -->
-                                                    <!-- <input class="form-control" type="text" name="legalform" id="legalform"> -->
-                                                    <select class="form-control" name="legalform" id="legalform">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="legalform">Legal Form</label>
+                                                <!-- SAFIA 16.09.2021 -->
+                                                <!-- <input class="form-control" type="text" name="legalform" id="legalform"> -->
+                                                <select class="form-control" name="legalform" id="legalform">
                                                         <option>Select a Legal Form </option>
                                                         <option *ngFor='let legalform of merchantLegalForm'
                                                             [value]="legalform.code">
                                                             {{legalform.label}}</option>
                                                     </select>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="acctstartdt">Account Start Date</label>
-                                                    <input class="form-control" type="date" name="acctstartdt" id="acctstartdt">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="acctstartdt">Account Start Date</label>
+                                                <input class="form-control" type="date" name="acctstartdt" id="acctstartdt">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="mainactivitytype">Main Activity Type</label>
+                                                <input ng-model="mainactivitytype" class="form-control" type="text" name="mainactivitytype" id="mainactivitytype" aria-required="true" required>
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.mainactivitytype.$touched && merchantForm.mainactivitytype.$invalid" aria-disabled="true">Main Activity Type is required.</span>
                                                 </div>
                                             </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="mainactivitytype">Main Activity Type</label>
-                                                    <input ng-model="mainactivitytype" class="form-control" type="text" name="mainactivitytype" id="mainactivitytype" aria-required="true" required>
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.mainactivitytype.$touched && merchantForm.mainactivitytype.$invalid" aria-disabled="true">Main Activity Type is required.</span>
-                                                    </div>
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="mainactivity">Main Activity</label>
+                                                <input ng-model="mainactivity" class="form-control" type="text" name="mainactivity" id="mainactivity" aria-required="true" required>
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.mainactivity.$touched && merchantForm.mainactivity.$invalid" aria-disabled="true">Main Activity is required.</span>
                                                 </div>
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="mainactivity">Main Activity</label>
-                                                    <input ng-model="mainactivity" class="form-control" type="text" name="mainactivity" id="mainactivity" aria-required="true" required>
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.mainactivity.$touched && merchantForm.mainactivity.$invalid" aria-disabled="true">Main Activity is required.</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="mainactivity">Date of Incorporation</label>
-                                                    <!-- <input class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required> -->
-                                                    <input [(ngModel)]="stringObject.dateOfBirth" class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required>
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.dateOfBirth.$touched && merchantForm.dateOfBirth.$invalid" aria-disabled="true">Date Of incorporation is
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="mainactivity">Date of Incorporation</label>
+                                                <!-- <input class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required> -->
+                                                <input [(ngModel)]="stringObject.dateOfBirth" class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required>
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.dateOfBirth.$touched && merchantForm.dateOfBirth.$invalid" aria-disabled="true">Date Of incorporation is
                                                             required.</span>
-                                                    </div>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="form-section-header mtop-16">
-                                                <b>Address</b>
+                                        <div class="form-section-header mtop-16">
+                                            <b>Address</b>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="type">Type</label>
+                                                <input type="text" class="form-control" name="type" id="type">
                                             </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="type">Type</label>
-                                                    <input type="text" class="form-control" name="type" id="type">
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="usage">Usage</label>
-                                                    <select class="form-control" name="usage" id="usage">
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="usage">Usage</label>
+                                                <select class="form-control" name="usage" id="usage">
                                                         <!-- <option value="01">Mail</option>
                                                             <option value="02">Loyalty</option>
                                                             <option value="03">Dispute</option>
@@ -281,203 +295,205 @@
                                                             [value]="merchantUsage.code">
                                                             {{merchantUsage.label}}</option>
                                                     </select>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="sendingmode">Sending Mode</label>
-                                                    <!-- <input type="text" class="form-control" name="sendingmode" id="sendingmode"> -->
-                                                    <select class="form-control" name="sendingmode" id="sendingmode">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="sendingmode">Sending Mode</label>
+                                                <!-- <input type="text" class="form-control" name="sendingmode" id="sendingmode"> -->
+                                                <select class="form-control" name="sendingmode" id="sendingmode">
                                                         <option>Select a Sending mode </option>
                                                         <option *ngFor='let mode of modeSending'
                                                             [value]="mode.code_sending">{{mode.mode_sending}}
                                                         </option>
                                                     </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="careof">Care of</label>
+                                                <input class="form-control" type="text" name="careof" id="careof">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="startdate">Start Date</label>
+                                                <input class="form-control" type="date" name="startdate" id="startdate">
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.startdate.$touched && merchantForm.startdate.$invalid" aria-disabled="true">Start date is required.</span>
                                                 </div>
                                             </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="careof">Care of</label>
-                                                    <input class="form-control" type="text" name="careof" id="careof">
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="startdate">Start Date</label>
-                                                    <input class="form-control" type="date" name="startdate" id="startdate">
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.startdate.$touched && merchantForm.startdate.$invalid" aria-disabled="true">Start date is required.</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="country">Country</label>
-                                                    <select class="form-control" name="country" id="country">
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="country">Country</label>
+                                                <select class="form-control" name="country" id="country">
                                                         <option *ngFor='let country of countries'
                                                             [value]="country.code">{{country.label}}
                                                         </option>
                                                     </select>
-                                                </div>
                                             </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="region">Region</label>
-                                                    <select class="form-control" name="region" id="region">
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="region">Region</label>
+                                                <select class="form-control" name="region" id="region">
                                                         <!-- <option value="001">ACCRA</option> -->
                                                         <option>Select a Region </option>
                                                         <option *ngFor='let region of merchantRegions'
                                                             [value]="region.region_code">{{region.label}}
                                                         </option>
                                                     </select>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="city">City</label>
-                                                    <select class="form-control" name="city" id="city">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="city">City</label>
+                                                <select class="form-control" name="city" id="city">
                                                         <!-- <option value="00001">ACCRA</option> -->
                                                         <option>Select a City </option>
                                                         <option *ngFor='let city of merchantCities'
                                                             [value]="city.city_code">{{city.label}}</option>
                                                     </select>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="businessphysicaladdress1">Business Physical Address
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="businessphysicaladdress1">Business Physical Address
                                                         1</label>
-                                                    <input type="text" class="form-control" name="businessphysicaladdress1" id="businessphysicaladdress1">
-                                                    <!-- <input [(ngModel)]="stringObject.address" type="text" class="form-control" name="businessphysicaladdress1" id="businessphysicaladdress1"> -->
-                                                </div>
+                                                <input type="text" class="form-control" name="businessphysicaladdress1" id="businessphysicaladdress1">
+                                                <!-- <input [(ngModel)]="stringObject.address" type="text" class="form-control" name="businessphysicaladdress1" id="businessphysicaladdress1"> -->
                                             </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="businessphysicaladdress2">Business Physical Address
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="businessphysicaladdress2">Business Physical Address
                                                         2</label>
-                                                    <input type="text" class="form-control" name="businessphysicaladdress2" id="businessphysicaladdress2">
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="businessphysicaladdress3">Business Physical Address
-                                                        3</label>
-                                                    <input type="text" class="form-control" name="businessphysicaladdress3" id="businessphysicaladdress3">
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="digitaladdress">Digital Address</label>
-                                                    <input type="text" class="form-control" name="digitaladdress" id="digitaladdress">
-                                                </div>
+                                                <input type="text" class="form-control" name="businessphysicaladdress2" id="businessphysicaladdress2">
                                             </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="businessphysicaladdress3">Business Physical Address
+                                                        3</label>
+                                                <input type="text" class="form-control" name="businessphysicaladdress3" id="businessphysicaladdress3">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="digitaladdress">Digital Address</label>
+                                                <input type="text" class="form-control" name="digitaladdress" id="digitaladdress">
+                                            </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="state">State</label>
-                                                    <select class="form-control" name="state" id="state">
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="state">State</label>
+                                                <select class="form-control" name="state" id="state">
                                                         <option value="001">ACCRA</option>
                                                     </select>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="zipcode">Zip Code</label>
-                                                    <select class="form-control" name="zipcode" id="zipcode">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="zipcode">Zip Code</label>
+                                                <select class="form-control" name="zipcode" id="zipcode">
                                                         <!-- <option value="00000001">00000001</option> -->
                                                         <option>Select a Zip Code </option>
                                                         <option *ngFor='let zipcode of zipCodes' [value]="zipcode.code">
                                                             {{zipcode.label}}</option>
                                                     </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-section-header mtop-16">
+                                            <b>Merchant Contact</b>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="title">Title</label>
+                                                <input type="text" class="form-control" name="title" id="title">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="firstname">First Name</label>
+                                                <input formContronName="firstname" ng-model="firstname" type="text" class="form-control" name="firstname" id="firstname" aria-required="true" required>
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.firstname.$touched && businessregno.firstname.$invalid" aria-disabled="true">Firstname is required.</span>
                                                 </div>
                                             </div>
-
-                                            <div class="form-section-header mtop-16">
-                                                <b>Merchant Contact</b>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="title">Title</label>
-                                                    <input type="text" class="form-control" name="title" id="title">
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="firstname">First Name</label>
-                                                    <input formContronName="firstname" ng-model="firstname" type="text" class="form-control" name="firstname" id="firstname" aria-required="true" required>
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.firstname.$touched && businessregno.firstname.$invalid" aria-disabled="true">Firstname is required.</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="lastname">Last Name</label>
-                                                    <input ng-model="lastname" type="text" class="form-control" name="lastname" id="lastname" aria-required="true" required>
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.lastname.$touched && businessregno.lastname.$invalid" aria-disabled="true">Lastname is required.</span>
-                                                    </div>
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="lastname">Last Name</label>
+                                                <input ng-model="lastname" type="text" class="form-control" name="lastname" id="lastname" aria-required="true" required>
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.lastname.$touched && businessregno.lastname.$invalid" aria-disabled="true">Lastname is required.</span>
                                                 </div>
                                             </div>
+                                        </div>
 
-                                            <div class="row">
-                                                <div class="form-group col-sm-4 col-xs-12">
-                                                    <label for="function">Function</label>
-                                                    <input type="text" class="form-control" name="function" id="function">
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12">
+                                                <label for="function">Function</label>
+                                                <input type="text" class="form-control" name="function" id="function">
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="email">Email</label>
+                                                <input ng-model="email" type="text" class="form-control" name="email" id="email" aria-required="true" required>
+                                                <!-- <input [(ngModel)]="stringObject.email" ng-model="email" type="text" class="form-control" name="email" id="email" aria-required="true" required> -->
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.email.$touched && businessregno.email.$invalid" aria-disabled="true">Email is required.</span>
                                                 </div>
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="email">Email</label>
-                                                    <input ng-model="email" type="text" class="form-control" name="email" id="email" aria-required="true" required>
-                                                    <!-- <input [(ngModel)]="stringObject.email" ng-model="email" type="text" class="form-control" name="email" id="email" aria-required="true" required> -->
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.email.$touched && businessregno.email.$invalid" aria-disabled="true">Email is required.</span>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group col-sm-4 col-xs-12 required">
-                                                    <label for="mobilenumber">Mobile Number</label>
-                                                    <input ng-model="mobilenumber" type="text" class="form-control" name="mobilenumber" id="mobilenumber" aria-required="true" required>
-                                                    <div *ngIf="errorMessage">
-                                                        <span id="req" ng-show="merchantForm.mobilenumber.$touched && businessregno.mobilenumber.$invalid" aria-disabled="true">Mobile number is required.</span>
-                                                    </div>
+                                            </div>
+                                            <div class="form-group col-sm-4 col-xs-12 required">
+                                                <label for="mobilenumber">Mobile Number</label>
+                                                <input ng-model="mobilenumber" type="text" class="form-control" name="mobilenumber" id="mobilenumber" aria-required="true" required>
+                                                <div *ngIf="errorMessage">
+                                                    <span id="req" ng-show="merchantForm.mobilenumber.$touched && businessregno.mobilenumber.$invalid" aria-disabled="true">Mobile number is required.</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="panel panel-default">
-                                    <div id="sites" class="panel-heading">
-                                        <h4 class="panel-title">
-                                            <a id="siteTitle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                            </div>
+                            <div class="panel panel-default">
+                                <div id="sites" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a id="siteTitle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
                                                 Sites <i class="fa fa-angle-double-down" aria-hidden="true"></i>
                                             </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapse2" class="panel-collapse collapse">
-                                        <div class="panel-body">
+                                    </h4>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse">
+                                    <div class="panel-body">
 
-                                            <table class="table table-hover table-striped table-bordered table-responsive">
-                                                <thead id="tabHead">
-                                                    <tr>
-                                                        <th>Description</th>
-                                                        <th>Type</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="sites">
-                                                    <tr *ngFor="let site of sites; let i = index;">
-                                                        <td>{{ site.name }}</td>
-                                                        <td>{{ site.typeOfSite }}</td>
-                                                        <td><button id="blackBtn" class="btn btn-success mr-16" (click)="modal(i)"><span
+                                        <table class="table table-hover table-striped table-bordered table-responsive">
+                                            <thead id="tabHead">
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <th>Type</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="sites">
+                                                <tr *ngFor="let site of sites; let i = index;">
+                                                    <td>{{ site.name }}</td>
+                                                    <td>{{ site.typeOfSite }}</td>
+                                                    <td><button id="blackBtn" class="btn btn-success mr-16" (click)="modal(i)"><span
                                                                     class="fa fa-pencil"></span></button><button id="blackBtn" class="btn btn-danger" (click)="remove(i)"><span
                                                                     class="fa fa-trash"></span></button></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                                </tr>
+                                            </tbody>
+                                        </table>
 
-                                            <div class="text-right">
-                                                <button id="blackBtn" class="btn btn-primary" (click)="modal()">New
+                                        <div class="text-right">
+                                            <button id="blackBtn" class="btn btn-primary" (click)="modal()">New
                                                     Site</button>
-                                            </div>
-
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="text-right">
-                                <button type="button" id="blackBtn" class="btn btn-primary" (click)="send()" [disabled]="show || sending">Send</button>
-                                <!-- <button type="button" id="blackBtn" class="btn btn-primary" (click)="fillTestData()" [disabled]="show || sending">Fill Data</button> -->
-                            </div>
+                        <div class="text-right">
+                            <button type="button" id="blackBtn" class="btn btn-primary" (click)="send()" [disabled]="show || sending">Send</button>
+                            <!-- <button type="button" id="blackBtn" class="btn btn-primary" (click)="fillTestData()" [disabled]="show || sending">Fill Data</button> -->
+                        </div>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
-            </section>
-        </div>
+            </div>
+            <app-scroll-to-top></app-scroll-to-top>
+
+        </section>
+        <!-- </div> -->
 
     </div>
 </div>

@@ -32,6 +32,10 @@ export class AdminCreationComponent extends BaseComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+  merchantPage(){
+    this.router.navigateByUrl("/adminList")
+  }
   createAdmin(){
     let admin = new Admin();
     admin.email = this.emailInput;

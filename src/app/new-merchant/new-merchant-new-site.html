@@ -2,11 +2,11 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Add New Site</h4>
     <button type="button" class="close" aria-label="Close" (click)="close()">
-    <span aria-hidden="true">&times;</span>
-  </button>
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 <div class="modal-body">
-    <form name="merchantForm">
+    <form [formGroup]="recordForm" name="merchantForm">
         <div class="form-group">
 
             <div class="form-section-header mtop-16">
@@ -36,13 +36,13 @@
                 <div class="form-group col-md-3 col-sm-6 required">
                     <label for="sitestatus">Status</label>
                     <select class="form-control" name="sitestatus" id="sitestatus" aria-required="true" required>
-                <option value="N">Normal</option>
-                <option value="S">Suspended</option>
-                <option value="C">Closed</option> -->
-            <option>Select a Status  </option>
-            <option *ngFor='let status of siteStatus' [value]="status.code">{{status.label}}
-            </option>
-          </select>
+                        <option value="N">Normal</option>
+                        <option value="S">Suspended</option>
+                        <option value="C">Closed</option> -->
+                        <option>Select a Status </option>
+                        <option *ngFor='let status of siteStatus' [value]="status.code">{{status.label}}
+                        </option>
+                    </select>
                     <div *ngIf="errorMessage">
                         <span id="req" ng-show="merchantForm.sitestatus.$touched && merchantForm.sitestatus.$invalid" aria-disabled="true">Status is required.</span>
                     </div>
@@ -78,8 +78,9 @@
                 <option value="288">Ghana</option>
               </select> -->
                     <select class="form-control" name="sitecountry" id="sitecountry">
-            <option *ngFor='let country of this.siteCountries' [value]="country.code">{{country.label}}</option>
-          </select>
+                        <option *ngFor='let country of this.siteCountries' [value]="country.code">{{country.label}}
+                        </option>
+                    </select>
                 </div>
             </div>
 
@@ -90,10 +91,11 @@
                 <option value="001">ACCRA</option>
               </select> -->
                     <select class="form-control" name="siteregion" id="siteregion">
-            <!-- <option value="001">ACCRA</option> -->
-            <option>Select a Region </option>
-            <option *ngFor='let region of siteRegions' [value]="region.region_code">{{region.label}}</option>
-          </select>
+                        <!-- <option value="001">ACCRA</option> -->
+                        <option>Select a Region </option>
+                        <option *ngFor='let region of siteRegions' [value]="region.region_code">{{region.label}}
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3 col-sm-6 col-xs-12">
                     <label for="sitecity">City</label>
@@ -101,10 +103,10 @@
                 <option value="00001">ACCRA</option>
               </select> -->
                     <select class="form-control" name="sitecity" id="sitecity">
-            <!-- <option value="00001">ACCRA</option> -->
-            <option>Select a City </option>
-            <option *ngFor='let city of siteCities' [value]="city.city_code">{{city.label}}</option>
-          </select>
+                        <!-- <option value="00001">ACCRA</option> -->
+                        <option>Select a City </option>
+                        <option *ngFor='let city of siteCities' [value]="city.city_code">{{city.label}}</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3 col-sm-6 col-xs-12">
                     <label for="sitephysicaladdress1">Physical Address 1</label>
@@ -128,8 +130,8 @@
                 <div class="form-group col-md-3 col-sm-6 col-xs-12">
                     <label for="sitestate">State</label>
                     <select class="form-control" name="sitestate" id="sitestate" aria-required="true" required>
-            <option value="001">ACCRA</option>
-          </select>
+                        <option value="001">ACCRA</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3 col-sm-6 col-xs-12">
                     <label for="sitepostalcode">Postal Code</label>
@@ -141,10 +143,10 @@
                 <div class="form-group col-md-3 col-sm-6 col-xs-12">
                     <label for="sitezipcode">ZIP Code</label>
                     <select class="form-control" name="sitezipcode" id="sitezipcode">
-            <!-- <option value="00000001">00000001</option> -->
-            <option>Select a Zip Code </option>
-            <option *ngFor='let zipcode of siteZipCodes' [value]="zipcode.code">{{zipcode.label}}</option>
-          </select>
+                        <!-- <option value="00000001">00000001</option> -->
+                        <option>Select a Zip Code </option>
+                        <option *ngFor='let zipcode of siteZipCodes' [value]="zipcode.code">{{zipcode.label}}</option>
+                    </select>
                 </div>
             </div>
 
@@ -188,7 +190,7 @@
                         <td>{{acceptorpoint.acronym}}</td>
                         <td>{{acceptorpoint.mobileNumber}}</td>
                         <td><button id="blackBtn" class="btn btn-success mr-16" (click)="modal(i)"><span
-                  class="fa fa-pencil"></span></button><button id="blackBtn" class="btn btn-danger" (click)="remove(i)"><span class="fa fa-trash"></span></button></td>
+                                    class="fa fa-pencil"></span></button><button id="blackBtn" class="btn btn-danger" (click)="remove(i)"><span class="fa fa-trash"></span></button></td>
                     </tr>
                 </tbody>
             </table>

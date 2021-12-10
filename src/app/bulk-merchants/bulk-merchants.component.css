@@ -131,3 +131,18 @@ td {
         margin-top: 0;
     }
 }
+
+.scroll-to-top {
+    position: fixed;
+    background: red;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    color: white;
+    height: 36px;
+    width: 36px;
+    font-size: 18px;
+    border-radius: 4px;
+    bottom: 20px;
+    right: 30px;
+}

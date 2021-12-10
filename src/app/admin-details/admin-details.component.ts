@@ -46,6 +46,11 @@ export class AdminDetailsComponent extends BaseComponent implements OnInit {
     }
   }
 
+  
+  merchantPage(){
+    this.router.navigateByUrl("/adminList")
+  }
+
   ngOnInit() {
     
   }

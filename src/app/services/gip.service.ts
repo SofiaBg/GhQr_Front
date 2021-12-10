@@ -18,6 +18,8 @@ import { ModeSending } from '../classes/ModeSending';
 import { SiteStatus } from '../classes/SiteStatus';
 import { strictEqual } from 'assert';
 import { data } from 'jquery';
+import { CSVRecord } from '../classes/CSVRecord';
+import { Person } from '../classes/Person';
 //import {JwtHelperService} from 'angular-jwt'
 //import {JwtHelperService} from
 
@@ -51,6 +53,10 @@ export class GipService {
     this.jwtToken = localStorage.getItem("token");
   }
 
+  getIdAccountByUserName(username){
+    return this.http.get(this.host + "/findAccountByUserName" , username)
+
+  }
   login(user) {
     return this.http.post(this.host + "/login", user, { observe: 'response' })
   }
@@ -94,8 +100,14 @@ export class GipService {
 
     this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
     let username = jwtHelper.decodeToken(this.jwtToken).sub;
+
+    // let idAccount= jwtHelper.decodeToken(this.jwtToken).idAccount;
+    // console.log("Id Account Is ----------------- " + idAccount);
+
     console.log("usernammmmmmmmmmmmmmmmeeeeeeeeee " + username);
 
+    console.log("-----------------------------------------------------")
+    
     // jwtHelper.dec
     /* letjwtHelper = newJwtHelper();
      this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
@@ -263,7 +275,31 @@ export class GipService {
   allQrTransactionSearch(id: any, dateFrom: string, dateTo: string) {
     return this.http.get(this.host + "/qrTransactionSearch?id=" + id + "&dateFrom=" + dateFrom + "&dateTo=" + dateTo, { headers: { 'Authorization': this.jwtToken } })
   }
-  //
+  
+  //SAFIA 06.12.2021
+  saveRecord(record) {
+    return this.http.post(this.host + "/saveBulkMerchant/", record, { headers: { 'Authorization': this.jwtToken } })
+  }
+
+// SAFIA 06.12.2021
+  getAllBulkMerchants(): Observable<CSVRecord[]> {
+    return this.http.get<CSVRecord[]>(this.host + "/getAllBulkMerchants", { headers: { 'Authorization': this.jwtToken } });
+  }
+
+  /* SAFIA 07.11.2021 */
+  validateBulkMerchantCreation(record) {
+    return this.http.post(this.host + "/validateBulkMerchantCreation/", record, { headers: { 'Authorization': this.jwtToken } })
+  }
+  /* SAFIA 07.11.2021 */
+  rejectBulkMerchantCreation(record) {
+    return this.http.post(this.host + "/rejectBulkMerchantCreation",record, { headers: { 'Authorization': this.jwtToken } })
+  }
+
+
+  // SAFIA 08.12.2021
+  getAllMerchantPerson(): Observable<Person[]> {
+    return this.http.get<Person[]>(this.host + "/getAllMerchantPerson", { headers: { 'Authorization': this.jwtToken } });
+  }
 
   getBanques() {
     return this.http.get(this.host + "/banques");
