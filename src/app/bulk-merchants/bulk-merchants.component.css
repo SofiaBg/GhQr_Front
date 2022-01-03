@@ -1,3 +1,7 @@
+.modal {
+    overflow-y: auto;
+}
+
 button.btn.btn-block.btn-primary.btn-flat.btn-x {
     background-color: #ff2a2a;
     border-color: #ff2a2a;

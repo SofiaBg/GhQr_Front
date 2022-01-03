@@ -10,7 +10,7 @@ import { BnNgIdleService } from 'bn-ng-idle';
 })
 export class ParamComponent extends BaseComponent implements OnInit {
   paramToke:any;
-  id:any;
+  id:any=localStorage.getItem('forgotpass');
   sessionTime:any;
   Errtoken:boolean;
   token:boolean;
@@ -48,6 +48,7 @@ export class ParamComponent extends BaseComponent implements OnInit {
   }
 
   AparamToken(paramToke){
+  
   this.service.AparamToken(paramToke , this.id).subscribe(data=>{
   console.log(" id " + paramToke + "id  " +this.id)
     this.paramToke=data;

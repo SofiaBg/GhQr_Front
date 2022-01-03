@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BulkMerchantsManagementDetailsComponent } from './bulk-merchants-management-details.component';
+import { BulkMerchantsManagementDetailsComponent } from './merchants-management-details.component';
 
 describe('BulkMerchantsManagementDetailsComponent', () => {
   let component: BulkMerchantsManagementDetailsComponent;

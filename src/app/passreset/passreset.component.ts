@@ -14,11 +14,16 @@ export class PassresetComponent implements OnInit {
   Errpass1: boolean;
   valid1: boolean;
   Errpass3: boolean;
-  idAccount: string;
+  idAccount: string = localStorage.getItem('idAccount');
   paramPass: string;
   paramPass1: string;
   paramPass2: string;
   valid2: boolean;
+
+
+  stringJson: any;
+
+  stringObject: any;
 
   constructor(private service: GipService, private router : Router) { }
 
@@ -28,10 +33,26 @@ export class PassresetComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.idAccount = localStorage.getItem('idAccount');
+
+    // this.service.findAccountId(localStorage.getItem('forgotpass')).subscribe(data => {
+
+    //   console.log('DATA ', data);
+    
+    //     // Convert String obect to JSON
+    //    this.stringJson = JSON.stringify(data);
+    //    this.stringObject = JSON.parse(this.stringJson);
+    //    console.log("JSON object -", this.stringObject);
+    //    console.log(this.stringObject.accountId)
+    //    localStorage.setItem('idAccount',this.stringObject.accountId);
+
+    // });
+
+   
   }
 
   MerchantParamToken1(paramPass, paramPass1, paramPass2){
+    console.log("Password " + paramPass + " this.idAccount " + this.idAccount + " this.paramPass1 " + this.paramPass1 + " this.paramPass2 " + this.paramPass2 + " ")
+
     if(paramPass == null || paramPass1 == null || paramPass2 == null){
       this.Errpass3= true;
       this.Errpass1= false;

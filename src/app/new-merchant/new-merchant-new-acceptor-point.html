@@ -9,25 +9,25 @@
         <div class="form-group">
 
             <div class="row">
-                <div class="form-group col-sm-6 col-xs-12">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
                     <label for="acceptorpointcompanyname">Company Name</label>
                     <input type="text" class="form-control" name="acceptorpointcompanyname" id="acceptorpointcompanyname" aria-disabled="true" disabled>
                 </div>
-                <div class="form-group col-sm-6 col-xs-12">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
                     <label for="acceptorpointdescription">Description</label>
                     <input type="text" class="form-control" name="acceptorpointdescription" id="acceptorpointdescription" aria-disabled="true" disabled>
                 </div>
             </div>
 
             <div class="row">
-                <div class="form-group col-sm-6 col-xs-12 required">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
                     <label for="acceptorpoint">Acceptor Point</label>
                     <input type="text" class="form-control" name="acceptorpoint" id="acceptorpoint" aria-required="true" required>
                     <div *ngIf="errorMessage">
                         <span id="req" ng-show="merchantForm.acceptorpoint.$touched && merchantForm.acceptorpoint.$invalid" aria-disabled="true">Acceptor point is required.</span>
                     </div>
                 </div>
-                <div class="form-group col-sm-6 col-xs-12 required">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
                     <label for="acceptorpointacronym">Acronym</label>
                     <input type="text" class="form-control" name="acceptorpointacronym" id="acceptorpointacronym" aria-required="true" required>
                     <div *ngIf="errorMessage">
@@ -37,7 +37,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-sm-6 col-xs-12 required">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
                     <label for="acceptorpointmobilenumber">Mobile Number</label>
                     <input type="text" class="form-control" name="acceptorpointmobilenumber" id="acceptorpointmobilenumber" aria-required="true" required>
                     <div *ngIf="errorMessage">

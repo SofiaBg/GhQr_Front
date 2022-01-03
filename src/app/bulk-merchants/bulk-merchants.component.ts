@@ -23,11 +23,14 @@ export class BulkMerchantsComponent implements OnInit {
   pagesize: number = 5;
   pagenumber: number;
   public records: any[] = [];
-
+ 
   selectedRecord : CSVRecord;
 
   result: any = null;
-  showResult :  any[] =  this.records;
+  showResult :  any[] =  this.result;
+  showError: boolean = false;
+  public errorMessage: string;
+  showSuccess: boolean=false;
 
   @ViewChild('csvReader', { static: false }) csvReader: any;
 
@@ -83,19 +86,25 @@ export class BulkMerchantsComponent implements OnInit {
         let headersRow = this.getHeaderArray(csvRecordsArray);
 
         this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
-        this.showResult = this.records.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
 
+        this.result= this.records;
+        this.showResult = this.result.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+        this.successMessage ='File uploaded successfully!'
+        console.log('File uploaded successfully!');
+        this.showSuccess=true;
       };
 
       reader.onerror = function () {
-        let errorMessage: string;
+        let errorMessage:string;
         console.log('error is occured while reading file!');
-        errorMessage ='error is occured while reading file!'
+       errorMessage ='error is occured while reading file!'
       };
 
     } else {
       // alert("Please import valid .csv file.");
       this.errorMessage='Please import valid .csv file'
+      console.log('Please import valid .csv file')
+      this.showError=true;
       this.fileReset();
     }
   }
@@ -172,6 +181,9 @@ export class BulkMerchantsComponent implements OnInit {
         csvRecord.mobileNumberA = curruntRecord[62].trim()
         csvArr.push(csvRecord);
       }
+      else{
+        console.log('Missed data, Please check your file!')
+      }
     }
     return csvArr;
   }
@@ -202,16 +214,16 @@ export class BulkMerchantsComponent implements OnInit {
 
 
   onsizechange() {
-    this.totalPages = Math.ceil(this.records.length / this.pagesize);
+    this.totalPages = Math.ceil(this.result.length / this.pagesize);
     if (this.currentpage + 1 > this.pagesize) {
       this.currentpage = 0;
     }
-    this.showResult = this.records.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+    this.showResult = this.result.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
   }
 
   gotoPage(i: number) {
     this.currentpage = i;
-    this.showResult = this.records.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+    this.showResult = this.result.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
   }
 
   gotoPageFromInput() {
@@ -305,7 +317,7 @@ export class BulkMerchantsComponent implements OnInit {
   error : boolean = false;
   errMessage : boolean = false;
   successMessage : string;
-  errorMessage : string;
+  // errorMessage : string;
 
   deleteRows(d){
     const index = this.records.indexOf(d);

@@ -109,7 +109,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     
-
   }
 
   signUp() {
@@ -156,7 +155,19 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('role', 'ADMIN');//++
 
          
+          this.service.findAccountId(localStorage.getItem('forgotpass')).subscribe(data => {
 
+            console.log('DATA ', data);
+          
+              // Convert String obect to JSON
+             this.stringJson = JSON.stringify(data);
+             this.stringObject = JSON.parse(this.stringJson);
+             console.log("JSON object -", this.stringObject);
+             console.log(this.stringObject.accountId)
+             localStorage.setItem('idAccount',this.stringObject.accountId);
+      
+          });
+      
 
 
         /* this.Errpass= false;
@@ -167,6 +178,20 @@ export class LoginComponent implements OnInit {
           console.log("ussssssserrrrr", localStorage.getItem)
           this.router.navigateByUrl("/adminList");
           localStorage.setItem('role', 'SUPERADMIN');
+
+          this.service.findAccountId(localStorage.getItem('user')).subscribe(data => {
+
+            console.log('DATA ', data);
+          
+              // Convert String obect to JSON
+             this.stringJson = JSON.stringify(data);
+             this.stringObject = JSON.parse(this.stringJson);
+             console.log("JSON object -", this.stringObject);
+             console.log(this.stringObject.accountId)
+             localStorage.setItem('idAccount',this.stringObject.accountId);
+      
+          });
+      
         }
         else {
 

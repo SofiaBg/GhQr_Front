@@ -57,6 +57,12 @@ export class MerchantComponent extends BaseComponent implements OnInit {
   qrtransactionParAccountMerch:any;//++
   public isSuperAdmin: boolean
 
+  totalPages: number;
+  pagesize: number = 5;
+
+  result: any = null;
+  showResult :  any[] =  this.result;
+
   pageYoffset = 0;
   @HostListener('window:scroll', ['$event']) onScroll(event){
     this.pageYoffset = window.pageYOffset;
@@ -66,12 +72,20 @@ export class MerchantComponent extends BaseComponent implements OnInit {
     this.scroll.scrollToPosition([0,0]);
   }
 
+  onsizechange() {
+    this.totalPages = Math.ceil(this.result.length / this.pagesize);
+    if (this.currentpage + 1 > this.pagesize) {
+      this.currentpage = 0;
+    }
+    this.showResult = this.result.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+  }
+
   constructor(private scroll : ViewportScroller ,private service:GipService,router:Router,private bnIdle: BnNgIdleService,
     private _renderer2: Renderer2, 
     @Inject(DOCUMENT) private _document: Document) {
     super(router);
     this.name = "";
-  }
+  } 
   transform(value: any, ...args: any[]) {
     throw new Error('Method not implemented.');
   }
@@ -504,6 +518,10 @@ onGetMerchantsByid(){
       this.a=0;
       console.log("costumers"+resp)
       console.log("costumers"+ this.pagesMerch)
+
+      this.result= this.merchants;
+      this.showResult = this.result.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+
 
     }, err => {
 

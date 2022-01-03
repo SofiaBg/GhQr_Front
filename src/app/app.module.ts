@@ -73,9 +73,10 @@ import { OtpComponent } from './otp/otp.component';
 import { BulkMerchantsComponent } from './bulk-merchants/bulk-merchants.component';
 import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 import { BulkMerchantsValidationComponent } from './bulk-merchants-validation/bulk-merchants-validation.component';
-import { BulkMerchantsManagementListComponent } from './bulk-merchants-management-list/bulk-merchants-management-list.component';
+import { BulkMerchantsManagementListComponent } from './merchants-management-list/merchants-management-list.component';
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { OutSessionComponent } from './out-session/out-session.component';
+import { BulkMerchantsManagementDetailsComponent } from './merchants-management-details/merchants-management-details.component';
 const appRoutes: Routes = [
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -119,7 +120,8 @@ const appRoutes: Routes = [
   { path: "otp", component: OtpComponent },
   { path: "bulkMerchants", component: BulkMerchantsComponent },
   { path: "bulkMerchantsValidation", component: BulkMerchantsValidationComponent },
-  { path: "merchantManagementList", component: BulkMerchantsManagementListComponent}
+  { path: "merchantManagementList", component: BulkMerchantsManagementListComponent},
+  { path: "merchantManagementDetail", component: BulkMerchantsManagementDetailsComponent}
 
 
 
@@ -180,7 +182,8 @@ const appRoutes: Routes = [
     BulkMerchantsComponent,
     BulkMerchantsValidationComponent,
     BulkMerchantsManagementListComponent,
-    ScrollToTopComponent
+    ScrollToTopComponent,
+    BulkMerchantsManagementDetailsComponent
     // , OutSessionComponent
   ],
   imports: [

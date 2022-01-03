@@ -19,7 +19,6 @@ import { SiteStatus } from '../classes/SiteStatus';
 import { strictEqual } from 'assert';
 import { data } from 'jquery';
 import { CSVRecord } from '../classes/CSVRecord';
-import { Person } from '../classes/Person';
 //import {JwtHelperService} from 'angular-jwt'
 //import {JwtHelperService} from
 
@@ -141,6 +140,11 @@ export class GipService {
     return false;
   }
   //
+
+  /* SAFIA 29.12.2021 */
+  findAccountId( id) {
+    return this.http.get(this.host + "/findAccountId/" + id , { headers: new HttpHeaders({ 'authorization': this.jwtToken }) });
+  }
 
   /* SAFIA 14.09.2021*/
   getMerchantCities(): Observable<MerchantCities[]> {
@@ -297,10 +301,20 @@ export class GipService {
 
 
   // SAFIA 08.12.2021
-  getAllMerchantPerson(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.host + "/getAllMerchantPerson", { headers: { 'Authorization': this.jwtToken } });
+  getAllMerchantPerson(): Observable<Merchant[]> {
+    return this.http.get<Merchant[]>(this.host + "/getAllMerchantPerson", { headers: { 'Authorization': this.jwtToken } });
   }
 
+  /* SAFIA 13.12.2021 */
+  updateMerchant(merchant) {
+    return this.http.post(this.host + "/updateMerchant/", merchant, { headers: { 'Authorization': this.jwtToken } });
+  }
+
+  deleteMerchantP(merchant) {
+    return this.http.post(this.host + "/deleteMerchant", merchant, { headers: { 'Authorization': this.jwtToken } });
+  }
+
+  /* ---- SAFIA ---- */
   getBanques() {
     return this.http.get(this.host + "/banques");
   }

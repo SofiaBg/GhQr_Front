@@ -357,7 +357,7 @@
                                                 </thead>
                                                 <tbody>
                                                     <!-- SAFIA 28.09.2021 <tr *ngFor='let m of merchants; let i = index;'> -->
-                                                    <tr *ngFor='let m of merchants | filter : keyword  ; let i = index;'>
+                                                    <tr *ngFor='let m of showResult | filter : keyword  ; let i = index;'>
                                                         <td>{{m.id}}</td>
                                                         <td>{{m.firstName+' '+m.lastName}}</td>
                                                         <td>{{m.companyName}}</td>
@@ -433,7 +433,7 @@
                                     </div>
                                     <div class="panel-footer o-auto" style="height: 60px;">
                                         <div class="form-group form-inline" style="display: inline-block; margin-top: -10px;">
-                                            <!-- <div class="row">
+                                            <div class="row">
 
                                                 <div class="col-sm">
 
@@ -450,7 +450,7 @@
                                                             </select>
                                                     </div>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                         </div>
                                         <div class="input-group pagination-w pull-right">
                                             <span class="input-group-btn">
