@@ -1,0 +1,232 @@
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+
+<div class="wrapper">
+    <div class="content-wrapper">
+
+        <div style="height: 45px;"></div>
+        <br>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a (click)="merchantPage()"><i
+                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                    aria-hidden="true"></i>
+                            </a></li>
+                <li class="breadcrumb-item active" aria-current="page">Reports</li>
+            </ol>
+        </nav>
+        <!-- <div class="alert alert-success alert-dismissible" *ngIf="show==true">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+            PDF Generated successfully. Redirecting in 3 seconds...
+        </div> -->
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="fttMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i style="color:  #B83C37;" class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date From , Date To and Type are required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="ftMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date From and Date To are required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="fMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date From is required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="tMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date To is required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="typeMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Type is required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="ttMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date to and Type is required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="ftypeMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date From and Type is required !</p>
+        </div>
+        <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true">
+            <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong style="color:  #270;">Alert!</strong><br/>
+            <p style="color:  #270;">PDF Generated successfully. Redirecting in 3 seconds...</p>
+
+        </div>
+        <section class="content-header">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Report details</h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <form method="POST" role="form">
+                                <!-- <div class="mb-8">
+                                    <h4>Target Merchant: <span *ngIf="!merchant">All</span></h4>
+                                </div> -->
+                                <div class="row" *ngIf="merchant">
+                                    <div class="form-group col-md-3 col-xs-6">
+                                        <label for="id">Merchant ID</label>
+                                        <input type="text" class="form-control" name="id" id="id" [(ngModel)]="id" disabled>
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-6">
+                                        <label for="name">Merchant Name</label>
+                                        <input type="text" class="form-control" name="name" id="name" [(ngModel)]="name" disabled>
+                                    </div>
+                                </div>
+                                <div class="mb-8" *ngIf="merchant">
+                                    <button (click)="clear()" class="btn btn-danger mok">Clear</button>
+                                </div>
+                                <!-- <div class="mb-8">
+                                    <h4>Report Criteria:</h4>
+                                </div> -->
+                                <div class="row">
+                                    <div class="form-group col-md-3 col-xs-6 required">
+                                        <label for="dateFrom">Date From</label>
+                                        <input type="date" class="form-control" name="dateFrom" id="dateFrom" [(ngModel)]="dateFrom">
+                                    </div>
+                                    <div class="form-group col-md-3 col-xs-6 required">
+                                        <label for="dateTo">Date To</label>
+                                        <input type="date" class="form-control" name="dateTo" id="dateTo" [(ngModel)]="dateTo">
+                                    </div>
+
+                                    <!-- <div class="form-group col-md-3 col-xs-6 required">
+                                        <label for="type">Select Report Type</label>
+                                        <select class="form-control" name="type" id="type" [(ngModel)]="type"> -->
+                                    <!-- <option value="0">Transactions</option> -->
+                                    <!-- <option value="1">Transactions Value</option> -->
+                                    <!--                                             
+                                            <option selected disabled  value="none">Select Report Type</option> 
+                                            <option value="0">All merchants</option> 
+                                            <option value="1">Activated merchants</option>
+                                             <option value="2">Suspended merchants</option>
+                                        </select>
+
+                                    </div> -->
+                                </div>
+
+
+                                <div class="input-group pull-right mr-8">
+                                    <button id="blackBtn" type="submit" class="btn btn-primary" (click)="getAllMerchantsReports()">Search</button>
+                                </div>
+                                <div class="input-group pull-right mr-8">
+                                    <button id="blackBtn" type="submit" class="btn btn-primary" (click)="report()">Generate</button>
+                                </div>
+
+                                <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
+                                    <div style="display: inline-block; height: 100%">
+                                        <mat-spinner style="margin: 0 auto; vertical-align: middle;" diameter="20" color="black"></mat-spinner>
+                                    </div>
+                                    <div style="display: inline-block">Loading...</div>
+                                </div>
+                            </form>
+
+
+
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            All Merchants
+                        </div>
+                        <div class="panel-body">
+                            <!-- <div class="input-group pull-right">
+                                <button type="button" class="btn btn-danger mok mb-8" (click)="newAdmin()"><i class="icon fa fa-user-plus"></i> New Admin</button>
+                            </div> -->
+                            <table class="table table-hover table-responsive table-striped">
+                                <thead class="thead-dark bg-info">
+
+                                    <tr>
+                                        <th> ID</th>
+                                        <th> Merchant Name</th>
+                                        <th> Company Name </th>
+                                        <th> Email</th>
+                                        <th> MobileNumber</th>
+                                        <th> Status</th>
+                                        <th> Created By</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr *ngFor='let t of showResult'>
+                                        <td>{{t.id}}</td>
+                                        <td>{{t.firstName}} {{t.lastName}}</td>
+                                        <td>{{t.companyName}}</td>
+                                        <td>{{t.email}}</td>
+                                        <td>{{t.mobileNumber}}</td>
+                                        <td>
+                                            <div class="text-success" *ngIf="t.status=='N'">Activated</div>
+                                            <div class="text-danger" *ngIf="t.status=='S'">Suspended</div>
+
+                                        </td>
+                                        <td>{{t.userCapturing}}</td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-footer o-auto" style="height: 60px;">
+                            <div class="form-group form-inline" style="display: inline-block; margin-top: -10px;">
+                                <div class="row">
+
+                                    <div class="col-sm">
+
+                                        <label for="pagesize">Page size</label>
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="input-group form-inline input-group-sm w-100 pull-left" style="width: 122px;">
+                                            <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-group pagination-w pull-right">
+                                <span class="input-group-btn">
+                                    <button id="btn" type="submit" class="btn btn-danger mok"
+                                        (click)="gotoPage(currentpage-1)"
+                                        [disabled]="currentpage<=0">Previous</button>
+                                </span>
+                                <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" (pageChange)="p = $event" />
+                                </form>
+                                <span class="input-group-btn">
+                                    <button id="btn" type="submit" class="btn btn-danger mok"
+                                        (click)="gotoPage(currentpage+1)"
+                                        [disabled]="!showResult || currentpage+1>=totalPages">Next</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <app-scroll-to-top></app-scroll-to-top>
+
+    </div>
+</div>

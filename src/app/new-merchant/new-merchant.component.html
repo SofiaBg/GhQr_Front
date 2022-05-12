@@ -88,13 +88,15 @@
                                             </div>
                                             <div class="form-group col-sm-4 col-xs-12">
                                                 <label for="bank">Bank</label>
+                                                <input disabled aria-disabled="true" value="CBG Bank" ng-model="bank" type="text" class="form-control" name="bank" id="bank" aria-required="true" required>
+
                                                 <!--SAFIA 14.09.2021-->
                                                 <!-- <input type="text" class="form-control" name="bank" id="bank"> -->
-                                                <select class="form-control" name="bank" id="bank">
+                                                <!-- 15.05.2022 <select class="form-control" name="bank" id="bank">
                                                         <option>Select a Bank </option>
-                                                        <option *ngFor='let bank of merchantBank'
-                                                            [value]="bank.bankCode">{{bank.gip_code}}</option>
-                                                    </select>
+                                                        <option *ngFor='let bank of banques'
+                                                            [value]="bank.bankCode">{{bank.wording}}</option>
+                                                    </select> -->
                                             </div>
                                             <div class="form-group col-sm-4 col-xs-12">
                                                 <label for="branch">Branch</label>
@@ -102,8 +104,8 @@
                                                 <!-- <input type="text" class="form-control" name="branch" id="branch"> -->
                                                 <select class="form-control" name="branch" id="branch">
                                                         <option>Select a branch </option>
-                                                        <option *ngFor='let branch of merchantBranch' value="000001">
-                                                            {{branch.institut_name}}
+                                                        <option *ngFor='let branch of branchLocator'  [value]="branch.branchCode">
+                                                            {{branch.branchName}}
                                                         </option>
                                                     </select>
                                             </div>
@@ -113,7 +115,7 @@
                                         <div class="row">
                                             <div class="form-group col-sm-4 col-xs-12 required">
                                                 <label for="businessregno">Business Reg No.</label>
-                                                <input [(ngModel)]="stringObject.businessRegNo" class="form-control" type="text" name="businessregno" id="businessregno" aria-required="true" required>
+                                                <input [(ngModel)]="this.stringObject.businessRegNo" class="form-control" type="text" name="businessregno" id="businessregno" aria-required="true" required>
                                                 <div *ngIf="errorMessage">
                                                     <span id="req" ng-show="merchantForm.businessregno.$touched && merchantForm.businessregno.$invalid" aria-disabled="true">Business Reg No is required.</span>
                                                 </div>
@@ -174,7 +176,7 @@
                                         <div class="row">
                                             <div class="form-group col-sm-4 col-xs-12 required">
                                                 <label for="tin">TIN</label>
-                                                <input ng-model="tin" class="form-control" type="text" name="tin" id="tin" aria-required="true" required>
+                                                <input [(ngModel)]="this.stringObject.tin" ng-model="tin" class="form-control" type="text" name="tin" id="tin" aria-required="true" required>
                                                 <!-- <input [(ngModel)]="stringObject.tin" ng-model="tin" class="form-control" type="text" name="tin" id="tin" aria-required="true" required> -->
                                                 <!-- <div *ngIf="errorMessage">
                                                         <span id="req" ng-show="merchantForm.tin.$touched && merchantForm.tin.$invalid" aria-disabled="true">Tin is required.</span>
@@ -266,7 +268,7 @@
                                             <div class="form-group col-sm-4 col-xs-12 required">
                                                 <label for="mainactivity">Date of Incorporation</label>
                                                 <!-- <input class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required> -->
-                                                <input [(ngModel)]="stringObject.dateOfBirth" class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required>
+                                                <input [(ngModel)]="this.stringObject.dateOfBirth" class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required>
                                                 <div *ngIf="errorMessage">
                                                     <span id="req" ng-show="merchantForm.dateOfBirth.$touched && merchantForm.dateOfBirth.$invalid" aria-disabled="true">Date Of incorporation is
                                                             required.</span>
@@ -353,7 +355,7 @@
                                             <div class="form-group col-sm-4 col-xs-12">
                                                 <label for="businessphysicaladdress1">Business Physical Address
                                                         1</label>
-                                                <input type="text" class="form-control" name="businessphysicaladdress1" id="businessphysicaladdress1">
+                                                <input [(ngModel)]="this.stringObject.address" type="text" class="form-control" name="businessphysicaladdress1" id="businessphysicaladdress1">
                                                 <!-- <input [(ngModel)]="stringObject.address" type="text" class="form-control" name="businessphysicaladdress1" id="businessphysicaladdress1"> -->
                                             </div>
                                         </div>
@@ -406,14 +408,14 @@
                                                 <label for="firstname">First Name</label>
                                                 <input formContronName="firstname" ng-model="firstname" type="text" class="form-control" name="firstname" id="firstname" aria-required="true" required>
                                                 <div *ngIf="errorMessage">
-                                                    <span id="req" ng-show="merchantForm.firstname.$touched && businessregno.firstname.$invalid" aria-disabled="true">Firstname is required.</span>
+                                                    <span id="req" ng-show="merchantForm.firstname.$touched && merchantForm.firstname.$invalid" aria-disabled="true">Firstname is required.</span>
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-4 col-xs-12 required">
                                                 <label for="lastname">Last Name</label>
                                                 <input ng-model="lastname" type="text" class="form-control" name="lastname" id="lastname" aria-required="true" required>
                                                 <div *ngIf="errorMessage">
-                                                    <span id="req" ng-show="merchantForm.lastname.$touched && businessregno.lastname.$invalid" aria-disabled="true">Lastname is required.</span>
+                                                    <span id="req" ng-show="merchantForm.lastname.$touched && merchantForm.lastname.$invalid" aria-disabled="true">Lastname is required.</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -425,17 +427,17 @@
                                             </div>
                                             <div class="form-group col-sm-4 col-xs-12 required">
                                                 <label for="email">Email</label>
-                                                <input ng-model="email" type="text" class="form-control" name="email" id="email" aria-required="true" required>
+                                                <input [(ngModel)]="this.stringObject.email" ng-model="email" type="text" class="form-control" name="email" id="email" aria-required="true" required>
                                                 <!-- <input [(ngModel)]="stringObject.email" ng-model="email" type="text" class="form-control" name="email" id="email" aria-required="true" required> -->
                                                 <div *ngIf="errorMessage">
-                                                    <span id="req" ng-show="merchantForm.email.$touched && businessregno.email.$invalid" aria-disabled="true">Email is required.</span>
+                                                    <span id="req" ng-show="merchantForm.email.$touched && merchantForm.email.$invalid" aria-disabled="true">Email is required.</span>
                                                 </div>
                                             </div>
                                             <div class="form-group col-sm-4 col-xs-12 required">
                                                 <label for="mobilenumber">Mobile Number</label>
                                                 <input ng-model="mobilenumber" type="text" class="form-control" name="mobilenumber" id="mobilenumber" aria-required="true" required>
                                                 <div *ngIf="errorMessage">
-                                                    <span id="req" ng-show="merchantForm.mobilenumber.$touched && businessregno.mobilenumber.$invalid" aria-disabled="true">Mobile number is required.</span>
+                                                    <span id="req" ng-show="merchantForm.mobilenumber.$touched && merchantForm.mobilenumber.$invalid" aria-disabled="true">Mobile number is required.</span>
                                                 </div>
                                             </div>
                                         </div>

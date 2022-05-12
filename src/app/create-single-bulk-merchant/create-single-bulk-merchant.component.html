@@ -1,0 +1,77 @@
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+
+<div class="wrapper">
+
+
+    <!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+
+
+        <section class="content-header">
+            <div style="height: 30px;"></div>
+            <br>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="adminList()"><i
+                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                    aria-hidden="true"></i>
+                            </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Single / Bulk Merchants</li>
+                </ol>
+            </nav>
+
+
+
+
+            <div class="content">
+
+
+
+                <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showalert==true">
+                    <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4>
+                    <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> {{ msg }}</h5>
+                </div>
+                <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true">
+                    <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong style="color:  #270;">Alert ! </strong><br />
+                    <p style="color:  #270;">{{ msg }}</p>
+
+                </div>
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        New Merchant
+                    </div>
+                    <br />
+                    <br />
+                    <!-- <h4>Search </h4> -->
+                    <div class="box-body" style=" padding-left: 30px;padding-right: 3%;">
+                        <div class="box-tools">
+                            <div class="row">
+                                <div>
+                                    <button routerLink="/addMerchant" class="btn  btn-y pull-right" routerLinkActive="active">
+                                        <i class="fa fa-plus-square" aria-hidden="true"></i> New Merchant </button>
+                                </div>
+                                <div>
+                                    <button style="margin-right: 15px !important; " routerLink="/bulkMerchants" class="btn  btn-y pull-right" routerLinkActive="active">
+                                        <i class="fa fa-plus-square" aria-hidden="true"></i> New Bulk Merchants
+                                    </button>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <app-scroll-to-top></app-scroll-to-top>
+            </div>
+        </section>
+
+    </div>
+
+
+</div>

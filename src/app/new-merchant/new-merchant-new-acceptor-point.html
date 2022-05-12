@@ -4,7 +4,7 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
+<div data-backdrop="static" data-keyboard="false" class="modal-body">
     <form name="merchantForm">
         <div class="form-group">
 
@@ -17,9 +17,6 @@
                     <label for="acceptorpointdescription">Description</label>
                     <input type="text" class="form-control" name="acceptorpointdescription" id="acceptorpointdescription" aria-disabled="true" disabled>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
                     <label for="acceptorpoint">Acceptor Point</label>
                     <input type="text" class="form-control" name="acceptorpoint" id="acceptorpoint" aria-required="true" required>
@@ -34,6 +31,23 @@
                         <span id="req" ng-show="merchantForm.acceptorpointacronym.$touched && merchantForm.acceptorpointacronym.$invalid" aria-disabled="true">Acronym is required.</span>
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+                <!-- <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
+                    <label for="acceptorpoint">Acceptor Point</label>
+                    <input type="text" class="form-control" name="acceptorpoint" id="acceptorpoint" aria-required="true" required>
+                    <div *ngIf="errorMessage">
+                        <span id="req" ng-show="merchantForm.acceptorpoint.$touched && merchantForm.acceptorpoint.$invalid" aria-disabled="true">Acceptor point is required.</span>
+                    </div>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
+                    <label for="acceptorpointacronym">Acronym</label>
+                    <input type="text" class="form-control" name="acceptorpointacronym" id="acceptorpointacronym" aria-required="true" required>
+                    <div *ngIf="errorMessage">
+                        <span id="req" ng-show="merchantForm.acceptorpointacronym.$touched && merchantForm.acceptorpointacronym.$invalid" aria-disabled="true">Acronym is required.</span>
+                    </div>
+                </div> -->
             </div>
 
             <div class="row">

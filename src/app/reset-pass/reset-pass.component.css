@@ -23,6 +23,8 @@ dd {
   margin: 0
 }
 */
+
+
 /*
 dl.inline dd {
   display: inline;
@@ -38,114 +40,139 @@ dl.inline dt{
 }
 */
 
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-  background-color: aliceblue;
+button {
+    background: #ff2a2a;
+    color: #fff;
 }
-.panel-success > .panel-heading-custom {
-  background: #330000;
-  color: #fff;
 
+.table-striped>tbody>tr:nth-child(2n+1)>td,
+.table-striped>tbody>tr:nth-child(2n+1)>th {
+    background-color: aliceblue;
+}
 
+.panel-success>.panel-heading-custom {
+    background: #330000;
+    color: #fff;
 }
-nav.navbar.navbar-static-top{
-  background: #ff2a2a;
-  color: #fff;
+
+nav.navbar.navbar-static-top {
+    background: #ff2a2a;
+    color: #fff;
 }
-a.logo{
-  background: #ff2a2a;
-  color: #fff;
+
+a.logo {
+    background: #ff2a2a;
+    color: #fff;
 }
-:active>a.f{
-  background-color: #ff2a2a;
-  color: #fff;
+
+:active>a.f {
+    background-color: #ff2a2a;
+    color: #fff;
 }
-:active>button.f{
-background: #fff;
-  color: #ff2a2a;
-  border: 2px solid #ff2a2a;
-}
-:active>button.g{
-  background: #fff;
+
+:active>button.f {
+    background: #fff;
     color: #ff2a2a;
     border: 2px solid #ff2a2a;
-  }
-button.f{
-  /*margin-top: 5px;
+}
+
+:active>button.g {
+    background: #fff;
+    color: #ff2a2a;
+    border: 2px solid #ff2a2a;
+}
+
+button.f {
+    /*margin-top: 5px;
   margin-left: 50px;
   background: #d9534f;
   color: #fff;*/
-  margin-top: 5px;
-  margin-left: 45px;
-  color: #fff;
-  font-size: 1.6rem;
-  border: none;
-  outline: none;
-  background-color: #ff2a2a;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  transition: background-color 0.2s;
-  text-align: center;
- width: 180px;
-}
-button.g{
-  margin-top: 5px;
-  margin-left: -33px;
-  color: #fff;
-  font-size: 1.6rem;
-  border: none;
-  outline: none;
-  background-color: #ff2a2a;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  transition: background-color 0.2s;
-  text-align: center;
+    margin-top: 5px;
+    margin-left: 45px;
+    color: #fff;
+    font-size: 1.6rem;
+    border: none;
+    outline: none;
+    background-color: #ff2a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: background-color 0.2s;
+    text-align: center;
+    width: 180px;
 }
 
-button.btn-x{
-  background: #ff2a2a;
-  color: #fff;
-}
-button.btn-y{
-  background: #ff2a2a;
-  color: #fff;
-  margin-left: 10px;
-}
-.main-sidebar1{
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding-top: 50px;
-  min-height: 100%;
-  width: 210px;
-  height: 1050px;
-  z-index: 810;
-  -webkit-transition: -webkit-transform .3s ease-in-out,width .3s ease-in-out;
-  -moz-transition: -moz-transform .3s ease-in-out,width .3s ease-in-out;
-  -o-transition: -o-transform .3s ease-in-out,width .3s ease-in-out;
-  transition: transform .3s ease-in-out,width .3s ease-in-out;
-}
-section.sidebar1{
-  width: 210px;
+button.g {
+    margin-top: 5px;
+    margin-left: -33px;
+    color: #fff;
+    font-size: 1.6rem;
+    border: none;
+    outline: none;
+    background-color: #ff2a2a;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: background-color 0.2s;
+    text-align: center;
 }
 
-
-input.btn.btn-a{
-  background: #ff2a2a;
-  color: #fff;
-  border-color: #ff2a2a;
-}
-li.x{
-  margin-left: 20px;
-  display: inline-block;
-  cursor: pointer;
-}
-li.y{
-  margin-left: 270px;
-  display: inline-block;
-  cursor: pointer;
+button.btn-x {
+    background: #ff2a2a;
+    color: #fff;
 }
 
-th{
-  background: #bdbdbd;
-  color: #fff;
+button.btn-y {
+    background: #ff2a2a;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.main-sidebar1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 50px;
+    min-height: 100%;
+    width: 210px;
+    height: 1050px;
+    z-index: 810;
+    -webkit-transition: -webkit-transform .3s ease-in-out, width .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out, width .3s ease-in-out;
+    -o-transition: -o-transform .3s ease-in-out, width .3s ease-in-out;
+    transition: transform .3s ease-in-out, width .3s ease-in-out;
+}
+
+section.sidebar1 {
+    width: 210px;
+}
+
+input.btn.btn-a {
+    background: #ff2a2a;
+    color: #fff;
+    border-color: #ff2a2a;
+}
+
+li.x {
+    margin-left: 20px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+li.y {
+    margin-left: 270px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+th {
+    background: #bdbdbd;
+    color: #fff;
+}
+
+.btn-block:hover,
+.btn-block:focus,
+.btn-block:active,
+.btn-block.active,
+.open>.dropdown-toggle.btn-block {
+    color: #ffffff !important;
+    /*set the color you want here*/
 }

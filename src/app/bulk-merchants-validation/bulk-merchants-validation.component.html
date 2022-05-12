@@ -20,7 +20,9 @@
                     <li class="breadcrumb-item active" aria-current="page">Bulk Merchant Validation</li>
                 </ol>
             </nav>
-            <div class="alert alert-danger mb-8" *ngIf="error">
+
+
+            <!-- <div class="alert alert-danger mb-8" *ngIf="error">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <strong>{{errTitle}}</strong><br /> {{errMessage}}
             </div>
@@ -28,133 +30,169 @@
             <div class="alert alert-success mb-8" *ngIf="success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <strong>{{successTitle}}</strong><br /> {{successMessage}}
+            </div> -->
+
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="error">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> {{errTitle}}</strong><br />
+                <p style="color:  #B83C37;">{{errMessage}}</p>
+
             </div>
-            <div class="col-xs-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Bulk Merchants Validation</div>
-                    <div class="panel-body">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="success">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong style="color:  #270;">{{successTitle}}</strong><br />
+                <p style="color:  #270;">{{successMessage}}</p>
 
-                                <div class="box-tools">
-                                    <div class="input-group input-group-sm" style="    width: 500px;">
+            </div>
 
-                                        <input type="text" class="form-control" placeholder="Enter Keyword for filter result" [(ngModel)]="keyword">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="box-body table-responsive no-padding">
-                                    <table class="table table-hover table-striped table-bordered table-responsive">
-                                        <thead style="text-align: center;" id="tabHead">
-                                            <tr>
-                                                <th hidden> ID</th>
-                                                <th rowspan="2" colspan="3"> Operation Date</th>
-                                                <th colspan="5">
-                                                    Identification
-                                                </th>
-                                                <th colspan="1">
-                                                    Sites
-                                                </th>
-                                                <th colspan="3">
-                                                    Acceptor Point
-                                                </th>
-                                                <th colspan="3" rowspan="2">
-                                                    -
-                                                </th>
-                                            </tr>
-                                            <tr>
-                                                <th>Account Number</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Company Name</th>
-                                                <th>Date of Incorporation</th>
-                                                <th>Type</th>
-                                                <th>Acceptor Point Name</th>
-                                                <th>Acceptor Point Acronym</th>
-                                                <th>Mobile Number</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody style="text-align: center;">
-                                            <tr *ngFor="let merchant of showResult  | filter : keyword ">
-                                                <td hidden>{{merchant.id}}</td>
-                                                <td colspan="3" style="width:15%;">{{merchant.operationDate}}</td>
 
-                                                <td>{{merchant.accountNumber}}</td>
-                                                <td>{{merchant.firstName}}</td>
-                                                <td>{{merchant.lastName}}</td>
-                                                <td>{{merchant.companyName}}</td>
-                                                <td>{{merchant.dateOfIncorporation}}</td>
-                                                <td>{{merchant.typeOfSite}}</td>
-                                                <td>{{merchant.acceptorPoint}}</td>
-                                                <td>{{merchant.acronym}}</td>
-                                                <td>{{merchant.mobileNumberA}}</td>
-                                                <!-- <td>{{record.}}</td> -->
-                                                <td><button (click)="validateBulkMerchantCreation(merchant)" style="width: 40px;" id="blackBtn" class="btn btn-success mr-16"><span
-                                                            class="fa fa-check"></span></button></td>
-                                                <td><button [class.selected]="merchant === selectedRecord" (click)="onSelect(merchant)" data-toggle="modal" data-target="#rejectModal" style="width: 40px;" id="blackBtn" class="btn btn-danger"><span
-                                                            class="fa fa-times"></span></button>
-                                                </td>
-                                                <td><button [class.selected]="merchant === selectedRecord" (click)="onSelect(merchant)" data-toggle="modal" data-target=".bd-example-modal-lg" id="blackBtn" class="btn btn-danger">Details</button>
-                                                </td>
-                                                <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 style="text-align: center;" class="modal-title" id="exampleModalLabel">Reject</h5>
-                                                            </div>
-                                                            <div style="text-align: center;" class="modal-body">
-                                                                Are you sure you want to reject this record?
-                                                            </div>
-                                                            <div style="text-align: center;" class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                <button style="background:#ff2a2a; border-color: #ff2a2a;" type="button" class="btn btn-danger" (click)="rejectBulkMerchantCreation(selectedRecord)">Yes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+            <div class="box box-default">
+                <div class="input-group-btn ">
 
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                </div>
+                <div class="box-body" style=" padding: 30px;">
+                    <div class="box-tools">
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="    width: 500px;">
+                                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="keyword">
                             </div>
                         </div>
-                        <div class="panel-footer o-auto" style="height: 60px;">
-                            <div class="form-group form-inline" style="display: inline-block; margin-top: -10px;">
-                                <div class="row">
+                    </div>
+                </div>
+            </div>
 
-                                    <div class="col-sm">
+            <!-- <div class="col-xs-12"> -->
+            <div class="panel panel-default">
 
-                                        <label for="pagesize">Page size</label>
+                <div class="panel-heading">Bulk Merchants Validation</div>
+                <!-- <div class="panel-body"> -->
+                <!-- <div class="panel panel-default"> -->
+                <div class="panel-body">
+
+                    <!-- <div class="box-tools">
+                            <div class="input-group input-group-sm" style="    width: 500px;">
+
+                                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="keyword">
+                            </div>
+                        </div> -->
+                    <br>
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover table-striped table-bordered table-responsive">
+                            <thead style="text-align: center;" id="tabHead">
+                                <tr>
+                                    <th hidden> ID</th>
+                                    <th rowspan="2" colspan="3"> Operation Date</th>
+                                    <th colspan="5">
+                                        Identification
+                                    </th>
+                                    <th colspan="1">
+                                        Sites
+                                    </th>
+                                    <th colspan="3">
+                                        Acceptor Point
+                                    </th>
+                                    <th rowspan="2"> Request From</th>
+                                    <th rowspan="2"> Request By</th>
+                                    <th colspan="3" rowspan="2">
+                                        -
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Account Number</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Company Name</th>
+                                    <th>Date of Incorporation</th>
+                                    <th>Type</th>
+                                    <th>Acceptor Point Name</th>
+                                    <th>Acceptor Point Acronym</th>
+                                    <th>Mobile Number</th>
+                                </tr>
+                            </thead>
+                            <tbody style="text-align: center;">
+                                <tr *ngFor="let merchant of showResult  | filter : keyword ">
+                                    <td hidden>{{merchant.id}}</td>
+                                    <td colspan="3" style="width:15%;">{{merchant.operationDate}}</td>
+
+                                    <td>{{merchant.accountNumber}}</td>
+                                    <td>{{merchant.firstName}}</td>
+                                    <td>{{merchant.lastName}}</td>
+                                    <td>{{merchant.companyName}}</td>
+                                    <td>{{merchant.dateOfIncorporation}}</td>
+                                    <td>{{merchant.typeOfSite}}</td>
+                                    <td>{{merchant.acceptorPoint}}</td>
+                                    <td>{{merchant.acronym}}</td>
+                                    <td>{{merchant.mobileNumberA}}</td>
+                                    <td>{{merchant.requestFrom}}</td>
+                                    <td>{{merchant.createdBy}}</td>
+                                    <!-- <td>{{record.}}</td> -->
+                                    <td><button (click)="validateBulkMerchantCreation(merchant)" style="width: 40px;" id="blackBtn" class="btn btn-success mr-16"><span
+                                                    class="fa fa-check"></span></button></td>
+                                    <td><button [class.selected]="merchant === selectedRecord" (click)="onSelect(merchant)" data-toggle="modal" data-target="#rejectModal" style="width: 40px;" id="blackBtn" class="btn btn-danger"><span class="fa fa-times"></span></button>
+                                    </td>
+                                    <td><button [class.selected]="merchant === selectedRecord" (click)="onSelect(merchant)" data-toggle="modal" data-target=".bd-example-modal-lg" id="blackBtn" class="btn btn-danger">Details</button>
+                                    </td>
+                                    <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 style="text-align: center;" class="modal-title" id="exampleModalLabel">Reject</h5>
+                                                </div>
+                                                <div style="text-align: center;" class="modal-body">
+                                                    Are you sure you want to reject this record?
+                                                </div>
+                                                <div style="text-align: center;" class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                    <button style="background:#ff2a2a; border-color: #ff2a2a;" type="button" class="btn btn-danger" (click)="rejectBulkMerchantCreation(selectedRecord)" data-dismiss="modal"> Yes</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-sm">
 
-                                        <div class="input-group form-inline input-group-sm w-100 pull-left" style="width: 122px;">
-                                            <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- </div>
+                </div> -->
+                    <div class="panel-footer o-auto" style="height: 60px;">
+                        <div class="form-group form-inline" style="display: inline-block; margin-top: -10px;">
+                            <div class="row">
+
+                                <div class="col-sm">
+
+                                    <label for="pagesize">Page size</label>
+                                </div>
+                                <div class="col-sm">
+
+                                    <div class="input-group form-inline input-group-sm w-100 pull-left" style="width: 122px;">
+                                        <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
                                                 <option selected value="5">5</option>
                                                 <option value="10">10</option>
                                                 <option value="25">25</option>
                                                 <option value="50">50</option>
                                             </select>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="input-group pagination-w pull-right">
-                                <span class="input-group-btn">
+                        </div>
+                        <div class="input-group pagination-w pull-right">
+                            <span class="input-group-btn">
                                     <button id="blackBtn" type="submit" class="btn btn-danger mok"
                                         (click)="gotoPage(currentpage-1)" [disabled]="currentpage<=0">Previous</button>
                                 </span>
-                                <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" /></form>
-                                <span class="input-group-btn">
+                            <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" /></form>
+                            <span class="input-group-btn">
                                     <button id="blackBtn" type="submit" class="btn btn-danger mok"
                                         (click)="gotoPage(currentpage+1)"
                                         [disabled]="!showResult || currentpage+1>=totalPages">Next</button>
                                 </span>
-                            </div>
-                        </div>
+                            <!-- </div>
+                        </div> -->
 
-                        <!-- <div class="panel-footer o-auto">
+                            <!-- <div class="panel-footer o-auto">
                                     <div class="input-group pagination-w pull-right">
                                         <span class="input-group-btn">
                                             <button id="blackBtn" type="submit" class="btn btn-danger mok"
@@ -169,344 +207,345 @@
                                         </span>
                                     </div>
                                 </div> -->
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- </div> -->
+                <!-- </div> -->
 
-            <!-- DETAILS -->
+                <!-- DETAILS -->
 
-            <div *ngIf="selectedRecord" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <div *ngIf="selectedRecord" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
 
-                    <div class="modal-content">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                Details
-                            </h4>
-                        </div>
-
+                        <div class="modal-content">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    Details
+                                </h4>
+                            </div>
 
 
-                        <div id="identification" class="panel-heading">
-                            <h4 class="panel-title">
-                                <a aria-controls="collapse1" id="identifTitle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                    Identification <i class="fa fa-angle-double-down" aria-hidden="true"></i></a>
-                                <!-- SAFIA 22.09.2021 <button id="btnClose" type="button" class="btn btn-danger btn-sm ml-8" (click)="fillTestData()">Fill</button> -->
-                            </h4>
-                        </div>
-                        <div id="collapse1" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                                <div class="form-section-header">
-                                    <b>Identification</b>
-                                </div>
 
-                                <div class="row">
-                                    <!-- <div class="form-group col-sm-4 col-xs-12 required">
+                            <div id="identification" class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a aria-controls="collapse1" id="identifTitle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                            Identification <i class="fa fa-angle-double-down"
+                                                aria-hidden="true"></i></a>
+                                    <!-- SAFIA 22.09.2021 <button id="btnClose" type="button" class="btn btn-danger btn-sm ml-8" (click)="fillTestData()">Fill</button> -->
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <div class="form-section-header">
+                                        <b>Identification</b>
+                                    </div>
+
+                                    <div class="row">
+                                        <!-- <div class="form-group col-sm-4 col-xs-12 required">
                             <label for="accountnumber">ID</label>
                             <div id="flexContainer">
                                 <input value="{{selectedRecord.id}}" formControlName="id" class="form-control" type="text" name="id" id="id" aria-required="true" required>
                             </div>
                         </div> -->
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="accountNumber">Account Number</label>
-                                        <div id="flexContainer">
-                                            <input disabled value="{{selectedRecord.accountNumber}}" class="form-control" type="text" name="accountNumber" id="accountNumber" aria-required="true" required>
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="accountNumber">Account Number</label>
+                                            <div id="flexContainer">
+                                                <input disabled value="{{selectedRecord.accountNumber}}" class="form-control" type="text" name="accountNumber" id="accountNumber" aria-required="true" required>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="bank">Bank</label>
+                                            <input disabled value="{{selectedRecord.bank}}" type="text" class="form-control" name="bank" id="bank">
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="branch">Branch</label>
+                                            <input disabled value="{{selectedRecord.branch}}" type="text" class="form-control" name="branch" id="branch">
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="businessRegNo">Business Reg No.</label>
+                                            <input disabled value="{{selectedRecord.businessRegNo}}" class="form-control" type="text" name="businessRegNo" id="businessRegNo" aria-required="true" required>
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="legalIdType">Legal ID Type</label>
+                                            <!-- SAFIA 14.09.2021 -->
+                                            <!-- <input type="text" class="form-control" name="legalidtype" id="legalidtype"> -->
+                                            <input disabled value="{{selectedRecord.legalIdType}}" type="text" class="form-control" name="legalIdType" id="legalIdType">
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="legalId">Legal ID</label>
+                                            <input disabled value="{{selectedRecord.legalId}}" type="text" class="form-control" name="legalId" id="legalId">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="doingBuninessAs">Doing business as</label>
+                                            <input disabled value="{{selectedRecord.doingBuninessAs}}" class="form-control" type="text" name="doingBuninessAs" id="doingBuninessAs" aria-required="true" required>
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="companyName">Company Name</label>
+                                            <input disabled value="{{selectedRecord.companyName}}" class="form-control" type="text" name="companyName" id="companyName" aria-required="true" required>
+
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="mcc">MCC</label>
+                                            <!-- SAFIA 14.09.2021 -->
+                                            <!-- <input type="text" class="form-control" name="mcc" id="mcc"> -->
+                                            <input disabled value="{{selectedRecord.mcc}}" type="text" class="form-control" name="mcc" id="mcc">
 
                                         </div>
                                     </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="bank">Bank</label>
-                                        <input disabled value="{{selectedRecord.bank}}" type="text" class="form-control" name="bank" id="bank">
 
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="branch">Branch</label>
-                                        <input disabled value="{{selectedRecord.branch}}" type="text" class="form-control" name="branch" id="branch">
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="tin">TIN</label>
+                                            <input disabled value="{{selectedRecord.tin}}" class="form-control" type="text" name="tin" id="tin" aria-required="true" required>
 
-                                    </div>
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="status">Status</label>
+                                            <input disabled value="{{selectedRecord.status}}" type="text" class="form-control" name="status" id="status">
 
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="businessRegNo">Business Reg No.</label>
-                                        <input disabled value="{{selectedRecord.businessRegNo}}" class="form-control" type="text" name="businessRegNo" id="businessRegNo" aria-required="true" required>
-
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="legalIdType">Legal ID Type</label>
-                                        <!-- SAFIA 14.09.2021 -->
-                                        <!-- <input type="text" class="form-control" name="legalidtype" id="legalidtype"> -->
-                                        <input disabled value="{{selectedRecord.legalIdType}}" type="text" class="form-control" name="legalIdType" id="legalIdType">
-
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="legalId">Legal ID</label>
-                                        <input disabled value="{{selectedRecord.legalId}}" type="text" class="form-control" name="legalId" id="legalId">
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="visaIdentifier">VISA Identifier</label>
+                                            <input disabled value="{{selectedRecord.visaIdentifier}}" class="form-control" type="text" name="visaIdentifier" id="visaIdentifier">
+                                        </div>
                                     </div>
 
-                                </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="openingDate">Opening Date</label>
+                                            <input disabled value="{{selectedRecord.openingDate}}" class="form-control" type="text" name="openingDate" id="openingDate" aria-required="true" required>
 
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="doingBuninessAs">Doing business as</label>
-                                        <input disabled value="{{selectedRecord.doingBuninessAs}}" class="form-control" type="text" name="doingBuninessAs" id="doingBuninessAs" aria-required="true" required>
-
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="masterCardIdentifier">MasterCard Identifier</label>
+                                            <input disabled value="{{selectedRecord.masterCardIdentifier}}" class="form-control" type="text" name="masterCardIdentifier" id="masterCardIdentifier">
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="upiIdentifier">UPI Identifier</label>
+                                            <input disabled value="{{selectedRecord.upiIdentifier}}" class="form-control" type="text" name="upiIdentifier" id="upiIdentifier">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="companyName">Company Name</label>
-                                        <input disabled value="{{selectedRecord.companyName}}" class="form-control" type="text" name="companyName" id="companyName" aria-required="true" required>
 
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="contractNumber">Contract Number</label>
+                                            <input disabled value="{{selectedRecord.contractNumber}}" class="form-control" type="text" name="contractNumber" id="contractNumber" aria-required="true" required>
 
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="legalForm">Legal Form</label>
+                                            <input disabled value="{{selectedRecord.legalForm}}" type="text" class="form-control" name="legalForm" id="legalForm">
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="accountStartDate">Account Start Date</label>
+                                            <input disabled value="{{selectedRecord.accountStartDate}}" class="form-control" type="text" name="accountStartDate" id="accountStartDate">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="mcc">MCC</label>
-                                        <!-- SAFIA 14.09.2021 -->
-                                        <!-- <input type="text" class="form-control" name="mcc" id="mcc"> -->
-                                        <input disabled value="{{selectedRecord.mcc}}" type="text" class="form-control" name="mcc" id="mcc">
 
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="mainActivityType">Main Activity Type</label>
+                                            <input disabled value="{{selectedRecord.mainActivityType}}" class="form-control" type="text" name="mainActivityType" id="mainActivityType" aria-required="true" required>
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="mainActivity">Main Activity</label>
+                                            <input disabled value="{{selectedRecord.mainActivity}}" class="form-control" type="text" name="mainActivity" id="mainActivity" aria-required="true" required>
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="dateOfIncorporation">Date of Incorporation</label>
+                                            <!-- <input class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required> -->
+                                            <input disabled value="{{selectedRecord.dateOfIncorporation}}" class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required>
+
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="tin">TIN</label>
-                                        <input disabled value="{{selectedRecord.tin}}" class="form-control" type="text" name="tin" id="tin" aria-required="true" required>
-
+                                    <div class="form-section-header mtop-16">
+                                        <b>Address</b>
                                     </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="status">Status</label>
-                                        <input disabled value="{{selectedRecord.status}}" type="text" class="form-control" name="status" id="status">
 
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="visaIdentifier">VISA Identifier</label>
-                                        <input disabled value="{{selectedRecord.visaIdentifier}}" class="form-control" type="text" name="visaIdentifier" id="visaIdentifier">
-                                    </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="type">Type</label>
+                                            <input disabled value="{{selectedRecord.type}}" type="text" class="form-control" name="type" id="type">
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="usage">Usage</label>
+                                            <input disabled value="{{selectedRecord.usage}}" type="text" class="form-control" name="usage" id="usage">
 
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="openingDate">Opening Date</label>
-                                        <input disabled value="{{selectedRecord.openingDate}}" class="form-control" type="text" name="openingDate" id="openingDate" aria-required="true" required>
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="sendingMode">Sending Mode</label>
+                                            <!-- <input type="text" class="form-control" name="sendingmode" id="sendingmode"> -->
+                                            <input disabled value="{{selectedRecord.sendingMode}}" type="text" class="form-control" name="sendingMode" id="sendingMode">
 
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="masterCardIdentifier">MasterCard Identifier</label>
-                                        <input disabled value="{{selectedRecord.masterCardIdentifier}}" class="form-control" type="text" name="masterCardIdentifier" id="masterCardIdentifier">
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="upiIdentifier">UPI Identifier</label>
-                                        <input disabled value="{{selectedRecord.upiIdentifier}}" class="form-control" type="text" name="upiIdentifier" id="upiIdentifier">
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="contractNumber">Contract Number</label>
-                                        <input disabled value="{{selectedRecord.contractNumber}}" class="form-control" type="text" name="contractNumber" id="contractNumber" aria-required="true" required>
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="careOf">Care of</label>
+                                            <input disabled value="{{selectedRecord.careOf}}" class="form-control" type="text" name="careOf" id="careOf">
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="startDate">Start Date</label>
+                                            <input disabled value="{{selectedRecord.startDate}}" class="form-control" type="text" name="startDate" id="startDate">
 
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="country">Country</label>
+                                            <input disabled value="{{selectedRecord.country}}" type="text" class="form-control" name="country" id="country">
+
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="legalForm">Legal Form</label>
-                                        <input disabled value="{{selectedRecord.legalForm}}" type="text" class="form-control" name="legalForm" id="legalForm">
 
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="region">Region</label>
+                                            <input disabled value="{{selectedRecord.region}}" type="text" class="form-control" name="region" id="region">
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="city">City</label>
+                                            <input disabled value="{{selectedRecord.city}}" type="text" class="form-control" name="city" id="city">
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="businessPhysicalAddress1">Business Physical Address
+                                                    1</label>
+                                            <input disabled value="{{selectedRecord.businessPhysicalAddress1}}" type="text" class="form-control" name="businessPhysicalAddress1" id="businessPhysicalAddress1">
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="accountStartDate">Account Start Date</label>
-                                        <input disabled value="{{selectedRecord.accountStartDate}}" class="form-control" type="text" name="accountStartDate" id="accountStartDate">
+
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="businessPhysicalAddress2">Business Physical Address
+                                                    2</label>
+                                            <input disabled value="{{selectedRecord.businessPhysicalAddress2}}" type="text" class="form-control" name="businessPhysicalAddress2" id="businessPhysicalAddress2">
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="businessPhysicalAddress3">Business Physical Address
+                                                    3</label>
+                                            <input disabled value="{{selectedRecord.businessPhysicalAddress3}}" type="text" class="form-control" name="businessPhysicalAddress3" id="businessPhysicalAddress3">
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="digitalAddress">Digital Address</label>
+                                            <input disabled value="{{selectedRecord.digitalAddress}}" type="text" class="form-control" name="digitalAddress" id="digitalAddress">
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="mainActivityType">Main Activity Type</label>
-                                        <input disabled value="{{selectedRecord.mainActivityType}}" class="form-control" type="text" name="mainActivityType" id="mainActivityType" aria-required="true" required>
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="state">State</label>
+                                            <input disabled value="{{selectedRecord.state}}" type="text" class="form-control" name="state" id="state">
 
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="zibCode">Zip Code</label>
+                                            <input disabled value="{{selectedRecord.zipCode}}" type="text" class="form-control" name="zibCode" id="zibCode">
+
+                                        </div>
                                     </div>
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="mainActivity">Main Activity</label>
-                                        <input disabled value="{{selectedRecord.mainActivity}}" class="form-control" type="text" name="mainActivity" id="mainActivity" aria-required="true" required>
 
+                                    <div class="form-section-header mtop-16">
+                                        <b>Merchant Contact</b>
                                     </div>
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="dateOfIncorporation">Date of Incorporation</label>
-                                        <!-- <input class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required> -->
-                                        <input disabled value="{{selectedRecord.dateOfIncorporation}}" class="form-control" type="text" name="dateOfIncorporation" id="dateOfIncorporation" aria-required="true" required>
 
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="title">Title</label>
+                                            <input value="{{selectedRecord.title}}" disabled type="text" class="form-control" name="title" id="title">
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="firstname">First Name</label>
+                                            <input disabled value="{{selectedRecord.firstName}}" formContronName="firstname" type="text" class="form-control" name="firstName" id="firstName" aria-required="true" required>
+
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="firstName">Last Name</label>
+                                            <input disabled value="{{selectedRecord.lastName}} " type="text" class="form-control" name="lastName" id="lastName" aria-required="true" required>
+
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="form-section-header mtop-16">
-                                    <b>Address</b>
-                                </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-4 col-xs-12">
+                                            <label for="function">Function</label>
+                                            <input disabled value="{{selectedRecord.function}} " type="text" class="form-control" name="function" id="function">
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="email">Email</label>
+                                            <input disabled value="{{selectedRecord.email}} " type="text" class="form-control" name="email" id="email" aria-required="true" required>
 
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="type">Type</label>
-                                        <input disabled value="{{selectedRecord.type}}" type="text" class="form-control" name="type" id="type">
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="usage">Usage</label>
-                                        <input disabled value="{{selectedRecord.usage}}" type="text" class="form-control" name="usage" id="usage">
+                                        </div>
+                                        <div class="form-group col-sm-4 col-xs-12 required">
+                                            <label for="mobileNumber">Mobile Number</label>
+                                            <input disabled value="{{selectedRecord.mobileNumber}}" type="text" class="form-control" name="mobileNumber" id="mobileNumber" aria-required="true" required>
 
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="sendingMode">Sending Mode</label>
-                                        <!-- <input type="text" class="form-control" name="sendingmode" id="sendingmode"> -->
-                                        <input disabled value="{{selectedRecord.sendingMode}}" type="text" class="form-control" name="sendingMode" id="sendingMode">
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="careOf">Care of</label>
-                                        <input disabled value="{{selectedRecord.careOf}}" class="form-control" type="text" name="careOf" id="careOf">
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="startDate">Start Date</label>
-                                        <input disabled value="{{selectedRecord.startDate}}" class="form-control" type="text" name="startDate" id="startDate">
-
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="country">Country</label>
-                                        <input disabled value="{{selectedRecord.country}}" type="text" class="form-control" name="country" id="country">
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="region">Region</label>
-                                        <input disabled value="{{selectedRecord.region}}" type="text" class="form-control" name="region" id="region">
-
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="city">City</label>
-                                        <input disabled value="{{selectedRecord.city}}" type="text" class="form-control" name="city" id="city">
-
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="businessPhysicalAddress1">Business Physical Address
-                                            1</label>
-                                        <input disabled value="{{selectedRecord.businessPhysicalAddress1}}" type="text" class="form-control" name="businessPhysicalAddress1" id="businessPhysicalAddress1">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="businessPhysicalAddress2">Business Physical Address
-                                            2</label>
-                                        <input disabled value="{{selectedRecord.businessPhysicalAddress2}}" type="text" class="form-control" name="businessPhysicalAddress2" id="businessPhysicalAddress2">
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="businessPhysicalAddress3">Business Physical Address
-                                            3</label>
-                                        <input disabled value="{{selectedRecord.businessPhysicalAddress3}}" type="text" class="form-control" name="businessPhysicalAddress3" id="businessPhysicalAddress3">
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="digitalAddress">Digital Address</label>
-                                        <input disabled value="{{selectedRecord.digitalAddress}}" type="text" class="form-control" name="digitalAddress" id="digitalAddress">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="state">State</label>
-                                        <input disabled value="{{selectedRecord.state}}" type="text" class="form-control" name="state" id="state">
-
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="zibCode">Zip Code</label>
-                                        <input disabled value="{{selectedRecord.zipCode}}" type="text" class="form-control" name="zibCode" id="zibCode">
-
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="form-section-header mtop-16">
-                                    <b>Merchant Contact</b>
+                            </div>
+                            <!-- Sites -->
+                            <div class="panel panel-default">
+                                <div id="sites" class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a id="siteTitle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                                Sites <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                                            </a>
+                                    </h4>
                                 </div>
+                                <div id="collapse2" class="panel-collapse collapse">
+                                    <div class="panel-body">
 
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="title">Title</label>
-                                        <input value="{{selectedRecord.title}}" disabled type="text" class="form-control" name="title" id="title">
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="firstname">First Name</label>
-                                        <input disabled value="{{selectedRecord.firstName}}" formContronName="firstname" type="text" class="form-control" name="firstName" id="firstName" aria-required="true" required>
-
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="firstName">Last Name</label>
-                                        <input disabled value="{{selectedRecord.lastName}} " type="text" class="form-control" name="lastName" id="lastName" aria-required="true" required>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-sm-4 col-xs-12">
-                                        <label for="function">Function</label>
-                                        <input disabled value="{{selectedRecord.function}} " type="text" class="form-control" name="function" id="function">
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="email">Email</label>
-                                        <input disabled value="{{selectedRecord.email}} " type="text" class="form-control" name="email" id="email" aria-required="true" required>
-
-                                    </div>
-                                    <div class="form-group col-sm-4 col-xs-12 required">
-                                        <label for="mobileNumber">Mobile Number</label>
-                                        <input disabled value="{{selectedRecord.mobileNumber}}" type="text" class="form-control" name="mobileNumber" id="mobileNumber" aria-required="true" required>
+                                        <table class="table table-hover table-striped table-bordered table-responsive">
+                                            <thead id="tabHead">
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <th>Type</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="sites">
+                                                <tr>
+                                                    <td>{{selectedRecord.siteName}} </td>
+                                                    <td>{{ selectedRecord.typeOfSite }}</td>
+                                                    <td>
+                                                        <button id="blackBtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                                <span class="fa fa-eye"></span>
+                                                            </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
 
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Sites -->
-                        <div class="panel panel-default">
-                            <div id="sites" class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a id="siteTitle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                                        Sites <i class="fa fa-angle-double-down" aria-hidden="true"></i>
-                                    </a>
-                                </h4>
-                            </div>
-                            <div id="collapse2" class="panel-collapse collapse">
-                                <div class="panel-body">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <!-- <button data-toggle="modal" data-target="#rejectModal" type="button" class="btn btn-danger" data-dismiss="modal">Reject</button> -->
+                                <!-- <button (click)=validateBulkMerchantCreation(selectedRecord) id="blackBtn" class="btn btn-danger" data-dismiss="modal">Validate </button> -->
 
-                                    <table class="table table-hover table-striped table-bordered table-responsive">
-                                        <thead id="tabHead">
-                                            <tr>
-                                                <th>Description</th>
-                                                <th>Type</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="sites">
-                                            <tr>
-                                                <td>{{selectedRecord.siteName}} </td>
-                                                <td>{{ selectedRecord.typeOfSite }}</td>
-                                                <td>
-                                                    <button id="blackBtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                        <span class="fa fa-eye"></span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <!-- <button data-toggle="modal" data-target="#rejectModal" type="button" class="btn btn-danger" data-dismiss="modal">Reject</button> -->
-                            <!-- <button (click)=validateBulkMerchantCreation(selectedRecord) id="blackBtn" class="btn btn-danger" data-dismiss="modal">Validate </button> -->
-
-                            <!-- <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <!-- <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -522,23 +561,23 @@
                         </div>
                     </div>
                 </div> -->
-                        </div>
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Modal Site -->
-            <div *ngIf="selectedRecord" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <!-- Modal Site -->
+                <div *ngIf="selectedRecord" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
 
-                    <div class="modal-content">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                Sites Details
-                            </h4>
-                        </div>
-                        <!-- <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    Sites Details
+                                </h4>
+                            </div>
+                            <!-- <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Details</h5>
@@ -546,186 +585,186 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div> -->
-                        <div class="modal-body">
+                            <div class="modal-body">
 
-                            <form name="merchantForm">
-                                <div class="form-group">
+                                <form name="merchantForm">
+                                    <div class="form-group">
 
-                                    <div class="form-section-header mtop-16">
-                                        <b>Site Identification</b>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="sitebranch">Branch</label>
-                                            <input value="{{selectedRecord.branch}}" type="text" class="form-control" name="sitebranch" id="sitebranch" aria-disabled="true" disabled>
+                                        <div class="form-section-header mtop-16">
+                                            <b>Site Identification</b>
                                         </div>
-                                        <!--<div class="form-group col-md-3 col-sm-6 col-xs-12">
+
+                                        <div class="row">
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="sitebranch">Branch</label>
+                                                <input value="{{selectedRecord.branch}}" type="text" class="form-control" name="sitebranch" id="sitebranch" aria-disabled="true" disabled>
+                                            </div>
+                                            <!--<div class="form-group col-md-3 col-sm-6 col-xs-12">
                           <label for="sitemerchantid">Merchant ID</label>
                           <input type="text" class="form-control" name="sitemerchantid" id="sitemerchantid" aria-disabled="true" disabled>
                         </div>    -->
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="sitecompanyname">Company Name</label>
-                                            <input value="{{selectedRecord.companyName}}" required type="text" class="form-control" name="sitecompanyname" id="sitecompanyname" aria-disabled="true" disabled>
-                                        </div>
-                                        <div class="form-group col-md-3 col-sm-6 required">
-                                            <label for="siteName">Site Name</label>
-                                            <input disabled value="{{selectedRecord.siteName}}" type="text" class="form-control" name="siteName" id="siteName" aria-required="true" required>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="sitecompanyname">Company Name</label>
+                                                <input value="{{selectedRecord.companyName}}" required type="text" class="form-control" name="sitecompanyname" id="sitecompanyname" aria-disabled="true" disabled>
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 required">
+                                                <label for="siteName">Site Name</label>
+                                                <input disabled value="{{selectedRecord.siteName}}" type="text" class="form-control" name="siteName" id="siteName" aria-required="true" required>
 
-                                        </div>
-                                        <div class="form-group col-md-3 col-sm-6 required">
-                                            <label for="statusS">Status</label>
-                                            <input disabled value="{{selectedRecord.statusS}}" type="text" class="form-control" name="statusS" id="statusS" aria-required="true" required>
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 required">
+                                                <label for="statusS">Status</label>
+                                                <input disabled value="{{selectedRecord.statusS}}" type="text" class="form-control" name="statusS" id="statusS" aria-required="true" required>
 
-                                        </div>
-                                        <!--<div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                            </div>
+                                            <!--<div class="form-group col-md-3 col-sm-6 col-xs-12">
                           <label for="siteid">Site ID</label>
                           <input type="text" class="form-control" name="siteid" id="siteid" aria-disabled="true" disabled>
                         </div>   -->
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
-                                            <label for="location">Location</label>
-                                            <input disabled value="{{selectedRecord.location}}" type="text" class="form-control" name="location" id="location" aria-required="true" required>
-
                                         </div>
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="sitetypeofsite">Type of Site</label>
-                                            <input disabled value="{{selectedRecord.typeOfSite}}" type="text" class="form-control" name="typeOfSite" id="typeOfSite">
-                                        </div>
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
-                                            <label for="openingDateS">Opening Date</label>
-                                            <input disabled value="{{selectedRecord.openingDateS}}" type="text" class="form-control" name="openingDateS" id="openingDateS" aria-required="true" required>
 
-                                        </div>
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="countryS">Country</label>
-                                            <input disabled value="{{selectedRecord.countryS}}" type="text" class="form-control" name="countryS" id="countryS" aria-required="true" required>
+                                        <div class="row">
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
+                                                <label for="location">Location</label>
+                                                <input disabled value="{{selectedRecord.location}}" type="text" class="form-control" name="location" id="location" aria-required="true" required>
 
-                                        </div>
-                                    </div>
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="sitetypeofsite">Type of Site</label>
+                                                <input disabled value="{{selectedRecord.typeOfSite}}" type="text" class="form-control" name="typeOfSite" id="typeOfSite">
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
+                                                <label for="openingDateS">Opening Date</label>
+                                                <input disabled value="{{selectedRecord.openingDateS}}" type="text" class="form-control" name="openingDateS" id="openingDateS" aria-required="true" required>
 
-                                    <div class="row">
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="siteregion">Region</label>
-                                            <input disabled value="{{selectedRecord.regionS}}" type="text" class="form-control" name="regionS" id="regionS" aria-required="true" required>
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="countryS">Country</label>
+                                                <input disabled value="{{selectedRecord.countryS}}" type="text" class="form-control" name="countryS" id="countryS" aria-required="true" required>
+
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="cityS">City</label>
-                                            <!-- <select class="form-control" name="sitecity" id="sitecity">
+
+                                        <div class="row">
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="siteregion">Region</label>
+                                                <input disabled value="{{selectedRecord.regionS}}" type="text" class="form-control" name="regionS" id="regionS" aria-required="true" required>
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="cityS">City</label>
+                                                <!-- <select class="form-control" name="sitecity" id="sitecity">
                             <option value="00001">ACCRA</option>
                           </select> -->
-                                            <input disabled value="{{selectedRecord.cityS}}" type="text" class="form-control" name="cityS" id="cityS" aria-required="true" required>
+                                                <input disabled value="{{selectedRecord.cityS}}" type="text" class="form-control" name="cityS" id="cityS" aria-required="true" required>
 
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="physicalAddress1">Physical Address 1</label>
+                                                <input disabled value="{{selectedRecord.physicalAddress1}} " type="text" class="form-control" name="physicalAddress1" id="physicalAddress1">
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="physicalAddress2">Physical Address 2</label>
+                                                <input disabled value="{{selectedRecord.physicalAddress2}}" type="text" class="form-control" name="physicalAddress2" id="physicalAddress2">
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="physicalAddress1">Physical Address 1</label>
-                                            <input disabled value="{{selectedRecord.physicalAddress1}} " type="text" class="form-control" name="physicalAddress1" id="physicalAddress1">
+
+                                        <div class="row">
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="physicalAddress3">Physical Address 3</label>
+                                                <input disabled value="{{selectedRecord.physicalAddress3}}" type="text" class="form-control" name="physicalAddress3" id="physicalAddress3">
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="digitalAddressS">Digital Address</label>
+                                                <input disabled value="{{selectedRecord.digitalAddressS}}" type="text" class="form-control" name="digitalAddressS" id="digitalAddressS">
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="stateS">State</label>
+                                                <input disabled value="{{selectedRecord.stateS}}" type="text" class="form-control" name="stateS" id="stateS" aria-required="true" required>
+
+                                            </div>
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="postalCode">Postal Code</label>
+                                                <input disabled value="{{selectedRecord.postalCode}}" type="text" class="form-control" name="postalCode" id="postalCode">
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="physicalAddress2">Physical Address 2</label>
-                                            <input disabled value="{{selectedRecord.physicalAddress2}}" type="text" class="form-control" name="physicalAddress2" id="physicalAddress2">
+
+                                        <div class="row">
+                                            <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                                                <label for="zipcodeS">ZIP Code</label>
+                                                <input disabled value="{{selectedRecord.zipCodeS}}" type="text" class="form-control" name="zipcodeS" id="zipcodeS" aria-required="true" required>
+
+                                            </div>
                                         </div>
+
+                                        <div class="form-section-header mtop-16">
+                                            <b>Site Contact</b>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-sm-6 col-xs-12 required">
+                                                <label for="siteemail">Email</label>
+                                                <input disabled value="{{selectedRecord.emailS}}" type="text" class="form-control" name="emailS" id="emailS" aria-required="true" required>
+
+                                            </div>
+                                            <div class="form-group col-sm-6 col-xs-12 required">
+                                                <label for="mobileNumberS">Mobile Number</label>
+                                                <input disabled value="{{selectedRecord.mobileNumberS}}" type="text" class="form-control" name="mobileNumberS" id="mobileNumberS" aria-required="true" required>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-section-header mtop-16">
+                                            <b>Acceptor Points</b>
+                                        </div>
+
+                                        <table class="table table-hover table-striped table-bordered table-responsive">
+                                            <thead id="tabHead">
+                                                <tr>
+                                                    <th>Acceptor Point Name</th>
+                                                    <th>Acceptor Point Acronym</th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{selectedRecord.acceptorPoint}}</td>
+                                                    <td>{{selectedRecord.acronym}}</td>
+                                                    <td>{{selectedRecord.mobileNumberA}}</td>
+                                                    <td>
+                                                        <button id="blackBtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalAcc">
+
+                                                                <span class="fa fa-eye"></span>
+                                                            </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
                                     </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="physicalAddress3">Physical Address 3</label>
-                                            <input disabled value="{{selectedRecord.physicalAddress3}}" type="text" class="form-control" name="physicalAddress3" id="physicalAddress3">
-                                        </div>
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="digitalAddressS">Digital Address</label>
-                                            <input disabled value="{{selectedRecord.digitalAddressS}}" type="text" class="form-control" name="digitalAddressS" id="digitalAddressS">
-                                        </div>
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="stateS">State</label>
-                                            <input disabled value="{{selectedRecord.stateS}}" type="text" class="form-control" name="stateS" id="stateS" aria-required="true" required>
-
-                                        </div>
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="postalCode">Postal Code</label>
-                                            <input disabled value="{{selectedRecord.postalCode}}" type="text" class="form-control" name="postalCode" id="postalCode">
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-md-3 col-sm-6 col-xs-12">
-                                            <label for="zipcodeS">ZIP Code</label>
-                                            <input disabled value="{{selectedRecord.zipCodeS}}" type="text" class="form-control" name="zipcodeS" id="zipcodeS" aria-required="true" required>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="form-section-header mtop-16">
-                                        <b>Site Contact</b>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="form-group col-sm-6 col-xs-12 required">
-                                            <label for="siteemail">Email</label>
-                                            <input disabled value="{{selectedRecord.emailS}}" type="text" class="form-control" name="emailS" id="emailS" aria-required="true" required>
-
-                                        </div>
-                                        <div class="form-group col-sm-6 col-xs-12 required">
-                                            <label for="mobileNumberS">Mobile Number</label>
-                                            <input disabled value="{{selectedRecord.mobileNumberS}}" type="text" class="form-control" name="mobileNumberS" id="mobileNumberS" aria-required="true" required>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="form-section-header mtop-16">
-                                        <b>Acceptor Points</b>
-                                    </div>
-
-                                    <table class="table table-hover table-striped table-bordered table-responsive">
-                                        <thead id="tabHead">
-                                            <tr>
-                                                <th>Acceptor Point Name</th>
-                                                <th>Acceptor Point Acronym</th>
-                                                <th>Mobile Number</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>{{selectedRecord.acceptorPoint}}</td>
-                                                <td>{{selectedRecord.acronym}}</td>
-                                                <td>{{selectedRecord.mobileNumberA}}</td>
-                                                <td>
-                                                    <button id="blackBtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalAcc">
-
-                                                        <span class="fa fa-eye"></span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                            </form>
+                                </form>
 
 
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Modal Acceptor Point -->
-            <div *ngIf="selectedRecord" class="modal fade" id="exampleModalAcc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!-- Modal Acceptor Point -->
+                <div *ngIf="selectedRecord" class="modal fade" id="exampleModalAcc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                <div class="modal-dialog modal-lg">
+                    <div class="modal-dialog modal-lg">
 
-                    <div class="modal-content">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                Acceptor Point Details
-                            </h4>
-                        </div>
-                        <!-- <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    Acceptor Point Details
+                                </h4>
+                            </div>
+                            <!-- <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Acceptor Point Details</h5>
@@ -733,62 +772,62 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div> -->
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
 
-                                    <div class="row">
-                                        <!-- <div class="form-group col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <!-- <div class="form-group col-sm-6 col-xs-12">
                                 <label for="acceptorpointid">Acceptor Point Id</label>
                                 <input type="text" class="form-control" name="acceptorpointid" id="acceptorpointid" aria-disabled="true" disabled>
                             </div> -->
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="acceptorpointcompanyname">Company Name</label>
-                                            <input value="{{selectedRecord.companyName}}" type="text" class="form-control" name="acceptorpointcompanyname" id="acceptorpointcompanyname" aria-disabled="true" disabled>
+                                            <div class="form-group col-sm-6 col-xs-12">
+                                                <label for="acceptorpointcompanyname">Company Name</label>
+                                                <input value="{{selectedRecord.companyName}}" type="text" class="form-control" name="acceptorpointcompanyname" id="acceptorpointcompanyname" aria-disabled="true" disabled>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="form-group col-sm-6 col-xs-12">
-                                            <label for="description">Description</label>
-                                            <input value="{{selectedRecord.description}}" type="text" class="form-control" name="description" id="description" aria-disabled="true" disabled>
+                                        <div class="row">
+                                            <div class="form-group col-sm-6 col-xs-12">
+                                                <label for="description">Description</label>
+                                                <input value="{{selectedRecord.description}}" type="text" class="form-control" name="description" id="description" aria-disabled="true" disabled>
+                                            </div>
+                                            <div class="form-group col-sm-6 col-xs-12 required">
+                                                <label for="acceptorpoint">Acceptor Point</label>
+                                                <input value="{{selectedRecord.acceptorPoint}}" type="text" class="form-control" name="acceptorpoint" id="acceptorpoint">
+                                            </div>
                                         </div>
-                                        <div class="form-group col-sm-6 col-xs-12 required">
-                                            <label for="acceptorpoint">Acceptor Point</label>
-                                            <input value="{{selectedRecord.acceptorPoint}}" type="text" class="form-control" name="acceptorpoint" id="acceptorpoint">
-                                        </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="form-group col-sm-6 col-xs-12 required">
-                                            <label for="acronym">Acronym</label>
-                                            <input value="{{selectedRecord.acronym}}" type="text" class="form-control" name="acronym" id="acronym">
+                                        <div class="row">
+                                            <div class="form-group col-sm-6 col-xs-12 required">
+                                                <label for="acronym">Acronym</label>
+                                                <input value="{{selectedRecord.acronym}}" type="text" class="form-control" name="acronym" id="acronym">
+                                            </div>
+                                            <div class="form-group col-sm-6 col-xs-12 required">
+                                                <label for="mobileNumberA">Mobile Number</label>
+                                                <input value="{{selectedRecord.mobileNumberA}}" type="text" class="form-control" name="mobileNumberA" id="mobileNumberA">
+                                            </div>
                                         </div>
-                                        <div class="form-group col-sm-6 col-xs-12 required">
-                                            <label for="mobileNumberA">Mobile Number</label>
-                                            <input value="{{selectedRecord.mobileNumberA}}" type="text" class="form-control" name="mobileNumberA" id="mobileNumberA">
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </form>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        </div>
-
                     </div>
                 </div>
+
+
+                <app-scroll-to-top></app-scroll-to-top>
+
             </div>
+            <!-- </section> -->
 
 
-            <app-scroll-to-top></app-scroll-to-top>
+            <!-- </div> -->
+
 
         </div>
-        <!-- </section> -->
-
-
-    </div>
-
-
-</div>

@@ -61,7 +61,7 @@ import { NewSiteModal } from './new-merchant/new-merchant.component';
 import { NewAcceptorPointModal } from './new-merchant/new-merchant.component';
 import { UpdateSiteModal } from './update-merchant/update-merchant.component';
 import { UpdateAcceptorPointModal, GenerateQrModal } from './update-merchant/update-merchant.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { chartComponent } from './line-chart/line-chart.component';
 import { MatProgressSpinnerModule } from '@angular/material';
@@ -77,6 +77,35 @@ import { BulkMerchantsManagementListComponent } from './merchants-management-lis
 import { ScrollToTopComponent } from './scroll-to-top/scroll-to-top.component';
 import { OutSessionComponent } from './out-session/out-session.component';
 import { BulkMerchantsManagementDetailsComponent } from './merchants-management-details/merchants-management-details.component';
+import { MerchantListComponent } from './merchant-list/merchant-list.component';
+import { GenerateQrModalDetails, MerchantDetailsComponent, SiteDetailComponent, UpdateAcceptorPointDetails } from './merchant-details/merchant-details.component';
+import { GenerateQrComponent, GenerateQrModalAcceptorPoint } from './generate-qr/generate-qr.component';
+import { CreateSingleBulkMerchantComponent } from './create-single-bulk-merchant/create-single-bulk-merchant.component';
+import { BulkMerchantsValidationAtBranchComponent } from './bulk-merchants-validation-at-branch/bulk-merchants-validation-at-branch.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { SuccessChangeComponent } from './success-change/success-change.component';
+import { SubUserManagementComponent } from './sub-user-management/sub-user-management.component';
+import { SubUserManagementCreationComponent } from './sub-user-management-creation/sub-user-management-creation.component';
+import { SubUserManagementDetailsComponent } from './sub-user-management-details/sub-user-management-details.component';
+import { ReportsBulkMerchantComponent } from './reports-bulk-merchant/reports-bulk-merchant.component';
+import { GestionReportsComponent } from './gestion-reports/gestion-reports.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MerchantsTransactionsComponent } from './merchants-transactions/merchants-transactions.component';
+import { DetailsMerchantsComponent } from './details-merchants/details-merchants.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AllMerchantsComponent } from './gestion-reports/all-merchants/all-merchants.component';
+import { AllSuspendedMerchantsComponent } from './gestion-reports/all-suspended-merchants/all-suspended-merchants.component';
+import { AllActivatedMerchantsComponent } from './gestion-reports/all-activated-merchants/all-activated-merchants.component';
+import { AllBulkMerchantsComponent } from './gestion-reports/all-bulk-merchants/all-bulk-merchants.component';
+import { AllRejectedMerchantsComponent } from './gestion-reports/all-rejected-merchants/all-rejected-merchants.component';
+import { AllValidatedMerchantsComponent } from './gestion-reports/all-validated-merchants/all-validated-merchants.component';
+import { AllValidatedBulkMerchantsByBranchAComponent } from './gestion-reports/all-validated-bulk-merchants-by-branch-a/all-validated-bulk-merchants-by-branch-a.component';
+import { AllRejectedBulkMerchantsAByBranchComponent } from './gestion-reports/all-rejected-bulk-merchants-a-by-branch/all-rejected-bulk-merchants-a-by-branch.component';
+import { AllValidatedBulkMerchantsByBranchComponent } from './gestion-reports/all-validated-bulk-merchants-by-branch/all-validated-bulk-merchants-by-branch.component';
+import { AllRejectedBulkMerchantsByBranchComponent } from './gestion-reports/all-rejected-bulk-merchants-by-branch/all-rejected-bulk-merchants-by-branch.component';
+
+// import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+
 const appRoutes: Routes = [
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -92,6 +121,7 @@ const appRoutes: Routes = [
   { path: "param/session", component: ParamComponent },
   { path: "param/token", component: ParamComponent },
   { path: "merchant", component: MerchantComponent },
+  { path: "merchantList", component: MerchantListComponent },
   { path: "transaction", component: TransactionComponent },
   { path: "nstransaction", component: NStransactionComponent },
   { path: "line-chart", component: chartComponent },
@@ -99,6 +129,7 @@ const appRoutes: Routes = [
   { path: "omar-chart", component: OmarChartComponent },
   { path: "forgotPass", component: ForgotPassComponent },
   { path: "resetPass", component: ResetPassComponent },
+  { path: "resetPasswordFirstConnection", component: ResetPasswordComponent },
   { path: "forgotLogin", component: ForgotLoginComponent },
   { path: "resetLogin", component: ResetLoginComponent },
   { path: "successPass", component: SuccessPassComponent },
@@ -121,8 +152,32 @@ const appRoutes: Routes = [
   { path: "bulkMerchants", component: BulkMerchantsComponent },
   { path: "bulkMerchantsValidation", component: BulkMerchantsValidationComponent },
   { path: "merchantManagementList", component: BulkMerchantsManagementListComponent},
-  { path: "merchantManagementDetail", component: BulkMerchantsManagementDetailsComponent}
-
+  { path: "merchantManagementDetail", component: BulkMerchantsManagementDetailsComponent},
+  { path: "merchantDetail", component: MerchantDetailsComponent},
+  { path: "generateQr", component: GenerateQrComponent},
+  { path: "createSingleBulkMerchant", component: CreateSingleBulkMerchantComponent},
+  { path: "getAllBulkMerchantsFoValidation", component: BulkMerchantsValidationAtBranchComponent},
+  { path: "resetPasswordFirstConnection", component: ResetPasswordComponent},
+  { path: "successChange", component: SuccessChangeComponent},
+  { path: "subUserManagement", component: SubUserManagementComponent},
+  { path: "subUserManagementCreation", component: SubUserManagementCreationComponent},
+  { path: "subUserManagementDetails", component: SubUserManagementDetailsComponent},
+  { path: "reportsBulkMerchant", component: ReportsBulkMerchantComponent},
+  { path: "gestionReports", component: GestionReportsComponent},
+  { path: "transactions", component: MerchantsTransactionsComponent},
+  { path: "detailsMerchant", component: DetailsMerchantsComponent},
+  { path: "allMerchantsReports", component: AllMerchantsComponent},
+  { path: "allSuspendedMerchant", component: AllSuspendedMerchantsComponent},
+  { path: "allActivatedMerchant", component: AllActivatedMerchantsComponent},
+  { path: "allRejectedBulkMerchant", component: AllRejectedMerchantsComponent},
+  { path: "allValidatedBulkMerchant", component: AllValidatedMerchantsComponent},
+  { path: "allBulkMerchantsReport", component: AllBulkMerchantsComponent},
+  { path: "allValidatedBulkMerchantByBranch", component: AllValidatedBulkMerchantsByBranchAComponent},
+  { path: "allRejectedBulkMerchantByBranch", component: AllRejectedBulkMerchantsAByBranchComponent},
+  { path: "allValidatedBulkMerchantByBranchReport", component: AllValidatedBulkMerchantsByBranchComponent},
+  { path: "allRejectedBulkMerchantByBranchReport", component: AllRejectedBulkMerchantsByBranchComponent},
+  {path: '404', component: PageNotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 
 
   //,{path:'' , redirectTo:'/login',pathMatch:'full'}
@@ -175,15 +230,44 @@ const appRoutes: Routes = [
     NewAcceptorPointModal,
     UpdateMerchantComponent,
     UpdateSiteModal,
+    SiteDetailComponent,
+    UpdateAcceptorPointDetails,
     UpdateAcceptorPointModal,
     GenerateQrModal,
+    GenerateQrModalDetails,
     SignupComponent,
     OtpComponent,
     BulkMerchantsComponent,
     BulkMerchantsValidationComponent,
     BulkMerchantsManagementListComponent,
     ScrollToTopComponent,
-    BulkMerchantsManagementDetailsComponent
+    BulkMerchantsManagementDetailsComponent,
+    MerchantListComponent,
+    MerchantDetailsComponent,
+    GenerateQrComponent,
+    CreateSingleBulkMerchantComponent,
+    BulkMerchantsValidationAtBranchComponent,
+    ResetPasswordComponent,
+    SuccessChangeComponent,
+    SubUserManagementComponent,
+    SubUserManagementCreationComponent,
+    SubUserManagementDetailsComponent,
+    ReportsBulkMerchantComponent,
+    GestionReportsComponent,
+    MerchantsTransactionsComponent,
+    DetailsMerchantsComponent,
+    PageNotFoundComponent,
+    GenerateQrModalAcceptorPoint,
+    AllMerchantsComponent,
+    AllSuspendedMerchantsComponent,
+    AllActivatedMerchantsComponent,
+    AllRejectedMerchantsComponent,
+    AllBulkMerchantsComponent,
+    AllValidatedMerchantsComponent,
+    AllValidatedBulkMerchantsByBranchAComponent,
+    AllRejectedBulkMerchantsAByBranchComponent,
+    AllRejectedBulkMerchantsByBranchComponent,
+    AllValidatedBulkMerchantsByBranchComponent
     // , OutSessionComponent
   ],
   imports: [
@@ -198,7 +282,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     // DataTablesModule,
-    Ng2SearchPipeModule,
+    Ng2SearchPipeModule, 
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
@@ -206,6 +290,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
+    // ShowHidePasswordModule,
     MatProgressSpinnerModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
@@ -229,8 +314,12 @@ const appRoutes: Routes = [
     NewSiteModal,
     NewAcceptorPointModal,
     UpdateSiteModal,
+    SiteDetailComponent,
     UpdateAcceptorPointModal,
-    GenerateQrModal
+    UpdateAcceptorPointDetails,
+    GenerateQrModal,
+    GenerateQrModalDetails,
+    GenerateQrModalAcceptorPoint
   ],
 })
 export class AppModule { }

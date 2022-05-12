@@ -48,13 +48,38 @@ export class BulkMerchantsManagementListComponent implements OnInit {
  }
 
  merchantManagementDetail(merchant: Merchant) {
+  console.log("Going to user details. ID: " + merchant.idPerson);
   console.log("Going to user details. Phone: " + merchant.phone);
   this.router.navigateByUrl("/merchantManagementDetail", {
     state: {
-      person: merchant
+      merchant: merchant
     }
   });
 }
+
+homePage(){
+  if (localStorage.getItem('role') == 'ADMIN') {
+
+    this.router.navigate(['/adminList']);
+    return false;
+  } else if (localStorage.getItem('role') == 'USER') {
+    this.router.navigate(['/transactions']);
+    return false;
+  } else if (localStorage.getItem('role') == 'SUB USER') {
+    this.router.navigate(['/transactions'])
+    return false
+  } else if (localStorage.getItem('role') == 'MANAGER') {
+    this.router.navigate(['/merchantList'])
+    return false;
+  } else if (localStorage.getItem('role') == 'BRANCH MANAGER') {
+    this.router.navigate(['/getAllBulkMerchantsFoValidation']);
+    return false;
+  } else if (localStorage.getItem('role') == 'BRANCH OFFICIER') {
+    this.router.navigate(['/createSingleBulkMerchant'])
+    return false;
+  } else if(localStorage.getItem('role') == 'OFFICIER'){
+    this.router.navigate(['/merchant'])
+  }}
 
 
 

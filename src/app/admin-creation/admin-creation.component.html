@@ -7,74 +7,209 @@
 
     <div class="content-wrapper">
         <div class="content-header">
-
+            <div style="height: 30px;"></div>
+            <br>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a (click)="merchantPage()"><i
-                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
-                                    aria-hidden="true"></i>
-                            </a></li>
-                    <li class="breadcrumb-item active" aria-current="page"> New Admin</li>
+                                style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                aria-hidden="true"></i>
+                        </a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> New User</li>
                 </ol>
             </nav>
 
-            <div class="alert alert-danger mb-8" *ngIf="error">
+            <!-- <div class="alert alert-danger mb-8" *ngIf="error">
                 <strong>{{errTitle}}</strong><br/> {{errMessage}}
             </div>
 
             <div class="alert alert-success mb-8" *ngIf="success">
                 <strong>{{successTitle}}</strong><br/> {{successMessage}}
+            </div> -->
+
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="errorForm ">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4 style="color:  #B83C37; background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert !
+                </h4>
+                <h5 style="color:  #B83C37;">
+                    <ul *ngFor="let error of erroArrays">
+                        <li>
+                            {{error}}
+                        </li>
+                    </ul>
+                </h5>
+            </div>
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="error">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> {{errTitle}}</strong><br />
+                <ul style="color:  #B83C37;">
+                    <li>{{errMessage}}</li>
+                </ul>
+                <!-- <p style="color:  #B83C37;">{{errMessage}}</p> -->
             </div>
 
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="success">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong style="color:  #270;">{{successTitle}}</strong><br />
+                <p style="color:  #270;">{{successMessage}}</p>
+
+            </div>
+            <!-- <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="emailWithPattern.errors?.pattern">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> {{errTitle}}</strong><br/>
+
+                <p style="color:  #B83C37;">Email is not valid !</p>
+
+            </div> -->
+            <!-- <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="phoneWithPattern.errors?.pattern">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> {{errTitle}}</strong><br/>
+
+                <p style="color:  #B83C37;">Phone Number is not valid !</p>
+
+            </div> -->
+
+
             <div class="panel panel-default">
-                <div class="panel-heading">New Administrator</div>
+                <div class="panel-heading">New User</div>
                 <div class="panel-body">
 
                     <form>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control" id="username" name="username" placeholder="Username" [(ngModel)]="usernameInput">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row">
                             <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label for="username">Username</label>
+                                    <input required type="text" class="form-control" id="username" name="username" placeholder="Username" [(ngModel)]="usernameInput">
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4">
                                 <div class="form-group">
+                                    <label for="role">User Role</label>
+                                    <select class="form-control" name="role" id="role" [(ngModel)]="roleInput">
+                                        <option>Select a User Role </option>
+                                        <option *ngFor='let role of roles'
+                                            [ngValue]="role.role"> 
+                                            {{role.role}}</option>
+                                    </select> </div>
+                            </div> -->
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label for="role">User Role</label>
+                                    <select required class="form-control " name="role" id="role" [(ngModel)]="roleInput" (ngModelChange)="onChangeofOptions($event)">
+                                        <option value="0">Select a User Role </option>
+                                        <option value="ADMIN">ADMIN </option>
+                                        <option value="OFFICIER">OFFICIER </option>
+                                        <option value="BRANCH OFFICIER">BRANCH OFFICIER </option>
+                                        <option value="MANAGER">MANAGER </option>
+                                        <option value="BRANCH MANAGER">BRANCH MANAGER </option>
+                                        <!-- <option *ngFor='let role of roles'
+                                            [ngValue]="role.role"> 
+                                            {{role.role}}</option> -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label for="branch">branch</label>
+                                    <select [disabled]="roleInput !== 'BRANCH OFFICIER' && roleInput !== 'BRANCH MANAGER'" class="form-control" name="branch" id="branch" [(ngModel)]="branchInput">
+                                        <option>Select a user Branch </option>
+                                        <option *ngFor='let branch of branchLocator' [value]="branch.branchCode">
+                                            {{branch.branchName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group required">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" [(ngModel)]="firstNameInput">
+                                    <input required type="text" class="form-control required" id="firstName" name="firstName" placeholder="First Name" [(ngModel)]="firstNameInput">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" [(ngModel)]="lastNameInput">
-                                </div>
-                            </div>
+
                         </div>
+
                         <div class="row">
+                            <!-- <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label for="firstName">First Name</label>
+                                    <input required type="text" class="form-control required" id="firstName" name="firstName" placeholder="First Name" [(ngModel)]="firstNameInput">
+                                </div>
+                            </div> -->
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="email">E-Mail</label>
-                                    <input type="text" class="form-control" id="email" name="email" placeholder="E-Mail" [(ngModel)]="emailInput">
+                                <div class="form-group required">
+                                    <label for="lastName">Last Name</label>
+                                    <input required type="text" class="form-control required" id="lastName" name="lastName" placeholder="Last Name" [(ngModel)]="lastNameInput">
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="mobileNumber">Mobile Number</label>
-                                    <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="mobileNumberInput">
+                                <div class="form-group required">
+                                    <label for="email">E-Mail</label>
+                                    <input required type="email" class="form-control required" id="email" name="email" placeholder="Example@email.com" [(ngModel)]="emailInput">
                                 </div>
+                                <!-- <div *ngIf="emailWithPattern.touched">
+                                    <p *ngIf="emailWithPattern.errors?.required">
+                                        Email is a required field!
+                                    </p>
+                                    <p *ngIf="emailWithPattern.errors?.pattern">
+                                        This is not a valid Email!!!
+                                    </p>
+                                </div> -->
+                            </div>
+                            <div class="col-md-4">
+                                <!--<div class="form-group required">-->
+                                <label for="mobileNumber">Mobile Number</label>
+                                <input required minlength="10" type="text" class="form-control required" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="mobileNumberInput">
+                                <!--</div>-->
                             </div>
                         </div>
+                        <!-- <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label for="email">E-Mail</label>
+                                    <input required type="email" class="form-control required" id="email" name="email" placeholder="Example@email.com" [(ngModel)]="emailInput">
+                                </div> -->
+                        <!-- <div *ngIf="emailWithPattern.touched">
+                                    <p *ngIf="emailWithPattern.errors?.required">
+                                        Email is a required field!
+                                    </p>
+                                    <p *ngIf="emailWithPattern.errors?.pattern">
+                                        This is not a valid Email!!!
+                                    </p>
+                                </div> -->
+                        <!-- </div>
+                            <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label for="mobileNumber">Mobile Number</label>
+                                    <input required minlength="10" type="text" class="form-control required" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="mobileNumberInput">
+                                </div>
+                            </div>
+                        </div> -->
                     </form>
 
                 </div>
                 <div class="panel-footer" style="overflow: auto;">
                     <div class="input-group pull-right">
-                        <button type="button" class="btn btn-danger mok" (click)="createAdmin()"><i class="icon fa fa-check"></i> Submit</button>
+                        <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="checkValidUserName()"><i
+                                class="icon fa fa-check"></i> Save</button>
+                    </div>
+                    <div class="input-group pull-left mr-8">
+                        <button style="background:#ff2a2a; border-color: #ff2a2a;" id="blackBtn" type="button" class="btn btn-danger mok" (click)="cancel()"><i class="icon fa fa-close"></i>
+                            Cancel</button>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

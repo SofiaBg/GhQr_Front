@@ -51,8 +51,28 @@ export class UpdateMerchantComponent extends BaseComponent implements OnInit {
     return UpdateMerchantComponent.sites;
   }
   merchantPage(){
-    this.router.navigateByUrl("/merchant")
-  }
+    if (localStorage.getItem('role') == 'ADMIN') {
+
+      this.router.navigate(['/adminList']);
+      return false;
+    } else if (localStorage.getItem('role') == 'USER') {
+      this.router.navigate(['/transactions']);
+      return false;
+    } else if (localStorage.getItem('role') == 'SUB USER') {
+      this.router.navigate(['/transactions'])
+      return false
+    } else if (localStorage.getItem('role') == 'MANAGER') {
+      this.router.navigate(['/merchantList'])
+      return false;
+    } else if (localStorage.getItem('role') == 'BRANCH MANAGER') {
+      this.router.navigate(['/getAllBulkMerchantsFoValidation']);
+      return false;
+    } else if (localStorage.getItem('role') == 'BRANCH OFFICIER') {
+      this.router.navigate(['/createSingleBulkMerchant'])
+      return false;
+    } else if(localStorage.getItem('role') == 'OFFICIER'){
+      this.router.navigate(['/merchant'])
+    }  }
 
   merchant: any;
   show: boolean = false;
@@ -181,13 +201,15 @@ export class UpdateMerchantComponent extends BaseComponent implements OnInit {
     // this.merchant = new RegistrationMerchant();
     this.autochargement()
     this.TimeSession()
-
+ 
     this.merchant = history.state;
 
     UpdateMerchantComponent.sites = this.merchant.sites;
 
     for (let site of UpdateMerchantComponent.sites)
       for (let acceptorPoint of site.acceptorPoints)
+
+ 
         acceptorPoint.saved = true;
 
     $('#id').val(this.merchant.id)

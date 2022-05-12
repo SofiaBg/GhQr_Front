@@ -1,0 +1,65 @@
+<!--<body style="background: #ecf0f5;"> -->
+
+<body style="background: #ffffff;">
+    <div class="login-box">
+
+        <!-- /.login-logo  -->
+        <div class="login-box-body">
+            <ng-container *ngIf="showmsg">
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> &nbsp;&nbsp;<strong>{{
+                  msg1
+                }}</strong>
+                </div>
+            </ng-container>
+
+
+
+
+
+
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">
+                    <i class="fa fa-unlock" aria-hidden="true"></i> Change password :
+                </h4>
+            </div>
+            <div class="modal-body">
+
+                <p class="form-group has-feedback">Password changed successfully</p>
+            </div>
+            <div class="modal-footer">
+                <button style="background-color: #222d32b5;
+                    border: #222d32b5; color: #ffffff;" type="button" class="btn btn-block" (click)="cancelbutton1()">
+                     Done
+                   </button>
+            </div>
+
+
+
+            <!--</ng-container>
+          </ng-template>-->
+
+
+
+
+
+
+
+            <!--   <a (click)="onRegister()" class="text-center">Require a new membership</a> -->
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <br><br><br><br><br><br>
+    <!-- /.login-box -->
+    <script>
+        $(function() {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' /* optional */
+            });
+        });
+    </script>
+</body>

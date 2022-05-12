@@ -280,3 +280,8 @@ th {
     margin-right: 33%;
     margin-top: -3%;
 }
+
+.form-group.required label:after {
+    content: " *";
+    color: red;
+}

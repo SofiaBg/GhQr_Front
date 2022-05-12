@@ -3,7 +3,7 @@ import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@ang
 //import {AuthenticationService} from '../services/authentication.sevice';
 import { GipService } from '../services/gip.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationMerchant } from '../services/RegistrationMerchant';
 import { BnNgIdleService } from 'bn-ng-idle';//++
 import $ from "jquery";
@@ -29,6 +29,7 @@ import { MerchantBranch } from '../classes/MerchantBranch';
 import { ModeSending } from '../classes/ModeSending';
 import { SiteStatus } from '../classes/SiteStatus';
 import { any } from '@uirouter/core';
+import { BranchLocator } from '../classes/branch-locator';
 
 export class Merchant {
 
@@ -48,7 +49,7 @@ export class Merchant {
     legalidtype: any, tin: any, upiidentifier: any, startdate: any, businessphysicaladdress2: any, lastname: any,
     doingbusinessas: any, status: any, type: any, country: any, businessphysicaladdress3: any, func: any, sites: any[],
     state: any, zipcode: any, postalcode: any, contractnumber: any, legalform: any, acctstartdt: any,
-    mainactivity: any, mainactivitytype: any, dateOfIncorporation:any) {
+    mainactivity: any, mainactivitytype: any, dateOfIncorporation: any) {
 
   }
 }
@@ -60,7 +61,7 @@ export class Merchant {
 })
 export class NewMerchantComponent extends BaseComponent implements OnInit {
 
-  formGroup: FormGroup;
+  // formGroup: FormGroup;
 
 
   user: any;
@@ -98,12 +99,14 @@ export class NewMerchantComponent extends BaseComponent implements OnInit {
 
   stringJson: any;
 
-  stringObject: any;
+  public stringObject: any;
   userName: any;
+  branchLocator: BranchLocator[];
+
 
 
   //private authService:AuthenticationService,
-  constructor(private gipService: GipService, router: Router, public fb: FormBuilder, private bnIdle: BnNgIdleService, private modalService: NgbModal) {
+  constructor(private gipService: GipService, router: Router, private bnIdle: BnNgIdleService, private modalService: NgbModal) {
     super(router);
     this.titles = [
       { code: '01', name: "Mr" },
@@ -115,11 +118,23 @@ export class NewMerchantComponent extends BaseComponent implements OnInit {
   }
 
 
-  merchantPage(){
-    this.router.navigateByUrl("/merchant")
+  merchantPage() {
+    this.router.navigateByUrl("/merchant") 
+   if (localStorage.getItem('role') == 'BRANCH OFFICIER') {
+      this.router.navigate(['/createSingleBulkMerchant'])
+      return false;
+    } else if(localStorage.getItem('role') == 'OFFICIER'){
+      this.router.navigate(['/merchant'])
+    }
   }
 
   ngOnInit() {
+    console.log("get branch locator");
+    this.gipService.getMerchantBranchLocator().subscribe((data) => {
+      console.log("get branch");
+      this.branchLocator = data;
+      console.log(data);
+    });
 
     /* SAFIA 14.09.2021 */
     this.gipService.getMerchantCities().subscribe(data => {
@@ -206,24 +221,47 @@ export class NewMerchantComponent extends BaseComponent implements OnInit {
           }
         });*/
   }
-
+  regN: any;
   /*SAFIA 28.09.2021 */
+
   getMerchantInfoByAccountNumber(accountNumber) {
     accountNumber = $('#accountnumber').val();
     console.log('Account Number = ', accountNumber)
+
+    // $('#dateOfIncorporation').val("aaaaaaaaaaaaaaaa")
+    //   $('#businessRegNo').val("7895465465654564")
     this.gipService.getMerchantInfoByAccountNumber(accountNumber).subscribe(data => {
       console.log(data);
+      // // Convert String obect to JSON
+      // this.stringJson = JSON.stringify(data);
+      // // console.log("String json object :", this.stringJson);
+      // // console.log("Type :", typeof this.stringJson);
+      // // ConvertjSON to an object
+      // this.regN = this.stringObject.businessRegNo;
+
+      // console.log('BUSINESS', $('#businessregno').val(this.regN))
+
+      // this.stringObject = JSON.parse(this.stringJson);
+      // console.log("JSON object -   ", this.stringObject);
+      // console.log('ADDRESS         ',this.stringObject.address);
+      // console.log('DATE OF BIRTH   ',this.stringObject.dateOfBirth);
+      
       // Convert String obect to JSON
       this.stringJson = JSON.stringify(data);
-      // console.log("String json object :", this.stringJson);
-      // console.log("Type :", typeof this.stringJson);
+      console.log("String json object :", this.stringJson);
+      console.log("Type :", typeof this.stringJson);
 
       // ConvertjSON to an object
       this.stringObject = JSON.parse(this.stringJson);
       console.log("JSON object -", this.stringObject);
       console.log(this.stringObject.address)
-      console.log(this.stringObject.dateOfBirth)
+
+      if (data === null || data === undefined) {
+        this.errorMessage = "No, informations to show."
+      }
     });
+
+    $('#businessregno').val(this.regN);
   }
 
   //+++++
@@ -585,7 +623,8 @@ export class NewSiteModal {
   }
 
   modal(index: number = -1) {
-    this.modalService.open(NewAcceptorPointModal, { backdrop: 'static', keyboard: false }).result.then(
+    // this.modalService.open(NewAcceptorPointModal, { backdrop: 'static', keyboard: false }).result.then(
+    this.modalService.open(NewAcceptorPointModal, { size: 'lg', keyboard: false }).result.then(
       (newRow) => {
         if (index == -1) {
           NewSiteModal.acceptorPoints.push(newRow);
@@ -609,35 +648,35 @@ export class NewSiteModal {
   save() {
 
     if ($('#sitestatus').empty || $('#sitename').empty || $('#sitelocation').empty || $('#siteopeningdate').empty
-    || $('#siteemail').empty || $('#sitemobilenumber').empty
-  ) {
-    this.errorMessage = "Please fill in the required fields."
-  }else{
-    let newRow = {
-      "location": $('#sitelocation').val(),
-      "typeOfSite": $('#sitetypeofsite').val(),
-      "openingDate": $('#siteopeningdate').val(),
-      "country": $('#sitecountry').val(),
-      "region": $('#siteregion').val(),
-      "city": $('#sitecity').val(),
-      "physicalAddress1": $('#sitephysicaladdress1').val(),
-      "physicalAddress2": $('#sitephysicaladdress2').val(),
-      "physicalAddress3": $('#sitephysicaladdress3').val(),
-      "digitalAddress": $('#sitedigitaladdress').val(),
-      "email": $('#siteemail').val(),
-      "mobileNumber": $('#sitemobilenumber').val(),
-      "acceptorPoints": NewSiteModal.acceptorPoints,
-      "name": $('#sitename').val(),
-      "status": $('#sitestatus').val(),
-      "state": $('#sitestate').val(),
-      "postalCode": $('#sitepostalcode').val(),
-      "zipCode": $('#sitezipcode').val()
-    };
+      || $('#siteemail').empty || $('#sitemobilenumber').empty
+    ) {
+      this.errorMessage = "Please fill in the required fields."
+    } else {
+      let newRow = {
+        "location": $('#sitelocation').val(),
+        "typeOfSite": $('#sitetypeofsite').val(),
+        "openingDate": $('#siteopeningdate').val(),
+        "country": $('#sitecountry').val(),
+        "region": $('#siteregion').val(),
+        "city": $('#sitecity').val(),
+        "physicalAddress1": $('#sitephysicaladdress1').val(),
+        "physicalAddress2": $('#sitephysicaladdress2').val(),
+        "physicalAddress3": $('#sitephysicaladdress3').val(),
+        "digitalAddress": $('#sitedigitaladdress').val(),
+        "email": $('#siteemail').val(),
+        "mobileNumber": $('#sitemobilenumber').val(),
+        "acceptorPoints": NewSiteModal.acceptorPoints,
+        "name": $('#sitename').val(),
+        "status": $('#sitestatus').val(),
+        "state": $('#sitestate').val(),
+        "postalCode": $('#sitepostalcode').val(),
+        "zipCode": $('#sitezipcode').val()
+      };
 
 
-    this.activeModal.close(newRow);
-  }
-  
+      this.activeModal.close(newRow);
+    }
+
   }
 
   remove(index) {
@@ -665,17 +704,17 @@ export class NewAcceptorPointModal {
   save() {
 
     if ($('#acceptorpoint').empty || $('#acceptorpointacronym').empty || $('#acceptorpointmobilenumber').empty) {
-    this.errorMessage = "Please fill in the required fields."
-  }else{
-    let newRow = {
-      "name": $('#acceptorpoint').val(),
-      "acronym": $('#acceptorpointacronym').val(),
-      "mobileNumber": $('#acceptorpointmobilenumber').val()
-    };
+      this.errorMessage = "Please fill in the required fields."
+    } else {
+      let newRow = {
+        "name": $('#acceptorpoint').val(),
+        "acronym": $('#acceptorpointacronym').val(),
+        "mobileNumber": $('#acceptorpointmobilenumber').val()
+      };
 
-    this.activeModal.close(newRow);
-  }
-    
+      this.activeModal.close(newRow);
+    }
+
   }
 
   close() {

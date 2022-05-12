@@ -11,13 +11,13 @@
         <div class="content-header">
             <div style="height: 30px;"></div>
             <br>
-            <nav *ngIf="this.isSuperAdmin" aria-label="breadcrumb">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a (click)="merchant()"><i
-                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
-                                    aria-hidden="true"></i>
-                            </a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Bulk Merchant Onboarding</li>
+                    <li class="breadcrumb-item"><a (click)="homePage()"><i
+                                style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                aria-hidden="true"></i>
+                        </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Users List</li>
                 </ol>
             </nav>
             <!-- SAFIA 06.10.2021 -->
@@ -26,7 +26,7 @@
                     <!-- <h4>Search </h4> -->
                     <div class="input-group pull-right">
                         <button style="background-color: #000 !important; border-color: black;" id="btn1" type="button" class="btn btn-danger mok mb-8" (click)="newAdmin()"><i class="icon fa fa-user-plus"></i>
-                            New Admin</button>
+                            New User</button>
                     </div>
                 </div>
                 <div class="input-group-btn ">
@@ -39,7 +39,7 @@
                             <div class="input-group input-group-sm" style="    width: 500px;">
                                 <!--<input type="text" name="iid" [(ngModel)]="id"  class="form-control pull-right" placeholder="Search by ID Account">-->
                                 <!-- SAFIA 28.09.2021 <input type="text" name="iid" id="qrMerchantName" [(ngModel)]="id" class="form-control pull-right" placeholder="Search by Merchant Name"> -->
-                                <input type="text" class="form-control" placeholder="Enter Keyword for filter result" [(ngModel)]="keyword">
+                                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="keyword">
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Administrator List
+                    Users List
                 </div>
                 <div class="panel-body">
                     <!-- <div class="input-group pull-right">
@@ -57,23 +57,38 @@
                     <table class="table table-hover table-responsive table-striped">
                         <thead>
                             <tr>
+                                <th>Creation Date</th>
                                 <th>Username</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
+                                <!-- <th>Company Name</th> -->
+                                <th>Branch</th>
+                                <th>Mobile Number</th>
                                 <th>Email</th>
+                                <th>User Role</th>
+                                <th>Blocked</th>
+                                <th>Created By</th>
                                 <th>-</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="clickable" *ngFor="let admin of shownAdmin | filter : keyword  " (click)="adminDetails(admin)">
+                            <tr class="clickable" *ngFor="let person of shownPerson | filter : keyword  " (click)="adminDetails(person)">
                                 <!-- SAFIA 06.10.2021 <tr class="clickable" *ngFor="let admin of shownAdmin" (click)="adminDetails(admin)"> -->
-                                <td>{{admin.user.username}}</td>
-                                <td>{{admin.firstName}}</td>
-                                <td>{{admin.lastName}}</td>
-                                <td>{{admin.email}}</td>
+                                <td>{{person.createdAt}}</td>
+                                <td>{{person.user.username}}</td>
+                                <td>{{person.firstName}}</td>
+                                <td>{{person.lastName}}</td>
+                                <!-- <td>{{person.companyName}}</td> -->
+                                <td>{{person.branch}}</td>
+                                <td>{{person.phone}}</td>
+                                <td>{{person.email}}</td>
+                                <td>{{person.typePers}}</td>
+                                <td>{{person.user.blocked ? "Yes" : "No"}}</td>
+                                <td>{{person.createdBy}}</td>
+
                                 <!-- SAFIA 06.10.2021 -->
                                 <td>
-                                    <button type="button" class="btn btn-default" (click)="adminDetails(admin)">Detail</button>
+                                    <button type="button" class="btn btn-default" (click)="adminDetails(person)">Details</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -92,11 +107,11 @@
 
                                 <div class="input-group form-inline input-group-sm w-100 pull-left" style="width: 122px;">
                                     <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
-                                                <option selected value="5">5</option>
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                </select>
+                                        <option selected value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +126,7 @@
                         <span class="input-group-btn">
                             <button id="blackBtn" type="submit" class="btn btn-danger mok"
                                 (click)="gotoPage(currentpage+1)"
-                                [disabled]="!shownAdmin || currentpage+1>=totalPages">Next</button>
+                                [disabled]="!shownPerson || currentpage+1>=totalPages">Next</button>
                         </span>
                     </div>
                 </div>

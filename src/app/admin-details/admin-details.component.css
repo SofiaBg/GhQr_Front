@@ -11,3 +11,45 @@
     background: #ff2a2a !important;
     border-color: #ff2a2a !important;
 }
+
+.toggle-switch {
+    height: 36px;
+    width: 70px;
+    display: inline-block;
+    position: relative;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.toggle-switch input:checked+.slider {
+    background-color: #ff2a2a;
+}
+
+.toggle-switch input:checked+.slider::after {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #5f666a;
+    border-radius: 5px;
+}
+
+.toggle-switch .slider::after {
+    position: absolute;
+    content: '';
+    height: 28px;
+    width: 28px;
+    background-color: white;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 5px;
+}

@@ -1,5 +1,54 @@
-.clickable {
+div.x {
+    padding-top: 40px;
+    padding-left: 10px;
+}
+
+
+/* SAFIA 09.12.2021*/
+
+.scroll-to-top {
+    position: fixed;
+    background: red;
+    bottom: 0;
+    right: 0;
     cursor: pointer;
+    color: white;
+    height: 36px;
+    width: 36px;
+    font-size: 18px;
+    border-radius: 4px;
+    bottom: 20px;
+    right: 30px;
+}
+
+button.btn-y {
+    /* background: #ff2a2a; */
+    background: black;
+    color: #fff;
+}
+
+a.btn-a {
+    background: #ff2a2a;
+    color: #fff;
+}
+
+th {
+    /* SAFIA 20.09.2021 */
+    /* background: #bdbdbd; */
+    background: black;
+    color: #fff;
+}
+
+.clickable {
+    cursor: pointer!important;
+}
+
+.page-input {
+    width: 64px;
+}
+
+.inline-block {
+    display: inline-block;
 }
 
 .pagination-w {
@@ -10,62 +59,43 @@
     vertical-align: bottom;
 }
 
-.mr-8 {
-    margin-right: 8px;
-}
-
-.mb-8 {
-    margin-bottom: 8px;
-}
-
 .mt-8 {
     margin-top: 8px;
 }
 
-.mt-24 {
-    margin-top: 24px;
-}
 
-.ml-8 {
-    margin-left: 8px;
-}
-
-.center-vertical {
-    vertical-align: middle;
-}
-
-.o-auto {
-    overflow: auto;
-}
-
-.pt-0 {
-    padding-top: 0
-}
-
-.pb-0 {
-    padding-bottom: 0
-}
-
-.sharp-bottom-corners {
-    border-radius: 4px 4px 0 0!important;
-}
-
-button.sharp-bottom-corners {
-    border-bottom: none;
-}
-
-#bnt1 {
-    margin-top: -30px;
-    background-color: #222d32b5 !important;
-}
+/*SAFIA 20.09.2021 */
 
 #blackBtn {
-    background: #222d32 !important;
-    border-color: #222d32;
+    background: #222d32b5 !important;
+    border-color: #222d32b5;
+}
+
+#paginationValue {
+    text-align: center;
+}
+
+#action {
+    width: 190px;
+}
+
+.nav-tabs-custom>.nav-tabs>li.active {
+    border-top-color: #ff2a2a;
 }
 
 th {
-    background-color: #222d32;
+    background: #222d32 !important;
     background-color: #222d32 !important;
-    color: white;
+}
+
+
+/* #btnSearch {
+    margin-top: 9px;
+    margin-right: 16px;
+    background-color: #222d32;
+    border: #222d32;
+} */
+
+#qrcode {
+    text-align: center;
 }

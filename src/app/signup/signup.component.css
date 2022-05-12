@@ -85,8 +85,8 @@ body {
 }
 
 #btn1 {
-    background-color: #222d32b5;
-    border: #222d32b5;
+    background-color: #222d32b5 !important;
+    border: #222d32b5 !important;
     text-decoration-color: white;
 }
 
@@ -96,4 +96,19 @@ body {
 
 #p2 {
     margin-right: 160px;
+}
+
+.btn-block:hover,
+.btn-block:focus,
+.btn-block:active,
+.btn-block.active,
+.open>.dropdown-toggle.btn-block {
+    color: #ffffff !important;
+    /*set the color you want here*/
+}
+
+form i {
+    /* margin-left: -40px; */
+    cursor: pointer;
+    /* color: black; */
 }

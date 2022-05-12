@@ -1,32 +1,63 @@
 <!--<body style="background: #ecf0f5;"> -->
 
 <body style="background: #ffffff;">
-    <div class="login-box">
+
+    <!-- <div class="login-box"> -->
+    <div class="col-xs-offset-4 col-xs-4">
 
         <!-- /.login-logo  -->
         <div class="login-box-body">
+            <div class="login-logo">
+                <!-- <img src="assets/images/GhIPSS-logo.png" class="logo"  id="logo" style="float: center; position: relative; ">-->
+                <img src="assets/images/ic_logo_cbgmob.png" class="logo" id="logo" style="float: center; position: relative; ">
+                <!-- <img src ="assets/images/logo1.jpg" class="logo"  id="logo" style="float: center; position: relative; ">-->
+                <b></b>
+                <!-- <h3><b>GHQR MERCHANT PORTAL</b> </h3> -->
+                <h3><b>CBG MERCHANT PORTAL</b> </h3>
+
+            </div>
             <ng-container *ngIf="showmsg">
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-triangle"></i> &nbsp;&nbsp;<strong>{{
-              msg1
-            }}</strong>
+                        msg1
+                        }}</strong>
                 </div>
             </ng-container>
 
 
 
 
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="inValidInfos==true && stepPassword == false">
+                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> Business Registration Number / Date of Incorporation is incorrect !
+                </h5>
+            </div>
 
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessage==true ">
+                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> All fields marked with an asterisk (*) are required.</h4> -->
+                <h4 style="color:  #B83C37;  background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert !
+                </h4>
+                <!-- <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i>{{errorArray}}</h5> -->
+                <h5 style="color:  #B83C37;">
+                    <ul *ngFor="let error of errorArray">
+                        <li>
+                            {{error}}
+                        </li>
+                    </ul>
+                </h5>
+            </div>
             <!--<ng-template #contentf let-c="close" >
-        <ng-container *ngIf="step2">-->
+              <ng-container *ngIf="step2">-->
             <form #newpass="ngForm" (ngSubmit)="resetpassword(newpass.value)">
                 <div class="modal-header">
                     <h4 class="modal-title" id="modal-basic-title">
-                        <i class="glyphicon glyphicon-lock"></i>&nbsp;&nbsp; Reset Password :
+                        <i class="glyphicon glyphicon-lock"></i>&nbsp;&nbsp; Reset Password
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <ng-container *ngIf="msgarrayresetP">
+                    <!-- <ng-container *ngIf="msgarrayresetP">
                         <div class="alert alert-danger" role="alert">
                             <strong>Please Fill out The Form</strong>
                             <ul *ngFor="let error of errorarrayresetP">
@@ -35,50 +66,177 @@
                                 </li>
                             </ul>
                         </div>
-                    </ng-container>
+                    </ng-container> -->
+                    <div class="row" style="display: flex;">
+                        <i class="fa fa-info-circle"></i>
+                        <p class="login-box-msg">Password must be at least 8 characters and contain a number and an uppercase and lowercase letters </p>
 
-
-
-                    <div>
-                        Change Your password :
                     </div>
-                    <br />
+
+                    <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="msgarrayresetP==true">
+                        <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                        <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> <strong> Please Fill out The Form
+                            </strong></h5>
+
+                        <ul *ngFor="let error of errorarrayresetP">
+                            <li style="color: #B83C37;">
+                                {{error}}
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <!-- <div>
+                        Change Your password :
+                    </div> -->
+                    <br/>
                     <div class="row">
                         <div class="col"></div>
-                        <div class="col-8">
-                            <div class="row">
-                                <div class="col-form-label">
-                                    <label for="">Password</label>
-                                </div>
-                                <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;-->
-                                <div class="col-8">
-                                    <input ngModel name="password1" type="password" class="form-control" placeholder="Password" (change)="GETID1($event.target.value)" />
+                        <div class="row">
+                            <div class="form-group has-feedback">
+                                <div style="display: flex;">
+                                    <input type="text" [(ngModel)]="businessRegNoInput" id="businessRegNo" name="businessRegNo" class="form-control" placeholder="Business Registration Number" />
                                 </div>
                             </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-form-label">
-                                    <label for="">Confirmation Password</label>
-                                </div>
-                                <!--&nbsp;&nbsp;-->
-                                <div class="col-8">
-                                    <input ngModel name="Password2" type="password" class="form-control" placeholder="Confirmation Password" />
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="form-group has-feedback">
+                                <div style="display: flex;">
+                                    <input type="date" [(ngModel)]="dateOfIncInput" id="dateOfIncorporation" name="dateOfIncorporation" class="form-control" placeholder="Date Of Incorporation" />
                                 </div>
                             </div>
                         </div>
                         <div class="col"></div>
                     </div>
+                    <div class="row ">
+                        <div class="row ">
+                            <div class=" col-xs-6 pull-right ">
+                                <button style="width: 100%; background-color: #222d32b5; border: #222d32b5; " id="btn1 " (click)="checkValidInfos() " class="btn btn-block " type="button">
+                                    Reset password
+                                </button>
+                            </div>
+                            <div class=" col-xs-6 pull-left ">
+                                <button (click)="cancelbutton() " type="button " class="btn btn-block ">Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col"></div>
+                        <!-- <div class="col-8"> -->
+                        <div class="row">
+                            <!-- <div class="form-group has-feedback">
+                                <label for="">Password</label>
+                            </div> -->
+                            <div class="form-group has-feedback">
+                                <div style="display: flex;">
+
+                                    <input [type]="passwordField1 ? 'text' : 'password'" [(ngModel)]="password1" id="password1" name="password1" class="form-control" placeholder="Password" (change)="GETID1($event.target.value)" />
+                                    <i style="margin-left: -26px; color: black; margin-top: 8px;" class="fa" [ngClass]="{
+                                        'fa-eye-slash': !passwordField1,
+                                        'fa-eye': passwordField1
+                                      }" (click)="togglePassword1TextType()"></i>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <br />
+                        <div class="row">
+                            <!-- <div class="col-form-label">
+                                <label for="">Confirmation Password</label>
+                            </div> -->
+                            <!--&nbsp;&nbsp;-->
+                            <div class="form-group has-feedback">
+                                <div style="display: flex;">
+                                    <input [type]="passwordField2 ? 'text' : 'password'" [(ngModel)]="password2" id="password2" name="Password2" class="form-control" placeholder="Password Confirmation" />
+                                    <i style="margin-left: -26px; color: black; margin-top: 8px;" class="fa" [ngClass]="{
+                                        'fa-eye-slash': !passwordField2,
+                                        'fa-eye': passwordField2
+                                      }" (click)="togglePassword2TextType()"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </div> -->
+                        <div class="col"></div>
+                    </div>
                 </div>
-                <br/>
-                <div class="modal-footer">
+                <br />
+                <!-- <div class="modal-footer">
                     <button type="submit" class="btn btn-secondary">submit</button>
                     <button type="button" class="btn btn-outline-secondary" (click)="cancelbutton()">
                 cancel
               </button>
+                </div> -->
+                <div *ngIf="showInput2==true" class="row ">
+                    <div class="text-center ">
+                        <div class="row ">
+                            <div class=" col-xs-6 pull-right ">
+                                <!-- <button style="background-color: #222d32b5;
+                                border: #222d32b5;" id="btn1 " class="btn btn-block " type="submit">
+                                        Submit
+                                    </button> -->
+                                <button style="width: 100%; background-color: #222d32b5;
+                                    border: #222d32b5;" (click)="sendOTP()" id="btn1 " class="btn btn-block " type="button">
+                                    <!-- <button style="width: 100%;" (click)="openff(contentf)" id="btn1 " class="btn btn-block " type="submit" class="btn btn-secondary"> -->
+                                    Reset password
+                                </button>
+
+                            </div>
+                            <div class=" col-xs-6 pull-left ">
+                                <button (click)="cancelbutton() " type="button " class="btn btn-block ">Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
+            <section *ngIf="stepOtp==true">
+                <!-- <form style="display: flex;">
+                    <input style="margin-left: -4%; margin-right: -1%;" minlength="6" maxlength="6" id="otp" ng-model="otp" type="password" name="otp" ngModel="" placeholder="OTP" class="form-control" required value="" />
+
+                    <span id="phoneIcon " class="glyphicon glyphicon-phone form-control-feedback "></span>
+                    <button style="margin-right: -22%;" (click)="validate()" class="btn btn-danger " id="btnCheck " type="button ">
+                        <i id="iconCheck " class="fa fa-check " aria-hidden="true "></i></button>
+                </form> -->
+                <form>
+                    <div class="form-group has-feedback ">
+
+                        <input style="margin-left: -3%; width: 107%;" minlength="6" maxlength="6" id="otp" [(ngModel)]="otp" type="password" name="otp" placeholder="OTP" class="form-control" required />
+                    </div>
+                    <!-- <input ng-model="otp " type="text " name="otp " id="otp " ngModel=" " placeholder="OTP " class="form-control " required /> -->
+                    <span id="phoneIcon " class="glyphicon glyphicon-phone form-control-feedback "></span>
+                    <!-- <button (click)="validate(phoneNumber,otp) " class="btn btn-danger " id="btnCheck " type="button "></button> -->
+                    <!-- <button class="btn btn-danger " id="btnCheck " type="button "></button> -->
+                </form>
+                <div *ngIf="showInput2==false " class="row ">
+                    <!-- <div class="col-xs-offset-3 col-xs-6 ">
+                        <button (click)="resetpassword(newpass.value) " style="background-color: #222d32b5; border: #222d32b5; " id="btn1 " class="btn btn-block " type="submit ">
+                            Submit
+                        </button>
+                    </div> -->
+                    <div class="row ">
+                        <div class=" col-xs-6 pull-right ">
+                            <!-- <button style="background-color: #222d32b5; border: #222d32b5; " id="btn1 " class="btn btn-block " type="submit ">
+                                    Submit
+                                </button> -->
+                            <button style="width: 100%; background-color: #222d32b5; border: #222d32b5; " id="btn1 " (click)="validate(newpass.value) " class="btn btn-block " type="button">
+                                <!-- <button style="width: 100%; " (click)="openff(contentf) " id="btn1 " class="btn btn-block " type="submit " class="btn btn-secondary "> -->
+                                Reset password
+                            </button>
+
+                        </div>
+                        <div class=" col-xs-6 pull-left ">
+                            <button (click)="cancelbutton() " type="button " class="btn btn-block ">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
 
 
             <!--</ng-container>
@@ -90,7 +248,7 @@
 
 
 
-            <!--   <a (click)="onRegister()" class="text-center">Require a new membership</a> -->
+            <!--   <a (click)="onRegister() " class="text-center ">Require a new membership</a> -->
 
         </div>
         <!-- /.login-box-body -->

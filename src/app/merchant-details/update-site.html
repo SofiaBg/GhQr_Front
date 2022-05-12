@@ -1,0 +1,193 @@
+<!-- modal new site -->
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Site Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+</div>
+<div class="modal-body">
+
+    <div class="alert alert-danger" *ngIf="updateSiteFailed">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Error</strong><br>Failed to update Site
+    </div>
+
+    <div class="alert alert-warning" *ngIf="updateSiteSuccess">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <strong>Success</strong><br>Site updated successfully
+    </div>
+
+    <form>
+        <div class="form-group">
+
+            <div class="form-section-header mtop-16">
+                <b>Site Identification</b>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="siteid">Site Id</label>
+                    <input type="text" class="form-control" name="siteid" id="siteid" aria-disabled="true" disabled>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitebranch">Branch</label>
+                    <input disabled type="text" class="form-control" name="sitebranch" id="sitebranch" aria-disabled="true">
+                </div>
+                <!--<div class="form-group col-md-3 col-sm-6 col-xs-12">
+              <label for="sitemerchantid">Merchant ID</label>
+              <input type="text" class="form-control" name="sitemerchantid" id="sitemerchantid" aria-disabled="true" disabled>
+            </div>    -->
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitecompanyname">Company Name</label>
+                    <input disabled type="text" class="form-control" name="sitecompanyname" id="sitecompanyname" aria-disabled="true">
+                </div>
+                <div class="form-group col-md-3 col-sm-6 required">
+                    <label for="sitename">Site Name</label>
+                    <input disabled type="text" class="form-control" name="sitename" id="sitename">
+                </div>
+                <div class="form-group col-md-3 col-sm-6 required">
+                    <label for="sitestatus">Status</label>
+                    <select disabled class="form-control" name="sitestatus" id="sitestatus" [disabled]="updatingMerchantSiteStatus" (change)="updateStatus()">
+                <option value="P">In Progress</option>
+                <option value="N">Normal</option>
+                <option value="S">Suspended</option>
+                <option value="C">Closed</option>
+              </select>
+                </div>
+                <!--<div class="form-group col-md-3 col-sm-6 col-xs-12">
+              <label for="siteid">Site ID</label>
+              <input type="text" class="form-control" name="siteid" id="siteid" aria-disabled="true" disabled>
+            </div>   -->
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
+                    <label for="sitelocation">Location</label>
+                    <input disabled type="text" class="form-control" name="sitelocation" id="sitelocation">
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitetypeofsite">Type of Site</label>
+                    <input disabled type="text" class="form-control" name="sitetypeofsite" id="sitetypeofsite">
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12 required">
+                    <label for="siteopeningdate">Opening Date</label>
+                    <input disabled type="text" class="form-control" name="siteopeningdate" id="siteopeningdate">
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitecountry">Country</label>
+                    <input disabled type="text" class="form-control" name="sitecountry" id="sitecountry">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="siteregion">Region</label>
+                    <select disabled class="form-control" name="siteregion" id="siteregion">
+                <option value="accra">ACCRA</option>
+              </select>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitecity">City</label>
+                    <select disabled class="form-control" name="sitecity" id="sitecity">
+                <option value="accra">ACCRA</option>
+              </select>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitephysicaladdress1">Physical Address 1</label>
+                    <input disabled type="text" class="form-control" name="sitephysicaladdress1" id="sitephysicaladdress1">
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitephysicaladdress2">Physical Address 2</label>
+                    <input disabled type="text" class="form-control" name="sitephysicaladdress2" id="sitephysicaladdress2">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitephysicaladdress3">Physical Address 3</label>
+                    <input disabled type="text" class="form-control" name="sitephysicaladdress3" id="sitephysicaladdress3">
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitedigitaladdress">Digital Address</label>
+                    <input disabled type="text" class="form-control" name="sitedigitaladdress" id="sitedigitaladdress">
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitestate">State</label>
+                    <select disabled class="form-control" name="sitestate" id="sitestate" aria-required="true" required>
+                <option value="001">ACCRA</option>
+              </select>
+                </div>
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitepostalcode">Postal Code</label>
+                    <input disabled type="text" class="form-control" name="sitepostalcode" id="sitepostalcode">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-3 col-sm-6 col-xs-12">
+                    <label for="sitezipcode">ZIP Code</label>
+                    <select class="form-control" name="sitezipcode" id="sitezipcode">
+                <option value="00000001">00000001</option>
+              </select>
+                </div>
+            </div>
+
+            <div class="form-section-header mtop-16">
+                <b>Site Contact</b>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-6 col-xs-12 required">
+                    <label for="siteemail">Email</label>
+                    <input disabled type="text" class="form-control" name="siteemail" id="siteemail">
+                </div>
+                <div class="form-group col-sm-6 col-xs-12 required">
+                    <label for="sitemobilenumber">Mobile Number</label>
+                    <input disabled type="text" class="form-control" name="sitemobilenumber" id="sitemobilenumber">
+                </div>
+            </div>
+
+            <div class="form-section-header mtop-16">
+                <b>Acceptor Points</b>
+            </div>
+
+            <table class="table table-hover table-striped table-bordered table-responsive">
+                <thead id="tabHead">
+                    <tr>
+
+                        <th>Acceptor Point ID</th>
+                        <th>Acceptor Point Name</th>
+                        <th>Acceptor Point Acronym</th>
+                        <th>Mobile Number</th>
+                        <th>Generate QR</th>
+                    </tr>
+                </thead>
+                <tbody id="acceptorpoints" #acceptorpoints>
+                    <tr *ngFor="let acceptorpoint of accPoints; let i = index;">
+                        <td>{{acceptorpoint.id}}</td>
+                        <td>{{acceptorpoint.name}}</td>
+                        <td>{{acceptorpoint.acronym}}</td>
+                        <td>{{acceptorpoint.mobileNumber}}</td>
+                        <td><button id="blackBtn" *ngIf="acceptorpoint.saved == true" class="btn btn-primary" (click)="generateQr(i)"><span class="fa fa-qrcode"></span></button>
+                            <!-- <button id="blackBtn" class="btn btn-primary ml-8" (click)="modal(i)"><span class="fa fa-pencil"></span></button> -->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="text-left col-xs-6">
+            <button id="btnClose" class="btn btn-danger" (click)="close()">Close</button>
+        </div>
+        <!-- <div class="text-right col-xs-6">
+            <button id="blackBtn" class="btn btn-primary" (click)="save()" [disabled]="updatingMerchantSite || updatingMerchantSiteStatus"> Save</button>
+        </div> -->
+    </div>
+</div>

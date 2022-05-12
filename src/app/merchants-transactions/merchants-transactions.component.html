@@ -1,0 +1,387 @@
+<app-appheader>
+</app-appheader>
+<app-appmenu></app-appmenu>
+
+
+<div class="wrapper">
+
+
+
+    <div class="content-wrapper">
+
+
+
+        <div class="content-header">
+            <div style="height: 30px;"></div>
+            <br>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="homePage()"><i
+                                style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                aria-hidden="true"></i>
+                        </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Merchant Transactions</li>
+                </ol>
+            </nav>
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <h5 style="color:  #270;"><i class="fa fa-check"> </i> PDF Generated successfully. Redirecting in 3 seconds...</h5>
+            </div>
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showT==true">
+                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> No Transactions Found {{errMessage}}!
+                </h5>
+            </div>
+
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showErrorDate==true">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br />
+                <p style="color:  #B83C37;">Date From and Date To are required !</p>
+            </div>
+
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showErrorDateFrom==true">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br />
+                <p style="color:  #B83C37;">Date From is required !</p>
+            </div>
+
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showErrorDateTo==true">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br />
+                <p style="color:  #B83C37;">Date To is required !</p>
+            </div>
+            <!-- SAFIA 06.10.2021 -->
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <div class="row">
+                        <div class="row" style="margin: 0%;">
+                            <div class="form-group col-md-3 col-xs-6 required">
+                                <label for="dateFrom">Date From</label>
+                                <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control" style="width: 150px; margin-right: 4px;" placeholder="Date Format DD-MM-YYY">
+
+                            </div>
+                            <div class="form-group col-md-3 col-xs-6 required">
+                                <label for="dateTo">Date To</label>
+                                <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control" style="width: 150px; margin: 0;" placeholder="Date Format DD-MM-YYY">
+
+                            </div>
+
+                        </div>
+
+                        <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
+                            <div style="display: inline-block; height: 100%">
+                                <mat-spinner style="margin: 0 auto; vertical-align: middle;" diameter="20" color="black">
+                                </mat-spinner>
+                            </div>
+                            <div style="display: inline-block">Loading...</div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 4px;">
+
+                        <div class="col-xs-12">
+                            <div id="content" class="col-xs-4" #content>
+
+                            </div>
+
+                            <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="refresh()">Refresh</button>
+                            <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="allQrTransactionPdf()"> Export
+                                to PDF</button>
+                            <button id="btn" type="submit" class="btn btn-danger mok pull-right mr-8" (click)="allQrTransactionSearch()">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="box-body" style=" padding: 30px;">
+                    <div class="box-tools">
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style=" width: 500px;">
+                                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="keyword">
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Merchant Transactions
+                </div>
+                <div class="panel-body">
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style=" width: 500px;">
+                            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="keyword">
+                        </div>
+                    </div>
+                    <br>
+                    <!-- <div class="input-group pull-right">
+                        <button type="button" class="btn btn-danger mok mb-8" (click)="newAdmin()"><i class="icon fa fa-user-plus"></i> New Admin</button>
+                    </div> -->
+                    <table class="table table-hover table-responsive table-striped">
+                        <thead class="thead-dark bg-info">
+
+                            <tr>
+                                <th> Booking Date</th>
+                                <th> Value Date</th>
+                                <th> Description </th>
+                                <th> Operation Reference</th>
+                                <th> Debit</th>
+                                <th> Credit </th>
+                                <th> Closing </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr *ngFor='let t of showResult | filter : keyword'>
+                                <td>{{t.bookingDate}}</td>
+                                <td>{{t.valueDate}}</td>
+                                <td>{{t.description2}}</td>
+                                <td>{{t.reference}}</td>
+                                <td>{{t.debit}}</td>
+                                <td>{{t.credit}}</td>
+                                <td>{{t.closingBalance}}</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer o-auto" style="height: 60px;">
+                    <div class="form-group form-inline" style="display: inline-block; margin-top: -10px;">
+                        <div class="row">
+
+                            <div class="col-sm">
+
+                                <label for="pagesize">Page size</label>
+                            </div>
+                            <div class="col-sm">
+                                <div class="input-group form-inline input-group-sm w-100 pull-left" style="width: 122px;">
+                                    <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group pagination-w pull-right">
+                        <span class="input-group-btn">
+                            <button id="btn" type="submit" class="btn btn-danger mok"
+                                (click)="gotoPage(currentpage-1)"
+                                [disabled]="currentpage<=0">Previous</button>
+                        </span>
+                        <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" (pageChange)="p = $event" />
+                        </form>
+                        <span class="input-group-btn">
+                            <button id="btn" type="submit" class="btn btn-danger mok"
+                                (click)="gotoPage(currentpage+1)"
+                                [disabled]="!showResult || currentpage+1>=totalPages">Next</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <app-appheader>
+</app-appheader>
+<app-appmenu></app-appmenu>
+
+
+<div class="wrapper">
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div>
+                <div class="panel-body">
+
+
+                    <br>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a (click)="detailPage()"><i
+                                        style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                        aria-hidden="true"></i>
+                                </a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Merchant transaction
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <div class="callout callout-danger" *ngIf='hide==false'>
+                        <h4>Warning!</h4>
+
+                        <p>{{err.toString()}}</p>
+                    </div>
+                    <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true">
+                        <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5 style="color:  #270;"><i class="fa fa-check"> </i> PDF Generated successfully. Redirecting in 3 seconds...</h5>
+                    </div>
+                    <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showT==true">
+                        <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> No Transactions Found !
+                        </h5>
+                    </div>
+
+                    <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showErrorDate==true">
+                        <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br />
+                        <p style="color:  #B83C37;">Date From and Date To are required !</p>
+                    </div>
+
+                    <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showErrorDateFrom==true">
+                        <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br />
+                        <p style="color:  #B83C37;">Date From is required !</p>
+                    </div>
+
+                    <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showErrorDateTo==true">
+                        <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br />
+                        <p style="color:  #B83C37;">Date To is required !</p>
+                    </div>
+
+                    <fieldset>
+
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Merchant transaction
+                            </div>
+                            <div class="panel-body">
+
+                                <div>
+
+                                    <div class="box-tools">
+                                        <div class="row">
+                                            <div class="row" style="margin: 0%;">
+                                                <div class="form-group col-md-3 col-xs-6 required">
+                                                    <label for="dateFrom">Date From</label>
+                                                    <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control" style="width: 150px; margin: 0;" placeholder="Date Format DD-MM-YYY">
+                                                </div>
+                                                <div class="form-group col-md-3 col-xs-6 required">
+                                                    <label for="dateTo">Date To</label>
+                                                    <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control" style="width: 150px; margin-right: 4px;" placeholder="Date Format DD-MM-YYY">
+                                                </div>
+
+                                            </div>
+
+                                            <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
+                                                <div style="display: inline-block; height: 100%">
+                                                    <mat-spinner style="margin: 0 auto; vertical-align: middle;" diameter="20" color="black">
+                                                    </mat-spinner>
+                                                </div>
+                                                <div style="display: inline-block">Loading...</div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 4px;">
+
+                                            <div class="col-xs-12">
+                                                <div id="content" class="col-xs-4" #content>
+
+                                                </div>
+
+                                                <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="refresh()">Refresh</button>
+                                                <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="allQrTransactionPdf()"> Export
+                                                    to PDF</button>
+                                                <button id="btn" type="submit" class="btn btn-danger mok pull-right mr-8" (click)="allQrTransactionSearch()">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="box-body table-responsive no-padding mt-8">
+
+                                    <table class="table table-hover table-responsive table-striped">
+                                        <thead class="thead-dark bg-info">
+
+                                            <tr>
+                                                <th> Booking Date</th>
+                                                <th> Value Date</th>
+                                                <th> Description </th>
+                                                <th> Operation Reference</th>
+                                                <th> Debit</th>
+                                                <th> Credit </th>
+                                                <th> Closing </th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr *ngFor='let t of showResult'>
+                                                <td>{{t.bookingDate}}</td>
+                                                <td>{{t.valueDate}}</td>
+                                                <td>{{t.description2}}</td>
+                                                <td>{{t.operation}}</td>
+                                                <td>{{t.debit}}</td>
+                                                <td>{{t.credit}}</td>
+                                                <td>{{t.closing}}</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+
+                                    <div class="panel-footer o-auto">
+
+                                        <div class="form-group form-inline" style="display: inline-block; margin-top: -10px;">
+                                            <div class="col-sm">
+                                                <label for="pagesize">Page size</label>
+                                                <div class="input-group form-inline input-group-sm w-100 pull-left">
+                                                    <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mt-8 text-center">
+                                                <div class="pull-left" id="nbPages">
+                                                    {{totalPages ? totalPages : 0}} pages
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="margin-top: 2%;" class="input-group pagination-w pull-right">
+                                            <span class="input-group-btn">
+                                                <button id="btn" type="submit" class="btn btn-danger mok"
+                                                    (click)="gotoPage(currentpage-1)"
+                                                    [disabled]="currentpage<=0">Previous</button>
+                                            </span>
+                                            <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" (pageChange)="p = $event" />
+                                            </form>
+                                            <span class="input-group-btn">
+                                                <button id="btn" type="submit" class="btn btn-danger mok"
+                                                    (click)="gotoPage(currentpage+1)"
+                                                    [disabled]="!showResult || currentpage+1>=totalPages">Next</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div> -->

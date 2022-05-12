@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Bulk Merchant Onboarding</li>
                 </ol>
             </nav>
-            <div class="alert alert-danger mb-8" *ngIf="showError">
+            <!-- <div class="alert alert-danger mb-8" *ngIf="showError">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <strong>{{errTitle}}</strong><br /> {{errorMessage}}
             </div>
@@ -24,6 +24,19 @@
             <div class="alert alert-success mb-8" *ngIf="showSuccess">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <strong>{{successTitle}}</strong><br /> {{successMessage}}
+            </div> -->
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="error">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> {{errTitle}}</strong><br/>
+                <p style="color:  #B83C37;">{{errMessage}}</p>
+
+            </div>
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="success">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong style="color:  #270;">{{successTitle}}</strong><br/>
+                <p style="color:  #270;">{{successMessage}}</p>
+
             </div>
             <div class="content">
 
@@ -51,7 +64,8 @@
                         </div>
                         <div class="panel-body">
                             <div style="   width: 500px;">
-                                <input #csvReader name="Choose File" ng-model="file" class="form-control" type="file" name="file" aria-required="true" required id="txtFileUpload" (change)="uploadListener($event)">
+                                <!-- <input #csvReader name="Choose File" ng-model="file" class="form-control" type="file" name="file" aria-required="true" required id="txtFileUpload" (change)="uploadListener($event)"> -->
+                                <input accept=".csv" #csvReader name="Choose File" ng-model="file" class="form-control" type="file" name="file" aria-required="true" required id="txtFileUpload" (change)="uploadListener($event)">
                             </div>
                             <br>
                             <div class="panel panel-default">
@@ -96,7 +110,7 @@
                                             </thead>
                                             <tbody style="text-align: center;">
                                                 <tr *ngFor="let record of showResult |  filter : keyword ; let i = index">
-                                                    <td hidden>{{record.id}}</td>
+                                                    <!-- <td hidden>{{record.id}}</td> -->
                                                     <td>{{record.accountNumber}}</td>
                                                     <td>{{record.firstName}}</td>
                                                     <td>{{record.lastName}}</td>
@@ -106,15 +120,39 @@
                                                     <td>{{record.acceptorPoint}}</td>
                                                     <td>{{record.acronym}}</td>
                                                     <td>{{record.mobileNumberA}}</td>
-                                                    <!-- <td>{{record.}}</td> -->
-                                                    <td><button (click)=saveRecord(record) style="width: 40px;" id="blackBtn" class="btn btn-success mr-16"><span
+                                                    <!-- <td><button (click)=saveRecord(record) style="width: 40px;" id="blackBtn" class="btn btn-success mr-16"><span
                                                                 class="fa fa-check"></span></button></td>
-                                                    <td><button (click)="deleteRow(i)" style="width: 40px;" id="blackBtn" class="btn btn-danger"><span
+                                                   <td><button (click)="deleteRow(i)" style="width: 40px;" id="blackBtn" class="btn btn-danger"><span
                                                                 class="fa fa-times"></span></button>
+                                                    </td> -->
+                                                    <!-- <td><button [class.selected]="record === selectedRecord" (click)="onSelect(record)" data-toggle="modal" data-target="#rejectModal" style="width: 40px;" id="blackBtn" class="btn btn-danger"><span class="fa fa-times"></span></button>
+                                                    </td>
+                                                     -->
+                                                    <td>
+                                                        <input class="custom-control-input" type="checkbox">
+                                                    </td>
+                                                    <td>
+                                                        <input style="background-color: #B83C37;" class="custom-control-input" type="checkbox">
+
                                                     </td>
                                                     <td><button [class.selected]="record === selectedRecord" (click)="onSelect(record)" data-toggle="modal" data-target=".bd-example-modal-lg" id="blackBtn" class="btn btn-danger">Details</button>
                                                     </td>
-
+                                                    <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 style="text-align: center;" class="modal-title" id="exampleModalLabel">Remove</h5>
+                                                                </div>
+                                                                <div style="text-align: center;" class="modal-body">
+                                                                    Are you sure you want to remove this record?
+                                                                </div>
+                                                                <div style="text-align: center;" class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                                    <button style="background:#ff2a2a; border-color: #ff2a2a;" type="button" class="btn btn-danger" (click)="deleteRow(i)" data-dismiss="modal"> Yes</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -533,9 +571,9 @@
                                             <input value="{{selectedRecord.branch}}" type="text" class="form-control" name="sitebranch" id="sitebranch" aria-disabled="true" disabled>
                                         </div>
                                         <!--<div class="form-group col-md-3 col-sm-6 col-xs-12">
-                          <label for="sitemerchantid">Merchant ID</label>
-                          <input type="text" class="form-control" name="sitemerchantid" id="sitemerchantid" aria-disabled="true" disabled>
-                        </div>    -->
+                                         <label for="sitemerchantid">Merchant ID</label>
+                                            <input type="text" class="form-control" name="sitemerchantid" id="sitemerchantid" aria-disabled="true" disabled>
+                                            </div>    -->
                                         <div class="form-group col-md-3 col-sm-6 col-xs-12">
                                             <label for="sitecompanyname">Company Name</label>
                                             <input value="{{selectedRecord.companyName}}" required type="text" class="form-control" name="sitecompanyname" id="sitecompanyname" aria-disabled="true" disabled>
@@ -551,9 +589,9 @@
 
                                         </div>
                                         <!--<div class="form-group col-md-3 col-sm-6 col-xs-12">
-                          <label for="siteid">Site ID</label>
-                          <input type="text" class="form-control" name="siteid" id="siteid" aria-disabled="true" disabled>
-                        </div>   -->
+                                    <label for="siteid">Site ID</label>
+                                    <input type="text" class="form-control" name="siteid" id="siteid" aria-disabled="true" disabled>
+                                    </div>   -->
                                     </div>
 
                                     <div class="row">
@@ -586,8 +624,8 @@
                                         <div class="form-group col-md-3 col-sm-6 col-xs-12">
                                             <label for="cityS">City</label>
                                             <!-- <select class="form-control" name="sitecity" id="sitecity">
-                            <option value="00001">ACCRA</option>
-                          </select> -->
+                                    <option value="00001">ACCRA</option>
+                                    </select> -->
                                             <input disabled value="{{selectedRecord.cityS}}" type="text" class="form-control" name="cityS" id="cityS" aria-required="true" required>
 
                                         </div>
@@ -687,13 +725,13 @@
             </div>
 
             <!-- Modal Acceptor Point -->
-            <div *ngIf="selectedRecord" class="modal fade" id="exampleModalAcc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModalAcc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
 
                     <div class="modal-content">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                Acceptor Point Detail
+                                Generate Qr
                             </h4>
                         </div>
                         <!-- <div class="modal-dialog" role="document">

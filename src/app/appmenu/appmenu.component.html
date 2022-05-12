@@ -20,16 +20,43 @@
           </a></li>
 -->
             <li class="clickable">
-                <a (click)="merchant()" *ngIf="this.isAdmin && !this.isSuperAdmin">
+                <a (click)="merchant()" *ngIf="this.isOfficier ">
                     <i class="fa fa-users"></i> Merchants
                 </a>
             </li>
 
             <li class="clickable">
-                <a (click)="bulkMerchants()" *ngIf="this.isAdmin">
+                <a (click)="merchantList()" *ngIf="this.isBranchManager || this.isManager">
+                    <i class="fa fa-users"></i> Merchants
+                </a>
+            </li>
+
+            <li class="clickable">
+                <a (click)="createSingleBulkMerchant()" *ngIf="this.isBranchOfficier">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i> Single / Bulk Merchant
+                </a>
+            </li>
+
+            <li class="clickable">
+                <a (click)="bulkMerchants()" *ngIf="this.isManager">
                     <i class="fa fa-users"></i> Bulk Merchants Validations
                 </a>
             </li>
+
+            <li class="clickable">
+                <a (click)="bulkMerchantsValidationAtBranch()" *ngIf="this.isBranchManager">
+                    <i class="fa fa-users"></i> Bulk Merchants Validations
+                </a>
+            </li>
+
+            <li class="clickable">
+                <a (click)="generateQr()" *ngIf="this.isOfficier || this.isBranchOfficier || this.isManager || this.isBranchManager">
+                    <i class="fa fa-qrcode"></i> Generate Qr
+                </a>
+            </li>
+
+
+
             <!--   <li><a (click)="gestion()">
             <i class="fa fa-circle-o"></i>  Transaction
           </a></li>
@@ -43,95 +70,200 @@
                 </a>
             </li> -->
             <li class="clickable">
-                <a (click)="report()" *ngIf="this.isAdmin">
-                    <i class="fa fa-file-pdf-o"></i> Reports
+                <a (click)="adminList()" *ngIf="this.isAdmin">
+                    <i class="fa fa-users"></i> User Management
                 </a>
             </li>
             <li class="clickable">
-                <a (click)="adminList()" *ngIf="this.isSuperAdmin">
-                    <i class="fa fa-users"></i> Admin Management
-                </a>
-            </li>
-            <li class="clickable">
-                <a (click)="merchantManagementList()" *ngIf="this.isSuperAdmin">
+                <a (click)="merchantManagementList()" *ngIf="this.isAdmin ">
                     <i class="fa fa-users"></i> Merchant Management
                 </a>
             </li>
+            <li class="clickable">
+                <a (click)="reportManagement()" *ngIf="this.isAdmin">
+                    <i class="icon fa fa-files-o"></i> Report Management
+                </a>
+            </li>
+            <!-- <li class="clickable">
+                <a (click)="report()" *ngIf="this.isAdmin || this.isOfficier || this.isBranchOfficier || this.isManager || this.isBranchManager ">
+                    <i class="fa fa-file-pdf"></i> Reports
+                </a>
+            </li> -->
+
+
             <!-- 
          <li><a (click)="gestionNStr()">
             <i class="fa fa-circle-o"></i>  Not Settled Transaction
           </a></li>-->
 
+
+
+            <!-- SAFIA 22.09.2021 -->
+            <!-- <li class="clickable">
+                <a (click)="dashboard()" *ngIf=" !this.isUser && !this.isAdmin && !this.isSuperAdmin && !this.isOfficier">
+                    <i class="fa fa-line-chart"></i> Dashboard
+                </a>
+            </li> -->
+
+            <!-- <li class="clickable">
+                <a (click)="detail()" *ngIf="this.isUser">
+                    <i class="fa fa-user"></i> Merchant Details
+                </a>
+            </li> -->
+
+
+            <!-- <li class="clickable ">
+                <a (click)="QrTransaction()" *ngIf="this.isUser">
+                    <i class="fa-solid fa-money-from-bracket"></i> Merchant Transaction
+                </a>
+            </li> -->
+
+
+
+
+            <!--<li class="clickable "><a  (click)="QrTransaction2() " *ngIf="!this.isAdmin ">
+          <i  class="fa fa-qrcode "></i>  QrTransaction by location
+        </a></li>
+
+        <li class="clickable wb "><a  (click)="QrTransaction1() " *ngIf="!this.isAdmin ">
+          <i class="fa fa-qrcode "></i>  QrTransaction history
+        </a></li>-->
+
+            <!-- <li data-toggle="collapse " data-target="#menuparameters " class="collapsed clickable " *ngIf="this.isOfficier || this.isBranchOfficier || this.isManager || this.isUser || this.isBranchManager ">
+                <a>
+                    <i class=" fa fa-cog "></i> <span> Settings </span>
+                    <span class="pull-right-container ">
+                        <i class="fa fa-angle-down pull-right "></i>
+                    </span> </a>
+
+            </li>
+
+            <ul class="sub-menu collapse bg-gray-omar ul-padding " id="menuparameters " *ngIf="this.isOfficier || this.isBranchOfficier || this.isManager || this.isUser || this.isBranchManager ">
+                <li (click)="ShowParam1() " class="clickable menu-item ">
+                    <i class="fa fa-lock "></i> Reset Password
+                </li>
+
+
+            </ul> -->
+
+            <!-- <li class="clickable ">
+                <a (click)="detailsMerchant()" *ngIf="this.isSubUser">
+                    <i class="fa- fa-exchange"></i> Merchant Details
+                </a>
+            </li> -->
+
+            <li class="clickable ">
+                <a (click)="transactions()" *ngIf="this.isUser || this.isSubUser">
+                    <i class="fa fa-exchange"></i> Merchant Transaction
+                </a>
+            </li>
+            <li class="clickable ">
+                <a (click)="SubUsersManagement() " *ngIf="this.isUser">
+                    <i class="fa fa-users"></i> Sub User Management
+                </a>
+            </li>
+
+            <li *ngIf="this.show==true" data-toggle="collapse" data-target="#menuReport" class="collapsed clickable">
+                <a>
+                    <i class="fa fa-file-pdf-o"></i> <span> Reports </span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-down pull-right"></i>
+                    </span> </a>
+            </li>
+
+            <!-- <ul class="sub-menu collapse bg-gray-omar ul-padding" id="menuReport">
+                <li *ngFor="let rep of reportsAssigned" class="clickable menu-item">
+                    <i class="fa fa-file-pdf"></i> {{rep.reports}}
+                </li>
+            </ul> -->
+            <ul class="sub-menu collapse bg-gray-omar ul-padding" id="menuReport">
+                <li (click)="allMerchants()" *ngIf="this.show1" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Merchants
+                </li>
+                <li (click)="allActivatedMerchants()" *ngIf="this.show2==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Activated Merchants
+                </li>
+                <li (click)="allSuspendedMerchants()" *ngIf="this.show3==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Suspended Merchants
+                </li>
+                <li (click)="allBulkMerchants()" *ngIf="this.show4==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Bulk Merchants
+                </li>
+                <li (click)="allRejectedBulkMerchant()" *ngIf="this.show5==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Rejected Bulk Merchants
+                </li>
+                <li (click)="allValidatedBulkMerchant()" *ngIf="this.show6==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Validated Bulk Merchants
+                </li>
+                <!-- <li (click)="allValidatedBulkMerchantByBranch()" *ngIf="this.show7==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Validated Bulk Merchants By Branch
+                </li>
+                <li (click)="allRejectedBulkMerchantByBranch()" *ngIf="this.show8==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Rejected Bulk Merchants By Branch
+                </li> -->
+                <li (click)="allValidatedBulkMerchantByBranchRep()" *ngIf="this.show9==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Validated Bulk Merchants
+                </li>
+                <li (click)="allRejectedBulkMerchantByBranchRep()" *ngIf="this.show10==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All Rejected Bulk Merchants
+                </li>
+                <li (click)="transactions()" *ngIf="this.show11==true" class="clickable menu-item">
+                    <i class="icon fa fa-file"></i> All transactions
+                </li>
+
+            </ul>
+
+            <!-- <ul class="sub-menu collapse bg-gray-omar ul-padding" id="menuReports" *ngIf="!this.isAdmin">
+                <li (click)="AdminResetPassword()" class="clickable menu-item ">
+                    <i class="fa fa-lock"></i> Change Password
+                </li>
+            </ul> -->
+
             <li data-toggle="collapse" data-target="#menuparameters" class="collapsed clickable" *ngIf="this.isAdmin">
                 <a>
                     <i class="fa fa-cog"></i> <span> Settings </span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-down pull-right"></i>
-            </span> </a>
+                        <i class="fa fa-angle-down pull-right"></i>
+                    </span> </a>
 
             </li>
 
-            <ul class="sub-menu collapse bg-gray-omar ul-padding" id="menuparameters" *ngIf="this.isAdmin">
+            <ul class="sub-menu collapse bg-gray-omar ul-padding" id="menuparameters" *ngIf="this.isAdmin ">
                 <li (click)="AdminParamSession()" class="clickable menu-item">
-                    <i class="fa fa-lock"></i> Session
+                    <i class="fa fa-clock-o"></i> Session
                 </li>
                 <li (click)="AdminResetPassword()" class="clickable menu-item">
                     <i class="fa fa-lock"></i> Reset Password
                 </li>
-
-
             </ul>
 
-            <!-- SAFIA 22.09.2021 -->
-            <li class="clickable">
-                <a (click)="dashboard()" *ngIf="!this.isAdmin && !this.isSuperAdmin">
-                    <i class="fa fa-line-chart"></i> Dashboard
+            <!-- <li class="clickable ">
+                <a (click)="ReportsBulkMerchant() " *ngIf="this.isUser">
+                    <i class="fa fa-file-pdf"></i> Reports
                 </a>
-            </li>
+            </li> -->
 
-            <li class="clickable">
-                <a (click)="detail()" *ngIf="!this.isAdmin && !this.isSuperAdmin">
-                    <i class="fa fa-user"></i> Merchant Details
-                </a>
-            </li>
-
-            <li class="clickable">
-                <a (click)="QrTransaction()" *ngIf="!this.isAdmin && !this.isSuperAdmin">
-                    <i class="fa fa-qrcode"></i> Merchant Transaction
-                </a>
-            </li>
-
-            <!--<li class="clickable"><a  (click)="QrTransaction2()" *ngIf="!this.isAdmin">
-          <i  class="fa fa-qrcode"></i>  QrTransaction by location
-        </a></li>
-
-        <li class="clickable wb"><a  (click)="QrTransaction1()" *ngIf="!this.isAdmin">
-          <i class="fa fa-qrcode"></i>  QrTransaction history
-        </a></li>-->
-
-            <li data-toggle="collapse" data-target="#menuparameters" class="collapsed clickable" *ngIf="!this.isAdmin && !this.isSuperAdmin">
+            <li data-toggle="collapse" data-target="#menuparameters" class="collapsed clickable" *ngIf="this.User || this.isSubUser">
                 <a>
-
-
-
                     <i class="fa fa-cog"></i> <span> Settings </span>
                     <span class="pull-right-container">
-                <i class="fa fa-angle-down pull-right"></i>
-              </span> </a>
-
+                        <i class="fa fa-angle-down pull-right"></i>
+                    </span> </a>
             </li>
 
-            <ul class="sub-menu collapse bg-gray-omar ul-padding" id="menuparameters" *ngIf="!this.isAdmin && !this.isSuperAdmin">
-                <li (click)="ShowParam1()" class="clickable menu-item">
-                    <i class="fa fa-lock"></i> Reset Password
+            <ul class="sub-menu collapse bg-gray-omar ul-padding" id="menuparameters" *ngIf="this.isUser || this.isSubUser">
+                <li (click)="AdminResetPassword()" class="clickable menu-item ">
+                    <i class="fa fa-lock"></i> Change Password
                 </li>
 
 
             </ul>
 
-            <!--   <ul class="treeview-menu">
-          <li><a (click)="AdminParamToken()" >
-            <i class="fa fa-circle-o"></i>  Token
+
+
+            <!--   <ul class="treeview-menu ">
+          <li><a (click)="AdminParamToken() " >
+            <i class="fa fa-circle-o "></i>  Token
           </a></li>
 
           

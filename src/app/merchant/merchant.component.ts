@@ -17,6 +17,7 @@ import { DOCUMENT, ViewportScroller } from '@angular/common';
 
 export class MerchantComponent extends BaseComponent implements OnInit {
   
+  
 /*SAFIA 28.09.2021 */
  keyword : string = null;
 
@@ -64,6 +65,14 @@ export class MerchantComponent extends BaseComponent implements OnInit {
   showResult :  any[] =  this.result;
 
   pageYoffset = 0;
+
+  public isAdmin: boolean
+  public isBranchManager : boolean
+  public isManager : boolean
+  public isBranchOfficier : boolean 
+  public isOfficier : boolean = true;
+
+
   @HostListener('window:scroll', ['$event']) onScroll(event){
     this.pageYoffset = window.pageYOffset;
   }
@@ -94,12 +103,14 @@ export class MerchantComponent extends BaseComponent implements OnInit {
 
 
     adminList(){
-      this.router.navigateByUrl("/adminList")
+      this.router.navigateByUrl("/merchant")
       this.isSuperAdmin = true
     }
 
   ngOnInit() {
-    this.isSuperAdmin = (localStorage.getItem('role') == 'SUPERADMIN');
+    this.isBranchOfficier = (localStorage.getItem('role') == 'BRANCH OFFICIER');
+
+    // this.isSuperAdmin = (localStorage.getItem('role') == 'SUPERADMIN');
 
     this.st= "";
 

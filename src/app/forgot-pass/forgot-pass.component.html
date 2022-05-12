@@ -1,6 +1,141 @@
 <!--<body style="background: #ecf0f5;"> -->
 
 <body style="background: #ffffff;">
+
+    <div class="row">
+        <div class="col-xs-offset-4 col-xs-4">
+            <div class="login-logo">
+                <!-- <img src="assets/images/GhIPSS-logo.png" class="logo"  id="logo" style="float: center; position: relative; ">-->
+                <img src="assets/images/ic_logo_cbgmob.png" class="logo" id="logo" style="float: center; position: relative; ">
+                <!-- <img src ="assets/images/logo1.jpg" class="logo"  id="logo" style="float: center; position: relative; ">-->
+                <b></b>
+                <h3><b>CBG MERCHANT PORTAL</b> </h3>
+            </div>
+            <!-- /.login-logo  -->
+            <div class="login-box-body">
+
+                <section>
+                    <form #fp="ngForm" (ngSubmit)="forgertPassword(fp.value)">
+                        <div class="form-group has-feedback">
+                            <h4 class="modal-title" id="modal-basic-title">
+                                <!-- <i class="glyphicon glyphicon-lock"></i> -->
+                                <!--&nbsp;&nbsp;-->Forgot Password :
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <!-- <div>
+                                Hi &nbsp;<strong>{{ usernameForegetPass }}&nbsp;</strong>please fill out the form :
+                            </div> -->
+                            <br />
+                            <!-- <ng-container *ngIf="showmsgstep1">
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>Please Fill out The Form</strong>
+                                    <ul *ngFor="let error of errorarraystep1">
+                                        <li>
+                                            {{error}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </ng-container> -->
+                            <!-- <ng-container *ngIf="showmsgforgetpass">
+                                <div class="alert alert-danger" role="alert">
+                                    {{msgforgetpass}}
+                                </div>
+                            </ng-container> -->
+
+                            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="phone==true ">
+                                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4><i class="fa fa-exclamation-circle"></i> Please Fill out The Form !</h4>
+                                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i>
+                                    <ul *ngFor="let error of errorarraystep1">
+                                        <li>
+                                            {{error}}
+                                        </li>
+                                    </ul>
+                                </h5>
+                            </div>
+                            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="phone==true ">
+                                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> {{msgforgetpass}}</h5>
+                            </div>
+
+                            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="phone==true ">
+                                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> Phone number is Required !</h5>
+                            </div>
+                            <div style="background: #270 !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true  && mode==true">
+                                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                                <h5 style="color:  #270;"><i class="fa fa-times"> </i> Otp Checked Successfully !</h5>
+                            </div>
+
+                            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessage==true ">
+                                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> Invalid OTP !</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col"></div>
+                                <!-- <div class="row">
+                                    <div class="form-group has-feedback">
+                                        <input ngModel name="email" type="text" class="form-control" placeholder="Email" />
+                                    </div>
+                                </div> -->
+                                <div class="row">
+                                    <div class="form-group has-feedback">
+                                        <input ngModel name="phone_number" type="text" class="form-control" placeholder="Phone number" (change)="GETID2($event.target.value)" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary">
+                                Reset password
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary" (click)="cancelbutton()">
+                                cancel
+                            </button>
+                        </div> -->
+
+                    </form>
+
+
+                    <br />
+                    <div class="row ">
+                        <div class="text-center ">
+                            <div class="row ">
+                                <div class=" col-xs-6 pull-right ">
+                                    <button style="width: 100%; background-color: #222d32b5;
+                                    border: #222d32b5;" (click)="sendOTP(phone_number)" id="btn1 " class="btn btn-block " type="submit">
+                                        <!-- <button style="width: 100%;" (click)="openff(contentf)" id="btn1 " class="btn btn-block " type="submit" class="btn btn-secondary"> -->
+                                            Reset password
+                                    </button>
+                                </div>
+                                <div class=" col-xs-6 pull-left ">
+                                    <button (click)="cancelbutton() " type="button " class="btn btn-block ">Cancel </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+            </div>
+            <section *ngIf="stepOtp==true ">
+                <form style="display: flex;">
+                    <input minlength="6" maxlength="6" id="otp" ng-model="otp" type="password" name="otp" ngModel="" placeholder="OTP" class="form-control" required value="" />
+
+                    <span id="phoneIcon " class="glyphicon glyphicon-phone form-control-feedback "></span>
+                    <button (click)="validate(phoneNumber,otp) " class="btn btn-danger " id="btnCheck " type="button ">
+                        <i id="iconCheck " class="fa fa-check " aria-hidden="true "></i></button>
+                </form>
+            </section>
+            <!-- /.login-box-body -->
+        </div>
+    </div>
+
     <!-- <div class="login-box"> -->
     <div class="col-xs-offset-4 col-xs-4">
 
@@ -9,83 +144,11 @@
             <ng-container *ngIf="showmsg">
                 <div class="alert alert-danger">
                     <i class="fas fa-exclamation-triangle"></i> &nbsp;&nbsp;<strong>{{
-              msg1
-            }}</strong>
+                        msg1
+                        }}</strong>
                 </div>
             </ng-container>
 
-
-            <form #fp="ngForm" (ngSubmit)="forgertPassword(fp.value)">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modal-basic-title">
-                        <i class="glyphicon glyphicon-lock"></i>
-                        <!--&nbsp;&nbsp;-->forgot password :
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        Hi &nbsp;<strong>{{ usernameForegetPass }}&nbsp;</strong>please fill out the form :
-                    </div>
-                    <br/>
-                    <ng-container *ngIf="showmsgstep1">
-                        <div class="alert alert-danger" role="alert">
-                            <strong>Please Fill out The Form</strong>
-                            <ul *ngFor="let error of errorarraystep1">
-                                <li>
-                                    {{error}}
-                                </li>
-                            </ul>
-                        </div>
-                    </ng-container>
-                    <ng-container *ngIf="showmsgforgetpass">
-                        <div class="alert alert-danger" role="alert">
-                            {{msgforgetpass}}
-                        </div>
-                    </ng-container>
-
-                    <br/>
-
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col-8">
-                            <div class="row">
-                                <div class="col-form-label">
-                                    <label for="">Email : </label>
-                                </div>
-                                <!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <div class="col-8">
-                                    <input ngModel name="email" type="text" class="form-control" placeholder="Email" />
-                                </div>
-                            </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-form-label">
-                                    <label for="">Phone Number :</label>
-                                </div>
-                                <div class="col-8">
-                                    <input ngModel name="phone_number" type="text" class="form-control" placeholder="Phone number" (change)="GETID2($event.target.value)" />
-                                </div>
-                            </div>
-                            <br/>
-
-                        </div>
-                        <br/>
-                        <div class="col"></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <!--<button (click)="openff(contentf)"type="submit" class="btn btn-secondary">
-              Reset password
-            </button>-->
-                    <button type="submit" class="btn btn-secondary">
-              Reset password
-            </button>
-                    <button type="button" class="btn btn-outline-secondary" (click)="cancelbutton()">
-              cancel
-            </button>
-                </div>
-
-            </form>
 
 
             <ng-template #contentf let-c="close">
@@ -120,7 +183,8 @@
                                     <div class="row">
                                         <div class="col-form-label">
                                             <label for="">Password</label>
-                                        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
                                         <div class="col-8">
                                             <input ngModel name="password1" type="password" class="form-control" placeholder="Password" />
                                         </div>
@@ -142,8 +206,8 @@
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-secondary">submit</button>
                             <button type="button" class="btn btn-outline-secondary" (click)="cancelbutton()">
-                cancel
-              </button>
+                                cancel
+                            </button>
                         </div>
                     </form>
                 </ng-container>

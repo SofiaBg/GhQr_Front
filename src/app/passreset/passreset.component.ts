@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../BaseComponent/BaseComponent';
 import { GipService } from '../services/gip.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { GipService } from '../services/gip.service';
   templateUrl: './passreset.component.html',
   styleUrls: ['./passreset.component.css']
 })
-export class PassresetComponent implements OnInit {
+export class PassresetComponent extends BaseComponent implements OnInit {
   validcondition: boolean;
   errorarraycondtion: boolean;
   Errpass4: boolean;
@@ -21,19 +22,132 @@ export class PassresetComponent implements OnInit {
   valid2: boolean;
 
 
-  stringJson: any;
+  // stringJson: any;
 
-  stringObject: any;
+  // stringObject: any;
+  public step1 :boolean= false;
 
-  constructor(private service: GipService, private router : Router) { }
-
-  
-  merchantPage(){
-    this.router.navigateByUrl("/merchant")
+  constructor(private service: GipService, router : Router) {    super(router);
   }
 
+  mb : string;
+  dataOtp: any;
+
+  sendOTP(mobileNumber) {
+    console.log("***** SNED OTP *****");
+    mobileNumber = this.mb;
+    this.dataOtp = this.service
+      .sendOtpCode(mobileNumber)
+      .subscribe((data) => {
+        // if(data["respCode"] == "000"){
+          this.step1=true;
+          this.stepOtp=true;
+        // }
+        console.log("***** OTP *****", data);
+
+      });
+  }
+  otpInput : any;
+  mode: boolean = false;
+  show: boolean = false;
+  stepOtp: boolean = false;
+  stepSave: boolean = false;
+  saveUser: boolean = false;
+  showInput: boolean = false;
+  showInput2: boolean = true;
+  public error = false;
+  public success = false;
+  public errMessage = "";
+  public errTitle = "Error";
+
+  validate(mobileNumber, otp) {
+
+    mobileNumber =this.mb;
+    otp = this.otpInput;
+
+    console.log("Phone Number = ", mobileNumber, "OTP", otp);
+    this.service.checkOtpCode(mobileNumber, otp).subscribe((data) => {
+
+      console.log(data);
+
+      if (data["respCode"] == "000") {
+        this.mode = true;
+        this.show = true;
+        this.stepOtp = true;
+        setTimeout(() => {
+          console.log("Informations checked successfully");
+        }, 3000);
+        this.showInput2 = false;
+        this.showInput = true;
+        this.MerchantParamToken1(this.paramPass, this.paramPass1, this.paramPass2);
+      } else {
+        this.success = false;
+        this.error = true;
+        this.errMessage = data["respDesc"];
+      }
+    });
+
+    this.stepSave = true;
+    this.showInput = true;
+    this.showInput2 = false;
+  }
+  
+  merchantPage(){
+    if (localStorage.getItem('role') == 'ADMIN') {
+
+      this.router.navigate(['/adminList']);
+      return false;
+    } else if (localStorage.getItem('role') == 'USER') {
+      this.router.navigate(['/transactions']);
+      return false;
+    } else if (localStorage.getItem('role') == 'SUB USER') {
+      this.router.navigate(['/transactions'])
+      return false
+    } else if (localStorage.getItem('role') == 'MANAGER') {
+      this.router.navigate(['/merchantList'])
+      return false;
+    } else if (localStorage.getItem('role') == 'BRANCH MANAGER') {
+      this.router.navigate(['/getAllBulkMerchantsFoValidation']);
+      return false;
+    } else if (localStorage.getItem('role') == 'BRANCH OFFICIER') {
+      this.router.navigate(['/createSingleBulkMerchant'])
+      return false;
+    } else if(localStorage.getItem('role') == 'OFFICIER'){
+      this.router.navigate(['/merchant'])
+    }
+  }
+
+  stringJson: any;
+  stringObject: any;
+
+  getMobileNumber() {
+    this.service.getMobileNumber(localStorage.getItem('forgotpass')).subscribe(resp => {
+      console.log(resp);
+
+      this.stringJson = JSON.stringify(resp);
+      this.stringObject = JSON.parse(this.stringJson);
+      console.log("JSON object -", this.stringObject);
+      console.log(this.stringObject.phone)
+      this.mb = this.stringObject.phone;
+      console.log("PHONE :", this.mb)
+
+    })
+  }
   ngOnInit() {
 
+
+
+    this.service.getMobileNumber(localStorage.getItem('forgotpass')).subscribe(resp => {
+      console.log(resp);
+
+      this.stringJson = JSON.stringify(resp);
+      this.stringObject = JSON.parse(this.stringJson);
+      console.log("JSON object -", this.stringObject);
+      console.log(this.stringObject.phone)
+      this.mb = this.stringObject.phone;
+      console.log("PHONE :", this.mb)
+
+    })
     // this.service.findAccountId(localStorage.getItem('forgotpass')).subscribe(data => {
 
     //   console.log('DATA ', data);
@@ -49,6 +163,7 @@ export class PassresetComponent implements OnInit {
 
    
   }
+  
 
   MerchantParamToken1(paramPass, paramPass1, paramPass2){
     console.log("Password " + paramPass + " this.idAccount " + this.idAccount + " this.paramPass1 " + this.paramPass1 + " this.paramPass2 " + this.paramPass2 + " ")
@@ -91,8 +206,12 @@ export class PassresetComponent implements OnInit {
             this.Errpass4=false;
             this.errorarraycondtion = false;
             this.validcondition = true;
-            
-          },err=>{
+            setTimeout(() => {
+              this.service.logout();
+              localStorage.clear();
+              this.router.navigateByUrl("/login")         
+               }, 3000);
+                    },err=>{
             this.Errpass1=true;
             this.Errpass3= false;
             this.valid1= false;

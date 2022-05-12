@@ -1,64 +1,76 @@
-button{
+button {
     background: #ff2a2a;
     color: #fff;
-  }
+}
 
-  p.x{
+p.x {
     margin: 0 0 4px;
     margin-left: -100px;
-    
-    
-  }
-  div.y{
+}
+
+div.y {
     margin: 0 0 10px;
     margin-left: 20px;
     margin-top: -30px;
-    
-  }
-  p.m{
+}
+
+p.m {
     margin: 0 0 4px;
     margin-left: 241px;
-    
-    
-  }
-  div.n{
+}
+
+div.n {
     margin: 0 0 10px;
     margin-left: 350px;
     margin-top: -30px;
-    
-  }
-  ng-template.t{
+}
+
+ng-template.t {
     margin-block: center;
     background-color: #ff2a2a;
-  }
-  form.a{
+}
+
+form.a {
     margin-top: 20px;
-  }
-  button.b{
+}
+
+button.b {
     margin-left: -145px;
     width: 150px;
     height: 35px;
-  }
+}
 
-  .text-center {
+.text-center {
     text-align: center;
-  }
+}
 
-  .inline-block {
+.inline-block {
     display: inline-block;
-  }
-  
-  .cbg-red {
-    color: #ff2a2a;
-  }
+}
 
-  a>.cbg-red {
+.cbg-red {
+    color: #ff2a2a;
+}
+
+a>.cbg-red {
     background-color: white;
     cursor: pointer;
-  }
+}
 
-
-  body {
+body {
     min-height: 100%;
-  }
- 
+}
+
+#btn {
+    background-color: #222d32b5;
+    border: #222d32b5;
+}
+
+.btn-block:hover,
+.btn-block:focus,
+.btn-block:active,
+.btn-block.active,
+.open>.dropdown-toggle.btn-block {
+    color: #ffffff !important;
+    /*set the color you want here*/
+}

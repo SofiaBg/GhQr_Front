@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 
 import {Router} from '@angular/router';
 //import {AuthenticationService} from './services/authentication.sevice';
@@ -15,11 +15,21 @@ export class AppComponent {
   animal: string;
   name: string;
 
+  // ngOnDestroy() {
+  //   localStorage.clear();
+  //     this.router.navigateByUrl("/login")
+  // }
   //private authentService:AuthenticationService,
 
   constructor(private router:Router) {}
 
-  /*onLogout(){
+  @HostListener("window:onbeforeunload",["$event"])
+  clearLocalStorage(event){
+    localStorage.clear();
+    this.router.navigateByUrl("/login")
+  }
+
+  /*onLogout(){ 
     this.authentService.logout()
     this.router.navigateByUrl("/login")
   }*/

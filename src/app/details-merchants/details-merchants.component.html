@@ -1,0 +1,161 @@
+<app-appheader>
+</app-appheader>
+<app-appmenu></app-appmenu>
+
+<div class="wrapper">
+
+    <div class="content-wrapper">
+        <section>
+            <fieldset>
+
+                <div style="height: 30px;"></div>
+                <br>
+                <div class="content-header">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a (click)="merchantPage()"><i
+                                            style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                            aria-hidden="true"></i>
+                                    </a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Reset Password</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="panel-body">
+
+                    <div class="col-md-9">
+                        <div id="divDetails" class="col-xs-12 ">
+
+                            <ul class="list-group ">
+
+                                <li class="list-group-item list-group-item-action list-group-item-warning " style=" background: #f3f3f3;color: #333; ">
+                                    <p class="text-center ">Merchant Details</p>
+                                </li>
+                                <!-- <li class="list-group-item ">
+                            <div class="row ">
+                                <dt class="col-sm-3 ">First Name</dt>
+                                <dd class="col-sm-4 ">{{accountMerch.person.firstName}}</dd>
+                            </div>
+                        </li> -->
+
+                                <!-- <li class="list-group-item ">
+                            <div class="row ">
+                                <dt class="col-sm-3 ">Last Name</dt>
+                                <dd class="col-sm-4 ">
+                                    {{accountMerch.person.lastName}}
+                                </dd>
+                            </div>
+                        </li> -->
+
+                                <!-- <li class="list-group-item ">
+                            <div class="row ">
+                                <dt class="col-sm-3 ">Email </dt>
+                                <dd class="col-sm-4 ">{{accountMerch.person.email}}</dd>
+                            </div>
+                        </li> -->
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Company Name</dt>
+                                        <dd class="col-sm-4 "> {{accountMerch.person.companyName}} </dd>
+                                    </div>
+                                </li>
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 text-truncate ">Phone Number</dt>
+                                        <dd class="col-sm-4 ">{{accountMerch.person.phone}}</dd>
+                                    </div>
+                                </li>
+
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Web site</dt>
+                                        <dd class="col-sm-4 "> {{accountMerch.person.website}} </dd>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Guarantee</dt>
+                                        <dd class="col-sm-4 "> {{accountMerch.person.guarantee}} </dd>
+                                    </div>
+                                </li>
+
+                                <!-- SAFIA 24.09.2021 -->
+                                <!-- <li class="list-group-item ">
+                            <div class="row ">
+                                <dt class="col-sm-3 ">Account Id</dt>
+                                <dd class="col-sm-6 "> {{accountMerch.accountId}} </dd>
+                            </div>
+                        </li> -->
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Account Number</dt>
+                                        <dd class="col-sm-6 "> {{accountMerch.accountNumber}} </dd>
+                                    </div>
+                                </li>
+
+                                <li class="list-group-item ">
+                                    <div class="row ">
+                                        <dt class="col-sm-3 ">Account Name</dt>
+                                        <dd class="col-sm-9 "> {{accountMerch.nameAccount}}</dd>
+                                    </div>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+
+                        <div *ngIf="showTerminal == true" d="divDetails" class="col-xs-12 ">
+
+
+                            <div class="panel panel-default ">
+                                <div class="panel-heading text-center ">
+                                    Terminals List
+                                </div>
+                                <div>
+
+
+
+
+                                    <table class="table table-bordered table-hover mb-0 ">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center center-vertical " rowspan="2 ">Site</th>
+                                                <th colspan="4 " class="text-center ">Terminal</th>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-center ">ID</th>
+                                                <th class="text-center ">Name</th>
+                                                <th class="text-center ">Mobile Number</th>
+                                                <th class="text-center ">Creation Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let terminal of this.terminals; let i=index ">
+                                                <td [attr.rowspan]="numberOfTerminals(this.terminals[i][ 'site']) " class="text-center center-vertical " *ngIf="i==0 || i> 0 && this.terminals[i-1]['site'] != this.terminals[i]['site']">
+                                                    {{this.terminals[i]['site']}}
+                                                </td>
+                                                <td>{{this.terminals[i]['id']}}</td>
+                                                <td>{{this.terminals[i]['name']}}</td>
+                                                <td>{{this.terminals[i]['mobileNumber']}}</td>
+                                                <td>{{this.terminals[i]['creationDate']}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </fieldset>
+        </section>
+    </div>
+</div>

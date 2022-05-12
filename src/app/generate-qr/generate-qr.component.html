@@ -1,0 +1,130 @@
+<app-appheader>
+</app-appheader>
+<app-appmenu></app-appmenu>
+
+
+<div class="wrapper">
+
+
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div style="height: 30px;"></div>
+            <br>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="merchantPage()"><i
+                                style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                aria-hidden="true"></i>
+                        </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Merchant Details</li>
+                </ol>
+            </nav>
+            <!-- SAFIA 06.10.2021 -->
+            <div class="box box-default">
+
+                <div class="input-group-btn ">
+
+                </div>
+                <div class="box-body" style=" padding: 30px;">
+                    <div class="box-tools">
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="    width: 500px;">
+                                <!--<input type="text" name="iid" [(ngModel)]="id"  class="form-control pull-right" placeholder="Search by ID Account">-->
+                                <!-- SAFIA 28.09.2021 <input type="text" name="iid" id="qrMerchantName" [(ngModel)]="id" class="form-control pull-right" placeholder="Search by Merchant Name"> -->
+                                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="keyword">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Acceptor Point List
+                </div>
+                <div class="panel-body">
+                    <!-- <div class="input-group pull-right">
+                        <button type="button" class="btn btn-danger mok mb-8" (click)="newAdmin()"><i class="icon fa fa-user-plus"></i> New Admin</button>
+                    </div> -->
+                    <table class="table table-hover table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>Acceptor Point Id</th>
+                                <th>Acceptor Point Name</th>
+                                <th>Acronym</th>
+                                <th>Mobile Number</th>
+                                <th>Merchant Name</th>
+                                <th>Site Name</th>
+                                <th>Generate Qr</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="clickable" *ngFor="let qrAcceptorPoint of shownAcceptorPoint | filter : keyword; let i = index">
+                                <!-- SAFIA 06.10.2021 <tr class="clickable" *ngFor="let admin of shownAdmin" (click)="adminDetails(admin)"> -->
+                                <td style="display:none;">{{qrAcceptorPoint.qvisa}} {{qrAcceptorPoint.qmasterCard}} {{qrAcceptorPoint.qupi}} {{qrAcceptorPoint.companyName}}</td>
+                                <td>{{qrAcceptorPoint.aid}}</td>
+                                <td>{{qrAcceptorPoint.aname}}</td>
+                                <td>{{qrAcceptorPoint.aacronym}}</td>
+                                <td>{{qrAcceptorPoint.amobileNumber}}</td>
+                                <td>{{qrAcceptorPoint.qfirstName}} {{qrAcceptorPoint.qlastName}}</td>
+                                <td>{{qrAcceptorPoint.sname}}</td>
+                                <!-- SAFIA 06.10.2021 -->
+                                <td>
+                                    <span [class.selected]="qrAcceptorPoint === selectedRecord" (click)="onSelect(qrAcceptorPoint)" class="btn btn-default" (click)='generateQr(i)'>
+                                        <i class="glyphicon glyphicon-qrcode"></i>
+
+                                    </span>&nbsp;
+                                    <!-- <span class="btn btn-default" data-toggle="modal" data-target="#exampleModalAcc">
+                                        <i class="glyphicon glyphicon-qrcode"></i>
+
+                                    </span>&nbsp; -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer o-auto">
+
+                    <div class="form-group form-inline" style="display: inline-block; margin-top: -10px;">
+                        <div class="row">
+
+                            <div class="col-sm">
+
+                                <label for="pagesize">Page size</label>
+                            </div>
+                            <div class="col-sm">
+
+                                <div class="input-group form-inline input-group-sm w-100 pull-left" style="width: 122px;">
+                                    <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                        <option selected value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
+                                        <option value="50">50</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-group pagination-w pull-right">
+                        <span class="input-group-btn">
+                            <button id="blackBtn" type="submit" class="btn btn-danger mok"
+                                (click)="gotoPage(currentpage-1)" [disabled]="currentpage<=0">Previous</button>
+                        </span>
+                        <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" /></form>
+                        <span class="input-group-btn">
+                            <button id="blackBtn" type="submit" class="btn btn-danger mok"
+                                (click)="gotoPage(currentpage+1)"
+                                [disabled]="!shownAcceptorPoint || currentpage+1>=totalPages">Next</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <app-scroll-to-top></app-scroll-to-top>
+
+        </div>
+    </div>
+
+</div>

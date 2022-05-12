@@ -24,11 +24,58 @@
             <ul class="nav navbar-nav">
 
                 <!-- User Account: style can be found in dropdown.less -->
-                <li class="dropdown user user-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" aria-haspopup="true" aria-expanded="false">
+                <li id="li" style="color: inherit;" *ngIf="this.showN==false && this.show==false && this.showCU==true" class="dropdown user user-menu">
+
+                    <a style="margin-bottom: -14%;" href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" aria-haspopup="true" aria-expanded="false">
                         <!-- <img src="assets/images/logo1.jpg" class="user-image" alt="User Image">-->
+                        <!-- <img src="assets/images/ic_logo_cbgmob.png" class="user-image" alt="User Image" style="width: 30 px; height: 40px; vertical-align: middle;"> -->
+                        <!-- <i class="fa fa-user-circle fa-2x" aria-hidden="false"></i>  -->
+                        <div id="drop" style="margin-left: -30%;">
+                            <div class="row">
+                                <i class="fa fa-user-circle fa-2x" aria-hidden="false"></i> <span> {{this.merchantName}} <br></span>
+                            </div>
+                            <!-- <span> {{this.merchantName}} <br></span> -->
+                            <span style="margin-left: 15px;"> {{stringObject.companyName}}</span>
+                        </div>
+
+                        <!-- <span>{{stringObject.companyName}}</span> -->
+                    </a>
+
+                    <!-- <a *ngIf="this.showN==true && this.show==false && this.showCU==false" href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" aria-haspopup="true" aria-expanded="false">
                         <img src="assets/images/ic_logo_cbgmob.png" class="user-image" alt="User Image" style="width: 30 px; height: 40px; vertical-align: middle;">
-                        <i class="fa fa-user-circle fa-2x" aria-hidden="false"></i> <span>{{this.name}}</span>
+                        <i class="fa fa-user-circle fa-2x" aria-hidden="false"></i> <span> {{this.name}}</span>
+                    </a>
+                    <a *ngIf="this.showN==false && this.show==true && this.showCU==false" href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" aria-haspopup="true" aria-expanded="false">
+                        <img src="assets/images/ic_logo_cbgmob.png" class="user-image" alt="User Image" style="width: 30 px; height: 40px; vertical-align: middle;">
+                        <i class="fa fa-user-circle fa-2x" aria-hidden="false"></i> <span>{{stringObject.companyName}}</span>
+                    </a> -->
+
+                    <div style="width: 0%; " class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a class="clickable dropdown-item dropdownit" (click)="logOut()"><i class="fa fa-sign-out"></i> Sign Out</a>
+                    </div>
+                </li>
+                <li *ngIf="this.showN==true && this.show==false && this.showCU==false" class="dropdown user user-menu">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" aria-haspopup="true" aria-expanded="false">
+                        <img src="assets/images/ic_logo_cbgmob.png" class="user-image" alt="User Image" style="width: 30 px; height: 40px; vertical-align: middle;">
+                        <i class="fa fa-user-circle fa-2x" aria-hidden="false"></i> <span> {{this.name}}</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <a class="clickable dropdown-item dropdownit" (click)="logOut()"><i class="fa fa-sign-out"></i> Sign Out</a>
+                    </div>
+                </li>
+                <li *ngIf="this.showN==false && this.show==true && this.showCU==false" class="dropdown user user-menu">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownmenu1" aria-haspopup="true" aria-expanded="false">
+                        <img src="assets/images/ic_logo_cbgmob.png" class="user-image" alt="User Image" style="width: 30 px; height: 40px; vertical-align: middle;">
+                        <!-- <i class="fa fa-user-circle fa-2x" aria-hidden="false"></i> <span>{{stringObject.companyName}}</span> -->
+                        <div id="drop" style="margin-left: -30%;">
+                            <div class="row">
+                                <i class="fa fa-user-circle fa-2x" aria-hidden="false"></i> <span> {{this.merchantName}} <br></span>
+                            </div>
+                            <!-- <span> {{this.merchantName}} <br></span> -->
+                            <span style="margin-left: 15px;"> {{stringObject.companyName}}</span>
+                        </div>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <a class="clickable dropdown-item dropdownit" (click)="logOut()"><i class="fa fa-sign-out"></i> Sign Out</a>

@@ -32,14 +32,14 @@ canActivate(
   next: ActivatedRouteSnapshot,
   state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     // Récupération de l'utilisateur connecté
-    const isLoggedIn = !isNull(localStorage.getItem('user'));
+    const isLoggedIn = !isNull(localStorage.getItem('token'));
     console.log("aaaaaaaa");
 
     if (isLoggedIn) {
       // Si  l'utilisateur connecté : pas de redirection vers la page de login
       
       console.log('Vous êtes connectés');
-      this.router.navigate(['/merchantTrans']);
+      // this.router.navigate(['/merchantTrans']);
       return false;
     }
     //this.router.navigate(['/login']);

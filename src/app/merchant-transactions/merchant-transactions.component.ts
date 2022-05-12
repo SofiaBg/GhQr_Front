@@ -14,10 +14,13 @@ import { BnNgIdleService } from 'bn-ng-idle';
 import { ChartsModule } from 'ng2-charts';
 import * as i18nIsoCountries from 'i18n-iso-countries';
 import { Merchant } from '../new-merchant/new-merchant.component';
+import { DatePipe } from '@angular/common';
+import {formatDate} from '@angular/common';
 @Component({
   selector: 'app-merchant-transactions',
   templateUrl: './merchant-transactions.component.html',
   styleUrls: ['./merchant-transactions.component.css']
+  // providers:[DatePipe]
 })
 export class MerchantTransactionsComponent extends BaseComponent implements OnInit {
 
@@ -49,8 +52,8 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
   pagesize: number = 10;
   //myDatePickerOptions: any;
   showdetail: boolean = true;
-  dateTo: string;
-  dateFrom: string;
+  dateTo: any;
+  dateFrom: any;
   err: any;
   shownull: boolean = false;
   showtrx: boolean = false;
@@ -118,6 +121,7 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
   stringObject: any;
   show: boolean = false;
   showT: boolean = false;
+  myDate = new Date();
   //++++++++++++++++++
   regexp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
   validcondition: Boolean = true;
@@ -138,7 +142,11 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
     inst.showDashboard=false;
   }
 
-  constructor(private formBuilder: FormBuilder, public _formBuilder: FormBuilder, private bnIdle: BnNgIdleService, private service: GipService, router: Router) {
+  constructor
+  (private formBuilder: FormBuilder, 
+    public _formBuilder: FormBuilder, 
+    private bnIdle: BnNgIdleService,
+     private service: GipService, router: Router) {
     /* this.datepickerForm = this._formBuilder.group({
        'startDate': [null, Validators.required]
      });*/
@@ -163,6 +171,21 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
 
   /* SAFIA 08.10.2021 */
   allQrTransactionPdf() {
+     
+    if(this.dateFrom == null && this.dateTo == null){
+      console.log('Choose a date from and a Date to ');
+      console.log('All transactions PDF ', this.dateFrom);
+      console.log('All transactions PDF ', this.dateTo);
+        this.showErrorDate=true
+    }else if(this.dateFrom == null ){
+      console.log('All transactions PDF ', this.dateFrom);
+      console.log('All transactions PDF ', this.dateTo);
+        this.showErrorDateFrom=true
+    }else if( this.dateTo == null ){
+      console.log('All transactions PDF ', this.dateFrom);
+      console.log('All transactions PDF ', this.dateTo);
+        this.showErrorDateTo=true
+    }else {
     console.log('QR Transaction PDF')
     console.log('All transactions PDF ', this.dateFrom);
     console.log('All transactions PDF ', this.dateTo);
@@ -193,6 +216,7 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
       this.dateTo = '';
     });
   }
+  }
 
   result: any = null;
   showResult :  any[] =  this.result;
@@ -203,24 +227,35 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
   merchantPage(){
     this.router.navigateByUrl("/merchantTrans")
   }
+  showErrorDateFrom : boolean = false
+  showErrorDateTo:boolean = false;
 
+
+  
   allQrTransactionSearch() {
     // Just for test
-    this.dateFrom = '2020-01-20';
-    this.dateTo = '2021-11-20';
+    // this.dateFrom = '2020-01-20';
+    // this.dateTo = '2021-11-20';
   
     let account = localStorage.getItem('idAccount');
 
     console.log(account)
     console.log('Search for QRTransaction')
    
-
-    if(this.dateFrom == null || this.dateTo == null || (this.dateFrom == null && this.dateTo == null)){
+    if(this.dateFrom == null && this.dateTo == null){
       console.log('Choose a date from and a Date to ');
       console.log('All transactions PDF ', this.dateFrom);
       console.log('All transactions PDF ', this.dateTo);
         this.showErrorDate=true
-    }else{
+    }else if(this.dateFrom == null ){
+      console.log('All transactions PDF ', this.dateFrom);
+      console.log('All transactions PDF ', this.dateTo);
+        this.showErrorDateFrom=true
+    }else if( this.dateTo == null ){
+      console.log('All transactions PDF ', this.dateFrom);
+      console.log('All transactions PDF ', this.dateTo);
+        this.showErrorDateTo=true
+    }else {
       console.log('All transactions PDF ', this.dateFrom);
       console.log('All transactions PDF ', this.dateTo);
       console.log(" ACCOUNT ID IS :" + this.idAccount)
@@ -240,8 +275,10 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
 
         console.log('All transaction PDF', data);
 
-        if (data === null)
+        if (data ==null){
           this.showT = true;
+
+        }
         // this.dateFrom = '';
         // this.dateTo = '';
       });
@@ -477,11 +514,68 @@ export class MerchantTransactionsComponent extends BaseComponent implements OnIn
     this.pagenumber = Number(event.target.value) - 1;
   }
 
+  // refresh() {
+  //   this.showResult=null
+  //   this.dateFrom='';
+  //   this.dateTo='';
+  // }
+  currentDate=new Date
+  pipe = new DatePipe('en-US');
   refresh() {
-    this.showResult=null
-    this.dateFrom='';
-    this.dateTo='';
+   
+   this.dateFrom =  this.pipe.transform(Date.now(), 'yyyy-MM-dd');;
+   this.dateTo =  this.pipe.transform(Date.now(), 'yyyy-MM-dd');;
+
+    let account = localStorage.getItem('idAccount');
+
+    console.log(account)
+    console.log('Search for QRTransaction')
+   
+    if(this.dateFrom == null && this.dateTo == null){
+      console.log('Choose a date from and a Date to ');
+      console.log('All transactions PDF ', this.dateFrom);
+      console.log('All transactions PDF ', this.dateTo);
+        this.showErrorDate=true
+    }else if(this.dateFrom == null ){
+      console.log('All transactions PDF ', this.dateFrom);
+      console.log('All transactions PDF ', this.dateTo);
+        this.showErrorDateFrom=true
+    }else if( this.dateTo == null ){
+      console.log('All transactions PDF ', this.dateFrom);
+      console.log('All transactions PDF ', this.dateTo);
+        this.showErrorDateTo=true
+    }else {
+      console.log('All transactions PDF ', this.dateFrom);
+      console.log('All transactions PDF ', this.dateTo);
+      console.log(" ACCOUNT ID IS :" + this.idAccount)
+
+
+    this.service.allQrTransactionSearch(account, this.dateFrom, this.dateTo).
+      subscribe(data => {
+
+
+        this.result = data;
+        this.totalPages = Math.ceil(this.result.length / this.pagesize);
+        if (this.currentpage + 1 > this.totalPages || this.totalPages > 0) {
+          this.currentpage = 0;
+        }
+        this.showResult = this.result.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+        
+
+        console.log('All transaction PDF', data);
+
+        if (data ==null){
+          this.showT = true;
+
+        }
+        // this.dateFrom = '';
+        // this.dateTo = '';
+      });
+    } 
+  
   }
+
+  
 
   getQrTransactions() {
     let merchantId = localStorage.getItem('idAccount');

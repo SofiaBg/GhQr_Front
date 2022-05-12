@@ -31,16 +31,33 @@
                     </section> -->
         <br/>
         <section>
-            <div class="callout callout-danger" *ngIf="Errtoken==true">
+            <!-- <div class="callout callout-danger" *ngIf="Errtoken==true">
                 <h4>Warning!</h4>
                 <strong>No Merchant id</strong>
                 <p></p>
-            </div>
+            </div> -->
 
-            <div class="callout callout-success" *ngIf="valid==true">
+            <!-- <div class="callout callout-success" *ngIf="valid==true">
                 <h4> updated successfully </h4>
                 <strong> </strong>
                 <p></p>
+            </div> -->
+
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="Errtoken==true">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Error</strong><br />
+                <ul style="color:  #B83C37;">
+                    <li>Failed to update session </li>
+                </ul>
+                <!-- <p style="color:  #B83C37;">{{errMessage}}</p> -->
+            </div>
+
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="valid==true">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong style="color:  #270;">Success</strong><br />
+                <p style="color:  #270;">Session Updated successfully</p>
+
             </div>
 
             <div class="box box-default">

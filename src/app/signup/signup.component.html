@@ -14,47 +14,71 @@
             <!-- /.login-logo  -->
             <div class="login-box-body">
                 <div class="row">
-                    <b>
+                    <!-- <b>
                         <p id="p1" class="login-box-msg pull-left">Account Setup</p>
-                    </b>
-                    <b> <i style="color: black;" class="fa fa-angle-double-right" aria-hidden="true"></i></b>
-                    <p id="p2" class="login-box-msg pull-right">OTP</p>
+                    </b> -->
+                    <!-- <b> <i style="color: black;" class="fa fa-angle-double-right" aria-hidden="true"></i></b>
+                    <p id="p2" class="login-box-msg pull-right">OTP</p> -->
+                    <p class="login-box-msg">
+                        Enter your information to get started ! </p>
+
                 </div>
                 <section>
                     <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="invalidShow==true ">
-                        <button style="color:  #B83C37;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
-                        <h5 style="color:  #B83C37;"><i class="fa fa-ban fa-1x"> </i> password must be at least 8 characters and contain a number and an uppercase and lowercase letters
+                        <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> password must be at least 8 characters and contain a number and an uppercase and lowercase letters
                         </h5>
                     </div>
 
-                    <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="matchShow==true ">
-                        <button style="color:  #B83C37;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="matchshow==true">
+                        <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
-                        <h5 style="color:  #B83C37;"><i class="fa fa-ban fa-1x"> </i> Password confirmation must match Password
+                        <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> Password confirmation must match Password!
                         </h5>
                     </div>
-                    <div class="alert alert-success alert-dismissible" *ngIf="show==true  && mode==true">
+
+                    <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true  && mode==true">
+                        <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                        <h5 style="color:  #270;"><i class="fa fa-check"> </i> Phone checked !</h5>
+                    </div>
+
+                    <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="showMessageSave==true">
+                        <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                        <h5 style="color:  #270;"><i class="fa fa-check"> </i> User saved Successfully !</h5>
+                    </div>
+
+                    <!-- <div class="alert alert-success alert-dismissible" *ngIf="show==true  && mode==true">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <h4><i class="icon fa fa-check"></i> Alert!</h4>
                         Phone checked !
-                    </div>
+                    </div> -->
                     <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessage==true ">
-                        <button style="color:  #B83C37;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
-                        <h5 style="color:  #B83C37;"><i class="fa fa-ban fa-1x"> </i>Invalid Phone Number !</h5>
+                        <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <!-- <h4><i class="fa fa-exclamation-circle"></i> All fields marked with an asterisk (*) are required.</h4> -->
+                        <h4 style="color:  #B83C37;  background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert !</h4>
+                        <!-- <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i>{{errorArray}}</h5> -->
+                        <h5 style="color:  #B83C37;">
+                            <ul *ngFor="let error of errorArray">
+                                <li>
+                                    {{error}}
+                                </li>
+                            </ul>
+                        </h5>
                     </div>
 
                     <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="validresetP==true ">
-                        <button style="color:  #B83C37;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
-                        <h5 style="color:  #B83C37;"><i class="fa fa-ban fa-1x"> </i> All fields are required !</h5>
+                        <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> All fields are required !</h5>
                     </div>
 
                     <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="saveUser==true ">
-                        <button style="color:  #B83C37;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
-                        <h5 style="color:  #B83C37;"><i class="fa fa-ban fa-1x"> </i>Failed !</h5>
+                        <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i>Failed to save user !</h5>
                     </div>
                     <!-- <ng-container *ngIf="showmsg">
                         <div class="alert alert-danger">
@@ -83,93 +107,295 @@
                             </ul>
                         </div>
                     </ng-container> -->
-                    <form (ngSubmit)="submit()">
-                        <div class="form-group has-feedback">
-                            <div id="flexContainer" class="invalid-feedback">
-                                <input minlength="10" ng-model="phoneNumber" type="text" name="phoneNumber" id="phoneNumber" ngModel="" placeholder="Phone Number" class="form-control" required />
-                                <span class="glyphicon glyphicon-phone form-control-feedback"></span>
-
-                                <!-- <button (click)="checkAcceptorPointByPhoneNumber(phoneNumber)" class="btn btn-danger" id="btnCheck" type="button"><i id="iconCheck" class="fa fa-check"
-                                        aria-hidden="true"></i></button> -->
+                    <form [formGroup]="myform" (ngSubmit)=" submit() ">
+                        <!-- <form [formGroup]="myform" (ngSubmit)=" submit() "> -->
+                        <div class="form-group has-feedback ">
+                            <div id="flexContainer " class="invalid-feedback ">
+                                <input minlength="10" [(ngModel)]="registerUser.phoneNumber" type=" text " formControlName="phoneNumber" id="phoneNumber" ngModel=" " placeholder="Phone Number" class="form-control " required />
+                                <!-- <button (click)="checkAcceptorPointByPhoneNumber(phoneNumber) " class="btn btn-danger " id="btnCheck " type="button "><i id="iconCheck " class="fa fa-check "
+                                        aria-hidden="true "></i></button> -->
                             </div>
                         </div>
-                        <div class="form-group has-feedback">
-                            <input id="accountNumber" ng-model="accountNumber" type="text" name="accountNumber" ngModel="" placeholder="Account Number" class="form-control" required />
-
-                            <span class=" glyphicon glyphicon-lock form-control-feedback"></span>
+                        <div class="form-group has-feedback ">
+                            <div id="flexContainer " class="invalid-feedback ">
+                                <input [(ngModel)]="registerUser.userName" type="text" formControlName="userName" id="userName" ngModel=" " placeholder="UserName" class="form-control " required />
+                                <!-- <button (click)="checkAcceptorPointByPhoneNumber(phoneNumber) " class="btn btn-danger " id="btnCheck " type="button "><i id="iconCheck " class="fa fa-check "
+                                        aria-hidden="true "></i></button> -->
+                            </div>
                         </div>
                         <div class="form-group has-feedback ">
-                            <!-- <input id="domicilBranch " type="text " name="domicilBranch " placeholder="Domicile Branche " class="form-control " required /> -->
-                            <input id="domicilBranch" ng-model="domicilBranch" type="text" name="domicilBranch" ngModel="" placeholder="Domicile Branche" class="form-control" required />
-
-                            <span class="glyphicon glyphicon-lock form-control-feedback "></span>
+                            <input id="accountNumber" [(ngModel)]="registerUser.accountNumber" type="text" formControlName="accountNumber" ngModel=" " placeholder="Account Number " class="form-control " required />
+                            <!-- <span class=" glyphicon glyphicon-lock form-control-feedback "></span> -->
+                        </div>
+                        <!-- <div class="form-group has-feedback ">
+                            <input list="domicilBranches " id="domicilBranch " [(ngModel)]="registerUser.branch" type="text " formControlName="branch" ngModel=" " placeholder="Domicile Branch " class="form-control " required />
+                            <datalist id="domicilBranches ">
+                                <option class="form-control "
+                                    style="background-color: #ffffff !important; color: black; "
+                                    *ngFor="let branch of merchantBranch " [value]="branch.institut_code ">
+                                    {{branch.institut_name}}</option>
+                            </datalist>
+                        </div> -->
+                        <div class="form-group has-feedback">
+                            <input list="domicilBranches " id="domicilBranch " [(ngModel)]="registerUser.branch" type="text " formControlName="branch" ngModel=" " placeholder="Domicile Branch " class="form-control " required />
+                            <datalist id="domicilBranches ">
+                                <option class="form-control "
+                                    style="background-color: #ffffff !important; color: black; "
+                                    *ngFor="let branch of branchLocator" [ngValue]="branch.branchCode ">
+                                    {{branch.branchName}}</option>
+                            </datalist>
                         </div>
                         <div class="form-group has-feedback ">
                             <!-- <input id="buisnessCerNo " type="text " name="buisnessCerNo " placeholder="BUSINESS CERT.NO " class="form-control " required /> -->
-                            <input id="buisnessCerNo" ng-model="buisnessCerNo" type="text" name="buisnessCerNo" ngModel="" placeholder="BUSINESS CERT.NO" class="form-control" required />
+                            <input id="buisnessCerNo" [(ngModel)]="registerUser.businessCertNumber" type="text " formControlName="businessCertNumber" ngModel=" " placeholder=" Business Cert.No " class="form-control " required />
 
-                            <span class="glyphicon glyphicon-lock form-control-feedback "></span>
+                            <!-- <span class="glyphicon glyphicon-lock form-control-feedback "></span> -->
                         </div>
                         <div class="form-group has-feedback ">
                             <!-- <input id="dateOf " type="date " name="dateOf " placeholder="DATE OF INCORPORATION " class="form-control " required /> -->
-                            <input id="dateOf" ng-model="dateOf" type="date" name="dateOf" ngModel="" placeholder="Date OF INCORPORATION" class="form-control" required />
+                            <input id="dateOf" ng-model="dateOf " type="date" formControlName="dateOf" [(ngModel)]="registerUser.dateOf" placeholder="Date Of Incorporation " class="form-control " required />
 
                         </div>
                         <div class="form-group has-feedback ">
-                            <!-- <input minlength="8" id="userPassword " type="password " name="userPassword " placeholder="Password " class="form-control " required /> -->
-                            <input minlength="8" id="userPassword" ng-model="userPassword" type="password" name="userPassword" ngModel="" placeholder="USER PASSWORD" class="form-control" required />
+                            <form style="display: flex ">
+                                <!-- <input minlength="8 " id="userPassword " type="password " name="userPassword " placeholder="Password " class="form-control " required /> -->
+                                <input [type]="fieldTextTypeUserPassword ? 'text' : 'password'" minlength="8" id="userPassword" name="userPassword" [(ngModel)]="registerUser.userPassword" placeholder="User Password " class="form-control" required />
+                                <!-- <button class="btn btn-danger " style="margin-left: -38px;background-color: #222d3200; border: #222d32b5; " id="btnCheck " (click)="onClick() ">
+                                    <i style="color: black; " class="fa fa-eye " aria-hidden="true "
+                                        *ngIf="!showEye "></i>
+                                    <i style="color: black; " class="fa fa-eye-slash " aria-hidden="true "
+                                        *ngIf="showEye "></i>
+                                </button> -->
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                      <i style="margin-left: -26px; color: black; margin-top: 8px;"
+                                        class="fa"
+                                        [ngClass]="{
+                                          'fa-eye-slash': !fieldTextTypeUserPassword,
+                                          'fa-eye': fieldTextTypeUserPassword
+                                        }"
+                                        (click)="toggleUserPasswordTextType()"
+                                      ></i>
+                                    </span>
+                                </div>
+                            </form>
 
-                            <span class="glyphicon glyphicon-lock form-control-feedback "></span>
+                            <!-- <span class="glyphicon glyphicon-lock form-control-feedback "></span> -->
                             <br>
                             <div class="form-group has-feedback ">
-                                <!-- <input minlength="8" id="confirmPassword " type="password " name="confirmPassword " placeholder="Password Confirmation " class="form-control " required /> -->
-                                <input minlength="8" id="confirmPassword" ng-model="confirmPassword" type="password" name="confirmPassword" ngModel="" placeholder="PASSWORD CONFIRMATION" class="form-control" required />
+                                <form style="display: flex ">
+                                    <input [type]="fieldTextTypeUserConfirmPassword ? 'text' : 'password'" minlength="8" id="userCofirmPassword" [(ngModel)]="registerUser.userCofirmPassword" name="userCofirmPassword" placeholder=" Password Confirmation " class="form-control " required />
+                                    <!-- <button class="btn btn-danger " style="margin-left: -38px; background-color: #222d3200; border: #222d32b5; " id="btnCheck " (click)="onClick2() ">
+                                        <i style="color: black; " class="fa fa-eye " aria-hidden="true "
+                                            *ngIf="!showEye2 "></i>
+                                        <i style="color: black; " class="fa fa-eye-slash " aria-hidden="true "
+                                            *ngIf="showEye2 "></i>
+                                    </button> -->
+                                    <!-- <div class="input-group-append">
+                                        <span class="input-group-text"> -->
+                                    <i style="margin-left: -26px; color: black; margin-top: 8px;" class="fa" [ngClass]="{
+                                              'fa-eye-slash': !fieldTextTypeUserConfirmPassword,
+                                              'fa-eye': fieldTextTypeUserConfirmPassword
+                                            }" (click)="toggleUserConfirmPasswordTextType()"></i>
+                                    <!-- </span>
+                                    </div> -->
+                                </form>
+                                <!-- <input minlength="8 " id="confirmPassword " type="password " name="confirmPassword " placeholder="Password Confirmation " class="form-control " required /> -->
+                                <!-- <input minlength="8 " id="confirmPassword " ng-model="confirmPassword " type="password " name="confirmPassword " ngModel=" " placeholder="Password Confirmation " class="form-control " required /> -->
 
-                                <span class="glyphicon glyphicon-lock form-control-feedback "></span>
+                                <!-- <span class="glyphicon glyphicon-lock form-control-feedback "></span> -->
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback ">
+                            <div class="row ">
+                                <div class="text-center ">
+                                    <div class="row ">
+                                        <div class=" col-xs-6 pull-right ">
+                                            <button (click)='createSubUser()' style="width: 50px; margin-left: 70%; background-color: #222d32b5 !important; border: #222d32b5 !important; " id="btn1 " type="button " class="btn btn-block ">
+                                                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div *ngFor="let u of registerUser.subUsers; let i = index">
+
+
+                                <!-- <p>{{u.id_item}}
+                                </p> -->
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="form-group has-feedback col-xs-6 pull-left">
+                                            <h4>User {{i + 2}}</h4>
+                                        </div>
+                                        <div class="form-group has-feedback col-xs-6 pull-right">
+                                            <!-- <button (click)='remove(i)' style="width: 50px; margin-left: 75%; background-color: #ff2a2a !important; border: #ff2a2a !important; " id="btn1 " type="button " class="btn btn-block ">
+                                                <i class="fa fa-user-times" aria-hidden="true"></i>
+                                            </button> -->
+                                            <td><button (click)="removeItem(i)" style="width: 40px;margin-left: 415%;" id="blackBtn" class="btn btn-danger"><span
+                                                        class="fa fa-times"></span></button>
+                                            </td>
+                                            <!-- <td><button [class.selected]="u === selectedRecord" (click)="onSelect(u)" data-toggle="modal" data-target="#rejectModal" style="width: 40px;margin-left: 415%;" id="blackBtn" class="btn btn-danger"><span
+                                                class="fa fa-times"></span></button>
+                                    </td> -->
+                                            <!-- <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 style="text-align: center;" class="modal-title" id="exampleModalLabel">Remove</h5>
+                                                        </div>
+                                                        <div style="text-align: center;" class="modal-body">
+                                                            Are you sure you want to remove this user?
+                                                        </div>
+                                                        <div style="text-align: center;" class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                            <button style="background:#ff2a2a; border-color: #ff2a2a;" type="button" class="btn btn-danger" (click)="deleteRows(i)" data-dismiss="modal"> Yes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-feedback ">
+                                        <div id="flexContainer" class="invalid-feedback">
+                                            <input [formControlName]="'phoneNumber'+u.id_item" [(ngModel)]="u.phoneNumber" minlength=" 10" type="text" placeholder="Phone Number " class="form-control" required />
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-feedback ">
+                                        <div id="flexContainer " class="invalid-feedback ">
+                                            <input [formControlName]="'userName'+u.id_item" [(ngModel)]="u.userName" minlength="10" type="text" placeholder="UserName " class="form-control " required />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group has-feedback ">
+                                        <div style="display: flex ">
+                                            <input [type]="fieldTextTypeSubUserPassword ? 'text' : 'password'" [formControlName]="'userPassword'+u.id_item" [(ngModel)]="u.userPassword" minlength="8 " placeholder="User Password " class="form-control" required />
+                                            <!-- <button class="btn btn-danger " style="margin-left: -38px;background-color: #222d3200; border: #222d32b5; " id="btnCheck " (click)="onClick() ">
+                                                <i style="color: black; " class="fa fa-eye " aria-hidden="true "
+                                                    *ngIf="!showEye "></i>
+                                                <i style="color: black; " class="fa fa-eye-slash " aria-hidden="true "
+                                                    *ngIf="showEye "></i>
+                                            </button> -->
+                                            <!-- <div class="input-group-append">
+                                                <span class="input-group-text"> -->
+                                            <i style="margin-left: -26px; color: black; margin-top: 8px;" class="fa" [ngClass]="{
+                                                      'fa-eye-slash': !fieldTextTypeSubUserPassword,
+                                                      'fa-eye': fieldTextTypeSubUserPassword
+                                                    }" (click)="toggleSubUserPasswordTextType()"></i>
+                                            <!-- </span>
+                                            </div> -->
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-feedback ">
+                                        <div style="display: flex ">
+                                            <input [type]="fieldTextTypeSubUserConfirmPassword ? 'text' : 'password'" [formControlName]="'confirmPassword'+u.id_item" [(ngModel)]="u.confirmPassword" name="confirmPassword" minlength="8 " placeholder="Password Confirmation" class="form-control" required
+                                            />
+                                            <!-- <button class="btn btn-danger " style="margin-left: -38px;background-color: #222d3200; border: #222d32b5; " id="btnCheck " (click)="onClick() ">
+                                                <i style="color: black; " class="fa fa-eye " aria-hidden="true "
+                                                    *ngIf="!showEye "></i>
+                                                <i style="color: black; " class="fa fa-eye-slash " aria-hidden="true "
+                                                    *ngIf="showEye "></i>
+                                            </button> -->
+                                            <!-- <div class="input-group-append"> -->
+                                            <!-- <span class="input-group-text"> -->
+                                            <i style="margin-left: -26px; color: black; margin-top: 8px;" class="fa" [ngClass]="{
+                                                      'fa-eye-slash': !fieldTextTypeSubUserConfirmPassword,
+                                                      'fa-eye': fieldTextTypeSubUserConfirmPassword
+                                                    }" (click)="toggleSubUserConfirmPasswordTextType()"></i>
+                                            <!-- </span> -->
+                                            <!-- </div> -->
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-feedback ">
+                                        <!-- <form style="display: flex ">
+                                            <input minlength=" 8 " id="confirmPasswordSubUser" [type]="password " name="confirmPasswordSubUser " placeholder="Password Confirmation " class="form-control " required />
+                                            <button class="btn btn-danger " style="margin-left: -38px;background-color: #222d3200; border: #222d32b5; " id="btnCheck " (click)="onClick() ">
+                                                <i style="color: black; " class="fa fa-eye " aria-hidden="true "
+                                                    *ngIf="!showEye "></i>
+                                                <i style="color: black; " class="fa fa-eye-slash " aria-hidden="true "
+                                                    *ngIf="showEye "></i>
+                                            </button>
+                                        </form> -->
+                                    </div>
+                                </fieldset>
                             </div>
                         </div>
 
                     </form>
 
                     <br />
-                    <div class="row ">
+                    <div *ngIf="showInput2==true" class="row ">
                         <div class="text-center ">
                             <div class="row ">
-                                <div class=" col-xs-6 pull-right ">
-                                    <button id="btn1 " (click)="checkByMobileNumberToSave(phoneNumber) " type="button " class="btn btn-block ">Next <i class="fa fa-arrow-right " aria-hidden="true "></i>
-                                    </button>
-
-                                </div>
-                                <div class=" col-xs-6 pull-left ">
-                                    <button (click)="cancel() " type="button " class="btn btn-block ">Cancel </button>
+                                <div class="form-group has-feedback ">
+                                    <div class=" col-xs-6 pull-right ">
+                                        <button style="margin-left: -6%; background-color: #222d32b5 !important; border: #222d32b5 !important;" id="btn1" (click)="checkInfosUser()" type="button " class="btn btn-block ">Next
+                                        </button>
+                                    </div>
+                                    <div class=" col-xs-6 pull-left ">
+                                        <button style="margin-left: 7%;" (click)="cancel()" type="button " class="btn btn-block ">Cancel </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <section *ngIf="stepOtp==true ">
-                    <div></div>
-                    <br>
-                    <div id="flexContainer " class="invalid-feedback ">
-                        <input minlength="6" maxlength="6" id="otp" ng-model="otp" type="password" name="otp" ngModel="" placeholder="OTP" class="form-control" required value="" />
+                <section *ngIf="stepOtp==true">
+                    <form style="display: flex; ">
+                        <input minlength="6 " maxlength="6 " id="otp" ng-model="otp" type="password " name="otp" placeholder="OTP" class="form-control " required />
 
-                        <!-- <input ng-model="otp" type="text " name="otp " id="otp " ngModel=" " placeholder="OTP" class="form-control " required /> -->
+                        <!-- <input ng-model="otp " type="text " name="otp " id="otp " ngModel=" " placeholder="OTP " class="form-control " required /> -->
                         <span id="phoneIcon " class="glyphicon glyphicon-phone form-control-feedback "></span>
-                        <button (click)="validate(phoneNumber,otp) " class="btn btn-danger " id="btnCheck " type="button "><i id="iconCheck " class="fa fa-check " aria-hidden="true "></i></button>
-                    </div>
+                        <!-- <button (click)="validate(phoneNumber,otp)" class="btn btn-danger " id="btnCheck " type="button "></button> -->
+                        <!-- <button class="btn btn-danger " id="btnCheck " type="button "></button> -->
+                    </form>
                 </section>
                 <div></div>
                 <br>
-                <div *ngIf="stepSave==true" class="row ">
-                    <div class="col-xs-offset-3 col-xs-6 ">
-                        <button id="btn1 " (click)="save() " type="button " class="btn btn-block ">Confirm </button>
+                <!-- *ngIf="stepSave==true" -->
+
+                <div *ngIf="stepOtp==true && showInput==true" class="row ">
+                    <div class="text-center ">
+                        <div class="row ">
+                            <div class="form-group has-feedback ">
+                                <div class=" col-xs-6 pull-right ">
+                                    <button style="margin-left: -6%; background-color: #222d32b5 !important; border: #222d32b5 !important; " id="btn1 " (click)="validate(phoneNumber,otp)" type="button " class="btn btn-block ">Confirm
+                                    </button>
+
+                                    <!-- <button style="margin-left: -6%; background-color: #222d32b5 !important; border: #222d32b5 !important; " id="btn1 " (click)="saveUsers() " type="button " class="btn btn-block ">Confirm
+                                    </button> -->
+
+                                </div>
+                                <div class=" col-xs-6 pull-left ">
+                                    <button style="margin-left: 7%;" (click)="cancel() " type="button " class="btn btn-block ">Cancel </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+                <!-- <div *ngIf="stepSave==true && showInput==true " class="row "> -->
+                <!-- <div *ngIf="stepSave==true && showInput==true " class="row "> -->
+                <!-- <div class="col-xs-offset-3 col-xs-6 ">
+                        <button style="background-color: #222d32b5 !important; border: #222d32b5 !important; " id="btn1 " (click)="saveUsers() " type="button " class="btn btn-block ">Confirm </button>
+
+                        <button (click)="cancel() " type="button " class="btn btn-block ">Cancel </button>
+
+                    </div>
+                </div> -->
             </div>
             <!-- /.login-box-body -->
         </div>
     </div>
+
+
+
     <script>
         $(function() {
             $('input').iCheck({
@@ -179,4 +405,5 @@
             });
         });
     </script>
+
 </body>

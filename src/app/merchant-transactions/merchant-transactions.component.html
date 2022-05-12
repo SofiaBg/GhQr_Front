@@ -27,9 +27,11 @@
 
                     <div style="height: 15px;"></div>
                     <br>
-                    <div class="alert alert-danger mb-8" *ngIf="showErrorDate==true">
+                    <!-- <div class="alert alert-danger mb-8" *ngIf="showErrorDate==true">
                         <strong>Alert</strong><br /> Date From and Date To are required !
-                    </div>
+                    </div> -->
+
+
 
                     <div class="col-md-9 " *ngIf="showdetail==true ">
                         <div id="divDetails" class="col-xs-12 ">
@@ -223,7 +225,7 @@
                     </div>
 
                     <div class="col-xs-12" *ngIf="showqrtrx==true">
-                        <div style="height: 30px;"></div>
+                        <!-- <div style="height: 30px;"></div> -->
                         <br>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -240,31 +242,72 @@
 
                             <p>{{err.toString()}}</p>
                         </div>
-                        <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
+                        <!-- <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
                             <button type="button" class="close" (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h4><i class="icon fa fa-check"></i> Alert!</h4>
                             {{msg}}
-                        </div>
+                        </div> -->
 
-                        <div class="alert alert-success alert-dismissible" *ngIf="show==true">
+                        <!-- <div class="alert alert-success alert-dismissible" *ngIf="show==true">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h4><i class="icon fa fa-check"></i> Alert!</h4>
                             PDF Generated successfully. Redirecting in 3 seconds...
+                        </div> -->
+
+                        <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true">
+                            <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                            <h5 style="color:  #270;"><i class="fa fa-check"> </i> PDF Generated successfully. Redirecting in 3 seconds...</h5>
                         </div>
-                        <div class="alert alert-danger alert-dismissible" *ngIf="showT==true">
+                        <!-- <div class="alert alert-danger alert-dismissible" *ngIf="showT==true">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h4><i class="icon fa fa-check"></i> Alert!</h4>
                             No Transactions Found !
+                        </div> -->
+                        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showT==true">
+                            <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                            <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> No Transactions Found !
+                            </h5>
                         </div>
+
+                        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showErrorDate==true">
+                            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+                            <p style="color:  #B83C37;">Date From and Date To are required !</p>
+                        </div>
+
+                        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showErrorDateFrom==true">
+                            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+                            <p style="color:  #B83C37;">Date From is required !</p>
+                        </div>
+
+                        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showErrorDateTo==true">
+                            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+                            <p style="color:  #B83C37;">Date To is required !</p>
+                        </div>
+
+                        <!-- <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true  && mode==true">
+                            <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
+                        <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                        <!-- <h5 style="color:  #270;"><i class="fa fa-check"> </i> Phone checked !</h5>
+                        </div> -->
                         <fieldset class="col-md-12">
+
 
                             <div class="panel panel-default">
                                 <!--<div>-->
+                                <div class="panel-heading">
+                                    Merchant transaction
+                                </div>
                                 <div class="panel-body">
 
                                     <div>
-
-
 
                                         <div class="box-tools">
                                             <div class="row">
@@ -278,23 +321,35 @@
                                                         </div>
                                                     </div>
                                                 </div> -->
-                                                <div class="col-xs-12 col-md-6">
-                                                    <div class="row" style="margin: 0;">
-                                                        Search by date
+                                                <!-- <div class="col-xs-12 col-md-6"> -->
+                                                <!-- <div class="row" style="margin: 0;">
+                                                    Search by date
+                                                </div> -->
+                                                <div class="row" style="margin: 0%;">
+                                                    <!-- <div class="input-group form-inline input-group-sm pull-left"> -->
+                                                    <!-- <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control pull-right" style="width: 150px; margin: 0;" placeholder="Date Format DD-MM-YYY"> -->
+                                                    <!-- <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control pull-right" style="width: 150px; margin-right: 4px;" placeholder="Date Format DD-MM-YYY"> -->
+                                                    <!-- </div> -->
+                                                    <div class="form-group col-md-3 col-xs-6 required">
+                                                        <label for="dateFrom">Date From</label>
+                                                        <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control" style="width: 150px; margin: 0;" placeholder="Date Format DD-MM-YYY">
                                                     </div>
-                                                    <div class="row" style="margin: 0;">
-                                                        <div class="input-group form-inline input-group-sm pull-left">
-                                                            <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control pull-right" style="width: 150px; margin: 0;" placeholder="Date Format DD-MM-YYY">
-                                                            <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control pull-right" style="width: 150px; margin-right: 4px;" placeholder="Date Format DD-MM-YYY">
-                                                        </div>
+                                                    <div class="form-group col-md-3 col-xs-6 required">
+                                                        <label for="dateTo">Date To</label>
+                                                        <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control" style="width: 150px; margin-right: 4px;" placeholder="Date Format DD-MM-YYY">
                                                     </div>
+
                                                 </div>
-                                                <div class="col-xs-12 col-md-3">
-                                                    <div class="row" style="margin: 19px; margin-left: -108%;">
-                                                        <!-- <button id="btn" type="submit" class="btn btn-danger mok" (click)="getQrTransactions()">Search</button> -->
-                                                        <!-- <button id="btn" type="submit" class="btn btn-danger mok" (click)="allQrTransactionSearch()">Search</button> -->
-                                                    </div>
-                                                </div>
+
+
+
+                                                <!-- </div> -->
+                                                <!-- <div class="col-xs-12 col-md-3">
+                                                    <div class="row" style="margin: 19px; margin-left: -108%;"> -->
+                                                <!-- <button id="btn" type="submit" class="btn btn-danger mok" (click)="getQrTransactions()">Search</button> -->
+                                                <!-- <button id="btn" type="submit" class="btn btn-danger mok" (click)="allQrTransactionSearch()">Search</button> -->
+                                                <!-- </div>
+                                                </div> -->
                                                 <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
                                                     <div style="display: inline-block; height: 100%">
                                                         <mat-spinner style="margin: 0 auto; vertical-align: middle;" diameter="20" color="black">
@@ -302,13 +357,13 @@
                                                     </div>
                                                     <div style="display: inline-block">Loading...</div>
                                                 </div>
-                                                <div class="col-xs-12 col-md-3"></div>
+                                                <!-- <div class="col-xs-12 col-md-3"></div> -->
                                             </div>
                                             <div class="row" style="margin-top: 4px;">
 
                                                 <div class="col-xs-12">
                                                     <div id="content" class="col-xs-4" #content>
-                                                        <div class="form-group form-inline" style="display: inline-block;">
+                                                        <!-- <div class="form-group form-inline" style="display: inline-block;">
                                                             <label for="pagesize">Page size</label>
                                                             <div class="input-group form-inline input-group-sm w-100 pull-left">
                                                                 <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
@@ -317,7 +372,7 @@
                                                                     <option value="50">50</option>
                                                                 </select>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                         <!-- SAFIA 22.09.2021 <button type="submit" class="btn btn-danger mok" (click)="getQrTransactions()"><i class="fa fa-search"></i> Search</button> -->
                                                         <!-- <button id="btn" type="submit" class="btn btn-danger mok" (click)="getQrTransactions()">Search</button>
                                                         <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
@@ -447,12 +502,40 @@
                                             </tbody>
                                         </table>
 
-                                        <div class="box-footer clearfix">
-                                            <div class="mt-8 text-center">
-                                                <div class="pull-left" id="nbPages">
-                                                    {{totalPages ? totalPages : 0}} pages
+                                        <div class="panel-footer o-auto">
+                                            <!-- <div class="box-footer clearfix"> -->
+
+                                            <div class="form-group form-inline" style="display: inline-block; margin-top: -10px;">
+                                                <div class="col-sm">
+                                                    <label for="pagesize">Page size</label>
+                                                    <div class="input-group form-inline input-group-sm w-100 pull-left">
+                                                        <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
+                                                        <option value="10">10</option>
+                                                        <option value="25">25</option>
+                                                        <option value="50">50</option>
+                                                    </select></div>
                                                 </div>
-                                                <!-- <div class="form-group form-inline" style="display: inline-block;">
+                                                <div class="mt-8 text-center">
+                                                    <div class="pull-left" id="nbPages">
+                                                        {{totalPages ? totalPages : 0}} pages
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-top: 2%;" class="input-group pagination-w pull-right">
+                                                <span class="input-group-btn">
+                                                        <button id="btn" type="submit" class="btn btn-danger mok"
+                                                            (click)="gotoPage(currentpage-1)"
+                                                            [disabled]="currentpage<=0">Previous</button>
+                                                    </span>
+                                                <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" (pageChange)="p = $event" /></form>
+                                                <span class="input-group-btn">
+                                                        <button id="btn" type="submit" class="btn btn-danger mok"
+                                                            (click)="gotoPage(currentpage+1)"
+                                                            [disabled]="!showResult || currentpage+1>=totalPages">Next</button>
+                                                    </span>
+                                            </div>
+                                            <!-- <div class="form-group form-inline" style="display: inline-block;">
                                                     <label for="pagesize">Page size</label>
                                                     <div class="input-group form-inline input-group-sm w-100 pull-left">
                                                         <select [(ngModel)]="pagesize" (change)="onsizechange()" class="form-control" style="margin: 0; max-width: 250px;" id="pagesize">
@@ -462,22 +545,10 @@
                                                         </select>
                                                     </div>
                                                 </div> -->
-                                                <div class="input-group pagination-w pull-right">
-                                                    <span class="input-group-btn">
-                                                        <button id="btn" type="submit" class="btn btn-danger mok"
-                                                            (click)="gotoPage(currentpage-1)"
-                                                            [disabled]="currentpage<=0">Previous</button>
-                                                    </span>
-                                                    <form (ngSubmit)="gotoPageFromInput()"><input type="text" class="form-control" value="{{currentpage+1}}" (keyup)="onKey($event)" (pageChange)="p = $event" /></form>
-                                                    <span class="input-group-btn">
-                                                        <button id="btn" type="submit" class="btn btn-danger mok"
-                                                            (click)="gotoPage(currentpage+1)"
-                                                            [disabled]="!showResult || currentpage+1>=totalPages">Next</button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
 
+                                            <!-- </div> -->
+                                            <!-- </div> -->
+                                        </div>
                                     </div>
 
                                 </div>
@@ -489,7 +560,7 @@
 
                     <!-- SAFIA 23.09.2021 -->
                     <div class="col-xs-12" *ngIf="showDashboard==true">
-                        <div style="height: 30px;"></div>
+                        <!-- <div style="height: 30px;"></div> -->
                         <br>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -513,7 +584,7 @@
                                             <div class="row" style="margin-top: 4px; margin: 1%;">
 
                                                 <div class="row">
-                                                    <div class="col-xs-12 col-md-3">
+                                                    <!-- <div class="col-xs-12 col-md-3">
                                                         <div class="row" style="margin: 0;">
                                                             Search by city
                                                         </div>
@@ -522,198 +593,224 @@
                                                                 <input type="text" name="motCle" [(ngModel)]="mot" class="form-control pull-right" placeholder="City">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-md-6">
-                                                        <div class="row" style="margin: 0;">
-                                                            Search by date
-                                                        </div>
-                                                        <div class="row" style="margin: 0;">
-                                                            <div class="input-group form-inline input-group-sm pull-left">
-                                                                <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control pull-right" style="width: 150px; margin: 0;" placeholder="Date Format DD-MM-YYY">
-                                                                <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control pull-right" style="width: 150px; margin-right: 4px;" placeholder="Date Format DD-MM-YYY">
+                                                    </div> -->
+                                                    <div class="row">
+                                                        <div class="box-body" style=" padding: 30px;">
+                                                            <div class="input-group input-group-sm" style="    width: 500px;">
+                                                                <input type="text" name="motCle" [(ngModel)]="mot" class="form-control pull-right" placeholder="City">
+                                                            </div>
+                                                            <div style="margin-left: -1%;" class="form-group col-md-3 col-xs-6 required">
+                                                                <label for="dateTo">Date From</label>
+                                                                <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control" placeholder="Date Format DD-MM-YYY">
+                                                                <!-- <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control pull-right" style="width: 150px; margin-right: 4px;" placeholder="Date Format DD-MM-YYY"> -->
+                                                            </div>
+                                                            <div class="form-group col-md-3 col-xs-6 required">
+                                                                <label for="dateFrom">Date To</label>
+                                                                <!-- <input type="date" name="motCleTo" [(ngModel)]="dateTo" class="form-control pull-right" style="width: 150px; margin: 0;" placeholder="Date Format DD-MM-YYY"> -->
+                                                                <input type="date" name="motCleFrom" [(ngModel)]="dateFrom" class="form-control" placeholder="Date Format DD-MM-YYY">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-xs-12 col-md-3">
-                                                        <div class="row" style="margin: 19px; margin-left: -108%;">
+                                                    <div class="input-group pull-right mr-8">
+                                                        <div class="row" style="margin-left: -108%;">
                                                             <button id="btn" type="submit" class="btn btn-danger mok" (click)="getQrTransactions()">Search</button>
                                                         </div>
                                                     </div>
-                                                    <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
+                                                    <!-- <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">
                                                         <div style="display: inline-block; height: 100%">
                                                             <mat-spinner style="margin: 0 auto; vertical-align: middle;" diameter="20" color="black">
                                                             </mat-spinner>
                                                         </div>
                                                         <div style="display: inline-block">Loading...</div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-md-3"></div>
+                                                    </div> -->
+                                                    <!-- <div class="col-xs-12 col-md-3"></div> -->
                                                 </div>
 
-                                                <div class="col-xs-12">
-                                                    <div class="row">
-                                                        <div class="form-group col-sm-4 col-xs-12">
 
-                                                            <tr>
-                                                                <div style="padding-bottom: -2;margin-left: -2%;">Show dashboard by </div>
-                                                                <div style="margin-left: 46%;
-                                                                margin-top: -6%;
-                                                                margin-right: 316px;">
-                                                                    <td style="padding: 5px;">
-                                                                        <div class="dropdown pull-right">
-                                                                            <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> -->
-                                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Amount <i
-                                                                                    class="fa fa-chevron-down"></i></button>
-                                                                            <div class="dropdown-menu scroll-container">
-                                                                                <h6 class="dropdown-header">Amount</h6>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
-                                                                                <div class="dropdown-divider"></div>
-                                                                                <!-- <h6 class="dropdown-header">Amount per City</h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <h6 class="dropdown-header">Number of Transactions</h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <h6 class="dropdown-header">Number of Transactions per City
-                                                            </h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a> -->
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <!-- <td style="padding: 5px;">
-                                                                        <div class="dropdown pull-right">
-                                                                             <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> 
-                                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Amount per city <i
-                                                                                class="fa fa-chevron-down"></i></button>
-                                                                            <div class="dropdown-menu scroll-container">
-                                                                                <h6 class="dropdown-header">Amount</h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
-                                                            <div class="dropdown-divider"></div>
-                                                                                <h6 class="dropdown-header">Amount per City
-                                                                                </h6>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
-                                                                                <div class="dropdown-divider"></div>
-                                                                                <h6 class="dropdown-header">Number of Transactions</h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <h6 class="dropdown-header">Number of Transactions per City
-                                                            </h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td> -->
-                                                                    <td style="padding: 5px;">
-                                                                        <div class="dropdown pull-right">
-                                                                            <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> -->
-                                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Number Of
-                                                                                transactions <i
-                                                                                    class="fa fa-chevron-down"></i></button>
-                                                                            <div class="dropdown-menu scroll-container">
-                                                                                <!-- <h6 class="dropdown-header">Amount</h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
-                                                            <div class="dropdown-divider"></div> -->
-                                                                                <!-- <h6 class="dropdown-header">Amount per City</h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
-                                                            <div class="dropdown-divider"></div> -->
-                                                                                <h6 class="dropdown-header">Number of Transactions
-                                                                                </h6>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
-                                                                                <div class="dropdown-divider"></div>
-                                                                                <!-- <h6 class="dropdown-header">Number of Transactions per City
-                                                                                </h6>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a> -->
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <!-- <td style="padding: 5px;">
-                                                                        <div class="dropdown pull-right">
-                                                                             SAFIA 22.09.2021 <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> 
-                                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Number of
-                                                                            Transactions per City <i
-                                                                                class="fa fa-chevron-down"></i></button>
-                                                                            <div class="dropdown-menu scroll-container">
-                                                                                <h6 class="dropdown-header">Amount</h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
-                                                            <div class="dropdown-divider"></div>
-                                                                                <h6 class="dropdown-header">Amount per City</h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
-                                                            <div class="dropdown-divider"></div>
-                                                                                 <h6 class="dropdown-header">Number of Transactions</h6>
-                                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
-                                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
-                                                            <div class="dropdown-divider"></div>
-                                                                                <h6 class="dropdown-header">Number of Transactions per City
-                                                                                </h6>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
-                                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td> -->
-                                                                </div>
-                                                            </tr>
-                                                        </div>
-                                                    </div>
-
-                                                    <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok pull-right mr-8" (click)="downloadPDF1()"><i class="fa fa-file-pdf-o"></i> Export to PDF</button> -->
-                                                    <!-- <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="downloadPDF1()"> Export
-                                                        to PDF</button> -->
-                                                </div>
                                             </div>
                                         </div>
 
 
-                                        <div class="mt-24">
-                                            <omar-chart></omar-chart>
-                                        </div>
                                     </div>
 
                                 </div>
                             </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group col-sm-4 col-xs-12">
+
+                                                <tr>
+                                                    <div style="padding-bottom: -2;margin-left: -2%;">Show dashboard by </div>
+                                                    <div style="margin-left: 46%;
+                                                margin-top: -6%;
+                                                margin-right: 316px;">
+                                                        <td style="padding: 5px;">
+                                                            <div class="dropdown pull-right">
+                                                                <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> -->
+                                                                <button style="width: 164px;" id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Amount <i
+                                                                    class="fa fa-chevron-down"></i></button>
+                                                                <div class="dropdown-menu scroll-container">
+                                                                    <!-- <h6 class="dropdown-header">Amount</h6> -->
+                                                                    <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
+                                                                    <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
+                                                                    <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
+                                                                    <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <!-- <h6 class="dropdown-header">Amount per City</h6>
+                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <h6 class="dropdown-header">Number of Transactions</h6>
+                                                                <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <h6 class="dropdown-header">Number of Transactions per City
+                                                                </h6>
+                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a> -->
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <!-- <td style="padding: 5px;">
+                                                        <div class="dropdown pull-right">
+                                                             <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> 
+                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Amount per city <i
+                                                                class="fa fa-chevron-down"></i></button>
+                                                            <div class="dropdown-menu scroll-container">
+                                                                <h6 class="dropdown-header">Amount</h6>
+                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
+                                            <div class="dropdown-divider"></div>
+                                                                <h6 class="dropdown-header">Amount per City
+                                                                </h6>
+                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <h6 class="dropdown-header">Number of Transactions</h6>
+                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
+                                            <div class="dropdown-divider"></div>
+                                            <h6 class="dropdown-header">Number of Transactions per City
+                                            </h6>
+                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a>
+                                                            </div>
+                                                        </div>
+                                                    </td> -->
+                                                        <td style="padding: 5px;">
+                                                            <div class="dropdown pull-right">
+                                                                <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> -->
+                                                                <button style="width: 183px;" id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Number Of
+                                                                transactions <i
+                                                                    class="fa fa-chevron-down"></i></button>
+                                                                <div style="width: 183px !important;" class="dropdown-menu scroll-container">
+                                                                    <!-- <h6 class="dropdown-header">Amount</h6>
+                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
+                                            <div class="dropdown-divider"></div> -->
+                                                                    <!-- <h6 class="dropdown-header">Amount per City</h6>
+                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
+                                            <div class="dropdown-divider"></div> -->
+                                                                    <!-- <h6 class="dropdown-header">Number of Transactions -->
+                                                                    <!-- </h6 > -->
+                                                                    <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
+                                                                    <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
+                                                                    <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
+                                                                    <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
+                                                                    <div class="dropdown-divider"></div>
+                                                                    <!-- <h6 class="dropdown-header">Number of Transactions per City
+                                                                </h6>
+                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a> -->
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <!-- <td style="padding: 5px;">
+                                                        <div class="dropdown pull-right">
+                                                             SAFIA 22.09.2021 <button class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-line-chart"></i> Chart <i class="fa fa-chevron-down"></i></button> 
+                                                            <button id="btn" class="btn btn-danger mok" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Number of
+                                                            Transactions per City <i
+                                                                class="fa fa-chevron-down"></i></button>
+                                                            <div class="dropdown-menu scroll-container">
+                                                                <h6 class="dropdown-header">Amount</h6>
+                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 1)">Daily</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 1)">Weekly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 1)">Monthly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 1)">Yearly</a>
+                                            <div class="dropdown-divider"></div>
+                                                                <h6 class="dropdown-header">Amount per City</h6>
+                                            <a class="dropdown-item clickable" (click)="showChart(1, 2, 1)">Daily</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(2, 2, 1)">Weekly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(3, 2, 1)">Monthly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(4, 2, 1)">Yearly</a>
+                                            <div class="dropdown-divider"></div>
+                                                                 <h6 class="dropdown-header">Number of Transactions</h6>
+                                            <a class="dropdown-item clickable" (click)="showChart(1, 1, 2)">Daily</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(2, 1, 2)">Weekly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(3, 1, 2)">Monthly</a>
+                                            <a class="dropdown-item clickable" (click)="showChart(4, 1, 2)">Yearly</a>
+                                            <div class="dropdown-divider"></div>
+                                                                <h6 class="dropdown-header">Number of Transactions per City
+                                                                </h6>
+                                                                <a class="dropdown-item clickable" (click)="showChart(1, 2, 2)">Daily</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(2, 2, 2)">Weekly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(3, 2, 2)">Monthly</a>
+                                                                <a class="dropdown-item clickable" (click)="showChart(4, 2, 2)">Yearly</a>
+                                                            </div>
+                                                        </div>
+                                                    </td> -->
+                                                    </div>
+                                                </tr>
+                                            </div>
+                                            <div class="col-xs-12">
+
+                                                <div class="mt-24">
+                                                    <omar-chart></omar-chart>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- SAFIA 22.09.2021 <button class="btn btn-danger mok pull-right mr-8" (click)="downloadPDF1()"><i class="fa fa-file-pdf-o"></i> Export to PDF</button> -->
+                                        <!-- <button id="btn" class="btn btn-danger mok pull-right mr-8" (click)="downloadPDF1()"> Export
+                                        to PDF</button> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="panel panel-default">
+                                <div class="panel-body"> -->
+
+                            <!-- <div class="col-xs-12">
+
+                                        <div class="mt-24">
+                                            <omar-chart></omar-chart>
+                                        </div>
+                                    </div> -->
+                            <!-- </div>
+                            </div> -->
                         </fieldset>
                     </div>
 
@@ -725,11 +822,11 @@
 
                             <p>{{err.toString()}}</p>
                         </div>
-                        <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
+                        <!-- <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
                             <button type="button" class="close" (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h4><i class="icon fa fa-check"></i> Alert!</h4>
                             {{msg}}
-                        </div>
+                        </div> -->
 
                         <div class="row" *ngIf="hidemain==false">
                             <fieldset class="col-md-12">
@@ -837,11 +934,11 @@
 
                             <p>{{err.toString()}}</p>
                         </div>
-                        <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
+                        <!-- <div class="alert alert-warning alert-dismissible" *ngIf="showalert==true">
                             <button type="button" class="close" (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h4><i class="icon fa fa-check"></i> Alert!</h4>
                             {{msg}}
-                        </div>
+                        </div> -->
 
                         <div class="row" *ngIf="hidemain==false">
                             <fieldset class="col-md-12">
@@ -997,88 +1094,130 @@
                 <!-- +++  -->
 
                 <div class="col-xs-12" *ngIf="pass==true">
-                    <div style="height:15px;"></div>
+                    <!-- <div style="height:15px;"></div> -->
                     <br>
-                    <fieldset class="col-md-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a (click)="detailPage()"><i
-                                            style="color: black; width: 24px; height: 24px;" class="fa fa-home"
-                                            aria-hidden="true"></i>
-                                    </a></li>
-                                <li class="breadcrumb-item active" aria-current="page"> Reset Password</li>
-                            </ol>
-                        </nav>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a (click)="detailPage()"><i
+                                        style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                        aria-hidden="true"></i>
+                                </a></li>
+                            <li class="breadcrumb-item active" aria-current="page"> Reset Password</li>
+                        </ol>
+                    </nav>
+                    <!-- <fieldset class="col-md-12"> -->
 
-                        <!--<div class="panel panel-default">-->
-                        <div>
-                            <div class="panel-body">
+                    <div class="panel-body">
 
-                                <div class="box-header">
-                                    <section>
-                                        <div class="callout callout-danger" *ngIf=" Errpass1==true && Errpass3==false && valid1 ==false && Errpass4==false">
+                        <!-- <div class="box-header"> -->
+                        <section>
+                            <!-- <div class="callout callout-danger" *ngIf=" Errpass1==true && Errpass3==false && valid1 ==false && Errpass4==false">
 
                                             <h4>Warning!</h4>
                                             <strong>You must confirm your password</strong>
                                             <p></p>
-                                        </div>
-                                        <div class="callout callout-danger" *ngIf=" errorarraycondtion==true ">
+                                        </div> -->
+
+                            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf=" Errpass1==true && Errpass3==false && valid1 ==false && Errpass4==false">
+                                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!-- <h4 style="color:  #B83C37;"><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> You must confirm your password !
+                                </h5>
+                            </div>
+
+                            <!-- <div class="callout callout-danger" *ngIf=" errorarraycondtion==true ">
 
                                             <h4>Warning!</h4>
                                             <strong>password must be at least 8 characters and contain a number and an
                                                 uppercase and lowercase
                                                 letters and special character</strong>
                                             <p></p>
-                                        </div>
-                                        <div class="callout callout-danger" *ngIf=" Errpass1==false && Errpass3==false && valid1 ==false && Errpass4==true && valid2 ==false">
+                                        </div> -->
+
+                            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf=" errorarraycondtion==true ">
+                                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!-- <h4 style="color:  #B83C37;"><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> password must be at least 8 characters and contain a number and an uppercase and lowercase letters and special character
+                                </h5>
+                            </div>
+
+                            <!-- <div class="callout callout-danger" *ngIf=" Errpass1==false && Errpass3==false && valid1 ==false && Errpass4==true && valid2 ==false">
 
                                             <h4>Warning!</h4>
                                             <strong>Your old password is not correct</strong>
                                             <p></p>
-                                        </div>
-                                        <div class="callout callout-danger" *ngIf="Errpass3==true && Errpass1==false && valid1 ==false">
+                                        </div> -->
+                            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf=" Errpass1==false && Errpass3==false && valid1 ==false && Errpass4==true && valid2 ==false">
+                                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!-- <h4 style="color:  #B83C37;"><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> Your old password is not correct
+                                </h5>
+                            </div>
+
+                            <!-- <div class="callout callout-danger" *ngIf="Errpass3==true && Errpass1==false && valid1 ==false">
 
                                             <h4>Warning!</h4>
                                             <strong>Your password is Empty</strong>
                                             <p></p>
-                                        </div>
-                                        <div class="callout callout-success" *ngIf="valid1==true && Errpass3==false && Errpass1 ==false">
+                                        </div> -->
+                            <!-- <div class="callout callout-success" *ngIf="valid1==true && Errpass3==false && Errpass1 ==false">
 
                                             <strong>Updated successfully</strong>
                                             <p></p>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="box box-default">
+                            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="Errpass3==true && Errpass1==false && valid1 ==false">
+                                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <!-- <h4 style="color:  #B83C37;"><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> Your password is Empty!
+                                </h5>
+                            </div>
 
-                                            <div class="box-body" style=" padding-left: 30px;">
-                                                <div class="box-tools">
-                                                    <!-- <h4>Password Reset</h4> -->
-                                                    <h4>Reset Password</h4>
-                                                    <div class="box-tools">
-                                                        <div class="input-group input-group-sm" style="    width: 60%;">
+                            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="valid1==true && Errpass3==false && Errpass1 ==false">
+                                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5 style="color:  #270;"><i class="fa fa-check"> </i> Updated successfully !
+                                </h5>
+                            </div>
 
-                                                            <div class="input-group">
-                                                                <!-- ++++ -->
-                                                                <input type="password" name="paramPass2" [(ngModel)]="paramPass2" class="form-control pull-right" placeholder="Old password "> <br> <br>
-                                                                <input type="password" name="paramPass" [(ngModel)]="paramPass" class="form-control pull-right" placeholder="New password "> <br> <br>
-                                                                <input type="password" name="paramPass1" [(ngModel)]="paramPass1" class="form-control pull-right" placeholder="New password confirmation">
-                                                                <button id="btn" (click)="MerchantParamToken1(paramPass, paramPass1, paramPass2)" type="submit" class="btn btn-x btn-sm mt-8"> Reset
-                                                                    Password </button>
+                            <!-- <div class="box box-default"> -->
 
-                                                            </div>
+                            <div class="panel panel-default">
 
+                                <div class="panel-heading">
+                                    Reset Password
+                                </div>
+                                <div class="panel-body">
+                                    <div class="box-body" style=" padding-left: 30px;">
+                                        <div class="box-tools">
+                                            <!-- <h4>Password Reset</h4> -->
+                                            <!-- <h4>Reset Password</h4> -->
+                                            <div class="box-tools">
+                                                <div class="input-group input-group-sm" style="    width: 60%;">
 
+                                                    <div class="input-group">
+                                                        <!-- ++++ -->
+                                                        <input type="password" name="paramPass2" [(ngModel)]="paramPass2" class="form-control pull-right" placeholder="Old password ">
+                                                        <br> <br>
+                                                        <input type="password" name="paramPass" [(ngModel)]="paramPass" class="form-control pull-right" placeholder="New password ">
+                                                        <br> <br>
+                                                        <input type="password" name="paramPass1" [(ngModel)]="paramPass1" class="form-control pull-right" placeholder="Password confirmation">
+                                                        <button id="btn" (click)="MerchantParamToken1(paramPass, paramPass1, paramPass2)" type="submit" class="btn btn-x btn-sm mt-8"> Reset
+                                                        Password </button>
 
-                                                        </div>
                                                     </div>
+
+
+
                                                 </div>
                                             </div>
                                         </div>
-                                    </section>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </fieldset>
+                        </section>
+                        <!-- </div> -->
+                    </div>
+                    <!-- </fieldset> -->
                 </div>
 
             </div>

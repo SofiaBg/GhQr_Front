@@ -1,0 +1,9 @@
+.form-group.required label:after {
+    content: " *";
+    color: red;
+}
+
+#blackBtn {
+    background-color: #222d32b5;
+    border: #222d32b5;
+}

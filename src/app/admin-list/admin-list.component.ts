@@ -1,6 +1,8 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { GipService } from '../services/gip.service';
+import { AppRole } from '../classes/Roles';
+import { Person } from '../classes/Person';
 
 const FILTER_PAG_REGEX = /[^0-9]/g;
 
@@ -20,6 +22,10 @@ export class AdminListComponent implements OnInit {
   // selectPage(page: string) {
   //   this.page = parseInt(page, 10) || 1;
   // }
+  
+  homePage(){
+    this.router.navigateByUrl("/adminList")
+  }
 
   formatInput(input: HTMLInputElement) {
     input.value = input.value.replace(FILTER_PAG_REGEX, '');
@@ -30,8 +36,10 @@ export class AdminListComponent implements OnInit {
   keyword: string = null;
 
   currentpage: number = -1;
-  allAdmin: Array<Admin>;
-  shownAdmin: Array<Admin>;
+  // allAdmin: Array<Admin>;
+  // shownAdmin: Array<Admin>;
+  allAdmin: Array<Person>;
+  shownPerson: Array<Person>;
   totalPages: number;
   pages: Array<any>;
   pagesize: number = 5;
@@ -43,7 +51,7 @@ export class AdminListComponent implements OnInit {
     this.getAllAdmin();
   }
 
-  adminDetails(admin: Admin) {
+  adminDetails(admin: Person) {
     console.log("Going to user details. Username: " + admin.user.username);
     this.router.navigateByUrl("/adminDetails", {
       state: {
@@ -53,7 +61,7 @@ export class AdminListComponent implements OnInit {
   }
 
   newAdmin() {
-    console.log("Going to user admin creation.");
+    console.log("Going to user creation.");
     this.router.navigateByUrl("/newAdmin");
   }
 
@@ -62,12 +70,12 @@ export class AdminListComponent implements OnInit {
     if (this.currentpage + 1 > this.pagesize) {
       this.currentpage = 0;
     }
-    this.shownAdmin = this.allAdmin.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+    this.shownPerson = this.allAdmin.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
   }
 
   gotoPage(i: number) {
     this.currentpage = i;
-    this.shownAdmin = this.allAdmin.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+    this.shownPerson = this.allAdmin.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
   }
 
   gotoPageFromInput() {
@@ -80,32 +88,58 @@ export class AdminListComponent implements OnInit {
     this.pagenumber = Number(event.target.value) - 1;
   }
 
+/* SAFIA 27.01.2022 */
   getAllAdmin() {
     this.service.getAllAdmin().subscribe(resp => {
-      this.allAdmin = resp as Admin[];
+      console.log('PERSONS :' + resp)
+
+      this.allAdmin = resp as Person[];
+      console.log('PERSONS :' + this.allAdmin)
+
       this.totalPages = Math.ceil(this.allAdmin.length / this.pagesize);
       if (this.currentpage + 1 > this.totalPages || this.totalPages > 0) {
         this.currentpage = 0;
       }
-      this.shownAdmin = this.allAdmin.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+      
+      this.shownPerson = this.allAdmin.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
     }, err => {
       console.log(err.message.message)
       this.currentpage = 0;
     })
   }
-}
 
-export class Admin {
-  public idPerson: number;
-  public firstName: string;
-  public lastName: string;
-  public email: string;
-  public phone: string;
-  public user: User;
-}
+  
+} 
+
+//   getAllAdmin() {
+//     this.service.getAllAdmin().subscribe(resp => {
+//       this.allAdmin = resp as Admin[];
+//       this.totalPages = Math.ceil(this.allAdmin.length / this.pagesize);
+//       if (this.currentpage + 1 > this.totalPages || this.totalPages > 0) {
+//         this.currentpage = 0;
+//       }
+//       this.shownAdmin = this.allAdmin.slice(this.currentpage * this.pagesize, (this.currentpage + 1) * this.pagesize);
+//     }, err => {
+//       console.log(err.message.message)
+//       this.currentpage = 0;
+//     })
+//   }
+// }
+
+// export class Admin {
+//   public idPerson: number;
+//   public firstName: string;
+//   public lastName: string;
+//   public email: string;
+//   public phone: string;
+//   public user: User;
+// }
 
 export class User {
   public id: number;
   public username: string;
   public blocked: boolean;
+  public role: AppRole;
 }
+
+

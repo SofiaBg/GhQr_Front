@@ -1,0 +1,58 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Generate Qr Code</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+</div>
+
+<div class="modal-body">
+    <div id="qrForm">
+        <form class="form" id="form">
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-12">
+                    <label for="template">Template</label>
+                    <select class="form-control" id="template" name="template">
+                          <option value="A4">A4</option>
+                          <option value="A5">A5</option>
+                      </select>
+                </div>
+                <div class="form-group col-md-6 col-sm-12" id="form-amount">
+                    <label for="amount">Amount</label>
+                    <input type="number" min="0.01" step="0.01" class="form-control" id="amount" name="amount" (value)="amount">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="qrcode">
+        <div class="row">
+            <b>Generated QR Code</b>
+        </div>
+        <div class="row">
+            <img [src]="qrImage" class="img-fluid qrimg" alt="qr">
+        </div>
+        <div class="row mtop-16">
+            <div class="col-xs-offset-3 col-xs-6">
+                <button class="btn btn-primary btn-block" (click)="download()">Download</button>
+            </div>
+        </div>
+    </div>
+    <div id="extra">
+        <div class="alert alert-danger" *ngIf="qrGenerationFailed">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Error</strong><br> {{ qrGenerationMsg }}
+        </div>
+        <div *ngIf="qrGenerationLoading">
+            <mat-spinner style="margin: 0 auto; vertical-align: middle;" diameter="20" color="black"></mat-spinner>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="text-left col-xs-6">
+            <button class="btn btn-danger" (click)="close()">Close</button>
+        </div>
+        <div class="text-right col-xs-6">
+            <button id="blackBtn" class="btn btn-primary" (click)="send()">Generate</button>
+        </div>
+    </div>
+</div>

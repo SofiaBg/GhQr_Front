@@ -8,26 +8,103 @@
     <div class="content-wrapper">
         <div class="content-header">
 
+
+            <div style="height: 30px;"></div>
+            <br>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a (click)="merchantPage()"><i
-                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
-                                    aria-hidden="true"></i>
-                            </a></li>
-                    <li class="breadcrumb-item active" aria-current="page"> Details</li>
+                                style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                aria-hidden="true"></i>
+                        </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Merchant Details</li>
                 </ol>
             </nav>
 
-            <div class="alert alert-danger mb-8" *ngIf="error">
+            <!-- <div class="alert alert-danger mb-8" *ngIf="error">
                 <strong>{{errTitle}}</strong><br/> {{errMessage}}
             </div>
 
             <div class="alert alert-success mb-8" *ngIf="success">
                 <strong>{{successTitle}}</strong><br/> {{successMessage}}
+            </div> -->
+
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="error">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> {{errTitle}}</strong><br />
+                <p style="color:  #B83C37;">{{errMessage}}</p>
+
+            </div>
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="success">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong style="color:  #270;">{{successTitle}}</strong><br />
+                <p style="color:  #270;">{{successMessage}}</p>
+
             </div>
 
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessage==true">
+                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> Failed to change password !
+                </h5>
+            </div>
+
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <h5 style="color:  #270;"><i class="fa fa-check"> </i> Password Changed Successfully</h5>
+            </div>
+
+
             <div class="panel panel-default">
-                <div class="panel-heading">Merchant Details</div>
+                <div class="panel-heading">
+                    Merchant Details
+                    <div class="input-group pull-right">
+
+                        <button style="margin-top: -6px;margin-right: 7px;" id="btn1" type="button" class="btn btn-danger" data-toggle="modal" data-target="#resetPasswordModal">
+                            <i class="icon fa fa-lock"></i> Reset Password
+                        </button>
+                    </div>
+                    <div class="input-group pull-right" style="margin-left: 1%;">
+                        <!--   <button id="" type="button" class="btn btn-danger" (click)="deleteAdmin()"><i class="icon fa fa-trash"></i> Delete</button>
+                   -->
+                        <button style="margin-top: -6px; margin-left: -10%;" id="btn1" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                            <i class="icon fa fa-trash"></i> Delete
+                        </button>
+                    </div>
+
+                    <div style="overflow: auto;" class="modal fade" id="resetPasswordModal" tabindex="-1" role="dialog" aria-labelledby="resetPasswordModal" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 style="text-align: center;" class="modal-title" id="exampleModalLabel">Reset Password
+                                    </h5>
+                                </div>
+                                <div style="text-align: center;" class="modal-body">
+                                    Are you sure you want to reset password for this user?
+
+                                    <!-- ++++ -->
+                                    <!-- <input type="password" name="paramPass2" [(ngModel)]="paramPass2" class="form-control pull-right" placeholder="Old password "> <br> <br>
+                                    <input type="password" name="paramPass" [(ngModel)]="paramPass" class="form-control pull-right" placeholder="New password "> <br> <br>
+                                    <input type="password" name="paramPass1" [(ngModel)]="paramPass1" class="form-control pull-right" placeholder="New password confirmation"> -->
+                                    <!-- <button id="btn" style="height: 33px;" (click)="MerchantParamToken1(paramPass, paramPass1, paramPass2)" type="submit" class="btn btn-x btn-sm mt-8"> Reset Password </button> -->
+
+                                </div>
+                                <!-- <div></div>
+                                <br/>
+                                <br/> -->
+                                <div style="text-align: center;" class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button (click)="resetPassword()" style="background:#ff2a2a; border-color: #ff2a2a;" type="submit" class="btn btn-danger" data-dismiss="modal">Reset
+                                        Password</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="panel-body">
 
                     <form>
@@ -38,88 +115,102 @@
                                     <div>
                                         <div class="radio" style="display: inline-block;">
                                             <label>
-                                                <input type="radio" name="blocked" id="input" value="1" checked="{{ blocked }}" (change)="changeBlocked($event)"/>
+                                                <input type="radio" name="blocked" id="input" value="1"
+                                                    checked="{{ blocked }}" (change)="changeBlocked($event)" />
                                                 Yes
                                             </label>
                                         </div>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <div class="radio" style="display: inline-block;">
                                             <label>
-                                                <input type="radio" name="blocked" id="input" value="0" checked="{{ notBlocked }}" (change)="changeBlocked($event)"/>
+                                                <input type="radio" name="blocked" id="input" value="0"
+                                                    checked="{{ notBlocked }}" (change)="changeBlocked($event)" />
                                                 No
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" [(ngModel)]="firstNameInput">
+                                    <label for="lastName">Merchant Name</label>
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="merchantName" name="merchantName" placeholder="Merchant Name" [(ngModel)]="merchantNameInput">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" [(ngModel)]="lastNameInput">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="email">E-Mail</label>
-                                    <input type="text" class="form-control" id="email" name="email" placeholder="E-Mail" [(ngModel)]="emailInput">
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="email" name="email" placeholder="E-Mail" [(ngModel)]="emailInput">
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="mobileNumber">Mobile Number</label>
-                                    <input disabled type="text" class="form-control" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="mobileNumberInput">
-                                </div>
-                            </div>
+
                         </div>
                         <div class="row">
-                            <div class="col-md-4">
+
+                        </div>
+                        <div class="row">
+                            <!-- <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="registrationNumber">Registration Number</label>
-                                    <input type="text" class="form-control" id="registrationNumber" name="registrationNumber" placeholder="registrationNumber" [(ngModel)]="emailInput">
+                                    <label for="firstName">First Name</label>
+                                    <input disabled type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name" [(ngModel)]="firstNameInput">
                                 </div>
-                            </div>
+                            </div> -->
+                            <!-- <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name" [(ngModel)]="lastNameInput">
+                                </div>
+                            </div> -->
+
+
+                        </div>
+                        <!-- <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="tin">TIN</label>
-                                    <input disabled type="text" class="form-control" id="tin" name="tin" placeholder="TIN" [(ngModel)]="mobileNumberInput">
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="tin" name="tin" placeholder="TIN" [(ngModel)]="tinInput">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="guarantee">Guarntee</label>
-                                    <input type="text" class="form-control" id="guarantee" name="guarantee" placeholder="Guarantee" [(ngModel)]="guaranteeInput">
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="guarantee" name="guarantee" placeholder="Guarantee" [(ngModel)]="guaranteeInput">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="APIUrl">APIUrl</label>
-                                    <input disabled type="text" class="form-control" id="APIUrl" name="APIUrl" placeholder="APIUrl" [(ngModel)]="APIUrlInput">
+                                    <label for="urlApi">APIUrl</label>
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="urlApi" name="urlApi" placeholder="APIUrl" [(ngModel)]="apiUrlInput">
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+                        <!-- <div class="row">
+
+                        </div> -->
                         <div class="row">
-                            <div class="col-md-4">
+                            <!-- <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="website">Web Site</label>
-                                    <input type="text" class="form-control" id="website" name="website" placeholder="website" [(ngModel)]="websiteInput">
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="website" name="website" placeholder="website" [(ngModel)]="websiteInput">
+                                </div>
+                            </div> -->
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="phone">Mobile Number</label>
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="phone" name="phone" placeholder="Mobile Number" [(ngModel)]="mobileNumberInput">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="registrationNumber">Business Registration Number</label>
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="registrationNumber" name="registrationNumber" placeholder="registrationNumber" [(ngModel)]="registrationNumberInput">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="companyName">Company Name </label>
-                                    <input disabled type="text" class="form-control" id="companyName" name="companyName" placeholder="APIUrl" [(ngModel)]="companyNameInput">
+                                    <input aria-disabled="true" disabled type="text" class="form-control" id="companyName" name="companyName" placeholder="Company Name" [(ngModel)]="companyNameInput">
                                 </div>
                             </div>
                         </div>
@@ -127,35 +218,33 @@
 
                 </div>
                 <div class="panel-footer" style="overflow: auto;">
-                    <div class="input-group pull-right">
-                        <!--   <button id="" type="button" class="btn btn-danger" (click)="deleteAdmin()"><i class="icon fa fa-trash"></i> Delete</button>
-                   -->
-                        <button id="btn1" type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
-                            <i class="icon fa fa-trash"></i> Delete
-                      </button></div>
+
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div style="overflow: auto;" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 style="text-align: center;" class="modal-title" id="exampleModalLabel">Delete</h5>
+                                    <h5 style="text-align: center;" class="modal-title" id="exampleModalLabel">Delete
+                                    </h5>
                                 </div>
                                 <div style="text-align: center;" class="modal-body">
                                     Are you sure you want to delete this record?
                                 </div>
                                 <div style="text-align: center;" class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button style="background:#ff2a2a; border-color: #ff2a2a;" type="button" class="btn btn-danger" (click)="deleteMerchant()">Yes</button>
+                                    <button style="background:#ff2a2a; border-color: #ff2a2a;" type="button" class="btn btn-danger" (click)="deleteMerchant()" data-dismiss="modal">Yes</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="input-group pull-right mr-8">
-                        <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="updateMerchant()"><i class="icon fa fa-check"></i> Save</button>
+                        <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="updateMerchant()"><i
+                                class="icon fa fa-check"></i> Save</button>
                     </div>
                     <!-- SAFIA 10.06.2021 -->
                     <div class="input-group pull-left mr-8">
-                        <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="cancel()"><i class="icon fa fa-close"></i> Cancel</button>
+                        <button style="background:#ff2a2a; border-color: #ff2a2a;" type="button" class="btn btn-danger mok" (click)="cancel()"><i class="icon fa fa-close"></i>
+                            Cancel</button>
                     </div>
                 </div>
             </div>

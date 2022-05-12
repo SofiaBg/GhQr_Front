@@ -5,8 +5,8 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<div class="modal-body">
-    <form [formGroup]="recordForm" name="merchantForm">
+<div data-backdrop="static" data-keyboard="false" class="modal-body">
+    <form name="merchantForm">
         <div class="form-group">
 
             <div class="form-section-header mtop-16">
@@ -19,9 +19,9 @@
                     <input type="text" class="form-control" name="sitebranch" id="sitebranch" aria-disabled="true" disabled>
                 </div>
                 <!--<div class="form-group col-md-3 col-sm-6 col-xs-12">
-              <label for="sitemerchantid">Merchant ID</label>
-              <input type="text" class="form-control" name="sitemerchantid" id="sitemerchantid" aria-disabled="true" disabled>
-            </div>    -->
+                    <label for="sitemerchantid">Merchant ID</label>
+                    <input type="text" class="form-control" name="sitemerchantid" id="sitemerchantid" aria-disabled="true" disabled>
+                    </div>    -->
                 <div class="form-group col-md-3 col-sm-6 col-xs-12">
                     <label for="sitecompanyname">Company Name</label>
                     <input required type="text" class="form-control" name="sitecompanyname" id="sitecompanyname" aria-disabled="true" disabled>

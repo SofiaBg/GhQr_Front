@@ -16,10 +16,58 @@
                 <li class="breadcrumb-item active" aria-current="page">Reports</li>
             </ol>
         </nav>
-        <div class="alert alert-success alert-dismissible" *ngIf="show==true">
+        <!-- <div class="alert alert-success alert-dismissible" *ngIf="show==true">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
             <h4><i class="icon fa fa-check"></i> Alert!</h4>
             PDF Generated successfully. Redirecting in 3 seconds...
+        </div> -->
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="fttMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i style="color:  #B83C37;" class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date From , Date To and Type are required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="ftMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date From and Date To are required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="fMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date From is required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="tMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date To is required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="typeMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Type is required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="ttMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date to and Type is required !</p>
+        </div>
+        <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="ftypeMsg">
+            <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+            <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> Alert</strong><br/>
+            <p style="color:  #B83C37;">Date From and Type is required !</p>
+        </div>
+        <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true">
+            <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong style="color:  #270;">Alert!</strong><br/>
+            <p style="color:  #270;">PDF Generated successfully. Redirecting in 3 seconds...</p>
+
         </div>
         <section class="content-header">
 
@@ -52,17 +100,16 @@
                                     <h4>Report Criteria:</h4>
                                 </div> -->
                                 <div class="row">
-                                    <div class="form-group col-md-3 col-xs-6">
+                                    <div class="form-group col-md-3 col-xs-6 required">
                                         <label for="dateFrom">Date From</label>
                                         <input type="date" class="form-control" name="dateFrom" id="dateFrom" [(ngModel)]="dateFrom">
                                     </div>
-                                    <div class="form-group col-md-3 col-xs-6">
+                                    <div class="form-group col-md-3 col-xs-6 required">
                                         <label for="dateTo">Date To</label>
                                         <input type="date" class="form-control" name="dateTo" id="dateTo" [(ngModel)]="dateTo">
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-3 col-xs-6">
+
+                                    <div class="form-group col-md-3 col-xs-6 required">
                                         <label for="type">Select Report Type</label>
                                         <select class="form-control" name="type" id="type" [(ngModel)]="type">
                                             <!-- <option value="0">Transactions</option> -->
@@ -75,8 +122,10 @@
                                         </select>
 
                                     </div>
-                                    <button id="blackBtn" type="submit" class="btn btn-primary" (click)="report()">Generate</button>
+                                </div>
 
+                                <div class="input-group pull-right mr-8">
+                                    <button id="blackBtn" type="submit" class="btn btn-primary" (click)="report()">Generate</button>
                                 </div>
 
                                 <div style="display: inline-block; height: 100%; vertical-align: middle;" *ngIf="loading">

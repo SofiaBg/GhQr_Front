@@ -1,0 +1,181 @@
+<app-appheader>
+</app-appheader>
+<app-appmenu></app-appmenu>
+
+
+<div class="wrapper">
+
+
+
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div style="height: 30px;"></div>
+            <br>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="homePage()"><i
+                                style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                aria-hidden="true"></i>
+                        </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Report Management</li>
+                </ol>
+            </nav>
+
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessage==true">
+                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4 style="color:  #B83C37;  background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert!
+                </h4>
+                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> Please choose a role !
+                </h5>
+            </div>
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessageR==true">
+                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4 style="color:  #B83C37;  background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert!
+                </h4>
+                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> No assigned report for this role !
+                </h5>
+            </div>
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessageRs==true">
+                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4 style="color:  #B83C37;  background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert!
+                </h4>
+                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> No assigned report to save !
+                </h5>
+            </div>
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessageRl==true">
+                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4 style="color:  #B83C37;  background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert!
+                </h4>
+                <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> Role is required !
+                </h5>
+            </div>
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <h5 style="color:  #270;"><i class="fa fa-check"> </i> Report assigned Successfully !</h5>
+            </div>
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="showD==true">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <h5 style="color:  #270;"><i class="fa fa-check"> </i> Report remobed Successfully for this role !</h5>
+            </div>
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showMessage==true ">
+                <button style="color:  #B83C37;  background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> All fields marked with an asterisk (*) are required.</h4> -->
+                <h4 style="color:  #B83C37;  background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert !
+                </h4>
+                <!-- <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i>{{errorArray}}</h5> -->
+                <h5 style="color:  #B83C37;">
+                    <ul *ngFor="let error of errorArray">
+                        <li>
+                            {{error}}
+                        </li>
+                    </ul>
+                </h5>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Report Management
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="role">Roles</label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group ">
+                                <select class="form-control" name="role" id="role" [(ngModel)]="roleInput">
+                                    <option>Select a User Role </option>
+                                    <option *ngFor='let role of roles' [ngValue]="role.role">
+                                        {{role.role}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="getAllReportsByRole()"> Validate</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group ">
+                                <label for="firstName">List of reports</label>
+                                <div id="divDetails">
+
+                                    <ul class="list-group">
+
+                                        <li class="list-group-item list-group-item-action list-group-item-warning " style=" background: #f3f3f3;color: #333; ">
+                                            <input type="text " class="form-control " placeholder="Search " [(ngModel)]="keyword">
+                                        </li>
+
+                                        <li *ngFor="let item of reports  | filter : keyword" class="list-group-item" (click)="toggleSelection(item, 1)" [class.item-selected]="item.selected">
+                                            <dd>
+                                                {{item.reports}}
+                                            </dd>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 " style="margin-left: 3%; ">
+                            <br>
+                            <br>
+                            <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="moveAll('right')">
+                                <i class="icon fa fa-angle-double-right "></i></button>
+                            <br>
+                            <br>
+                            <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="moveSelected('right')"><i class="icon fa fa-angle-right "></i></button>
+                            <br>
+                            <br>
+                            <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="moveSelected('left') "><i class="icon fa fa-angle-left "></i></button>
+                            <br>
+                            <br>
+                            <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="moveAll('left') "><i
+                                    class="icon fa fa-angle-double-left "></i></button>
+
+                        </div>
+                        <div class="col-md-3 " style="margin-left: -9%; ">
+                            <div class="form-group ">
+                                <label for="report ">List of assigned reports</label>
+                                <div id="divDetails ">
+
+                                    <ul class="list-group ">
+
+                                        <li class="list-group-item list-group-item-action list-group-item-warning " style=" background: #f3f3f3;color: #333; ">
+                                            <input type="text " class="form-control " placeholder="Search " [(ngModel)]="keySearch">
+                                        </li>
+
+                                        <li *ngFor="let item of reportsAssigned  | filter : keySearch" class="list-group-item" (click)="toggleSelection(item, 1)" [class.item-selected]="item.selected">
+                                            <dd>
+                                                {{item.reports}}
+                                            </dd>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 ">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-footer o-auto ">
+                    <div class="input-group pull-right mr-8 ">
+                        <button id="blackBtn" type="button" class="btn btn-danger mok" (click)="save() "><i
+                                class="icon fa fa-check "></i> Save</button>
+                    </div>
+                    <!-- SAFIA 10.06.2021 -->
+                    <div class="input-group pull-left mr-8 ">
+                        <button id="btn1" type="button" class="btn btn-danger mok" (click)="cancel() "><i
+                                class="icon fa fa-close "></i> Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <app-scroll-to-top></app-scroll-to-top>
+
+        </div>
+    </div>
+
+</div>

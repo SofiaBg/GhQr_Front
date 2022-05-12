@@ -84,6 +84,8 @@ export class ForgotPassComponent implements OnInit {
   valid1: Boolean = true;//---changer flcode valid1
   msgarray: Boolean = false;
   errorarray: any;
+  stepOtp: boolean = false;
+  dataOtp: any;
 
 
 
@@ -93,8 +95,24 @@ export class ForgotPassComponent implements OnInit {
     config.keyboard = false;
     this.usernameForegetPass = localStorage.getItem("forgotpass");
   }
+  stringJson: any;
 
+  stringObject: any;
   ngOnInit() {
+
+    // console.log('USERNAME :) '+this.usernameForegetPass)
+    // this.service.findUserByMobileNumber(this.usernameForegetPass).subscribe(data => {
+    //   console.log(" USERNAME FORGOT PWD"+ data);
+
+    //   this.stringJson = JSON.stringify(data);
+    //   this.stringObject = JSON.parse(this.stringJson);
+    //   console.log("JSON object -", this.stringObject);
+    //   console.log(this.stringObject.username)
+    //   localStorage.setItem('forgotpass',this.stringObject.username);
+
+    //   this.usernameForegetPass = this.stringObject.username;
+    //   console.log(data);
+    // });
     
   }
 //+++++++++++++
@@ -215,6 +233,61 @@ this.router.navigateByUrl("/forgotPass");
   }
 
 }
+
+phone : boolean = false;
+
+sendOTP(mobileNumber) {
+  if (this.phoneForegetPass==null || this.phoneForegetPass=='') {
+    // this.errorarraystep1.push("Phone number is Required")
+    this.phone=true;
+    console.log("requ")
+    this.validresetP = false
+  }else{
+
+ 
+  console.log('***** SNED OTP *****')
+  console.log('***** Phone *****'+ this.phoneForegetPass)
+  mobileNumber = this.phoneForegetPass;
+  console.log('***** SNED OTP *****')
+  this.dataOtp = this.service.sendOtpCode(mobileNumber).subscribe(data => {
+    console.log("***** OTP *****", data)
+  })
+  this.stepOtp=true;
+ }
+}
+showMessage: boolean = false;
+mode: boolean = false;
+show: boolean = false;
+
+validate(mobileNumber, otp) {
+
+  mobileNumber = this.phoneForegetPass;
+  otp = $('#otp').val();
+
+  console.log('Phone Number = ', mobileNumber, 'OTP', otp)
+  this.service.checkOtpCode(mobileNumber, otp).subscribe(data => {
+    console.log(data);
+    if (data['respCode'] == "001") {
+      console.log('Failed to save, Please check your informations');
+
+      this.showMessage = true;
+      // this.errorMessage = "Phone Number already used."
+    }
+    if (data['respCode'] == "000") {
+      this.mode = true;
+      this.show = true;
+      // this.successMessage='Phone number checked'
+      // this.showMessage = true;      
+      setTimeout(() => {
+        console.log('Informations checked successfully')
+      }, 3000)
+      this.openff()
+      // this.router.navigateByUrl('/otp')
+    }
+  });
+
+}
+
 openff() {
   console.log("test");
   

@@ -1,0 +1,109 @@
+<app-appheader>
+</app-appheader>
+<app-appmenu></app-appmenu>
+
+
+<div class="wrapper">
+
+    <div class="content-wrapper">
+        <div class="content-header">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a (click)="merchantPage()"><i
+                                style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                aria-hidden="true"></i>
+                        </a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> New User</li>
+                </ol>
+            </nav>
+
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="errorForm ">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4 style="color:  #B83C37; background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert !
+                </h4>
+                <h5 style="color:  #B83C37;">
+                    <ul *ngFor="let error of erroArrays">
+                        <li>
+                            {{error}}
+                        </li>
+                    </ul>
+                </h5>
+            </div>
+            <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="error">
+                <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <strong style="color:  #B83C37;"> <i class="fa fa-times"> </i> {{errTitle}}</strong><br />
+                <ul style="color:  #B83C37;">
+                    <li>{{errMessage}}</li>
+                </ul>
+                <!-- <p style="color:  #B83C37;">{{errMessage}}</p> -->
+            </div>
+
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="success">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong style="color:  #270;">{{successTitle}}</strong><br />
+                <p style="color:  #270;">{{successMessage}}</p>
+
+            </div>
+
+            <!-- <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true  && mode==true">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5 style="color:  #270;"><i class="fa fa-check"> </i> Phone checked !</h5>
+            </div> -->
+            <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="showMessageSave==true">
+                <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <!-- <h4><i class="fa fa-exclamation-circle"></i> Alert!</h4> -->
+                <h5 style="color:  #270;"><i class="fa fa-check"> </i> User saved Successfully !</h5>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">New User</div>
+                <div class="panel-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label for="username">Username</label>
+                                    <input required type="text" class="form-control" id="username" name="username" placeholder="Username" [(ngModel)]="usernameInput">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group required">
+                                    <label for="mobileNumber">Mobile Number</label>
+                                    <input required minlength="10" type="text" class="form-control required" id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" [(ngModel)]="mobileNumberInput">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <form *ngIf="stepOtp==true">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input [(ngModel)]="otpInput" minlength="6 " maxlength="6 " id="otp " ng-model="otp " type="password" name="otp " placeholder="OTP " class="form-control " required />
+                                <!-- <span id="phoneIcon " class="glyphicon glyphicon-phone form-control-feedback "></span> -->
+                            </div>
+                            <!-- <div class="col-md-4">
+                                <button (click)="validate(phoneNumber,otp)" class="btn btn-danger " id="btnCheck " type="button "> Validate</button>
+                            </div> -->
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="panel-footer" style="overflow: auto;">
+
+                    <div *ngIf="step1==false" class="input-group pull-right">
+                        <button type="button" class="btn btn-danger mok" (click)="checkByMobileNumberToSaveSub()"><i
+                                class="icon fa fa-check"></i> Submit</button>
+                    </div>
+
+                    <div *ngIf="step1==true" class="input-group pull-right">
+                        <button type="button" class="btn btn-danger mok" (click)="validate(phoneNumber,otp)"><i
+                                class="icon fa fa-check"></i> Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

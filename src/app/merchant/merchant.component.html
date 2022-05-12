@@ -14,18 +14,18 @@
             <div style="height: 30px;"></div>
             <br>
 
-            <nav *ngIf="this.isSuperAdmin" aria-label="breadcrumb">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a (click)="adminList()"><i
-                                    style="color: black; width: 24px; height: 24px;" class="fa fa-home"
-                                    aria-hidden="true"></i>
-                            </a></li>
-                    <li class="breadcrumb-item active" aria-current="page"> Merchant Management</li>
+                                style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                aria-hidden="true"></i>
+                        </a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> Merchants</li>
                 </ol>
             </nav>
 
 
-            <div class="alert alert-success alert-dismissible" *ngIf="show==true">
+            <!-- <div class="alert alert-success alert-dismissible" *ngIf="show==true">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-check"></i> Alert!</h4>
                 {{ msg }}
@@ -35,10 +35,34 @@
                 <button type="button" class="close" (click)="closealert()" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-check"></i> Alert!</h4>
                 {{ msg }}
-            </div>
+            </div> -->
+
+
 
             <div class="content">
 
+                <!-- <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a (click)="adminList()"><i
+                                        style="color: black; width: 24px; height: 24px;" class="fa fa-home"
+                                        aria-hidden="true"></i>
+                                </a></li>
+                        <li class="breadcrumb-item active" aria-current="page"> Merchant</li>
+                    </ol>
+                </nav> -->
+
+                <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="showalert==true">
+                    <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4 style="color:  #B83C37; background-color: #ECC8C5;"><i class="fa fa-exclamation-circle"></i> Alert!
+                    </h4>
+                    <h5 style="color:  #B83C37;"><i class="fa fa-times"> </i> {{ msg }}</h5>
+                </div>
+                <div style="background: #DFF2BF !important; border-color:  #270;" class="alert alert-danger alert-dismissible" *ngIf="show==true">
+                    <button style="color:  #270; background-color: #DFF2BF;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong style="color:  #270;">Alert ! </strong><br />
+                    <p style="color:  #270;">{{ msg }}</p>
+
+                </div>
 
                 <div class="box box-default">
                     <div class="box-header with-border">
@@ -342,6 +366,7 @@
 
                                                     <tr>
 
+                                                        <th>Creation Date</th>
                                                         <th>Merchant ID</th>
                                                         <th>Merchant Name</th>
                                                         <th>Company Name</th>
@@ -358,6 +383,7 @@
                                                 <tbody>
                                                     <!-- SAFIA 28.09.2021 <tr *ngFor='let m of merchants; let i = index;'> -->
                                                     <tr *ngFor='let m of showResult | filter : keyword  ; let i = index;'>
+                                                        <td>{{m.createdAt}}</td>
                                                         <td>{{m.id}}</td>
                                                         <td>{{m.firstName+' '+m.lastName}}</td>
                                                         <td>{{m.companyName}}</td>
@@ -447,7 +473,7 @@
                                                             <option value="10">10</option>
                                                             <option value="25">25</option>
                                                             <option value="50">50</option>
-                                                            </select>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
