@@ -103,6 +103,7 @@ import { AllValidatedBulkMerchantsByBranchAComponent } from './gestion-reports/a
 import { AllRejectedBulkMerchantsAByBranchComponent } from './gestion-reports/all-rejected-bulk-merchants-a-by-branch/all-rejected-bulk-merchants-a-by-branch.component';
 import { AllValidatedBulkMerchantsByBranchComponent } from './gestion-reports/all-validated-bulk-merchants-by-branch/all-validated-bulk-merchants-by-branch.component';
 import { AllRejectedBulkMerchantsByBranchComponent } from './gestion-reports/all-rejected-bulk-merchants-by-branch/all-rejected-bulk-merchants-by-branch.component';
+import { NewSingleMerchantComponent } from './new-single-merchant/new-single-merchant.component';
 
 // import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
@@ -176,6 +177,7 @@ const appRoutes: Routes = [
   { path: "allRejectedBulkMerchantByBranch", component: AllRejectedBulkMerchantsAByBranchComponent},
   { path: "allValidatedBulkMerchantByBranchReport", component: AllValidatedBulkMerchantsByBranchComponent},
   { path: "allRejectedBulkMerchantByBranchReport", component: AllRejectedBulkMerchantsByBranchComponent},
+  { path: "newSingleMerchant", component: NewSingleMerchantComponent},  
   {path: '404', component: PageNotFoundComponent},
   {path: '**', redirectTo: '/404'}
 
@@ -267,7 +269,8 @@ const appRoutes: Routes = [
     AllValidatedBulkMerchantsByBranchAComponent,
     AllRejectedBulkMerchantsAByBranchComponent,
     AllRejectedBulkMerchantsByBranchComponent,
-    AllValidatedBulkMerchantsByBranchComponent
+    AllValidatedBulkMerchantsByBranchComponent,
+    NewSingleMerchantComponent
     // , OutSessionComponent
   ],
   imports: [

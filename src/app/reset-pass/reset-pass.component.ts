@@ -613,12 +613,16 @@ export class ResetPassComponent implements OnInit {
 
   stepPassword : boolean = false;
   inValidInfos : boolean = false;
+   resetPasswordReq = new ResetPasswordRequest();
+
   checkValidInfos(){
-    let resetPasswordReq = new ResetPasswordRequest();
-    resetPasswordReq.businessRegNo= this.businessRegNoInput;
-    resetPasswordReq.dateOfInc = this.dateOfIncInput;
-    resetPasswordReq.userName = this.usernameForegetPass;
-    this.service.checkValidInfosToResetPassword(resetPasswordReq).subscribe(response =>{
+    this.resetPasswordReq.businessRegNo= this.businessRegNoInput;
+    this.resetPasswordReq.dateOfInc = this.dateOfIncInput;
+    this.resetPasswordReq.userName = this.usernameForegetPass;
+    console.log("REQUEST IS => USERNAME : "+ this.resetPasswordReq.userName
+    +" Business Reistration Number : "+ this.resetPasswordReq.businessRegNo
+    +" Date of incorporation : "+ this.resetPasswordReq.dateOfInc)
+    this.service.checkValidInfosToResetPassword(this.resetPasswordReq).subscribe(response =>{
       console.log('Response Reset Password :', response);
       if (response["respCode"] == "000") {
         console.log('Infos checked Successfully');

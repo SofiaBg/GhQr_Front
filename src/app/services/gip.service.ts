@@ -455,9 +455,7 @@ export class GipService {
 
   /* SAFIA 12.05.2022 */
   checkValidInfosToResetPassword(resetPassword) {
-    return this.http.post(
-      this.host + "/checkValidInfosToResetPassword" , resetPassword
-    );
+    return this.http.get(this.host + "/checkValidInfosToResetPassword" , resetPassword);
   }
 
 
@@ -1562,17 +1560,17 @@ export class GipService {
     });
   }
 
-  checkValidUserName(userName) {
-    return this.http.post("http://cbgflowapi.rapidtest.com/CBG/FlowAPI/ConfirmAD_UserName/", userName, {
-      headers: { Authorization: this.jwtToken },
-    });
-  }
+  // checkValidUserName(userName) {
+  //   return this.http.post("http://cbgflowapi.rapidtest.com/CBG/FlowAPI/ConfirmAD_UserName/", userName, {
+  //     headers: { Authorization: this.jwtToken },
+  //   });
+  // }
 
-  checkValidAuthUserName(userName) {
-    return this.http.post("http://cbgflowapi.rapidtest.com/CBG/FlowAPI/AD_Authentication/", userName, {
-      headers: { Authorization: this.jwtToken },
-    });
-  }
+  // checkValidAuthUserName(userName) {
+  //   return this.http.post("http://cbgflowapi.rapidtest.com/CBG/FlowAPI/AD_Authentication/", userName, {
+  //     headers: { Authorization: this.jwtToken },
+  //   });
+  // }
 
   //omar
   updateAdmin(admin) {

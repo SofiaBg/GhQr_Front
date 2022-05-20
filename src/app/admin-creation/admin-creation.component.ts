@@ -118,7 +118,7 @@ export class AdminCreationComponent extends BaseComponent implements OnInit {
   errorForm: boolean = false;
   createAdmin() {
     this.erroArrays = [];
-    console.log(this.mobileNumberInput)
+    // console.log(this.mobileNumberInput)
 
     let admin = new AdminDto();
     admin.userName = this.usernameInput;
@@ -143,7 +143,7 @@ export class AdminCreationComponent extends BaseComponent implements OnInit {
       admin.email == null &&
       admin.firstName == null &&
       admin.lastName == null &&
-      admin.phone == null &&
+      // admin.phone == null &&
       admin.role == null
     ) {
       this.erroArrays.push(
@@ -179,12 +179,14 @@ export class AdminCreationComponent extends BaseComponent implements OnInit {
       this.showBranchErr = false;
       this.success = false;
       this.erroArrays.push("LastName is required");
-    } else if (admin.phone == null) {
-      this.errorForm = true;
-      this.showBranchErr = false;
-      this.success = false;
-      this.erroArrays.push("Phone is required");
-    } else if (admin.role == null) {
+    }
+    //  else if (admin.phone == null) {
+    //   this.errorForm = true;
+    //   this.showBranchErr = false;
+    //   this.success = false;
+    //   this.erroArrays.push("Phone is required");
+    // } 
+    else if (admin.role == null) {
       this.errorForm = true;
       this.showBranchErr = false;
       this.success = false;
@@ -201,10 +203,13 @@ export class AdminCreationComponent extends BaseComponent implements OnInit {
       this.errorForm = true;
       this.erroArrays.push("Please Enter A valid Email");
       console.log("email not valid");
-    } else if (admin.phone.length < 10 || !numbers.test(admin.phone)) {
-      this.errorForm = true;
-      this.erroArrays.push("Please Enter a valid Phone Number");
-      console.log("phone_number not valid");
+    }else if(admin.phone !== undefined){
+         if (admin.phone.length < 10 || !numbers.test(admin.phone)) {
+          this.errorForm = true;
+          this.erroArrays.push("Please Enter a valid Phone Number");
+          console.log("phone_number not valid");
+       }
+
     } else {
       console.log("admin   : ", admin);
       console.log("BEFORE CHECKING USERNAME")
@@ -235,17 +240,17 @@ export class AdminCreationComponent extends BaseComponent implements OnInit {
 
   isValid: boolean = false;
 
-  checkValidUserName(){
-    this.service.checkValidUserName(this.usernameInput).subscribe(response =>{
-      console.log('CBG API RESPONSE     ', response)
-      if (response["respCode"] == "000") {
-        this.isValid=true;
-          }
-          else{
-            this.isValid=false;
-          }     
-         })
-  }
+  // checkValidUserName(){
+  //   this.service.checkValidUserName(this.usernameInput).subscribe(response =>{
+  //     console.log('CBG API RESPONSE     ', response)
+  //     if (response["respCode"] == "000") {
+  //       this.isValid=true;
+  //         }
+  //         else{
+  //           this.isValid=false;
+  //         }     
+  //        })
+  // }
 
 
 }

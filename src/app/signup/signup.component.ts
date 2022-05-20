@@ -40,7 +40,7 @@ export class SignupComponent implements OnInit {
   stepSave: boolean = false;
   saveUser: boolean = false;
 
-  stringJson: any;
+  stringJson: any; 
   registerUser = new RegisterUser();
   subU = new SubUser();
   stringObject: any;

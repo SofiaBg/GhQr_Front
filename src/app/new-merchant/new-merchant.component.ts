@@ -702,7 +702,6 @@ export class NewAcceptorPointModal {
   }
 
   save() {
-
     if ($('#acceptorpoint').empty || $('#acceptorpointacronym').empty || $('#acceptorpointmobilenumber').empty) {
       this.errorMessage = "Please fill in the required fields."
     } else {
@@ -711,18 +710,14 @@ export class NewAcceptorPointModal {
         "acronym": $('#acceptorpointacronym').val(),
         "mobileNumber": $('#acceptorpointmobilenumber').val()
       };
-
       this.activeModal.close(newRow);
     }
-
   }
 
   close() {
     if (confirm("Do you really want to close the modal ? All unsaved data will be lost !"))
       this.activeModal.dismiss();
   }
-
-
 }
 
 function removeFromArray(array: Array<any>, index) {
