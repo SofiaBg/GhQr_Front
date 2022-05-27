@@ -89,6 +89,13 @@ export class GipService {
     );
   }
 
+  /* SAFIA 23.05.2022 */
+  saveMerchant(merchant) {
+    return this.http.post(this.host + "/saveQrMerchant", merchant);
+  
+  }
+
+
   findBranchLocatorByCode(branchCode){
     console.log("+++++ BRANCH LOCATOR +++++" + branchCode);
     return this.http.get(this.host + "/findBranchLocatorByCode/" + branchCode);
@@ -725,6 +732,12 @@ export class GipService {
   // SAFIA 06.12.2021
   getAllBulkMerchants(): Observable<CSVRecord[]> {
     return this.http.get<CSVRecord[]>(this.host + "/getAllBulkMerchants", {
+      headers: { Authorization: this.jwtToken },
+    });
+  }
+
+  getAllRejectedBulkMerchant(): Observable<CSVRecord[]> {
+    return this.http.get<CSVRecord[]>(this.host + "/getAllRejectedBulkMerchants", {
       headers: { Authorization: this.jwtToken },
     });
   }
@@ -1560,17 +1573,18 @@ export class GipService {
     });
   }
 
-  // checkValidUserName(userName) {
-  //   return this.http.post("http://cbgflowapi.rapidtest.com/CBG/FlowAPI/ConfirmAD_UserName/", userName, {
-  //     headers: { Authorization: this.jwtToken },
-  //   });
-  // }
+  checkValidUserName(userName) {
+    return this.http.post("http://cbgflowapi.rapidtest.com/CBG/FlowAPI/ConfirmAD_UserName/", userName, {
+      headers: { Authorization: this.jwtToken },
+    });
+  }
 
-  // checkValidAuthUserName(userName) {
-  //   return this.http.post("http://cbgflowapi.rapidtest.com/CBG/FlowAPI/AD_Authentication/", userName, {
-  //     headers: { Authorization: this.jwtToken },
-  //   });
-  // }
+  checkValidCredentials(username,password){
+    return this.http.post("http://cbgflowapi.rapidtest.com/CBG/FlowAPI/ConfirmAD_UserName/?username"+ username+
+    "&password="+password, {
+      headers: { Authorization: this.jwtToken },
+    });
+  }
 
   //omar
   updateAdmin(admin) {

@@ -17,20 +17,9 @@
                                 style="color: black; width: 24px; height: 24px;" class="fa fa-home"
                                 aria-hidden="true"></i>
                         </a></li>
-                    <li class="breadcrumb-item active" aria-current="page"> Merchant Validation</li>
+                    <li class="breadcrumb-item active" aria-current="page">Rejected Merchant </li>
                 </ol>
             </nav>
-
-
-            <!-- <div class="alert alert-danger mb-8" *ngIf="error">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <strong>{{errTitle}}</strong><br /> {{errMessage}}
-            </div>
-
-            <div class="alert alert-success mb-8" *ngIf="success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <strong>{{successTitle}}</strong><br /> {{successMessage}}
-            </div> -->
 
             <div style="background: #ECC8C5 !important; border-color:  #B83C37;" class="alert alert-danger alert-dismissible" *ngIf="error">
                 <button style="color:  #B83C37; background-color: #ECC8C5;" type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -66,7 +55,7 @@
             <!-- <div class="col-xs-12"> -->
             <div class="panel panel-default">
 
-                <div class="panel-heading"> Merchants Validation</div>
+                <div class="panel-heading"> Rejcted Merchants</div>
                 <!-- <div class="panel-body"> -->
                 <!-- <div class="panel panel-default"> -->
                 <div class="panel-body">
@@ -93,8 +82,8 @@
                                     <th colspan="3">
                                         Acceptor Point
                                     </th>
-                                    <th rowspan="2"> Request From</th>
-                                    <th rowspan="2"> Request By</th>
+
+                                    <th rowspan="2"> Rejected By</th>
                                     <th colspan="3" rowspan="2">
                                         -
                                     </th>
@@ -125,13 +114,12 @@
                                     <td>{{merchant.acceptorPoint}}</td>
                                     <td>{{merchant.acronym}}</td>
                                     <td>{{merchant.mobileNumberA}}</td>
-                                    <td>{{merchant.requestFrom}}</td>
-                                    <td>{{merchant.createdBy}}</td>
+                                    <td>{{merchant.rejectedBy}}</td>
                                     <!-- <td>{{record.}}</td> -->
                                     <td><button (click)="validateBulkMerchantCreation(merchant)" style="width: 40px;" id="blackBtn" class="btn btn-success mr-16"><span
                                                     class="fa fa-check"></span></button></td>
-                                    <td><button [class.selected]="merchant === selectedRecord" (click)="onSelect(merchant)" data-toggle="modal" data-target="#rejectModal" style="width: 40px;" id="blackBtn" class="btn btn-danger"><span class="fa fa-times"></span></button>
-                                    </td>
+                                    <!-- <td><button [class.selected]="merchant === selectedRecord" (click)="onSelect(merchant)" data-toggle="modal" data-target="#rejectModal" style="width: 40px;" id="blackBtn" class="btn btn-danger"><span class="fa fa-times"></span></button>
+                                    </td> -->
                                     <td><button [class.selected]="merchant === selectedRecord" (click)="onSelect(merchant)" data-toggle="modal" data-target=".bd-example-modal-lg" id="blackBtn" class="btn btn-danger">Details</button>
                                     </td>
                                     <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

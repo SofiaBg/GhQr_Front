@@ -273,6 +273,17 @@ export class LoginComponent implements OnInit {
 
   stringObject: any;
 
+  checkValidCredentials(username, password){
+    this.service.checkValidCredentials(username,password).subscribe(response =>{
+      console.log('CBG API RESPONSE     ', response)
+      if (response["respCode"] == "000") {
+        this.isValid=true;
+          }
+          else{
+            this.isValid=false;
+          }     
+         })
+  }
   onLogin(f) {
     // this.password=f.password
     f.password = this.password
@@ -311,6 +322,10 @@ export class LoginComponent implements OnInit {
           //   "************RESET PASSWORD *************     " + resetPassword
           // );
 
+          //this.checkValidCredentials(f.username, f.password);
+          if(this.isValid == false){
+            this.msg = "Invalid username"
+          }
           if (blocked == "blocked") {
             this.msg = "User is blocked";
             this.hide = false;
@@ -979,6 +994,8 @@ export class LoginComponent implements OnInit {
   passwordForegetPass: any;
   showmsgstep3: Boolean = false;
   msgstep4: any;
+
+
   resetpassword(f) {
     var passwordExp = new RegExp(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=.*[@?!.,:*=$&_])(?=[^A-Z]*[A-Z]).{8,}$/);
     this.errorarrayresetP = []
@@ -1099,7 +1116,8 @@ export class LoginComponent implements OnInit {
     }
   }
   
-
+  isValid : boolean = false;
+  
   openf(contentf) {
     console.log("test");
 

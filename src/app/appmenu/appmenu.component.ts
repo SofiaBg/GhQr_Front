@@ -392,6 +392,12 @@ export class AppmenuComponent extends BaseComponent implements OnInit {
     this.router.navigateByUrl('/allRejectedBulkMerchant')
 
   }
+
+  rejectedBulkMerchant() {
+    this.router.navigateByUrl('/rejectedBulkMerchant')
+
+  }
+
   allValidatedBulkMerchant() {
     this.router.navigateByUrl('/allValidatedBulkMerchant')
 

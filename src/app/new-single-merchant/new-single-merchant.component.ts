@@ -162,21 +162,21 @@ export class NewSingleMerchantComponent extends BaseComponent implements OnInit 
     console.log("***** START SAVE merchant *****");
 
     console.log(this.qrMerchant, "Merchant");
-    // this.gipService.saveMerchant(this.qrMerchant).subscribe((data) => {
-    //   console.log("data", data);
-    //   if (data["respCode"] == "000") {
-    //     console.log("User added successfully");
-    //     this.showMessageSave = true;
-    //     setTimeout(() => {
-    //       this.router.navigateByUrl("/login");
-    //     }, 4000);
-    //     // this.router.navigateByUrl('/login');
-    //   } else if (data["respCode"] == "001") {
-    //     this.errorMessage = "Failed to save merchant.";
-    //     console.log("Failed to save merchant");
-    //     this.saved = true;
-    //   }
-    // });
+    this.gipService.saveMerchant(this.qrMerchant).subscribe((data) => {
+      console.log("data", data);
+      if (data["respCode"] == "000") {
+        console.log("User added successfully");
+        this.showMessageSave = true;
+        setTimeout(() => {
+          this.router.navigateByUrl("/merchant");
+        }, 4000);
+        // this.router.navigateByUrl('/login');
+      } else if (data["respCode"] == "001") {
+        this.errorMessage = "Failed to save merchant.";
+        console.log("Failed to save merchant");
+        this.saved = true;
+      }
+    });
     }
 
   ngOnInit() {

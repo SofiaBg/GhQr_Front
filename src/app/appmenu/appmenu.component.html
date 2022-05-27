@@ -39,13 +39,20 @@
 
             <li class="clickable">
                 <a (click)="bulkMerchants()" *ngIf="this.isManager">
-                    <i class="fa fa-users"></i> Bulk Merchants Validations
+                    <i class="fa fa-users"></i> Merchants Validations
                 </a>
             </li>
 
             <li class="clickable">
+                <a (click)="rejectedBulkMerchant()" *ngIf="this.isManager">
+                    <i class="fa fa-users"></i> Rejected Merchants
+                </a>
+            </li>
+
+
+            <li class="clickable">
                 <a (click)="bulkMerchantsValidationAtBranch()" *ngIf="this.isBranchManager">
-                    <i class="fa fa-users"></i> Bulk Merchants Validations
+                    <i class="fa fa-users"></i> Merchants Validations
                 </a>
             </li>
 

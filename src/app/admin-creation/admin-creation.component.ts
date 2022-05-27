@@ -214,8 +214,9 @@ export class AdminCreationComponent extends BaseComponent implements OnInit {
       console.log("admin   : ", admin);
       console.log("BEFORE CHECKING USERNAME")
     //  this.checkValidUserName();
-      console.log(" USERNAME CHECKED ")
-      this.service.createAdmin(admin).subscribe(
+    //   console.log(" USERNAME CHECKED ")
+    //   if(this.isValid == true){
+        this.service.createAdmin(admin).subscribe(
         (data) => {
           if (data["respCode"] == "000") {
             this.success = true;
@@ -235,22 +236,24 @@ export class AdminCreationComponent extends BaseComponent implements OnInit {
           this.error = true;
         }
       );
+      // }
+      
     }
   }
 
   isValid: boolean = false;
 
-  // checkValidUserName(){
-  //   this.service.checkValidUserName(this.usernameInput).subscribe(response =>{
-  //     console.log('CBG API RESPONSE     ', response)
-  //     if (response["respCode"] == "000") {
-  //       this.isValid=true;
-  //         }
-  //         else{
-  //           this.isValid=false;
-  //         }     
-  //        })
-  // }
+  checkValidUserName(){
+    this.service.checkValidUserName(this.usernameInput).subscribe(response =>{
+      console.log('CBG API RESPONSE     ', response)
+      if (response["respCode"] == "000") {
+        this.isValid=true;
+          }
+          else{
+            this.isValid=false;
+          }     
+         })
+  }
 
 
 }
